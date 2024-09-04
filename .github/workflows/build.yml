@@ -30,13 +30,13 @@ jobs:
       - name: ROM
         env:
           COMPARE: 0
-        run: make -j${nproc} -O all
+        run: make -j1 -O all
 
       - name: Test
         env:
           TEST: 1
         run: |
-          make -j${nproc} check
+          make -j1 check
   allcontributors:
     if: github.actor == 'allcontributors[bot]'
     runs-on: ubuntu-latest
