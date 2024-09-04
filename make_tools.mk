@@ -1,7 +1,7 @@
 # This controls building executables in the `tools` folder.
 # Can be invoked through the `Makefile` or standalone.
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS += -j1 --no-print-directory
 
 # Inclusive list. If you don't want a tool to be built, don't add it here.
 TOOLS_DIR := tools
