@@ -179,7 +179,7 @@ CHECKTOOLDIRS = tools/patchelf tools/mgba-rom-test-hydra
 TOOLBASE = $(TOOLDIRS:tools/%=%)
 TOOLS = $(foreach tool,$(TOOLBASE),tools/$(tool)/$(tool)$(EXE))
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS += -j1 --no-print-directory
 
 # Clear the default suffixes
 .SUFFIXES:

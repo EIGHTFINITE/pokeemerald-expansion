@@ -52,12 +52,12 @@ jobs:
         env:
           MODERN: 1
           COMPARE: 0
-        run: make -j${nproc} -O all
+        run: make -j1 -O all
 
       - name: Test
         env:
           MODERN: 1
           TEST: 1
         run: |
-          make -j${nproc} -O pokeemerald-test.elf
-          make -j${nproc} check
+          make -j1 -O pokeemerald-test.elf
+          make -j1 check
