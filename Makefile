@@ -168,7 +168,7 @@ ROMTESTHYDRA := $(TOOLS_DIR)/mgba-rom-test-hydra/mgba-rom-test-hydra$(EXE)
 PERL := perl
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS += -j1 --no-print-directory
 
 # Clear the default suffixes
 .SUFFIXES:
