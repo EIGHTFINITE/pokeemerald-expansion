@@ -191,7 +191,7 @@ $(C_BUILDDIR)/wild_encounter.o: c_dep += $(DATA_SRC_SUBDIR)/wild_encounters.h
 PERL := perl
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS += -j1 --no-print-directory
 
 # Clear the default suffixes
 .SUFFIXES:
