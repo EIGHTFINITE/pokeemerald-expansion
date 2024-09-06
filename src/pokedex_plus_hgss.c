@@ -7510,20 +7510,10 @@ static void LoadPlayArrowPalette(bool8 cryPlaying)
 {
     u16 color;
 
-    if (!HGSS_DARK_MODE)
-    {
-        if (cryPlaying)
-            color = RGB(29, 9, 4);
-        else
-            color = RGB(18, 2, 4);
-    }
+    if (cryPlaying)
+        color = RGB(29, 9, 4);
     else
-    {
-        if (cryPlaying)
-            color = RGB(9, 9, 9);
-        else
-            color = RGB(3, 3, 3);
-    }
+        color = RGB(18, 2, 4);
     LoadPalette(&color, BG_PLTT_ID(0) + 11, PLTT_SIZEOF(1));
 }
 
