@@ -297,9 +297,9 @@ static const u32 sPokedexPlusHGSS_ScreenSearchHoenn_Tilemap[] = INCBIN_U32("grap
 static const u32 sPokedexPlusHGSS_ScreenSearchNational_Tilemap[] = INCBIN_U32("graphics/pokedex/hgss/tilemap_search_screen_national.bin.lz");
 
 #define SCROLLING_MON_X 146
-#define HGSS_DECAPPED FALSE
-#define HGSS_DARK_MODE FALSE
-#define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES FALSE
+#define HGSS_DECAPPED                    TRUE  // If TRUE, decapitalizes Pokedex menus
+#define HGSS_DARK_MODE                   TRUE  // If TRUE, changes Pokedex pallete to dark mode
+#define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES TRUE  // If TRUE, show questionmarks instead of name when evolution hasn't been seen
 
 // For scrolling search parameter
 #define MAX_SEARCH_PARAM_ON_SCREEN   6
