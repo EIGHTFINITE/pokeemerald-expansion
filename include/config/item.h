@@ -43,7 +43,7 @@
 #define I_FISHING_MINIGAME         GEN_3      // Each generation uses a variation of reeling in Pokémon once they have been hooked. NOTE: Only the Gen 1/2 and Gen 3 minigames are implemented right now!
 #define I_FISHING_STICKY_BOOST     GEN_LATEST // In Gen 3, a Pokemon with Suction Cups or Sticky Hold in the first slot of the party causes the chance for a bite to increase by about 35%. In Gen 4 onwards, it doubles the base bite chance.
 #define I_FISHING_FOLLOWER_BOOST   FALSE      // In HGSS, fishing bite odds are increased depending on the friendship of the current following Pokémon.
-#define I_FISHING_CHAIN            FALSE      // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
+#define I_FISHING_CHAIN            TRUE       // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 #define I_FISHING_PROXIMITY        FALSE      // Introduced in XY, fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 
 #endif // GUARD_CONFIG_ITEM_H
