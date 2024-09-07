@@ -489,6 +489,16 @@ u32 ScriptGiveMon(u16 species, u8 level, enum Item item)
     return GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
 }
 
+u32 ScriptGiveMonStarter(u16 species, u8 level, enum Item item)
+{
+    u16 evs[NUM_STATS]       = {0, 0, 0, 0, 0, 0};
+    u16 ivs[NUM_STATS]       = {MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1,   // We pass "MAX_PER_STAT_IVS + 1" here to ensure that
+                                MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1};  // ScriptGiveMonParameterized won't touch the stats' IV.
+    u16 moves[MAX_MON_MOVES] = {MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT, MOVE_DEFAULT};
+
+    return ScriptGiveMonParameterized(0, PARTY_SIZE, species, level, item, BALL_POKE, NATURE_RANDOM, 2, MON_GENDER_RANDOM, evs, ivs, moves, SHINY_MODE_RANDOM, FALSE, NUMBER_OF_MON_TYPES, 0);
+}
+
 #define PARSE_FLAG(n, default_) (flags & (1 << (n))) ? VarGet(ScriptReadHalfword(ctx)) : (default_)
 
 #define ADD_MOVE_IF_NOT_DEFAULT(i, move)               \
