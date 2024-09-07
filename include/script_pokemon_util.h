@@ -1,6 +1,7 @@
 #ifndef GUARD_SCRIPT_POKEMON_UTIL_H
 #define GUARD_SCRIPT_POKEMON_UTIL_H
 
+u32 ScriptGiveMonParameterized(u8, u8, u16, u8, u16, u8, u8, u8, u8, u8 *, u8 *, u16 *, bool8, bool8, u8, u8);
 u32 ScriptGiveMon(u16 species, u8 level, u16 item);
 u8 ScriptGiveEgg(u16 species);
 void CreateScriptedWildMon(u16 species, u8 level, u16 item);
