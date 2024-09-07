@@ -398,6 +398,19 @@ u32 ScriptGiveMon(enum Species species, u8 level, enum Item item)
     return GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
 }
 
+u32 ScriptGiveMonStarter(enum Species species, u8 level)
+{
+    struct Pokemon mon;
+    u8 abilityNum = 2;
+
+    u32 personality = GetMonPersonality(species, Random() % 2 ? MON_MALE : MON_FEMALE, NATURE_RANDOM, RANDOM_UNOWN_LETTER);
+	CreateMonWithIVs(&mon, species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+	GiveMonInitialMoveset(&mon);
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    return GiveScriptedMonToPlayer(&mon, PARTY_SIZE);
+}
+
 #define PARSE_FLAG(n, default_) (flags & (1 << (n))) ? VarGet(ScriptReadHalfword(ctx)) : (default_)
 
 /* Give or create a mon to either player or opponent
