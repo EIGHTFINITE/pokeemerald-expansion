@@ -44,7 +44,7 @@
 #define I_FISHING_ENVIRONMENT      GEN_LATEST // In Gen 3, the battle environment when fighting a hooked Pokémon is based on the tile the player is standing on. In Gen 4 onwards, the environment is based on tile that is being fished in, resulting in it usually being a water environment.
 #define I_FISHING_STICKY_BOOST     GEN_LATEST // In Gen 3, a Pokemon with Suction Cups or Sticky Hold in the first slot of the party causes the chance for a bite to increase by about 35%. In Gen 4 onwards, it doubles the base bite chance.
 #define I_FISHING_FOLLOWER_BOOST   FALSE      // In HGSS, fishing bite odds are increased depending on the friendship of the current following Pokémon.
-#define I_FISHING_CHAIN            FALSE      // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
+#define I_FISHING_CHAIN            TRUE       // Introduced in XY, hooking the same Pokémon repeatedly will increase the odds of that mon being shiny. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 #define I_FISHING_PROXIMITY        FALSE      // Introduced in XY, fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked. NOTE: This implementation is an approximation of the actual feature, as XY have not been throughoutly documented or datamined.
 
 #endif // GUARD_CONFIG_ITEM_H
