@@ -1,0 +1,52 @@
+name: "Update"
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '*/5 * * * *'
+
+permissions: write-all
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4.1.7
+      with:
+        token: ${{ secrets.WORKFLOW_TOKEN }}
+        fetch-depth: 0
+    - name: Update
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        # Configure git to be more predictable and deterministic
+        git config core.autocrlf false
+        git config core.ignorecase false
+        git config core.fscache true
+        git config core.longpaths true
+        git config diff.renameLimit 0
+        git config status.renameLimit 0
+        git config merge.renameLimit 0
+        git config http.lowSpeedLimit 0
+        git config http.lowSpeedTime 300
+        git config http.postBuffer 1048576000
+        git config pack.threads 1
+        git config index.threads 0
+        git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion.git
+        git fetch -f --all -t
+        git for-each-ref --shell --format='git branch -rd %(refname:lstrip=2)' --exclude=refs/remotes/RHH/master --exclude=refs/remotes/RHH/upcoming refs/remotes/RHH/ | bash --noprofile --norc -e -o pipefail
+        git for-each-ref --shell --format='git push -f -u origin %(refname):refs/heads/%(refname:lstrip=2)' --exclude=refs/remotes/origin/ refs/remotes/ | bash --noprofile --norc -e -o pipefail
+        git push -f --tags
+        git for-each-ref --shell --format='if git cat-file -e remotes/%(refname:lstrip=3)^{commit}; then echo Everything up-to-date; else git push -d origin refs/heads/%(refname:lstrip=3); fi' --exclude=refs/remotes/origin/main --exclude=refs/remotes/origin/master --exclude=refs/remotes/origin/upcoming refs/remotes/origin/ | bash --noprofile --norc -e -o pipefail
+        git checkout -b master refs/remotes/origin/master
+        git -c user.name="8" -c user.email="ElGHT@users.noreply.github.com" rebase refs/remotes/RHH/master
+        git push -f -u origin master:refs/heads/master
+        if [[ $(git cherry refs/remotes/origin/upcoming refs/remotes/RHH/upcoming | head -c1 | wc -c) -ne 0 || $(git cherry refs/remotes/RHH/upcoming | wc -l) -gt $(git cherry refs/remotes/RHH/upcoming refs/remotes/origin/upcoming | wc -l) ]]; then
+          git -c user.name="8" -c user.email="ElGHT@users.noreply.github.com" rebase refs/remotes/RHH/upcoming
+          git push -f -u origin master:refs/heads/upcoming
+        else
+          echo Current branch upcoming is up to date.
+          echo Everything up-to-date
+        fi
