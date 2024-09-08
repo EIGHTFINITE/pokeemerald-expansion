@@ -985,6 +985,7 @@ static void CB2_GiveStarter(void)
 {
     u16 starterMon;
     u16 item;
+    u8 gender;
     u8 evs[NUM_STATS]        = {0, 0, 0, 0, 0, 0};
     u8 ivs[NUM_STATS]        = {MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1,   // We pass "MAX_PER_STAT_IVS + 1" here to ensure that
                                 MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1};  // ScriptGiveMonParameterized won't touch the stats' IV.
@@ -992,13 +993,21 @@ static void CB2_GiveStarter(void)
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
+    // item
     if (gSpecialVar_Result == 0)      // Grookey
         item = ITEM_GRASSIUM_Z;       // gimmicks are Terrain and type Z-Crystal
     else if (gSpecialVar_Result == 1) // Litten
         item = ITEM_INCINIUM_Z;       // gimmicks are Intimidate and move Z-Crystal
     else                              // Mudkip
         item = ITEM_SWAMPERTITE;      // gimmicks are Mega Evolution and single type weakness
-    ScriptGiveMonParameterized(0, PARTY_SIZE, starterMon, 5, item, ITEM_POKE_BALL, NUM_NATURES, 2, MON_GENDERLESS, evs, ivs, moves, FALSE, FALSE, NUMBER_OF_MON_TYPES);
+    // gender
+    if (Random() % 2 == 0) {
+        gender = MON_MALE;
+    }
+    else {
+        gender = MON_FEMALE;
+    }
+    ScriptGiveMonParameterized(0, PARTY_SIZE, starterMon, 5, item, ITEM_POKE_BALL, NUM_NATURES, 2, gender, evs, ivs, moves, FALSE, FALSE, NUMBER_OF_MON_TYPES);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);
