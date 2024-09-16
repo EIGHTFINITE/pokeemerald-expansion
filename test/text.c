@@ -561,9 +561,9 @@ TEST("Type names fit on Pokedex Search Screen")
 }
 
 
+#if OW_POPUP_GENERATION != GEN_5
 TEST("Map names fit in popup")
 {
-    ASSUME(OW_POPUP_GENERATION == GEN_3);
     const u32 fontId = FONT_NARROWER;
     u32 widthPx = 80;
     s8 mapGroup = 0;
@@ -580,6 +580,7 @@ TEST("Map names fit in popup")
     }
     EXPECT_LE(GetStringWidth(fontId, GetPopUpMapName(mapName, Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)), 0), widthPx);
 }
+#endif
 
 extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 //*
