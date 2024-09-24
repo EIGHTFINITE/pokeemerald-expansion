@@ -44,7 +44,7 @@ jobs:
         git -c user.name="8" -c user.email="ElGHT@users.noreply.github.com" rebase refs/remotes/RHH/master
         git push -f -u origin master:refs/heads/master
         if [[ $(git cherry refs/remotes/origin/upcoming refs/remotes/RHH/upcoming | head -c1 | wc -c) -ne 0 || $(git cherry refs/remotes/RHH/upcoming | wc -l) -gt $(git cherry refs/remotes/RHH/upcoming refs/remotes/origin/upcoming | wc -l) ]]; then
-          git -c user.name="8" -c user.email="ElGHT@users.noreply.github.com" rebase refs/remotes/RHH/upcoming
+          git -c user.name="8" -c user.email="ElGHT@users.noreply.github.com" rebase refs/remotes/RHH/upcoming || exit 0
           git push -f -u origin master:refs/heads/upcoming
         else
           echo Current branch upcoming is up to date.
