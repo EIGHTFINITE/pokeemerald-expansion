@@ -49,9 +49,9 @@
 #define P_GEN_2_CROSS_EVOS               P_CROSS_GENERATION_EVOS
 #define P_GEN_3_CROSS_EVOS               P_CROSS_GENERATION_EVOS
 #define P_GEN_4_CROSS_EVOS               P_CROSS_GENERATION_EVOS
-//#define P_GEN_5_CROSS_EVOS             // Gen 5 didn't introduce any cross-gen evos.
+#define P_GEN_5_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Gen 5 didn't introduce any cross-gen evos.
 #define P_GEN_6_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Just Sylveon.
-//#define P_GEN_7_CROSS_EVOS             // Alolan evolutions handled by P_ALOLAN_FORMS.
+#define P_GEN_7_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Alolan evolutions handled by P_ALOLAN_FORMS.
 #define P_GEN_8_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Regional evolutions handled by P_GALARIAN_FORMS and P_HISUIAN_FORMS.
 #define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire handled by P_PALDEAN_FORMS.
 
