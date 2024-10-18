@@ -35,8 +35,10 @@ jobs:
         git config pack.threads 1
         git config index.threads 0
         git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion.git
+        git remote add team_aqua https://github.com/TeamAquasHideout/pokeemerald.git
         git fetch -f --all -t
         git for-each-ref --shell --format='git branch -rd %(refname:lstrip=2)' --exclude=refs/remotes/RHH/master --exclude=refs/remotes/RHH/upcoming refs/remotes/RHH/ | bash --noprofile --norc -e -o pipefail
+        git for-each-ref --shell --format='git branch -rd %(refname:lstrip=2)' --exclude=refs/remotes/team_aqua/thexaman_options_plus_dark_theme refs/remotes/team_aqua/ | bash --noprofile --norc -e -o pipefail
         git for-each-ref --shell --format='git push -f -u origin %(refname):refs/heads/%(refname:lstrip=2)' --exclude=refs/remotes/origin/ refs/remotes/ | bash --noprofile --norc -e -o pipefail
         git push -f --tags
         git for-each-ref --shell --format='if git cat-file -e remotes/%(refname:lstrip=3)^{commit}; then echo Everything up-to-date; else git push -d origin refs/heads/%(refname:lstrip=3); fi' --exclude=refs/remotes/origin/main --exclude=refs/remotes/origin/master --exclude=refs/remotes/origin/upcoming --exclude=refs/remotes/origin/dependabot/ refs/remotes/origin/ | bash --noprofile --norc -e -o pipefail
