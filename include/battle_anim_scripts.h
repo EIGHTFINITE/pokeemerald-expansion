@@ -1015,6 +1015,10 @@ extern const u8 gBattleAnimGeneral_SilphScoped[];
 extern const u8 gBattleAnimGeneral_SafariRockThrow[];
 extern const u8 gBattleAnimGeneral_SafariReaction[];
 
+// Mystery Dungeon Moves
+extern const u8 gBattleAnimMove_WideSlash[];
+extern const u8 gBattleAnimMove_VacuumCut[];
+
 // special animations
 extern const u8 gBattleAnimSpecial_LevelUp[];
 extern const u8 gBattleAnimSpecial_SwitchOutPlayerMon[];

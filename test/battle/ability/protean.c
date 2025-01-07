@@ -77,6 +77,29 @@ SINGLE_BATTLE_TEST("Protean/Libero changes the type of the user only once per sw
     }
 }
 
+SINGLE_BATTLE_TEST("Protean/Libero does not change the user's type to Mystery type")
+{
+    u32 ability, species;
+    PARAMETRIZE { ability = ABILITY_PROTEAN; species = SPECIES_KECLEON; }
+    PARAMETRIZE { ability = ABILITY_LIBERO;  species = SPECIES_RABOOT; }
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_WIDE_SLASH) == TYPE_MYSTERY);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_WIDE_SLASH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_SLASH, opponent);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ability);
+            if (species == SPECIES_KECLEON)
+                MESSAGE("The opposing Kecleon transformed into the ??? type!");
+            else
+                MESSAGE("The opposing Raboot transformed into the ??? type!");
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Protean/Libero does not change the user's type when using Struggle")
 {
     u32 ability, species;
