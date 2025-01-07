@@ -13454,6 +13454,30 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_CONFIDE,
     },
 
+    [ITEM_TM_WIDE_SLASH] =
+    {
+        .name = _("TM252"),
+        .price = 3000,
+        .description = sQuestionMarksDesc, // Todo
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_WIDE_SLASH,
+    },
+
+    [ITEM_TM_VACUUM_CUT] =
+    {
+        .name = _("TM253"),
+        .price = 3000,
+        .description = sQuestionMarksDesc, // Todo
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_VACUUM_CUT,
+    },
+
     [ITEM_HM_CUT] =
     {
         .name = _("HM01"),
