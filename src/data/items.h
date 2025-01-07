@@ -13454,6 +13454,36 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_CONFIDE,
     },
 
+    [ITEM_TM_WIDE_SLASH] =
+    {
+        .name = _("TM252"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Slashes with\n"
+            "claws, etc. Deals\n"
+            "typeless damage."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_WIDE_SLASH,
+    },
+
+    [ITEM_TM_VACUUM_CUT] =
+    {
+        .name = _("TM253"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "Attack that always\n"
+            "inflicts 35 HP\n"
+            "typeless damage."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_VACUUM_CUT,
+    },
+
     [ITEM_HM_CUT] =
     {
         .name = _("HM01"),
