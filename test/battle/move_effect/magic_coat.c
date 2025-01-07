@@ -26,9 +26,18 @@ SINGLE_BATTLE_TEST("Magic Coat prints the correct message when bouncing back a m
         STATUS_ICON(opponent, sleep: TRUE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
         MESSAGE("Zigzagoon bounced the Spore back!");
+        #if B_SLEEP_CLAUSE == TRUE
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+            MESSAGE("The opposing Zigzagoon fell asleep!");
+            STATUS_ICON(opponent, sleep: TRUE);
+        }
+        #else
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Zigzagoon fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
+        #endif
     }
 }
