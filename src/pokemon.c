@@ -5593,6 +5593,8 @@ static const u16 sUniversalMoves[] =
     MOVE_SECRET_POWER,
     MOVE_SUBSTITUTE,
     MOVE_TERA_BLAST,
+    MOVE_WIDE_SLASH,
+    MOVE_VACUUM_CUT,
 };
 
 u8 CanLearnTeachableMove(u16 species, u16 move)
@@ -5643,6 +5645,20 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
                 }
                 else
                 {
+                    switch (species)
+                    {
+                    case SPECIES_MAGIKARP:
+                    case SPECIES_DITTO:
+                    case SPECIES_SMEARGLE:
+                    case SPECIES_WURMPLE:
+                    case SPECIES_SILCOON:
+                    case SPECIES_CASCOON:
+                    case SPECIES_KRICKETOT:
+                        if(move == MOVE_WIDE_SLASH || move == MOVE_VACUUM_CUT)
+                            return TRUE;
+                        // fallthrough
+                    }
+
                     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
 
                     if (P_TM_LITERACY < GEN_6)

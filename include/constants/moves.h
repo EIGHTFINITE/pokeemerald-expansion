@@ -910,7 +910,11 @@
 
 #define MOVES_COUNT_GEN9 848
 
-#define MOVES_COUNT         MOVES_COUNT_GEN9
+// Mystery Dungeon Moves
+#define MOVE_WIDE_SLASH (MOVES_COUNT_GEN9 + 0)
+#define MOVE_VACUUM_CUT (MOVES_COUNT_GEN9 + 1)
+
+#define MOVES_COUNT         (MOVES_COUNT_GEN9 + 2)
 
 // Z Moves
 #define MOVE_BREAKNECK_BLITZ (MOVES_COUNT + 0)

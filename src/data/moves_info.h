@@ -21302,6 +21302,52 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .battleAnimScript = gBattleAnimMove_MalignantChain,
     },
 
+    // Mystery Dungeon Moves
+    [MOVE_WIDE_SLASH] =
+    {
+        .name = COMPOUND_STRING("Wide Slash"),
+        .description = COMPOUND_STRING(
+            "Slashes with claws, etc.\n"
+            "Deals typeless damage."),
+        .effect = EFFECT_HIT,
+        .power = 90,
+        .type = TYPE_MYSTERY,
+        .accuracy = 85,
+        .pp = 10,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .slicingMove = TRUE,
+        .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_WideSlash,
+    },
+
+    [MOVE_VACUUM_CUT] =
+    {
+        .name = COMPOUND_STRING("Vacuum-Cut"),
+        .description = COMPOUND_STRING(
+            "Attack that always inflicts\n"
+            "35 HP typeless damage."),
+        .effect = EFFECT_FIXED_HP_DAMAGE,
+        .power = 1,
+        .type = TYPE_MYSTERY,
+        .accuracy = 100,
+        .pp = 10,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = { .fixedDamage = 35 },
+        .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
+        .contestCategory = CONTEST_CATEGORY_COOL,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_VacuumCut,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
