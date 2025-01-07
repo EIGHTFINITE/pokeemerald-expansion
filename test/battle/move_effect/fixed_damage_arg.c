@@ -4,6 +4,9 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_SONIC_BOOM].effect == EFFECT_FIXED_DAMAGE_ARG);
+    ASSUME(gMovesInfo[MOVE_VACUUM_CUT].effect == EFFECT_FIXED_DAMAGE_ARG);
+    ASSUME(gMovesInfo[MOVE_VACUUM_CUT].type == TYPE_MYSTERY);
+    ASSUME(gMovesInfo[MOVE_VACUUM_CUT].target == MOVE_TARGET_BOTH);
 }
 
 SINGLE_BATTLE_TEST("Sonic Boom deals fixed damage", s16 damage)
@@ -37,5 +40,22 @@ SINGLE_BATTLE_TEST("Sonic Boom doesn't affect ghost types")
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SONIC_BOOM, player);
         MESSAGE("It doesn't affect the opposing Gastly…");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Vacuum-Cut bypasses Wonder Guard")
+{
+    GIVEN {
+        PLAYER(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); }
+        PLAYER(SPECIES_SHEDINJA) { Ability(ABILITY_WONDER_GUARD); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_VACUUM_CUT); }
+    } SCENE {
+        HP_BAR(playerLeft);
+        MESSAGE("Shedinja fainted!");
+        HP_BAR(playerRight);
+        MESSAGE("Shedinja fainted!");
     }
 }
