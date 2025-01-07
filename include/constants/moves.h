@@ -924,6 +924,10 @@ enum __attribute__((packed)) Move
     MOVE_HIDDEN_POWER_ICE = 861,
     MOVE_HIDDEN_POWER_DRAGON = 862,
     MOVE_HIDDEN_POWER_DARK = 863,
+
+    // Mystery Dungeon Moves
+    MOVE_VACUUM_CUT = 864,
+    MOVE_WIDE_SLASH = 865,
     MOVES_COUNT,
 
     // Z Moves
