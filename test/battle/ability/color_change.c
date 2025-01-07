@@ -154,6 +154,29 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hi
     }
 }
 
+SINGLE_BATTLE_TEST("Color Change does not change the type to Mystery type")
+{
+    u32 move;
+    PARAMETRIZE { move = MOVE_VACUUM_CUT; }
+    PARAMETRIZE { move = MOVE_WIDE_SLASH; }
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_VACUUM_CUT) == TYPE_MYSTERY);
+        ASSUME(GetMoveType(MOVE_WIDE_SLASH) == TYPE_MYSTERY);
+        ASSUME(GetMoveTarget(MOVE_VACUUM_CUT) == TARGET_BOTH);
+        ASSUME(GetMoveTarget(MOVE_WIDE_SLASH) == TARGET_BOTH);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
+            MESSAGE("The opposing Kecleon's Color Change made it the ??? type!");
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Color Change does not change the type to Normal when a Pokemon is hit by Struggle")
 {
     GIVEN {
