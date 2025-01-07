@@ -1016,6 +1016,10 @@ extern const u8 gBattleAnimGeneral_SafariRockThrow[];
 extern const u8 gBattleAnimGeneral_SafariReaction[];
 extern const u8 gBattleAnimGeneral_HeldItemBerry[];
 
+// Mystery Dungeon Moves
+extern const u8 gBattleAnimMove_VacuumCut[];
+extern const u8 gBattleAnimMove_WideSlash[];
+
 // special animations
 extern const u8 gBattleAnimSpecial_LevelUp[];
 extern const u8 gBattleAnimSpecial_SwitchOutPlayerMon[];
