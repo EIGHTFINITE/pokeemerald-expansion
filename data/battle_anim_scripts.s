@@ -32170,6 +32170,41 @@ gBattleAnimSpecial_CriticalCaptureBallThrow::
 	jumpreteq -1, BallThrowTrainerBlock
 	goto BallThrowEnd
 
+@@@@@@@@@@ MYSTERY DUNGEON MOVES @@@@@@@@@@
+gBattleAnimMove_WideSlash::
+	loadspritegfx ANIM_TAG_CUT
+	delay 0
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	delay 0
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gAirCutterSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0, 2
+	delay 5
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 8, 1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 2, 0, 8, 1
+	waitforvisualfinish
+	blendoff
+	clearmonbg ANIM_DEF_PARTNER
+	delay 0
+	end
+
+gBattleAnimMove_VacuumCut::
+	loadspritegfx ANIM_TAG_AIR_WAVE
+	delay 0
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	delay 0
+	createvisualtask AnimTask_AirCutterProjectile, 2, 32, -24, 6 * 256, 2, 128  @ 6 * 256 == Q_8_8(6)
+	delay 29
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 8, 1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 2, 0, 8, 1
+	waitforvisualfinish
+	blendoff
+	clearmonbg ANIM_DEF_PARTNER
+	delay 0
+	end
+
 @@@@@@@@@@ Z MOVES @@@@@@@@@@
 gBattleAnimMove_BreakneckBlitz::
 	loadspritegfx ANIM_TAG_HOLLOW_ORB
