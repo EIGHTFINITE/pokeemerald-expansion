@@ -1140,18 +1140,28 @@ DOUBLE_BATTLE_TEST("Dynamax: G-Max Befuddle paralyzes, poisons, or sleeps both o
             STATUS_ICON(opponentLeft, sleep: TRUE);
         }
         // opponent right
-        ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
         if (statusAnim == B_ANIM_STATUS_PSN) {
+            ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
             MESSAGE("The opposing Wobbuffet was poisoned!");
             STATUS_ICON(opponentRight, poison: TRUE);
         }
         else if (statusAnim == B_ANIM_STATUS_PRZ) {
+            ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
             MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
             STATUS_ICON(opponentRight, paralysis: TRUE);
         }
         else {
+            #if B_SLEEP_CLAUSE == TRUE
+            NONE_OF {
+                ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
+                MESSAGE("The opposing Wobbuffet fell asleep!");
+                STATUS_ICON(opponentRight, sleep: TRUE);
+            }
+            #else
+            ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
             MESSAGE("The opposing Wobbuffet fell asleep!");
             STATUS_ICON(opponentRight, sleep: TRUE);
+            #endif
         }
     }
 }
