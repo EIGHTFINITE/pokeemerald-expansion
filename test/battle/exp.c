@@ -220,6 +220,8 @@ AI_ONE_VS_TWO_BATTLE_TEST("Both opponent's Pokemon give experience in battle aga
     expectedXp += gSpeciesInfo[SPECIES_WYNAUT].expYield * 100 / 7; // level (100) * scaling multipler (1 / 7)
     expectedXp += gSpeciesInfo[SPECIES_WOBBUFFET].expYield * 100 / 7;
     GIVEN {
+        WITH_CONFIG(B_TRAINER_EXP_MULTIPLIER, GEN_LATEST);
+        WITH_CONFIG(B_SPLIT_EXP, GEN_LATEST);
         WITH_CONFIG(B_SCALED_EXP, GEN_3);
         WITH_CONFIG(B_UNEVOLVED_EXP_MULTIPLIER, GEN_3);
         PLAYER(SPECIES_METAPOD) { Level(1); Speed(3); }
