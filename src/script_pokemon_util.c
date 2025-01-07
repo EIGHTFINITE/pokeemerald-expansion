@@ -493,6 +493,7 @@ u32 ScriptGiveMonStarter(u16 species, u8 level, u16 item)
     u8 ivs[NUM_STATS]        = {MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1,   // We pass "MAX_PER_STAT_IVS + 1" here to ensure that
                                 MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1};  // ScriptGiveMonParameterized won't touch the stats' IV.
     u16 moves[MAX_MON_MOVES] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+    enum ShinyMode shinyMode;
 
     // gender
     if (Random() % 2 == 0) {
@@ -501,8 +502,15 @@ u32 ScriptGiveMonStarter(u16 species, u8 level, u16 item)
     else {
         gender = MON_MALE;
     }
+    // shinyMode
+    if (Random() % 128 == 0) {
+        shinyMode = SHINY_MODE_ALWAYS;
+    }
+    else {
+        shinyMode = SHINY_MODE_NEVER;
+    }
 
-    return ScriptGiveMonParameterized(0, PARTY_SIZE, species, level, item, ITEM_POKE_BALL, NUM_NATURES, 2, gender, evs, ivs, moves, SHINY_MODE_RANDOM, FALSE, NUMBER_OF_MON_TYPES, 0);
+    return ScriptGiveMonParameterized(0, PARTY_SIZE, species, level, item, ITEM_POKE_BALL, NUM_NATURES, 2, gender, evs, ivs, moves, shinyMode, FALSE, NUMBER_OF_MON_TYPES, 0);
 }
 
 #define PARSE_FLAG(n, default_) (flags & (1 << (n))) ? VarGet(ScriptReadHalfword(ctx)) : (default_)
