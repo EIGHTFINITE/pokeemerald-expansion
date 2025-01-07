@@ -14963,7 +14963,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM240] =
+    [ITEM_TM_VACUUM_CUT] =
     {
         .name = ITEM_NAME("TM240"),
         .price = 3000,
@@ -14974,7 +14974,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM241] =
+    [ITEM_TM_WIDE_SLASH] =
     {
         .name = ITEM_NAME("TM241"),
         .price = 3000,
