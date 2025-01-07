@@ -55,6 +55,23 @@ SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in
     }
 }
 
+SINGLE_BATTLE_TEST("Protean does not change the user's type to Mystery type")
+{
+    GIVEN {
+        ASSUME(GetMoveType(MOVE_WIDE_SLASH) == TYPE_MYSTERY);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_WIDE_SLASH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_SLASH, opponent);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+            MESSAGE("The opposing Kecleon transformed into the ??? type!");
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Protean does not change the user's type when using Struggle")
 {
     GIVEN {
