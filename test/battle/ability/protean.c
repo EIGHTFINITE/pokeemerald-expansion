@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(GetMoveType(MOVE_WIDE_SLASH) == TYPE_MYSTERY);
+}
+
 SINGLE_BATTLE_TEST("Protean changes the type of the user to the move used every time (Gen6-8)")
 {
     GIVEN {
@@ -52,5 +57,20 @@ SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in
         ABILITY_POPUP(opponent, ABILITY_PROTEAN);
         MESSAGE("The opposing Kecleon transformed into the Water type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Protean does not change the user to Mystery type")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_WIDE_SLASH); }
+    } SCENE {
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+            MESSAGE("The opposing Kecleon transformed into the ??? type!");
+        }
     }
 }
