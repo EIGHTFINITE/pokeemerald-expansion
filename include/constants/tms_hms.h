@@ -252,7 +252,9 @@
     F(DREAM_EATER) \
     F(SWAGGER) \
     F(NATURE_POWER) \
-    F(CONFIDE)
+    F(CONFIDE) \
+    F(WIDE_SLASH) \
+    F(VACUUM_CUT)
 
 #define FOREACH_HM(F) \
     F(CUT) \

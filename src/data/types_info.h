@@ -263,6 +263,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .palette = 15,
         .teraTypeRGBValue = RGB_WHITE,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_NormalTMHM,
         .useSecondTypeIconPalette = FALSE,
         .isSpecialCaseType = TRUE,
         .isHiddenPowerType = FALSE,
