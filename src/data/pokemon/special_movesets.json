@@ -26,7 +26,9 @@
       "MOVE_HIDDEN_POWER_PSYCHIC",
       "MOVE_HIDDEN_POWER_ICE",
       "MOVE_HIDDEN_POWER_DRAGON",
-      "MOVE_HIDDEN_POWER_DARK"
+      "MOVE_HIDDEN_POWER_DARK",
+      "MOVE_VACUUM_CUT",
+      "MOVE_WIDE_SLASH"
     ],
   "signatureTeachables":
     [
