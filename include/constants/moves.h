@@ -907,7 +907,10 @@ enum __attribute__((packed)) Move
 
     // Add any custom moves here, not further down!
 
-    MOVES_COUNT = MOVES_COUNT_GEN9,
+    // Mystery Dungeon Moves
+    MOVE_VACUUM_CUT = MOVES_COUNT_GEN9,
+    MOVE_WIDE_SLASH = 849,
+    MOVES_COUNT,
 
     // Z Moves
     FIRST_Z_MOVE = MOVES_COUNT,

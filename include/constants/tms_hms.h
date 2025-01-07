@@ -224,7 +224,9 @@
     F(TRIPLE_AXEL) \
     F(SCORCHING_SANDS) \
     F(FUTURE_SIGHT) \
-    F(METEOR_BEAM)
+    F(METEOR_BEAM) \
+    F(VACUUM_CUT) \
+    F(WIDE_SLASH)
 
 #define FOREACH_HM(F) \
     F(CUT) \
