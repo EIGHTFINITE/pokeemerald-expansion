@@ -874,6 +874,7 @@ static void CB2_GiveStarter(void)
     u8 ivs[NUM_STATS]        = {MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1,   // We pass "MAX_PER_STAT_IVS + 1" here to ensure that
                                 MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1, MAX_PER_STAT_IVS + 1};  // ScriptGiveMonParameterized won't touch the stats' IV.
     u16 moves[MAX_MON_MOVES] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+    bool8 isShiny;
 
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
@@ -884,7 +885,14 @@ static void CB2_GiveStarter(void)
     else {
         gender = MON_MALE;
     }
-    ScriptGiveMonParameterized(0, PARTY_SIZE, starterMon, 5, ITEM_NONE, ITEM_POKE_BALL, NUM_NATURES, 2, gender, evs, ivs, moves, FALSE, FALSE, NUMBER_OF_MON_TYPES, 0);
+    // isShiny
+    if (Random() % 128 == 0) {
+        isShiny = TRUE;
+    }
+    else {
+        isShiny = FALSE;
+    }
+    ScriptGiveMonParameterized(0, PARTY_SIZE, starterMon, 5, ITEM_NONE, ITEM_POKE_BALL, NUM_NATURES, 2, gender, evs, ivs, moves, isShiny, FALSE, NUMBER_OF_MON_TYPES, 0);
     ResetTasks();
     PlayBattleBGM();
     SetMainCallback2(CB2_StartFirstBattle);
