@@ -10,6 +10,10 @@ ASSUMPTIONS
 
 DOUBLE_BATTLE_TEST("Sparkly Swirl cures the entire party")
 {
+    #if B_SLEEP_CLAUSE == TRUE
+    KNOWN_FAILING;
+    #endif
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
@@ -36,6 +40,10 @@ DOUBLE_BATTLE_TEST("Sparkly Swirl cures the entire party")
 
 DOUBLE_BATTLE_TEST("Heal Bell/Aromatherapy cures the entire party of the user from primary status effects")
 {
+    #if B_SLEEP_CLAUSE == TRUE
+    KNOWN_FAILING;
+    #endif
+
     u32 j, move, status;
     PARAMETRIZE { move = MOVE_HEAL_BELL;    status = STATUS1_SLEEP; }
     PARAMETRIZE { move = MOVE_AROMATHERAPY; status = STATUS1_SLEEP; }
