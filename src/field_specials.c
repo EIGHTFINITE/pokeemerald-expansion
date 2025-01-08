@@ -1671,7 +1671,7 @@ u16 GetMysteryGiftCardStat(void)
 
 bool8 BufferTMHMMoveName(void)
 {
-    if (gSpecialVar_0x8004 >= ITEM_TM01 && gSpecialVar_0x8004 <= ITEM_HM08)
+    if (gSpecialVar_0x8004 >= ITEM_TM01 && gSpecialVar_0x8004 <= LAST_HIDDEN_MACHINE_INDEX)
     {
         StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(gSpecialVar_0x8004)));
         return TRUE;
