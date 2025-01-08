@@ -11884,9 +11884,42 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_FLASH,
     },
 
-    [ITEM_HM_ROCK_SMASH] =
+    [ITEM_HM_DEFOG] =
     {
         .name = _("HM06"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Removes obstacles\n"
+            "and lowers evasion."),
+        .importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_DEFOG,
+    },
+
+    [ITEM_HM_WHIRLPOOL] =
+    {
+        .name = _("HM07"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Traps & hurts the\n"
+            "foe in a whirlpool\n"
+        #if B_BINDING_TURNS >= GEN_5
+            "for 4 or 5 turns."),
+        #else
+            "for 2 to 5 turns."),
+        #endif
+        .importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_WHIRLPOOL,
+    },
+
+    [ITEM_HM_ROCK_SMASH] =
+    {
+        .name = _("HM08"),
         .price = 0,
         .description = COMPOUND_STRING(
             "A rock-crushingly\n"
@@ -11901,7 +11934,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_WATERFALL] =
     {
-        .name = _("HM07"),
+        .name = _("HM09"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Attacks the foe\n"
@@ -11916,7 +11949,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_DIVE] =
     {
-        .name = _("HM08"),
+        .name = _("HM10"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Dives underwater\n"
@@ -11927,6 +11960,21 @@ const struct Item gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
         .secondaryId = MOVE_DIVE,
+    },
+
+    [ITEM_HM_ROCK_CLIMB] =
+    {
+        .name = _("HM11"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A charging attack\n"
+            "that may confuse\n"
+            "the foe."),
+        .importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+        .secondaryId = MOVE_ROCK_CLIMB,
     },
 
 
