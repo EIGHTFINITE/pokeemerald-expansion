@@ -13101,10 +13101,7 @@ const struct Item gItemsInfo[] =
     {
         .name = ITEM_NAME("HM01"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Attacks the foe\n"
-            "with sharp blades\n"
-            "or claws."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13115,10 +13112,7 @@ const struct Item gItemsInfo[] =
     {
         .name = ITEM_NAME("HM02"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Flies up on the\n"
-            "first turn, then\n"
-            "attacks next turn."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13129,10 +13123,7 @@ const struct Item gItemsInfo[] =
     {
         .name = ITEM_NAME("HM03"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Creates a huge\n"
-            "wave, then crashes\n"
-            "it down on the foe."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13143,10 +13134,7 @@ const struct Item gItemsInfo[] =
     {
         .name = ITEM_NAME("HM04"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Builds enormous\n"
-            "power, then slams\n"
-            "the foe."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13157,10 +13145,28 @@ const struct Item gItemsInfo[] =
     {
         .name = ITEM_NAME("HM05"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Looses a powerful\n"
-            "blast of light that\n"
-            "reduces accuracy."),
+        .description = sQuestionMarksDesc, // Todo
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+
+    [ITEM_HM_DEFOG] =
+    {
+        .name = ITEM_NAME("HM06"),
+        .price = 0,
+        .description = sQuestionMarksDesc, // Todo
+        .importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+
+    [ITEM_HM_WHIRLPOOL] =
+    {
+        .name = ITEM_NAME("HM07"),
+        .price = 0,
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13169,12 +13175,9 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_ROCK_SMASH] =
     {
-        .name = ITEM_NAME("HM06"),
+        .name = ITEM_NAME("HM08"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "A rock-crushingly\n"
-            "tough attack that\n"
-            "may lower Defense."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13183,12 +13186,9 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_WATERFALL] =
     {
-        .name = ITEM_NAME("HM07"),
+        .name = ITEM_NAME("HM09"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Attacks the foe\n"
-            "with enough power\n"
-            "to climb waterfalls."),
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13197,12 +13197,20 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_DIVE] =
     {
-        .name = ITEM_NAME("HM08"),
+        .name = ITEM_NAME("HM10"),
         .price = 0,
-        .description = COMPOUND_STRING(
-            "Dives underwater\n"
-            "the 1st turn, then\n"
-            "attacks next turn."),
+        .description = sQuestionMarksDesc, // Todo
+        .importance = 1,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+
+    [ITEM_HM_ROCK_CLIMB] =
+    {
+        .name = ITEM_NAME("HM11"),
+        .price = 0,
+        .description = sQuestionMarksDesc, // Todo
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
