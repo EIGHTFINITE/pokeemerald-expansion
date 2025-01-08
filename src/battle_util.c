@@ -11411,7 +11411,7 @@ u8 GetCategoryBasedOnStats(u32 battler)
 
 static u32 GetFlingPowerFromItemId(u32 itemId)
 {
-    if (itemId >= ITEM_TM01 && itemId <= ITEM_HM08)
+    if (itemId >= ITEM_TM01 && itemId <= LAST_HIDDEN_MACHINE_INDEX)
     {
         u32 power = GetMovePower(ItemIdToBattleMoveId(itemId));
         if (power > 1)
