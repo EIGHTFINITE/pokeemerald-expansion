@@ -59,9 +59,12 @@
     F(SURF) \
     F(STRENGTH) \
     F(FLASH) \
+    F(DEFOG) \
+    F(WHIRLPOOL) \
     F(ROCK_SMASH) \
     F(WATERFALL) \
-    F(DIVE)
+    F(DIVE) \
+    F(ROCK_CLIMB)
 
 #define FOREACH_TMHM(F) \
     FOREACH_TM(F) \
