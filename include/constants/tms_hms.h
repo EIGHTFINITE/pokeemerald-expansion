@@ -78,7 +78,7 @@
     F(REFLECT) \
     F(LIGHT_SCREEN) \
     F(ROCK_BLAST) \
-    F(WATERFALL) \
+    F(HAIL) \
     F(DRAGON_CLAW) \
     F(DAZZLING_GLEAM) \
     F(METRONOME) \
@@ -98,7 +98,7 @@
     F(DARK_PULSE) \
     F(LEECH_LIFE) \
     F(EERIE_IMPULSE) \
-    F(FLY) \
+    F(HIDDEN_POWER) \
     F(SKILL_SWAP) \
     F(IRON_HEAD) \
     F(DRAGON_DANCE) \
@@ -124,7 +124,7 @@
     F(PSYCHIC) \
     F(HEAVY_SLAM) \
     F(ENCORE) \
-    F(SURF) \
+    F(FRUSTRATION) \
     F(ICE_SPINNER) \
     F(FLAMETHROWER) \
     F(THUNDERBOLT) \
@@ -209,7 +209,7 @@
     F(ENDEAVOR) \
     F(PETAL_BLIZZARD) \
     F(TEMPER_FLARE) \
-    F(WHIRLPOOL) \
+    F(RETURN) \
     F(MUDDY_WATER) \
     F(SUPERCELL_SLAM) \
     F(ELECTROWEB) \
@@ -230,7 +230,29 @@
     F(DRAGON_CHEER) \
     F(ALLURING_VOICE) \
     F(PSYCHIC_NOISE) \
-    F(UPPER_HAND)
+    F(UPPER_HAND) \
+    F(WORK_UP) \
+    F(ROOST) \
+    F(SAFEGUARD) \
+    F(DOUBLE_TEAM) \
+    F(TORMENT) \
+    F(ATTRACT) \
+    F(ROUND) \
+    F(ECHOED_VOICE) \
+    F(STEEL_WING) \
+    F(SKY_DROP) \
+    F(BRUTAL_SWING) \
+    F(QUASH) \
+    F(EMBARGO) \
+    F(EXPLOSION) \
+    F(PAYBACK) \
+    F(ROCK_POLISH) \
+    F(FROST_BREATH) \
+    F(INFESTATION) \
+    F(DREAM_EATER) \
+    F(SWAGGER) \
+    F(NATURE_POWER) \
+    F(CONFIDE)
 
 #define FOREACH_HM(F) \
     F(CUT) \
