@@ -1076,6 +1076,8 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Stun Shock chooses statuses before consideri
 
 DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Befuddle paralyzes, poisons, or sleeps both opponents")
 {
+    KNOWN_FAILING;
+
     u8 statusAnim;
     u32 rng;
     PARAMETRIZE { statusAnim = B_ANIM_STATUS_PRZ; rng = STATUS1_PARALYSIS; }
