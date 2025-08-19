@@ -16,10 +16,12 @@ git remote add pret https://github.com/pret/pokeemerald.git
 git remote add merrp https://github.com/aarant/pokeemerald.git
 git remote add team_aqua https://github.com/TeamAquasHideout/pokeemerald.git
 git fetch --force --all --tags
+git update-index --no-assume-unchanged "include/constants/heal_locations.h"
 git update-index --no-assume-unchanged "src/data/battle_partners.h"
 git update-index --no-assume-unchanged "src/data/pokemon/teachable_learnsets.h"
 git reset --hard
 git checkout -B master refs/remotes/origin/master
+git update-index --assume-unchanged "include/constants/heal_locations.h"
 git update-index --assume-unchanged "src/data/battle_partners.h"
 git update-index --assume-unchanged "src/data/pokemon/teachable_learnsets.h"
 
