@@ -34,6 +34,7 @@ jobs:
         git config http.postBuffer 1048576000
         git config pack.threads 1
         git config index.threads 0
+        git config set advice.mergeConflict false
         git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion.git
         git remote add pret https://github.com/pret/pokeemerald.git
         git remote add merrp https://github.com/aarant/pokeemerald.git
