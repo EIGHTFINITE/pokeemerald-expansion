@@ -2251,6 +2251,7 @@ static void Cmd_datahpupdate(void)
 {
     CMD_ARGS(u8 battler);
     bool32 isPassiveHpUpdate = gHitMarker & HITMARKER_PASSIVE_HP_UPDATE;
+    bool32 disguiseActivates = FALSE;
 
     if (gBattleControllerExecFlags)
         return;
@@ -2292,7 +2293,7 @@ static void Cmd_datahpupdate(void)
                 gBattleStruct->moveDamage[battler] = GetNonDynamaxMaxHP(battler) / 8;
             BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = BattleScript_TargetFormChange;
-            return;
+            disguiseActivates = TRUE;
         }
         else
         {
@@ -2377,6 +2378,9 @@ static void Cmd_datahpupdate(void)
          && CanBattlerGetOrLoseItem(gBattlerTarget, gBattleMons[gBattlerTarget].item)
          && !NoAliveMonsForEitherParty())
             gBattleStruct->battlerState[gBattlerTarget].itemCanBeKnockedOff = TRUE;
+
+        if (disguiseActivates)
+            return;
     }
 
     TryRestoreDamageAfterCheekPouch(battler);
