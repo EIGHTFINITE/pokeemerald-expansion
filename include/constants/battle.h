@@ -673,21 +673,38 @@ enum FaintedActions
 // Timer value controlled by B_VAR_STARTING_STATUS_TIMER
 enum StartingStatus
 {
-    STARTING_STATUS_ELECTRIC_TERRAIN     = (1 << 0),  // Electric Terrain
-    STARTING_STATUS_MISTY_TERRAIN        = (1 << 1),  // Misty Terrain
-    STARTING_STATUS_GRASSY_TERRAIN       = (1 << 2),  // Grassy Terrain
-    STARTING_STATUS_PSYCHIC_TERRAIN      = (1 << 3),  // Psychic Terrain
-    STARTING_STATUS_TRICK_ROOM           = (1 << 4),  // Trick Room
-    STARTING_STATUS_MAGIC_ROOM           = (1 << 5),  // Magic Room
-    STARTING_STATUS_WONDER_ROOM          = (1 << 6),  // Wonder Room
-    STARTING_STATUS_TAILWIND_PLAYER      = (1 << 7),  // Tailwind Player
-    STARTING_STATUS_TAILWIND_OPPONENT    = (1 << 8),  // Tailwind Opponent
-    STARTING_STATUS_RAINBOW_PLAYER       = (1 << 9),  // Rainbow Player
-    STARTING_STATUS_RAINBOW_OPPONENT     = (1 << 10), // Rainbow Opponent
-    STARTING_STATUS_SEA_OF_FIRE_PLAYER   = (1 << 11), // Sea Of Fire Player
-    STARTING_STATUS_SEA_OF_FIRE_OPPONENT = (1 << 12), // Sea Of Fire Opponent
-    STARTING_STATUS_SWAMP_PLAYER         = (1 << 13), // Swamp Player
-    STARTING_STATUS_SWAMP_OPPONENT       = (1 << 14), // Swamp Opponent
+    STARTING_STATUS_ELECTRIC_TERRAIN       = (1 << 0),  // Electric Terrain
+    STARTING_STATUS_MISTY_TERRAIN          = (1 << 1),  // Misty Terrain
+    STARTING_STATUS_GRASSY_TERRAIN         = (1 << 2),  // Grassy Terrain
+    STARTING_STATUS_PSYCHIC_TERRAIN        = (1 << 3),  // Psychic Terrain
+    STARTING_STATUS_TRICK_ROOM             = (1 << 4),  // Trick Room
+    STARTING_STATUS_MAGIC_ROOM             = (1 << 5),  // Magic Room
+    STARTING_STATUS_WONDER_ROOM            = (1 << 6),  // Wonder Room
+    STARTING_STATUS_TAILWIND_PLAYER        = (1 << 7),  // Tailwind Player
+    STARTING_STATUS_TAILWIND_OPPONENT      = (1 << 8),  // Tailwind Opponent
+    STARTING_STATUS_RAINBOW_PLAYER         = (1 << 9),  // Rainbow Player
+    STARTING_STATUS_RAINBOW_OPPONENT       = (1 << 10), // Rainbow Opponent
+    STARTING_STATUS_SEA_OF_FIRE_PLAYER     = (1 << 11), // Sea Of Fire Player
+    STARTING_STATUS_SEA_OF_FIRE_OPPONENT   = (1 << 12), // Sea Of Fire Opponent
+    STARTING_STATUS_SWAMP_PLAYER           = (1 << 13), // Swamp Player
+    STARTING_STATUS_SWAMP_OPPONENT         = (1 << 14), // Swamp Opponent
+    // Hazards (bits 15-30)
+    STARTING_STATUS_SPIKES_PLAYER_L1       = (1 << 15), // Spikes Player Layer 1
+    STARTING_STATUS_SPIKES_PLAYER_L2       = (1 << 16), // Spikes Player Layer 2
+    STARTING_STATUS_SPIKES_PLAYER_L3       = (1 << 17), // Spikes Player Layer 3
+    STARTING_STATUS_SPIKES_OPPONENT_L1     = (1 << 18), // Spikes Opponent Layer 1
+    STARTING_STATUS_SPIKES_OPPONENT_L2     = (1 << 19), // Spikes Opponent Layer 2
+    STARTING_STATUS_SPIKES_OPPONENT_L3     = (1 << 20), // Spikes Opponent Layer 3
+    STARTING_STATUS_TOXIC_SPIKES_PLAYER_L1 = (1 << 21), // Toxic Spikes Player Layer 1
+    STARTING_STATUS_TOXIC_SPIKES_PLAYER_L2 = (1 << 22), // Toxic Spikes Player Layer 2
+    STARTING_STATUS_TOXIC_SPIKES_OPPONENT_L1 = (1 << 23), // Toxic Spikes Opponent Layer 1
+    STARTING_STATUS_TOXIC_SPIKES_OPPONENT_L2 = (1 << 24), // Toxic Spikes Opponent Layer 2
+    STARTING_STATUS_STICKY_WEB_PLAYER      = (1 << 25), // Sticky Web Player
+    STARTING_STATUS_STICKY_WEB_OPPONENT    = (1 << 26), // Sticky Web Opponent
+    STARTING_STATUS_STEALTH_ROCK_PLAYER    = (1 << 27), // Stealth Rock Player
+    STARTING_STATUS_STEALTH_ROCK_OPPONENT  = (1 << 28), // Stealth Rock Opponent
+    STARTING_STATUS_SHARP_STEEL_PLAYER     = (1 << 29), // Steelsurge Player
+    STARTING_STATUS_SHARP_STEEL_OPPONENT   = (1 << 30), // Steelsurge Opponent
 };
 
 enum SlideMsgStates
