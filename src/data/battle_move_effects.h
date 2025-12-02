@@ -2071,12 +2071,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_GLAIVE_RUSH] =
-    {
-        .battleScript = BattleScript_EffectGlaiveRush,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_RAGING_BULL] =
     {
         .battleScript = BattleScript_EffectBrickBreak,
