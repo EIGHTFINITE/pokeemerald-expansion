@@ -1004,6 +1004,7 @@ bool32 ProteanTryChangeType(u32 battler, enum Ability ability, u32 move, enum Ty
 {
       if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
          && !gDisableStructs[gBattlerAttacker].usedProteanLibero
+         && moveType != TYPE_MYSTERY
          && (gBattleMons[battler].types[0] != moveType || gBattleMons[battler].types[1] != moveType
              || (gBattleMons[battler].types[2] != moveType && gBattleMons[battler].types[2] != TYPE_MYSTERY))
          && move != MOVE_STRUGGLE
