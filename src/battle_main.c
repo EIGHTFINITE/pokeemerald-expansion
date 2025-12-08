@@ -3748,6 +3748,8 @@ static void DoBattleIntro(void)
                 gBattleStruct->startingStatus |= VarGet(B_VAR_STARTING_STATUS);
                 gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
             }
+            if (B_VAR_STARTING_STATUS_HAZARDS != 0)
+                gBattleStruct->startingStatus |= (u32)VarGet(B_VAR_STARTING_STATUS_HAZARDS) << STARTING_HAZARD_SHIFT;
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
         break;

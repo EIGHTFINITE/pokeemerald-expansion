@@ -422,6 +422,10 @@ void Overworld_ResetBattleFlagsAndVars(void)
         VarSet(B_VAR_STARTING_STATUS, 0);
     #endif
 
+    #if B_VAR_STARTING_STATUS_HAZARDS != 0
+        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+    #endif
+
     #if B_VAR_STARTING_STATUS_TIMER != 0
         VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
     #endif

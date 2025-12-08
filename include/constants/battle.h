@@ -707,6 +707,30 @@ enum StartingStatus
     STARTING_STATUS_SHARP_STEEL_OPPONENT   = (1 << 30), // Steelsurge Opponent
 };
 
+// Constants for B_VAR_STARTING_STATUS_HAZARDS (shifted to fit in u16)
+// These map to the same internal bits as STARTING_STATUS_* hazards
+enum StartingHazard
+{
+    STARTING_HAZARD_SPIKES_PLAYER_L1       = (1 << 0),  // Spikes Player Layer 1
+    STARTING_HAZARD_SPIKES_PLAYER_L2       = (1 << 1),  // Spikes Player Layer 2
+    STARTING_HAZARD_SPIKES_PLAYER_L3       = (1 << 2),  // Spikes Player Layer 3
+    STARTING_HAZARD_SPIKES_OPPONENT_L1     = (1 << 3),  // Spikes Opponent Layer 1
+    STARTING_HAZARD_SPIKES_OPPONENT_L2     = (1 << 4),  // Spikes Opponent Layer 2
+    STARTING_HAZARD_SPIKES_OPPONENT_L3     = (1 << 5),  // Spikes Opponent Layer 3
+    STARTING_HAZARD_TOXIC_SPIKES_PLAYER_L1 = (1 << 6),  // Toxic Spikes Player Layer 1
+    STARTING_HAZARD_TOXIC_SPIKES_PLAYER_L2 = (1 << 7),  // Toxic Spikes Player Layer 2
+    STARTING_HAZARD_TOXIC_SPIKES_OPPONENT_L1 = (1 << 8),  // Toxic Spikes Opponent Layer 1
+    STARTING_HAZARD_TOXIC_SPIKES_OPPONENT_L2 = (1 << 9),  // Toxic Spikes Opponent Layer 2
+    STARTING_HAZARD_STICKY_WEB_PLAYER      = (1 << 10), // Sticky Web Player
+    STARTING_HAZARD_STICKY_WEB_OPPONENT    = (1 << 11), // Sticky Web Opponent
+    STARTING_HAZARD_STEALTH_ROCK_PLAYER    = (1 << 12), // Stealth Rock Player
+    STARTING_HAZARD_STEALTH_ROCK_OPPONENT  = (1 << 13), // Stealth Rock Opponent
+    STARTING_HAZARD_SHARP_STEEL_PLAYER     = (1 << 14), // Steelsurge Player
+    STARTING_HAZARD_SHARP_STEEL_OPPONENT   = (1 << 15), // Steelsurge Opponent
+};
+
+#define STARTING_HAZARD_SHIFT 15 // Shift value to convert STARTING_HAZARD_* to internal STARTING_STATUS_* bits
+
 enum SlideMsgStates
 {
     PRINT_SLIDE_MESSAGE,
