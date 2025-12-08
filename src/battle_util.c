@@ -5512,7 +5512,7 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, u32 battler, enum Ability ab
                 gBattleMons[battler].volatiles.dragonCheer = gBattleMons[partner].volatiles.dragonCheer;
                 gBattleMons[battler].volatiles.bonusCritStages = gBattleMons[partner].volatiles.bonusCritStages;
                 gEffectBattler = partner;
-                BattleScriptPushCursorAndCallback(BattleScript_CostarActivates);
+                BattleScriptCall(BattleScript_CostarActivates);
                 effect++;
             }
             break;
