@@ -1358,7 +1358,13 @@ u32 GetNoOfHitsToKOBattlerDmg(u32 dmg, u32 battlerDef)
 
 u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex, enum DamageCalcContext calcContext)
 {
-    return GetNoOfHitsToKOBattlerDmg(AI_GetDamage(battlerAtk, battlerDef, moveIndex, calcContext, gAiLogicData), battlerDef);
+    u32 hitsToKO = GetNoOfHitsToKOBattlerDmg(AI_GetDamage(battlerAtk, battlerDef, moveIndex, calcContext, gAiLogicData), battlerDef);
+    u16 *moves = GetMovesArray(battlerAtk);
+
+    if (CanEndureHit(battlerAtk, battlerDef, moves[moveIndex]) && hitsToKO == 1)
+        hitsToKO += 1;
+
+    return hitsToKO;
 }
 
 u32 GetBestNoOfHitsToKO(u32 battlerAtk, u32 battlerDef, enum DamageCalcContext calcContext)
@@ -1496,6 +1502,9 @@ bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
         if (B_STURDY >= GEN_5 && gAiLogicData->abilities[battlerTarget] == ABILITY_STURDY)
             return TRUE;
         if (IsMimikyuDisguised(battlerTarget))
+            return TRUE;
+        if (gAiLogicData->abilities[battlerTarget] == ABILITY_ICE_FACE
+            && gBattleMons[battlerTarget].species == SPECIES_EISCUE_ICE && GetMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
             return TRUE;
     }
 
@@ -2475,6 +2484,30 @@ u32 GetIndexInMoveArray(u32 battler, u32 move)
             return i;
     }
     return MAX_MON_MOVES;
+}
+
+bool32 HasPhysicalBestMove(u32 battlerAtk, u32 battlerDef, enum DamageCalcContext calcContext)
+{
+    u32 atkBestMoves[MAX_MON_MOVES] = {0};
+    u32 i;
+    GetBestDmgMovesFromBattler(battlerAtk, battlerDef, calcContext, atkBestMoves);
+    bool32 bestMoveIsPhysical = TRUE;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (atkBestMoves[i] == MOVE_NONE)
+        {
+            break;
+        }
+        else
+        {
+        if (GetBattleMoveCategory(atkBestMoves[i]) == DAMAGE_CATEGORY_SPECIAL)
+            {
+                bestMoveIsPhysical = FALSE;
+                break;
+            }
+        }
+    }
+    return bestMoveIsPhysical;
 }
 
 bool32 HasOnlyMovesWithCategory(u32 battlerId, enum DamageCategory category, bool32 onlyOffensive)
@@ -4899,6 +4932,7 @@ static enum Stat GetStatBeingChanged(enum StatChange statChange)
         case STAT_CHANGE_ATK:
         case STAT_CHANGE_ATK_2:
         case STAT_CHANGE_ATK_3:
+        case STAT_CHANGE_ATK_MAX:
             return STAT_ATK;
         case STAT_CHANGE_DEF:
         case STAT_CHANGE_DEF_2:
@@ -4948,6 +4982,8 @@ static u32 GetStagesOfStatChange(enum StatChange statChange)
         case STAT_CHANGE_SPATK_3:
         case STAT_CHANGE_SPDEF_3:
             return 3;
+        case STAT_CHANGE_ATK_MAX:
+            return 6;
     }
     return 0; // STAT_HP, should never be getting changed
 }
@@ -5010,6 +5046,8 @@ static enum AIScore IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, 
         {
             if (stages == 1)
                 tempScore += DECENT_EFFECT;
+            else if (stages == 6)
+                tempScore += BEST_EFFECT;
             else
                 tempScore += GOOD_EFFECT;
         }
@@ -5073,6 +5111,27 @@ static enum AIScore IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, 
         tempScore += WEAK_EFFECT;
 
     return tempScore;
+}
+
+bool32 HasHPForDamagingSetup(u32 battlerAtk, u32 battlerDef, u32 hpThreshold)
+{
+    bool32 bestMoveIsPhysical = HasPhysicalBestMove(battlerDef, battlerAtk, AI_DEFENDING);
+
+    if (GetBestDmgFromBattler(battlerDef, battlerAtk, AI_DEFENDING) < ((hpThreshold * gBattleMons[battlerAtk].maxHP) / 100))
+        return TRUE;
+
+    if (bestMoveIsPhysical
+     && gAiLogicData->abilities[battlerAtk] == ABILITY_ICE_FACE 
+     && gBattleMons[battlerAtk].species == SPECIES_EISCUE_ICE
+     && !IsMoldBreakerTypeAbility(battlerDef, gAiLogicData->abilities[battlerDef])) // ice face will absorb the hit, safe to use setup
+        return TRUE;
+    
+    if (gAiLogicData->abilities[battlerAtk] == ABILITY_DISGUISE
+     && IsMimikyuDisguised(battlerAtk)
+     && !IsMoldBreakerTypeAbility(battlerDef, gAiLogicData->abilities[battlerDef])) // disguise will absorb the hit, safe to use setup
+        return TRUE;
+    
+    return FALSE;
 }
 
 u32 IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, enum StatChange statChange)
