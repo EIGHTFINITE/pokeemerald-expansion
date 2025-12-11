@@ -60,6 +60,7 @@
 #include "window.h"
 #include "list_menu.h"
 #include "malloc.h"
+#include "battle.h"
 #include "constants/event_objects.h"
 #include "constants/map_types.h"
 
@@ -172,8 +173,9 @@ bool8 ScrCmd_callnative(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1);
     Script_CheckEffectInstrumentedCallNative(func);
 
+    ctx->waitAfterCallNative = FALSE;
     func(ctx);
-    return FALSE;
+    return ctx->waitAfterCallNative;
 }
 
 bool8 ScrCmd_waitstate(struct ScriptContext *ctx)
@@ -1294,7 +1296,7 @@ bool8 ScrCmd_applymovement(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     // When applying script movements to follower, it may have frozen animation that must be cleared
-    if ((localId == OBJ_EVENT_ID_FOLLOWER && (objEvent = GetFollowerObject()) && objEvent->frozen) 
+    if ((localId == OBJ_EVENT_ID_FOLLOWER && (objEvent = GetFollowerObject()) && objEvent->frozen)
             || ((objEvent = &gObjectEvents[GetObjectEventIdByLocalId(localId)]) && IS_OW_MON_OBJ(objEvent)))
     {
         ClearObjectEventMovement(objEvent, &gSprites[objEvent->spriteId]);
@@ -1372,6 +1374,18 @@ bool8 ScrCmd_waitmovementat(struct ScriptContext *ctx)
     sMovingNpcMapNum = mapNum;
     SetupNativeScript(ctx, WaitForMovementFinish);
     return TRUE;
+}
+
+static bool8 WaitForAllMovementFinish(void)
+{
+    return ScriptMovement_IsAllObjectMovementFinished();
+}
+
+void Script_waitmovementall(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+    SetupNativeScript(ctx, WaitForAllMovementFinish);
+    ctx->waitAfterCallNative = TRUE;
 }
 
 bool8 ScrCmd_removeobject(struct ScriptContext *ctx)
@@ -1508,8 +1522,8 @@ bool8 ScrCmd_resetobjectsubpriority(struct ScriptContext *ctx)
 bool8 ScrCmd_faceplayer(struct ScriptContext *ctx)
 {
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-    if (PlayerHasFollowerNPC() 
-     && gObjectEvents[GetFollowerNPCObjectId()].invisible == FALSE 
+    if (PlayerHasFollowerNPC()
+     && gObjectEvents[GetFollowerNPCObjectId()].invisible == FALSE
      && gSelectedObjectEvent == GetFollowerNPCObjectId())
     {
         struct ObjectEvent *npcFollower = &gObjectEvents[GetFollowerNPCObjectId()];

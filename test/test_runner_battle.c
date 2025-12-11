@@ -686,7 +686,7 @@ static u32 BattleTest_RandomUniform(enum RandomTag tag, u32 lo, u32 hi, bool32 (
             return 0;
         }
     default:
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomUniformTrials(tag, lo, hi, reject, caller);
     }
 
@@ -707,7 +707,7 @@ static u32 BattleTest_RandomWeightedArray(enum RandomTag tag, u32 sum, u32 n, co
     }
 
     //trials
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomWeightedArrayTrials(tag, sum, n, weights, caller);
 
     //default
@@ -762,7 +762,7 @@ static const void *BattleTest_RandomElementArray(enum RandomTag tag, const void 
 
 
     //trials
-    if (tag == STATE->rngTag)
+    if (tag && tag == STATE->rngTag)
         return RandomElementArrayTrials(tag, array, size, count, caller);
 
     //default
@@ -1786,10 +1786,10 @@ void SetFlagForTest(u32 sourceLine, u16 flagId)
     FlagSet(flagId);
 }
 
-void TestSetConfig(u32 sourceLine, enum GenConfigTag configTag, u32 value)
+void TestSetConfig(u32 sourceLine, enum ConfigTag configTag, u32 value)
 {
     INVALID_IF(!STATE->runGiven, "WITH_CONFIG outside of GIVEN");
-    SetGenConfig(configTag, value);
+    SetConfig(configTag, value);
 }
 
 void TieBreakScore(u32 sourceLine, enum RandomTag rngTag, enum ScoreTieResolution scoreTieRes, u32 value)

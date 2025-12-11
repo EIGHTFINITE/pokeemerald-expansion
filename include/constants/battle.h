@@ -186,6 +186,7 @@ enum VolatileFlags
     F(VOLATILE_FORESIGHT,                   foresight,                     (u32, 1)) \
     F(VOLATILE_DRAGON_CHEER,                dragonCheer,                   (u32, 1), V_BATON_PASSABLE) \
     F(VOLATILE_FOCUS_ENERGY,                focusEnergy,                   (u32, 1), V_BATON_PASSABLE) \
+    F(VOLATILE_BONUS_CRIT_STAGES,           bonusCritStages,               (u32, 3)) \
     F(VOLATILE_SEMI_INVULNERABLE,           semiInvulnerable,              (u32, SEMI_INVULNERABLE_COUNT - 1)) \
     F(VOLATILE_ELECTRIFIED,                 electrified,                   (u32, 1)) \
     F(VOLATILE_MUD_SPORT,                   mudSport,                      (u32, 1), V_BATON_PASSABLE) \
@@ -669,7 +670,7 @@ enum FaintedActions
     FAINTED_ACTIONS_MAX_CASE,
 };
 
-//  Enum,                                         fieldName,                 Type, max value
+//  Enum,                                         fieldName,           Type, max value
 #define STARTING_STATUS_DEFINITIONS(F) \
     F(STARTING_STATUS_ELECTRIC_TERRAIN,               electricTerrain,            (u32, 1)) /* Electric Terrain (Permanent) */             \
     F(STARTING_STATUS_ELECTRIC_TERRAIN_TEMPORARY,     electricTerrainTemporary,   (u32, 1)) /* Electric Terrain Temporary (5 turns) */     \

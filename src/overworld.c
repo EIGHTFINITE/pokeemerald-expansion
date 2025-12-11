@@ -416,7 +416,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_USE_FLASH);
 }
 
-#if B_RESET_FLAGS_VARS_AFTER_WHITEOUT  == TRUE
+#if B_RESET_FLAGS_VARS_AFTER_WHITEOUT == TRUE
 void Overworld_ResetBattleFlagsAndVars(void)
 {
     ResetStartingStatuses();

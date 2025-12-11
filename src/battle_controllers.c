@@ -64,7 +64,7 @@ bool32 IsAiVsAiBattle(void)
 bool32 BattlerIsPlayer(u32 battlerId)
 {
     return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER
-        || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);    
+        || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);
     return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);
 }
@@ -108,10 +108,10 @@ bool32 BattlerHasAi(u32 battlerId)
     default:
         break;
     }
-    
+
     if (IsAiVsAiBattle())
         return TRUE;
-    
+
     return FALSE;
 }
 
@@ -392,6 +392,14 @@ bool32 IsValidForBattle(struct Pokemon *mon)
          && GetMonData(mon, MON_DATA_IS_EGG) == FALSE);
 }
 
+bool32 IsValidForBattleButDead(struct Pokemon *mon)
+{
+    u32 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    return (species != SPECIES_NONE
+         && species != SPECIES_EGG
+         && GetMonData(mon, MON_DATA_IS_EGG) == FALSE);
+}
+
 static inline bool32 IsControllerPlayer(u32 battler)
 {
     return (gBattlerControllerEndFuncs[battler] == PlayerBufferExecCompleted);
@@ -456,42 +464,31 @@ static void SetBattlePartyIds(void)
             {
                 if (i < 2)
                 {
-                    if (IsOnPlayerSide(i))
+                    if (IsValidForBattle(&GetBattlerParty(i)[j]))
                     {
-                        if (IsValidForBattle(&gPlayerParty[j]))
-                        {
-                            gBattlerPartyIndexes[i] = j;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (IsValidForBattle(&gEnemyParty[j]))
-                        {
-                            gBattlerPartyIndexes[i] = j;
-                            break;
-                        }
+                        gBattlerPartyIndexes[i] = j;
+                        break;
                     }
                 }
                 else
                 {
-                    if (IsOnPlayerSide(i))
+                    if (gBattlerPartyIndexes[i - 2] == j)
                     {
-                        if (IsValidForBattle(&gPlayerParty[j]) && gBattlerPartyIndexes[i - 2] != j)
-                        {
-                            gBattlerPartyIndexes[i] = j;
-                            break;
-                        }
+                        // Exclude already assigned pokemon;
                     }
-                    else
+                    else if (IsValidForBattle(&GetBattlerParty(i)[j]))
                     {
-                        if (IsValidForBattle(&gEnemyParty[j]) && gBattlerPartyIndexes[i - 2] != j)
-                        {
-                            gBattlerPartyIndexes[i] = j;
-                            break;
-                        }
+                        gBattlerPartyIndexes[i] = j;
+                        break;
+                    }
+                    else if (IsValidForBattleButDead(&GetBattlerParty(i)[j]) && gBattlerPartyIndexes[i] < PARTY_SIZE)
+                    {
+                        // Put an "option" on a dead mon that can be revived;
+                        gBattlerPartyIndexes[i] = j + PARTY_SIZE;
                     }
 
+                    if (gBattlerPartyIndexes[i] >= PARTY_SIZE)
+                        continue;
                     // No valid mons were found. Add the empty slot.
                     if (gBattlerPartyIndexes[i - 2] == 0)
                         gBattlerPartyIndexes[i] = 1;
@@ -499,6 +496,8 @@ static void SetBattlePartyIds(void)
                         gBattlerPartyIndexes[i] = 0;
                 }
             }
+            if (gBattlerPartyIndexes[i] >= PARTY_SIZE)
+                gBattlerPartyIndexes[i] -= PARTY_SIZE;
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
@@ -2671,7 +2670,7 @@ void BtlController_HandleStatusAnimation(u32 battler)
 
 void BtlController_HandleHitAnimation(u32 battler)
 {
-    if (gSprites[gBattlerSpriteIds[battler]].invisible == TRUE || gTestRunnerHeadless)
+    if (gSprites[gBattlerSpriteIds[battler]].invisible == TRUE || (gTestRunnerHeadless && !gBattleTestRunnerState->forceMoveAnim))
     {
         BtlController_Complete(battler);
     }
@@ -2686,7 +2685,7 @@ void BtlController_HandleHitAnimation(u32 battler)
 
 void BtlController_HandlePlaySE(u32 battler)
 {
-    if (gTestRunnerHeadless)
+    if (gTestRunnerHeadless && !gBattleTestRunnerState->forceMoveAnim)
     {
         BtlController_Complete(battler);
         return;
@@ -2699,7 +2698,7 @@ void BtlController_HandlePlaySE(u32 battler)
 
 void BtlController_HandlePlayFanfareOrBGM(u32 battler)
 {
-    if (gTestRunnerHeadless)
+    if (gTestRunnerHeadless && !gBattleTestRunnerState->forceMoveAnim)
     {
         BtlController_Complete(battler);
         return;
@@ -2719,19 +2718,13 @@ void BtlController_HandlePlayFanfareOrBGM(u32 battler)
 
 void BtlController_HandleFaintingCry(u32 battler)
 {
-    struct Pokemon *party;
+    struct Pokemon *party = GetBattlerParty(battler);
     s8 pan;
 
     if (IsOnPlayerSide(battler))
-    {
-        party = gPlayerParty;
         pan = -25;
-    }
     else
-    {
-        party = gEnemyParty;
         pan = 25;
-    }
 
     PlayCry_ByMode(GetMonData(&party[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES), pan, CRY_MODE_FAINT);
     BtlController_Complete(battler);
