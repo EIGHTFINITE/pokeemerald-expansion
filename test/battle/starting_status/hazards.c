@@ -2,18 +2,15 @@
 #include "event_data.h"
 #include "test/battle.h"
 
-#if B_VAR_STARTING_STATUS_HAZARDS != 0
-
-SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS_HAZARDS can start Spikes on the opposing side", s16 damage)
+SINGLE_BATTLE_TEST("SetStartingStatus can start Spikes on the opposing side", s16 damage)
 {
-    u32 startingHazard;
+    u16 startingHazard;
     u32 divisor;
 
-    PARAMETRIZE { startingHazard = STARTING_HAZARD_SPIKES_OPPONENT_L1; divisor = 8; }
-    PARAMETRIZE { startingHazard = STARTING_HAZARD_SPIKES_OPPONENT_L3; divisor = 4; }
+    PARAMETRIZE { startingHazard = STARTING_STATUS_SPIKES_OPPONENT_L1; divisor = 8; }
+    PARAMETRIZE { startingHazard = STARTING_STATUS_SPIKES_OPPONENT_L3; divisor = 4; }
 
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, startingHazard);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(startingHazard);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -27,14 +24,13 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS_HAZARDS can start Spikes on the opposi
         HP_BAR(opponent, damage: maxHP / divisor);
         MESSAGE("The opposing Wynaut was hurt by the spikes!");
     } FINALLY {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
 
 SINGLE_BATTLE_TEST("Starting Toxic Spikes poison the opposing switch-in")
 {
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, STARTING_HAZARD_TOXIC_SPIKES_OPPONENT_L1);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(STARTING_STATUS_TOXIC_SPIKES_OPPONENT_L1);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -48,14 +44,13 @@ SINGLE_BATTLE_TEST("Starting Toxic Spikes poison the opposing switch-in")
         STATUS_ICON(opponent, poison: TRUE);
         NOT STATUS_ICON(opponent, badPoison: TRUE);
     } THEN {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
 
 SINGLE_BATTLE_TEST("Starting Toxic Spikes badly poison the opposing switch-in")
 {
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, STARTING_HAZARD_TOXIC_SPIKES_OPPONENT_L2);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(STARTING_STATUS_TOXIC_SPIKES_OPPONENT_L2);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -68,14 +63,13 @@ SINGLE_BATTLE_TEST("Starting Toxic Spikes badly poison the opposing switch-in")
         MESSAGE("The opposing Wynaut was badly poisoned!");
         STATUS_ICON(opponent, badPoison: TRUE);
     } THEN {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
 
 SINGLE_BATTLE_TEST("Starting Sticky Web lowers Speed on entry")
 {
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, STARTING_HAZARD_STICKY_WEB_OPPONENT);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(STARTING_STATUS_STICKY_WEB_OPPONENT);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -88,14 +82,13 @@ SINGLE_BATTLE_TEST("Starting Sticky Web lowers Speed on entry")
         MESSAGE("The opposing Wynaut was caught in a sticky web!");
         MESSAGE("The opposing Wynaut's Speed fell!");
     } THEN {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
 
 SINGLE_BATTLE_TEST("Starting Stealth Rock damages the opposing switch-in")
 {
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, STARTING_HAZARD_STEALTH_ROCK_OPPONENT);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(STARTING_STATUS_STEALTH_ROCK_OPPONENT);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -109,14 +102,13 @@ SINGLE_BATTLE_TEST("Starting Stealth Rock damages the opposing switch-in")
         HP_BAR(opponent, damage: maxHP / 2);
         MESSAGE("Pointed stones dug into the opposing Charizard!");
     } THEN {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
 
 SINGLE_BATTLE_TEST("Starting sharp steel damages the opposing switch-in")
 {
-    VarSet(B_VAR_STARTING_STATUS_HAZARDS, STARTING_HAZARD_SHARP_STEEL_OPPONENT);
-    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+    SetStartingStatus(STARTING_STATUS_SHARP_STEEL_OPPONENT);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -130,8 +122,6 @@ SINGLE_BATTLE_TEST("Starting sharp steel damages the opposing switch-in")
         HP_BAR(opponent, damage: maxHP / 4);
         MESSAGE("The sharp steel bit into the opposing Sylveon!");
     } THEN {
-        VarSet(B_VAR_STARTING_STATUS_HAZARDS, 0);
+        ResetStartingStatuses();
     }
 }
-
-#endif // B_VAR_STARTING_STATUS_HAZARDS
