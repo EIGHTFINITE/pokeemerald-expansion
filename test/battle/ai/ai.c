@@ -1258,3 +1258,25 @@ AI_SINGLE_BATTLE_TEST("AI is discouraged from using pivot moves if it has no goo
         TURN { MOVE(player, MOVE_GROWL); EXPECT_MOVE(opponent, MOVE_STRENGTH); }
     }
 }
+
+AI_SINGLE_BATTLE_TEST("AI will try to withstand hit with absorbing move")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_DRAGON_RAGE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); HP(39); Moves(MOVE_ENERGY_BALL, MOVE_GIGA_DRAIN); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAGON_RAGE); EXPECT_MOVE(opponent, MOVE_GIGA_DRAIN); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI will not try to withstand hit with absorbing move if it will still be KO'd")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); Moves(MOVE_DRAGON_RAGE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); MaxHP(40); HP(39); Moves(MOVE_ENERGY_BALL, MOVE_GIGA_DRAIN); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAGON_RAGE); EXPECT_MOVE(opponent, MOVE_ENERGY_BALL); }
+    }
+}
