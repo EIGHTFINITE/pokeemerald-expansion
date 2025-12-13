@@ -3830,7 +3830,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         BattleScriptPushCursorAndCallback(BattleScript_FirstTurnSwitchInEvents);
         gBattleStruct->eventState.beforeFristTurn++;
         break;
-    case FIRST_TURN_HANDLE_FAINTED_BATTLERS:
+    case FIRST_TURN_FAINTED_BATTLERS:
         // Handle any Pokemon that fainted from starting hazards before transitioning to action selection
         if (HandleFaintedMonActions())
             return;
