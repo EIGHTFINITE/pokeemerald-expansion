@@ -1681,9 +1681,7 @@ static void fprint_symbol(FILE *f, struct String s)
                 }
                 fputc(c + 'a' - 'A', f);
             }
-            else if ('a' <= c && c <= 'z')
-                fputc(c, f);
-            else if ('0' <= c && c <= '9')
+            else if (('a' <= c && c <= 'z') || ('0' <= c && c <= '9'))
                 fputc(c, f);
             else if (c == '\'')
                 ;

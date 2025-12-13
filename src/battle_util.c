@@ -3607,9 +3607,7 @@ bool32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, enum Ability ability
 
 static u32 GetFirstBattlerOnSide(u32 side)
 {
-    u32 battler;
-
-    for (battler = 0; battler < gBattlersCount; battler++)
+    for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
         if (GetBattlerSide(battler) == side && !(gAbsentBattlerFlags & (1u << battler)))
             return battler;
