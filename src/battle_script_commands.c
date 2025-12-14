@@ -9045,7 +9045,7 @@ u32 IsAbilityStatusProtected(u32 battler, enum Ability ability)
         || IsFlowerVeilProtected(battler);
 }
 
-static bool32 IsRototillerAffected(u32 battler)
+static bool32 IsRototillerAffected(u32 battler, u32 move)
 {
     if (!IsBattlerAlive(battler))
         return FALSE;
@@ -9055,7 +9055,7 @@ static bool32 IsRototillerAffected(u32 battler)
         return FALSE;   // Only grass types affected
     if (IsSemiInvulnerable(battler, CHECK_ALL))
         return FALSE;   // Rototiller doesn't affected semi-invulnerable battlers
-    if (BlocksPrankster(MOVE_ROTOTILLER, gBattlerAttacker, battler, FALSE))
+    if (BlocksPrankster(move, gBattlerAttacker, battler, FALSE))
         return FALSE;
     return TRUE;
 }
@@ -9810,8 +9810,9 @@ static u32 ChangeStatBuffs(u32 battler, s8 statValue, enum Stat statId, union St
 
     if (statValue <= -1) // Stat decrease.
     {
+        enum BattleMoveEffects effect = GetMoveEffect(gCurrentMove);
         if (gSideTimers[GetBattlerSide(battler)].mistTimer
-            && !flags.certain && gCurrentMove != MOVE_CURSE
+            && !flags.certain && effect != EFFECT_CURSE
             && !(battler == gBattlerTarget && GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR))
         {
             if (flags.allowPtr)
@@ -9830,13 +9831,13 @@ static u32 ChangeStatBuffs(u32 battler, s8 statValue, enum Stat statId, union St
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if (gCurrentMove != MOVE_CURSE
+        else if (effect != EFFECT_CURSE
                  && !flags.notProtectAffected && JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget, TRUE, BattleScript_ButItFailed))
         {
             return STAT_CHANGE_DIDNT_WORK;
         }
         else if ((battlerHoldEffect == HOLD_EFFECT_CLEAR_AMULET || CanAbilityPreventStatLoss(battlerAbility))
-              && (flags.statDropPrevention || gBattlerAttacker != gBattlerTarget || flags.mirrorArmored) && !flags.certain && gCurrentMove != MOVE_CURSE)
+              && (flags.statDropPrevention || gBattlerAttacker != gBattlerTarget || flags.mirrorArmored) && !flags.certain && effect != EFFECT_CURSE)
         {
             if (flags.allowPtr)
             {
@@ -17380,7 +17381,7 @@ void BS_GetRototillerTargets(void)
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
         gSpecialStatuses[battler].rototillerAffected = FALSE;
-        if (IsRototillerAffected(battler))
+        if (IsRototillerAffected(battler, gCurrentMove))
         {
             gSpecialStatuses[battler].rototillerAffected = TRUE;
             count++;

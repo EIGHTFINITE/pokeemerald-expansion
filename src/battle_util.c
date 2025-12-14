@@ -433,7 +433,7 @@ bool32 HandleMoveTargetRedirection(void)
                 redirectorOrderNum = GetBattlerTurnOrderNum(battler);
             }
         }
-        if (redirectorOrderNum != MAX_BATTLERS_COUNT && gCurrentMove != MOVE_TEATIME)
+        if (redirectorOrderNum != MAX_BATTLERS_COUNT && moveEffect != EFFECT_TEATIME)
         {
             enum Ability battlerAbility;
             battler = gBattlerByTurnOrder[redirectorOrderNum];
@@ -1932,7 +1932,8 @@ void TryClearRageAndFuryCutter(void)
     s32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (gBattleMons[i].volatiles.rage && gChosenMoveByBattler[i] != MOVE_RAGE)
+        u32 effect = GetMoveEffect(gChosenMoveByBattler[i]);
+        if (gBattleMons[i].volatiles.rage && effect != EFFECT_RAGE)
             gBattleMons[i].volatiles.rage = FALSE;
     }
 }
