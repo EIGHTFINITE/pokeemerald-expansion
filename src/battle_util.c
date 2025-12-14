@@ -3609,7 +3609,7 @@ static u32 GetFirstBattlerOnSide(u32 side)
 {
     for (u32 battler = 0; battler < gBattlersCount; battler++)
     {
-        if (GetBattlerSide(battler) == side && !(gAbsentBattlerFlags & (1u << battler)))
+        if (GetBattlerSide(battler) == side && !IsBattlerAlive(battler))
             return battler;
     }
 
