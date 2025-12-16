@@ -2151,12 +2151,27 @@ static enum MoveCanceler CancelerFocus(struct BattleContext *ctx)
     // In Gens 7+, check if chose and is using Focus Punch.
     if ((gProtectStructs[ctx->battlerAtk].physicalDmg || gProtectStructs[ctx->battlerAtk].specialDmg)
      && (focusPunchFailureConfig < GEN_5 || GetMoveEffect(gChosenMoveByBattler[ctx->battlerAtk]) == EFFECT_FOCUS_PUNCH)
-     && (focusPunchFailureConfig == GEN_5 || focusPunchFailureConfig == GEN_6 || GetMoveEffect(ctx->move) == EFFECT_FOCUS_PUNCH))
+     && (focusPunchFailureConfig == GEN_5 || focusPunchFailureConfig == GEN_6 || GetMoveEffect(ctx->move) == EFFECT_FOCUS_PUNCH)
+     && !gProtectStructs[ctx->battlerAtk].survivedOHKO)
     {
         CancelMultiTurnMoves(ctx->battlerAtk, SKY_DROP_ATTACKCANCELER_CHECK);
         gBattlescriptCurrInstr = BattleScript_FocusPunchLostFocus;
         return MOVE_STEP_FAILURE;
     }
+    return MOVE_STEP_SUCCESS;
+}
+
+static enum MoveCanceler CancelerFocusPreGen5(struct BattleContext *ctx)
+{
+    if (GetConfig(CONFIG_FOCUS_PUNCH_FAILURE) < GEN_5)
+        return CancelerFocus(ctx);
+    return MOVE_STEP_SUCCESS;
+}
+
+static enum MoveCanceler CancelerFocusGen5(struct BattleContext *ctx)
+{
+    if (GetConfig(CONFIG_FOCUS_PUNCH_FAILURE) >= GEN_5)
+        return CancelerFocus(ctx);
     return MOVE_STEP_SUCCESS;
 }
 
@@ -2959,7 +2974,7 @@ static enum MoveCanceler (*const sMoveSuccessOrderCancelers[])(struct BattleCont
     [CANCELER_OBEDIENCE] = CancelerObedience,
     [CANCELER_POWER_POINTS] = CancelerPowerPoints,
     [CANCELER_TRUANT] = CancelerTruant,
-    [CANCELER_FOCUS] = CancelerFocus,
+    [CANCELER_FOCUS_GEN5] = CancelerFocusGen5,
     [CANCELER_FLINCH] = CancelerFlinch,
     [CANCELER_DISABLED] = CancelerDisabled,
     [CANCELER_VOLATILE_BLOCKED] = CancelerVolatileBlocked,
@@ -2977,6 +2992,7 @@ static enum MoveCanceler (*const sMoveSuccessOrderCancelers[])(struct BattleCont
     [CANCELER_ATTACKSTRING] = CancelerAttackstring,
     [CANCELER_PPDEDUCTION] = CancelerPPDeduction,
     [CANCELER_WEATHER_PRIMAL] = CancelerWeatherPrimal,
+    [CANCELER_FOCUS_PRE_GEN5] = CancelerFocusPreGen5,
     [CANCELER_MOVE_FAILURE] = CancelerMoveFailure,
     [CANCELER_POWDER_STATUS] = CancelerPowderStatus,
     [CANCELER_PRIORITY_BLOCK] = CancelerPriorityBlock,
