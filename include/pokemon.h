@@ -5,6 +5,7 @@
 #include "sprite.h"
 #include "constants/battle.h"
 #include "constants/cries.h"
+#include "constants/egg_ids.h"
 #include "constants/form_change_types.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
@@ -491,7 +492,7 @@ struct SpeciesInfo /*0xC4*/
     s8 enemyShadowYOffset; // This determines the Y-offset for an enemy Pokémon's shadow during battle; negative values point up, positive values point down.
     u16 enemyShadowSize:3; // This determines the size of the shadow sprite used for an enemy Pokémon's front sprite during battle.
     u16 suppressEnemyShadow:1; // If set to true, then a shadow will not be drawn beneath an enemy Pokémon's front sprite during battle.
-    u16 padding5:12;
+    enum EggIds eggId:12;
     // Move Data
     const struct LevelUpMove *levelUpLearnset;
     const u16 *teachableLearnset;
@@ -513,6 +514,17 @@ struct SpeciesInfo /*0xC4*/
 #endif //P_GENDER_DIFFERENCES
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+};
+
+struct EggData
+{
+    const u8 *eggIcon;
+    const u32 *eggSprite;
+    const u16 *eggPalette;
+    const u32 *eggHatchGfx;
+    const u16 *eggHatchPal;
+    const u32 *eggShardsGfx;
+    const u8 eggIconPalIndex;
 };
 
 struct AbilityInfo
@@ -835,7 +847,9 @@ void PlayMapChosenOrBattleBGM(u16 songId);
 void CreateTask_PlayMapChosenOrBattleBGM(u16 songId);
 const u16 *GetMonFrontSpritePal(struct Pokemon *mon);
 const u16 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, bool32 isShiny, u32 personality);
+const u16 *GetMonSpritePalFromSpeciesAndPersonalityIsEgg(u16 species, bool32 isShiny, u32 personality, bool32 isEgg);
 const u16 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFemale);
+const u16 *GetMonSpritePalFromSpeciesIsEgg(u16 species, bool32 isShiny, bool32 isFemale, bool32 isEgg);
 bool32 IsMoveHM(u16 move);
 bool32 CannotForgetMove(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
