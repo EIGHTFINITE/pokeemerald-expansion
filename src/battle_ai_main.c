@@ -4951,11 +4951,16 @@ static s32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move, stru
     case EFFECT_FILLET_AWAY:
         if (HasHPForDamagingSetup(battlerAtk, battlerDef, 50))
         {
-            u32 scoreIncrease = IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
-            if (scoreIncrease > BEST_EFFECT)
-                scoreIncrease = BEST_EFFECT;
+            s32 statUpScore = 0;
 
-            ADJUST_SCORE(scoreIncrease);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED_2);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK_2);
+
+            if (statUpScore > BEST_EFFECT)
+                ADJUST_SCORE(BEST_EFFECT);
+            else
+                ADJUST_SCORE(statUpScore);
         }
         break;
     case EFFECT_PSYCH_UP:
@@ -5310,23 +5315,50 @@ static s32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move, stru
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB)
             ADJUST_SCORE(GOOD_EFFECT);
     case EFFECT_QUIVER_DANCE:
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF));
+    {
+        s32 statUpScore = 0;
+
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF);
+
+        if (statUpScore > BEST_EFFECT)
+            ADJUST_SCORE(BEST_EFFECT);
+        else
+            ADJUST_SCORE(statUpScore);
         break;
+    }
     case EFFECT_VICTORY_DANCE:
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF));
+    {
+        s32 statUpScore = 0;
+
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
+
+        if (statUpScore > BEST_EFFECT)
+            ADJUST_SCORE(BEST_EFFECT);
+        else
+            ADJUST_SCORE(statUpScore);
         break;
+    }
     case EFFECT_SHELL_SMASH:
+    {
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_WHITE_HERB)
             ADJUST_SCORE(WEAK_EFFECT);
 
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK));
+        s32 statUpScore = 0;
+
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED_2);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
+
+        if (statUpScore > BEST_EFFECT)
+            ADJUST_SCORE(BEST_EFFECT);
+        else
+            ADJUST_SCORE(statUpScore);
         break;
+    }
     case EFFECT_TIDY_UP:
         IncreaseTidyUpScore(battlerAtk, battlerDef, move, &score);
     case EFFECT_DRAGON_DANCE:
@@ -5708,13 +5740,20 @@ static s32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move, stru
         //break;
     case EFFECT_CLANGOROUS_SOUL:
         if (HasHPForDamagingSetup(battlerAtk, battlerDef, 67))
-            {
-                u32 scoreIncrease = IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF) + IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
-                if (scoreIncrease > BEST_EFFECT)
-                    scoreIncrease = BEST_EFFECT;
+        {
+            s32 statUpScore = 0;
 
-                ADJUST_SCORE(scoreIncrease);
-            }
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK);
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF);
+
+            if (statUpScore > BEST_EFFECT)
+                ADJUST_SCORE(BEST_EFFECT);
+            else
+                ADJUST_SCORE(statUpScore);
+        }
         break;
     //case EFFECT_NO_RETREAT:       // TODO
         //break;
