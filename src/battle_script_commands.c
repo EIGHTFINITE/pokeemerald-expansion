@@ -7073,7 +7073,7 @@ static u32 GetArbitraryValidSwitchIn(enum BattleSide side)
             return i;
     }
 
-    assertf(FALSE, "no valid switch ins for side: %d", side);
+    errorf("no valid switch ins for side: %d", side);
     return 0;
 }
 
