@@ -810,6 +810,69 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     return FALSE;
 }
 
+static bool32 GetHitEscapeTransformState(u32 battlerAtk, u32 move)
+{
+    u32 moveIndex;
+    bool32 hasValidTarget = FALSE;
+    bool32 isFasterThanAll = TRUE;
+    bool32 absorberOnField = FALSE;
+    enum Type moveType;
+
+    if (gBattleMons[battlerAtk].species != SPECIES_PALAFIN_ZERO
+     || gAiLogicData->abilities[battlerAtk] != ABILITY_ZERO_TO_HERO)
+        return FALSE;
+
+    if (GetMoveEffect(move) != EFFECT_HIT_ESCAPE)
+        return FALSE;
+
+    moveIndex = GetIndexInMoveArray(battlerAtk, move);
+    if (moveIndex >= MAX_MON_MOVES)
+        return FALSE;
+
+    moveType = GetBattleMoveType(move);
+    if ((moveType == TYPE_WATER && (AI_GetWeather() & B_WEATHER_SUN_PRIMAL))
+     || (moveType == TYPE_FIRE && (AI_GetWeather() & B_WEATHER_RAIN_PRIMAL)))
+        return FALSE;
+
+    for (u32 battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+    {
+        if (!IsBattlerAlive(battlerDef) || IsBattlerAlly(battlerDef, battlerAtk))
+            continue;
+
+        enum Ability abilityDef = AI_GetMoldBreakerSanitizedAbility(
+            battlerAtk,
+            gAiLogicData->abilities[battlerAtk],
+            gAiLogicData->abilities[battlerDef],
+            gAiLogicData->holdEffects[battlerDef],
+            move
+        );
+
+        if (CanAbilityAbsorbMove(battlerAtk, battlerDef, abilityDef, move, moveType, AI_CHECK)
+         || CanAbilityBlockMove(battlerAtk, battlerDef, gAiLogicData->abilities[battlerAtk], abilityDef, move, AI_CHECK))
+        {
+            if ((moveType == TYPE_WATER && abilityDef == ABILITY_STORM_DRAIN)
+             || (moveType == TYPE_ELECTRIC && abilityDef == ABILITY_LIGHTNING_ROD))
+                absorberOnField = TRUE;
+            gAiLogicData->effectiveness[battlerAtk][battlerDef][moveIndex] = UQ_4_12(0.0);
+            continue;
+        }
+
+        if (gAiLogicData->effectiveness[battlerAtk][battlerDef][moveIndex] > UQ_4_12(0.0))
+        {
+            u32 predictedMoveSpeedCheck = GetIncomingMoveSpeedCheck(battlerAtk, battlerDef, gAiLogicData);
+
+            hasValidTarget = TRUE;
+            if (!AI_IsFaster(battlerAtk, battlerDef, move, predictedMoveSpeedCheck, CONSIDER_PRIORITY))
+                isFasterThanAll = FALSE;
+        }
+    }
+
+    if (absorberOnField || !hasValidTarget)
+        return FALSE; // Can't meaningfully use a hit escape move
+
+    return isFasterThanAll;
+}
+
 static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
 {
     bool32 hasStatRaised = AnyUsefulStatIsRaised(battler);
@@ -848,9 +911,25 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
             return FALSE;
 
         case ABILITY_ZERO_TO_HERO:
-            // Want to activate Palafin-Zero at all costs
-            if (gBattleMons[battler].species == SPECIES_PALAFIN_ZERO)
-                break;
+        {
+            u32 hitEscapeMove = MOVE_NONE;
+
+            for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+            {
+                u32 move = gBattleMons[battler].moves[moveIndex];
+
+                if (move != MOVE_NONE && GetMoveEffect(move) == EFFECT_HIT_ESCAPE)
+                {
+                    hitEscapeMove = move;
+                    break;
+                }
+            }
+
+            // Prefer to use a hit escape move if Palafin will move first and can hit
+            if (hitEscapeMove != MOVE_NONE && GetHitEscapeTransformState(battler, hitEscapeMove))
+                return FALSE;
+            break;
+        }
 
         default:
             return FALSE;
@@ -1283,6 +1362,13 @@ bool32 ShouldStayInToUseMove(u32 battler)
         aiMoveEffect = GetMoveEffect(aiMove);
         if (aiMoveEffect == EFFECT_REVIVAL_BLESSING || IsSwitchOutEffect(aiMoveEffect))
         {
+            // Palafin should not stay in for a hit escape move if it can't use it effectively (slower or no target)
+            if (gBattleMons[battler].species == SPECIES_PALAFIN_ZERO
+             && gAiLogicData->abilities[battler] == ABILITY_ZERO_TO_HERO
+             && aiMoveEffect == EFFECT_HIT_ESCAPE
+             && !GetHitEscapeTransformState(battler, aiMove))
+                continue;
+
             if (gAiBattleData->finalScore[battler][opposingBattler][i] > AI_GOOD_SCORE_THRESHOLD)
                 return TRUE;
         }
