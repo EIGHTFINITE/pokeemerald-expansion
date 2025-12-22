@@ -69,12 +69,19 @@ bool32 AI_IsBattlerGrounded(u32 battler)
     return IsBattlerGrounded(battler, gAiLogicData->abilities[battler], gAiLogicData->holdEffects[battler]);
 }
 
+static u32 AI_CanBattlerHitBothFoesInTerrain(u32 battler, u32 move, enum BattleMoveEffects effect)
+{
+    return effect == EFFECT_TERRAIN_BOOST
+        && GetMoveTerrainBoost_HitsBothFoes(move)
+        && IsBattlerTerrainAffected(battler, gAiLogicData->abilities[battler], gAiLogicData->holdEffects[battler], gFieldStatuses, GetMoveTerrainBoost_Terrain(move));
+}
+
 u32 AI_GetBattlerMoveTargetType(u32 battler, u32 move)
 {
     enum BattleMoveEffects effect = GetMoveEffect(move);
     if (effect == EFFECT_CURSE && !IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
         return TARGET_USER;
-    if (effect == EFFECT_EXPANDING_FORCE && IsPsychicTerrainAffected(battler, gAiLogicData->abilities[battler], gAiLogicData->holdEffects[battler], gFieldStatuses))
+    if (AI_CanBattlerHitBothFoesInTerrain(battler, move, effect))
         return TARGET_BOTH;
     if (effect == EFFECT_TERA_STARSTORM && gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR)
         return TARGET_BOTH;
@@ -1222,12 +1229,13 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
             return TRUE;
     }
 
+    if (IsExplosionMove(move))
+        return TRUE;
+
     switch (GetMoveEffect(move))
     {
     case EFFECT_MAX_HP_50_RECOIL:
     case EFFECT_CHLOROBLAST:
-    case EFFECT_EXPLOSION:
-    case EFFECT_MISTY_EXPLOSION:
     case EFFECT_FINAL_GAMBIT:
         return TRUE;
     case EFFECT_RECOIL:
@@ -3127,25 +3135,13 @@ bool32 IsSwitchOutEffect(enum BattleMoveEffects effect)
     }
 }
 
-bool32 IsExplosionEffect(enum BattleMoveEffects effect)
-{
-    // Damaging self destruction effects like Explosion, Misty Explosion, Self Destruct, etc.
-    switch (effect)
-    {
-    case EFFECT_EXPLOSION:
-    case EFFECT_MISTY_EXPLOSION:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
-bool32 IsSelfSacrificeEffect(enum BattleMoveEffects effect)
+bool32 IsSelfSacrificeEffect(u32 move)
 {
     // All self sacrificing effects like Explosion, Final Gambit, Memento, etc.
-    if (IsExplosionEffect(effect))
+    if (IsExplosionMove(move))
         return TRUE;
-    switch (effect)
+
+    switch (GetMoveEffect(move))
     {
     case EFFECT_FINAL_GAMBIT:
     case EFFECT_MEMENTO:
@@ -4947,7 +4943,7 @@ static enum AIScore IncreaseStatUpScoreInternal(u32 battlerAtk, u32 battlerDef, 
         }
         break;
     case STAT_ACC:
-        if (gBattleMons[battlerAtk].statStages[statId] <= 3) // Increase only if necessary
+        if (gBattleMons[battlerAtk].statStages[statId] <= DEFAULT_STAT_STAGE - 3) // Increase only if necessary
             tempScore += DECENT_EFFECT;
         break;
     case STAT_EVASION:
@@ -6293,13 +6289,13 @@ bool32 ShouldFinalGambit(u32 battlerAtk, u32 battlerDef, bool32 aiIsFaster)
     return FALSE;
 }
 
-bool32 ShouldConsiderSelfSacrificeDamageEffect(u32 battlerAtk, u32 battlerDef, enum BattleMoveEffects effect, bool32 aiIsFaster)
+bool32 ShouldConsiderSelfSacrificeDamageEffect(u32 battlerAtk, u32 battlerDef, u32 move, bool32 aiIsFaster)
 {
     if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE)
         return TRUE;
-    if (!IsDoubleBattle() && IsExplosionEffect(effect) && gAiLogicData->shouldConsiderExplosion)
+    if (!IsDoubleBattle() && IsExplosionMove(move) && gAiLogicData->shouldConsiderExplosion)
         return TRUE;
-    if (effect == EFFECT_FINAL_GAMBIT)
+    if (GetMoveEffect(move) == EFFECT_FINAL_GAMBIT)
         return ShouldFinalGambit(battlerAtk, battlerDef, aiIsFaster);
     return FALSE;
 }

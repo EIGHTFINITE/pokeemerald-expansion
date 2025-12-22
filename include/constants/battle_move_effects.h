@@ -7,8 +7,7 @@ enum __attribute__((packed)) BattleMoveEffects
     EFFECT_HIT,
     EFFECT_NON_VOLATILE_STATUS,
     EFFECT_ABSORB,
-    EFFECT_EXPLOSION,
-    EFFECT_MISTY_EXPLOSION, // Same as EFFECT_EXPLOSION but it's boosted on Misty Terrain
+    EFFECT_TERRAIN_BOOST,
     EFFECT_DREAM_EATER, // Same as EFFECT_ABSORB but it can only be used on sleeping targets
     EFFECT_MIRROR_MOVE,
     EFFECT_ATTACK_UP,
@@ -301,8 +300,6 @@ enum __attribute__((packed)) BattleMoveEffects
     EFFECT_CLANGOROUS_SOUL,
     EFFECT_BOLT_BEAK,
     EFFECT_SKY_DROP,
-    EFFECT_EXPANDING_FORCE,
-    EFFECT_RISING_VOLTAGE,
     EFFECT_BEAK_BLAST,
     EFFECT_COURT_CHANGE,
     EFFECT_MAX_HP_50_RECOIL,
@@ -313,7 +310,6 @@ enum __attribute__((packed)) BattleMoveEffects
     EFFECT_TEATIME,
     EFFECT_ATTACK_UP_USER_ALLY,
     EFFECT_SHELL_TRAP,
-    EFFECT_PSYBLADE,
     EFFECT_HYDRO_STEAM,
     EFFECT_REVIVAL_BLESSING,
     EFFECT_SNOWSCAPE,

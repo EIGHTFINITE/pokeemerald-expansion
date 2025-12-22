@@ -3,6 +3,7 @@
 #include "battle_hold_effects.h"
 #include "battle_message.h"
 #include "battle_anim.h"
+#include "battle_anim_scripts.h"
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
 #include "battle_scripts.h"
@@ -1158,7 +1159,7 @@ static void Cmd_attackcanceler(void)
 
     enum BattleMoveEffects moveEffect = GetMoveEffect(ctx.move);
 
-    if (!IsBattlerAlive(gBattlerAttacker) && !IsExplosionEffect(moveEffect))
+    if (!IsBattlerAlive(gBattlerAttacker) && !IsExplosionMove(ctx.move))
     {
         gBattleStruct->unableToUseMove = TRUE;
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
@@ -2012,8 +2013,8 @@ static void Cmd_attackanimation(void)
             }
         }
 
-        // handle special move animations
-        if (GetMoveEffect(gCurrentMove) == EFFECT_EXPANDING_FORCE && moveTarget == TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, BATTLE_OPPOSITE(gBattlerAttacker) > 1))
+        // handle special move animations.
+        if (GetMoveAnimationScript(gCurrentMove) == gBattleAnimMove_ExpandingForce && moveTarget == TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, BATTLE_OPPOSITE(gBattlerAttacker) > 1))
             gBattleScripting.animTurn = 1;
 
         if (!(moveResultFlags & MOVE_RESULT_NO_EFFECT))
@@ -5602,6 +5603,14 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
 {
     bool32 effect = FALSE;
     enum BattleSide side = GetBattlerSide(gBattlerTarget);
+
+    if (!gBattleStruct->unableToUseMove && IsExplosionMove(gCurrentMove))
+    {
+        gBattleStruct->passiveHpUpdate[gBattlerAttacker] = 0;
+        BattleScriptCall(BattleScript_FaintAttackerForExplosion);
+        return TRUE;
+    }
+
     switch (moveEffect)
     {
     case EFFECT_KNOCK_OFF:
@@ -5753,15 +5762,6 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
             SetPassiveDamageAmount(gBattlerAttacker, gBattleScripting.savedDmg * max(1, GetMoveRecoil(gCurrentMove)) / 100);
             TryUpdateEvolutionTracker(IF_RECOIL_DAMAGE_GE, gBattleStruct->passiveHpUpdate[gBattlerAttacker], MOVE_NONE);
             BattleScriptCall(BattleScript_MoveEffectRecoil);
-            effect = TRUE;
-        }
-        break;
-    case EFFECT_EXPLOSION:
-    case EFFECT_MISTY_EXPLOSION:
-        if (!gBattleStruct->unableToUseMove && !IsAbilityOnField(ABILITY_DAMP))
-        {
-            gBattleStruct->passiveHpUpdate[gBattlerAttacker] = 0;
-            BattleScriptCall(BattleScript_FaintAttackerForExplosion);
             effect = TRUE;
         }
         break;
@@ -6358,7 +6358,7 @@ static void Cmd_moveend(void)
                     MoveValuesCleanUp();
 
                     // Edge cases for moves that shouldn't repeat their own script
-                    if (IsExplosionEffect(moveEffect)
+                    if (IsExplosionMove(gCurrentMove)
                      || moveEffect == EFFECT_MAGNITUDE
                      || moveEffect == EFFECT_SYNCHRONOISE
                      || gBattleMoveEffects[moveEffect].battleScript == BattleScript_EffectTwoTurnsAttack)
@@ -9939,7 +9939,7 @@ static u32 ChangeStatBuffs(u32 battler, s8 statValue, enum Stat statId, union St
         else // try to decrease
         {
             statValue = -GET_STAT_BUFF_VALUE(statValue);
-            if (gBattleMons[battler].statStages[statId] == 1)
+            if (gBattleMons[battler].statStages[statId] == (MIN_STAT_STAGE + 1))
                 statValue = -1;
             else if (gBattleMons[battler].statStages[statId] == 2 && statValue < -2)
                 statValue = -2;
@@ -9975,9 +9975,9 @@ static u32 ChangeStatBuffs(u32 battler, s8 statValue, enum Stat statId, union St
     else // stat increase
     {
         statValue = GET_STAT_BUFF_VALUE(statValue);
-        if (gBattleMons[battler].statStages[statId] == 11)
+        if (gBattleMons[battler].statStages[statId] == MAX_STAT_STAGE - 1)
             statValue = 1;
-        else if (gBattleMons[battler].statStages[statId] == 10 && statValue > 2)
+        else if (gBattleMons[battler].statStages[statId] == MAX_STAT_STAGE - 2  && statValue > 2)
             statValue = 2;
 
         if (statValue == 2)
