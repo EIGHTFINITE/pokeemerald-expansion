@@ -64,15 +64,15 @@ static u32 GetWishHealAmountForBattler(u32 battler)
 {
     u32 wishHeal = 0;
 
-    if (gWishFutureKnock.wishCounter[battler] == 0)
+    if (gBattleStruct->wish.counter[battler] == 0)
         return wishHeal;
 
     if (B_WISH_HP_SOURCE >= GEN_5)
     {
         if (IsOnPlayerSide(battler))
-            wishHeal = GetMonData(&gPlayerParty[gWishFutureKnock.wishPartyId[battler]], MON_DATA_MAX_HP) / 2;
+            wishHeal = GetMonData(&gPlayerParty[gBattleStruct->wish.partyId[battler]], MON_DATA_MAX_HP) / 2;
         else
-            wishHeal = GetMonData(&gEnemyParty[gWishFutureKnock.wishPartyId[battler]], MON_DATA_MAX_HP) / 2;
+            wishHeal = GetMonData(&gEnemyParty[gBattleStruct->wish.partyId[battler]], MON_DATA_MAX_HP) / 2;
     }
     else
     {
@@ -108,11 +108,11 @@ static void GetIncomingHealInfo(u32 battler, struct IncomingHealInfo *healInfo)
     }
 
     // Wish heals at end of turn
-    if (gWishFutureKnock.wishCounter[battler] > 0)
+    if (gBattleStruct->wish.counter[battler] > 0)
     {
         healInfo->hasHealing = TRUE;
         healInfo->healEndOfTurn = TRUE;
-        healInfo->wishCounter = gWishFutureKnock.wishCounter[battler];
+        healInfo->wishCounter = gBattleStruct->wish.counter[battler];
         healInfo->healAmount = GetWishHealAmountForBattler(battler);
     }
 }
@@ -1758,7 +1758,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler, const struct Incomi
     u32 statusDamage = GetSwitchinStatusDamage(battler);
     u32 hitsToKO = 0;
     u16 maxHP = gBattleMons[battler].maxHP, item = gAiLogicData->items[battler], heldItemEffect = GetItemHoldEffect(item);
-    u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = GetItemHoldEffectParam(item);
+    u8 weatherDuration = gBattleStruct->weatherDuration, holdEffectParam = GetItemHoldEffectParam(item);
     u32 opposingBattler = GetOppositeBattler(battler);
     enum Ability opposingAbility = gAiLogicData->abilities[opposingBattler], ability = gAiLogicData->abilities[battler];
     bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = IsMoldBreakerTypeAbility(opposingBattler, opposingAbility);

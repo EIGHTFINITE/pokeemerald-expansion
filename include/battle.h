@@ -183,18 +183,6 @@ struct FieldTimer
     u16 fairyLockTimer;
 };
 
-struct WishFutureKnock
-{
-    u16 futureSightCounter[MAX_BATTLERS_COUNT];
-    u8 futureSightBattlerIndex[MAX_BATTLERS_COUNT];
-    u8 futureSightPartyIndex[MAX_BATTLERS_COUNT];
-    u16 futureSightMove[MAX_BATTLERS_COUNT];
-    u16 wishCounter[MAX_BATTLERS_COUNT];
-    u8 wishPartyId[MAX_BATTLERS_COUNT];
-    u8 weatherDuration;
-    u8 knockedOffMons[NUM_BATTLE_SIDES]; // Each battler is represented by a bit.
-};
-
 struct AI_SavedBattleMon
 {
     enum Ability ability;
@@ -443,7 +431,8 @@ struct LinkBattlerHeader
     struct BattleEnigmaBerry battleEnigmaBerry;
 };
 
-enum IllusionState {
+enum IllusionState
+{
     ILLUSION_NOT_SET,
     ILLUSION_OFF,
     ILLUSION_ON
@@ -493,6 +482,20 @@ struct BattleVideo {
     rng_value_t rngSeed;
 };
 
+struct Wish
+{
+    u16 counter[MAX_BATTLERS_COUNT];
+    u8 partyId[MAX_BATTLERS_COUNT];
+};
+
+struct FutureSight
+{
+    u16 move;
+    u16 counter:10;
+    u16 battlerIndex:3;
+    u16 partyIndex:3;
+};
+
 struct BattlerState
 {
     u8 targetsDone[MAX_BATTLERS_COUNT];
@@ -534,7 +537,8 @@ struct PartyState
     u32 timesGotHit:5;
     u32 changedSpecies:11; // For forms when multiple mons can change into the same pokemon.
     u32 sentOut:1;
-    u32 padding:9;
+    u32 knockedOffItem;
+    u32 padding:8;
     u16 usedHeldItem;
 };
 
@@ -562,9 +566,12 @@ struct BattleStruct
     struct BattlerState battlerState[MAX_BATTLERS_COUNT];
     struct PartyState partyState[NUM_BATTLE_SIDES][PARTY_SIZE];
     struct EventStates eventState;
+    struct FutureSight futureSight[MAX_BATTLERS_COUNT];
+    struct Wish wish;
     u16 moveTarget[MAX_BATTLERS_COUNT];
     u32 expShareExpValue;
     u32 expValue;
+    u8 weatherDuration;
     u8 expGettersOrder[PARTY_SIZE]; // First battlers which were sent out, then via exp-share
     u8 expGetterMonId;
     u8 expOrderId:3;
@@ -1016,7 +1023,6 @@ extern u8 gBattleOutcome;
 extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
-extern struct WishFutureKnock gWishFutureKnock;
 extern u16 gIntroSlideFlags;
 extern u8 gSentPokesToOpponent[2];
 extern struct BattleEnigmaBerry gEnigmaBerries[MAX_BATTLERS_COUNT];

@@ -2116,8 +2116,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_FUTURE_SIGHT:
-            if (gWishFutureKnock.futureSightCounter[LEFT_FOE(battlerAtk)] > 0
-             || gWishFutureKnock.futureSightCounter[RIGHT_FOE(battlerAtk)] > 0)
+            if (gBattleStruct->futureSight[LEFT_FOE(battlerAtk)].counter > 0
+             || gBattleStruct->futureSight[RIGHT_FOE(battlerAtk)].counter > 0)
                 ADJUST_SCORE(-12);
             else
                 ADJUST_SCORE(GOOD_EFFECT);
@@ -2585,7 +2585,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_WISH:
-            if (gWishFutureKnock.wishCounter[battlerAtk] > 0)
+            if (gBattleStruct->wish.counter[battlerAtk] > 0)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_ASSIST:
@@ -4617,7 +4617,7 @@ static s32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move, stru
               || HasUsableWhileAsleepMove(battlerAtk)
               || aiData->abilities[battlerAtk] == ABILITY_SHED_SKIN
               || aiData->abilities[battlerAtk] == ABILITY_EARLY_BIRD
-              || (AI_GetWeather() & B_WEATHER_RAIN && gWishFutureKnock.weatherDuration != 1 && aiData->abilities[battlerAtk] == ABILITY_HYDRATION && aiData->holdEffects[battlerAtk] != HOLD_EFFECT_UTILITY_UMBRELLA))
+              || (AI_GetWeather() & B_WEATHER_RAIN && gBattleStruct->weatherDuration != 1 && aiData->abilities[battlerAtk] == ABILITY_HYDRATION && aiData->holdEffects[battlerAtk] != HOLD_EFFECT_UTILITY_UMBRELLA))
                 ADJUST_SCORE(GOOD_EFFECT);
         }
         break;

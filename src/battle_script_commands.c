@@ -2873,7 +2873,7 @@ void SetMoveEffect(u32 battler, u32 effectBattler, enum MoveEffect moveEffect, c
         moveEffect = MOVE_EFFECT_NONE;
     else if (!primary
           && TestIfSheerForceAffected(gBattlerAttacker, gCurrentMove)
-          && !(GetMoveEffect(gCurrentMove) == EFFECT_ORDER_UP && gBattleStruct->battlerState[gBattlerAttacker].commanderSpecies != SPECIES_NONE))
+          && !(moveEffect == MOVE_EFFECT_ORDER_UP && gBattleStruct->battlerState[gBattlerAttacker].commanderSpecies != SPECIES_NONE))
         moveEffect = MOVE_EFFECT_NONE;
     else if (!IsBattlerAlive(gEffectBattler) && !activateAfterFaint)
         moveEffect = MOVE_EFFECT_NONE;
@@ -5469,7 +5469,7 @@ static bool32 HandleMoveEndAbilityBlock(u32 battlerAtk, u32 battlerDef, u32 move
                  && i != battlerAtk
                  && IsBattlerTurnDamaged(i)
                  && CanStealItem(battlerAtk, i, gBattleMons[i].item)
-                 && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(i)] & (1u << gBattlerPartyIndexes[i]))
+                 && !GetBattlerPartyState(i)->knockedOffItem
                  && !DoesSubstituteBlockMove(battlerAtk, i, move)
                  && (GetBattlerAbility(i) != ABILITY_STICKY_HOLD || !IsBattlerAlive(i)))
                 {
@@ -5648,7 +5648,7 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
             }
             else
             {
-                gWishFutureKnock.knockedOffMons[side] |= 1u << gBattlerPartyIndexes[gBattlerTarget];
+                GetBattlerPartyState(gBattlerTarget)->knockedOffItem = TRUE;
             }
 
             BattleScriptCall(BattleScript_KnockedOff);
@@ -6781,10 +6781,10 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_PICKPOCKET:
             if (IsBattlerAlive(gBattlerAttacker)
-              && gBattleMons[gBattlerAttacker].item != ITEM_NONE        // Attacker must be holding an item
-              && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerAttacker)] & (1u << gBattlerPartyIndexes[gBattlerAttacker]))   // But not knocked off
-              && IsMoveMakingContact(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerAttacker), GetBattlerHoldEffect(gBattlerAttacker), gCurrentMove)    // Pickpocket requires contact
-              && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT))           // Obviously attack needs to have worked
+              && gBattleMons[gBattlerAttacker].item != ITEM_NONE // Attacker must be holding an item
+              && !GetBattlerPartyState(gBattlerAttacker)->knockedOffItem // But not knocked off
+              && IsMoveMakingContact(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerAttacker), GetBattlerHoldEffect(gBattlerAttacker), gCurrentMove) // Pickpocket requires contact
+              && !(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)) // Obviously attack needs to have worked
             {
                 u8 battlers[4] = {0, 1, 2, 3};
                 SortBattlersBySpeed(battlers, FALSE); // Pickpocket activates for fastest mon without item
@@ -7137,9 +7137,7 @@ static void Cmd_switchindataupdate(void)
     }
     #endif
 
-    // check knocked off item
-    i = GetBattlerSide(battler);
-    if (gWishFutureKnock.knockedOffMons[i] & (1u << gBattlerPartyIndexes[battler]))
+    if (GetBattlerPartyState(battler)->knockedOffItem)
     {
         gBattleMons[battler].item = ITEM_NONE;
     }
@@ -8849,7 +8847,7 @@ bool32 CanUseLastResort(u8 battler)
 
 static void RemoveAllWeather(void)
 {
-    gWishFutureKnock.weatherDuration = 0;
+    gBattleStruct->weatherDuration = 0;
 
     if (gBattleWeather & B_WEATHER_RAIN)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_RAIN;
@@ -9559,25 +9557,31 @@ static void Cmd_jumpifuproarwakes(void)
 
 static void Cmd_stockpile(void)
 {
-    CMD_ARGS(u8 id);
+    CMD_ARGS();
 
-    switch (cmd->id)
+    gBattleMons[gBattlerAttacker].volatiles.stockpileCounter++;
+
+    if (B_STOCKPILE_RAISES_DEFS >= GEN_4)
     {
-    case 0:
-        gBattleMons[gBattlerAttacker].volatiles.stockpileCounter++;
-        gBattleMons[gBattlerAttacker].volatiles.stockpileBeforeDef = gBattleMons[gBattlerAttacker].statStages[STAT_DEF];
-        gBattleMons[gBattlerAttacker].volatiles.stockpileBeforeSpDef = gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF];
-        PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gBattleMons[gBattlerAttacker].volatiles.stockpileCounter);
-        break;
-    case 1: // Save def/sp def stats.
-        if (!(gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT))
-        {
-            gBattleMons[gBattlerAttacker].volatiles.stockpileDef += gBattleMons[gBattlerAttacker].statStages[STAT_DEF] - gBattleMons[gBattlerAttacker].volatiles.stockpileBeforeDef;
-            gBattleMons[gBattlerAttacker].volatiles.stockpileSpDef += gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] - gBattleMons[gBattlerAttacker].volatiles.stockpileBeforeSpDef;
-        }
-        break;
+        if (ChangeStatBuffs(
+                gBattlerAttacker,
+                SET_STAT_BUFF_VALUE(1),
+                STAT_DEF,
+                STAT_CHANGE_ONLY_CHECKING,
+                0, 0) != STAT_CHANGE_DIDNT_WORK)
+            gBattleMons[gBattlerAttacker].volatiles.stockpileDef++;
+
+        if (ChangeStatBuffs(
+                gBattlerAttacker,
+                SET_STAT_BUFF_VALUE(1),
+                STAT_SPDEF,
+                STAT_CHANGE_ONLY_CHECKING,
+                0, 0) != STAT_CHANGE_DIDNT_WORK)
+            gBattleMons[gBattlerAttacker].volatiles.stockpileSpDef++;
+
     }
 
+    PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gBattleMons[gBattlerAttacker].volatiles.stockpileCounter);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -11910,10 +11914,10 @@ static void Cmd_setfutureattack(void)
 {
     CMD_ARGS();
 
-    gWishFutureKnock.futureSightMove[gBattlerTarget] = gCurrentMove;
-    gWishFutureKnock.futureSightBattlerIndex[gBattlerTarget] = gBattlerAttacker;
-    gWishFutureKnock.futureSightPartyIndex[gBattlerTarget] = gBattlerPartyIndexes[gBattlerAttacker];
-    gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
+    gBattleStruct->futureSight[gBattlerTarget].move = gCurrentMove;
+    gBattleStruct->futureSight[gBattlerTarget].battlerIndex = gBattlerAttacker;
+    gBattleStruct->futureSight[gBattlerTarget].partyIndex = gBattlerPartyIndexes[gBattlerAttacker];
+    gBattleStruct->futureSight[gBattlerTarget].counter = 3;
 
     if (gCurrentMove == MOVE_DOOM_DESIRE)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;
@@ -12178,17 +12182,13 @@ static void Cmd_tryswapitems(void)
     }
     else
     {
-        u8 sideAttacker = GetBattlerSide(gBattlerAttacker);
-        u8 sideTarget = GetBattlerSide(gBattlerTarget);
-
         // You can't swap items if they were knocked off in regular battles
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK
                              | BATTLE_TYPE_EREADER_TRAINER
                              | BATTLE_TYPE_FRONTIER
                              | BATTLE_TYPE_SECRET_BASE
                              | BATTLE_TYPE_RECORDED_LINK))
-            && (gWishFutureKnock.knockedOffMons[sideAttacker] & (1u << gBattlerPartyIndexes[gBattlerAttacker])
-                || gWishFutureKnock.knockedOffMons[sideTarget] & (1u << gBattlerPartyIndexes[gBattlerTarget])))
+            && (GetBattlerPartyState(gBattlerAttacker)->knockedOffItem || GetBattlerPartyState(gBattlerTarget)->knockedOffItem))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -12244,7 +12244,7 @@ static void Cmd_tryswapitems(void)
             PREPARE_ITEM_BUFFER(gBattleTextBuff1, *newItemAtk)
             PREPARE_ITEM_BUFFER(gBattleTextBuff2, oldItemAtk)
 
-            if (!(sideAttacker == sideTarget && IsPartnerMonFromSameTrainer(gBattlerAttacker)))
+            if (!(IsBattlerAlly(gBattlerAttacker, gBattlerTarget) && IsPartnerMonFromSameTrainer(gBattlerAttacker)))
             {
                 // if targeting your own side and you aren't in a multi battle, don't save items as stolen
                 if (IsOnPlayerSide(gBattlerAttacker))
@@ -12325,10 +12325,10 @@ static void Cmd_trywish(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-    else if (gWishFutureKnock.wishCounter[gBattlerAttacker] == 0)
+    else if (gBattleStruct->wish.counter[gBattlerAttacker] == 0)
     {
-        gWishFutureKnock.wishCounter[gBattlerAttacker] = 2;
-        gWishFutureKnock.wishPartyId[gBattlerAttacker] = gBattlerPartyIndexes[gBattlerAttacker];
+        gBattleStruct->wish.counter[gBattlerAttacker] = 2;
+        gBattleStruct->wish.partyId[gBattlerAttacker] = gBattlerPartyIndexes[gBattlerAttacker];
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -16902,7 +16902,7 @@ void BS_TryBestow(void)
         || !CanBattlerGetOrLoseItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerAttacker].item)
         || !CanBattlerGetOrLoseItem(gBattlerTarget, gBattlerAttacker, gBattleMons[gBattlerAttacker].item)
         || GetBattlerAbility(gBattlerAttacker) == ABILITY_STICKY_HOLD
-        || gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & (1u << gBattlerPartyIndexes[gBattlerTarget]))
+        || GetBattlerPartyState(gBattlerTarget)->knockedOffItem)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
