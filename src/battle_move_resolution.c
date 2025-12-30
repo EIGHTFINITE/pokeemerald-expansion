@@ -783,8 +783,9 @@ static enum MoveEndResult MoveEnd_MultihitMove(void)
      && gMultiHitCounter
      && !(moveEffect == EFFECT_PRESENT && gBattleStruct->presentBasePower == 0)) // Parental Bond edge case
     {
+        enum MoveTarget target = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
         gMultiHitCounter--;
-        if (!IsBattlerAlive(gBattlerTarget) && moveEffect != EFFECT_DRAGON_DARTS)
+        if (!IsBattlerAlive(gBattlerTarget) && target != TARGET_SMART)
             gMultiHitCounter = 0;
 
         gBattleScripting.multihitString[4]++;
@@ -798,7 +799,7 @@ static enum MoveEndResult MoveEnd_MultihitMove(void)
         }
         else
         {
-            if (moveEffect == EFFECT_DRAGON_DARTS
+            if (target == TARGET_SMART
              && !IsAffectedByFollowMe(gBattlerAttacker, GetBattlerSide(gBattlerTarget), gCurrentMove)
              && !(gBattleStruct->moveResultFlags[BATTLE_PARTNER(gBattlerTarget)] & MOVE_RESULT_MISSED) // didn't miss the other target
              && CanTargetPartner(gBattlerAttacker, gBattlerTarget)

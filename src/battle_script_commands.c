@@ -955,6 +955,7 @@ static bool32 NoTargetPresent(u8 battler, u32 move)
     switch (GetBattlerMoveTargetType(battler, move))
     {
     case TARGET_SELECTED:
+    case TARGET_SMART:
     case TARGET_DEPENDS:
     case TARGET_RANDOM:
         if (!IsBattlerAlive(gBattlerTarget))
@@ -1388,7 +1389,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
                 if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
                     gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
 
-                if (effect == EFFECT_DRAGON_DARTS
+                if (moveTarget == TARGET_SMART
                     && !IsAffectedByFollowMe(gBattlerAttacker, GetBattlerSide(battlerDef), gCurrentMove)
                     && !recalcDragonDarts // So we don't jump back and forth between targets
                     && CanTargetPartner(gBattlerAttacker, battlerDef)
