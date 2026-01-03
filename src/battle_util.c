@@ -11801,6 +11801,7 @@ bool32 BreaksThroughSemiInvulnerablity(u32 battler, u32 move)
     case STATE_COMMANDER:
         return FALSE;
     case STATE_NONE:
+    case SEMI_INVULNERABLE_COUNT:
         return TRUE;
     }
 
