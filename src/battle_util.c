@@ -11997,6 +11997,8 @@ static enum Move GetMeFirstMove(void)
 
 void RemoveAbilityFlags(u32 battler)
 {
+    gBattleMons[battler].volatiles.unburdenActive = FALSE;
+
     switch (GetBattlerAbility(battler))
     {
     case ABILITY_FLASH_FIRE:
