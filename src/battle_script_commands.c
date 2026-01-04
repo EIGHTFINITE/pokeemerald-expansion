@@ -2672,9 +2672,11 @@ static void SetNonVolatileStatus(u32 effectBattler, enum MoveEffect effect, cons
     {
     case MOVE_EFFECT_SLEEP:
         if (B_SLEEP_TURNS >= GEN_5)
-            gBattleMons[effectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 1, 3));
+            gBattleMons[effectBattler].status1 |= STATUS1_SLEEP_TURN(RandomUniform(RNG_SLEEP_TURNS, 2, 4));
+        else if (B_SLEEP_TURNS >= GEN_3)
+            gBattleMons[effectBattler].status1 |= STATUS1_SLEEP_TURN(RandomUniform(RNG_SLEEP_TURNS, 2, 5));
         else
-            gBattleMons[effectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 2, 5));
+            gBattleMons[effectBattler].status1 |= STATUS1_SLEEP_TURN(RandomUniform(RNG_SLEEP_TURNS, 2, 8));
         TryActivateSleepClause(effectBattler, gBattlerPartyIndexes[effectBattler]);
         gBattlescriptCurrInstr = BattleScript_MoveEffectSleep;
         break;
@@ -6583,7 +6585,7 @@ static void Cmd_setgravity(void)
     }
 }
 
-static bool32 TryCheekPouch(u32 battler, u32 itemId)
+static bool32 TryCheekPouch(u32 battler, u32 itemId, const u8 *nextInstr)
 {
     if (GetItemPocket(itemId) == POCKET_BERRIES
         && GetBattlerAbility(battler) == ABILITY_CHEEK_POUCH
@@ -6593,7 +6595,7 @@ static bool32 TryCheekPouch(u32 battler, u32 itemId)
     {
         gBattlerAbility = battler;
         SetHealAmount(battler, GetNonDynamaxMaxHP(battler) / 3);
-        BattleScriptPush(gBattlescriptCurrInstr + 2);
+        BattleScriptPush(nextInstr);
         gBattlescriptCurrInstr = BattleScript_CheekPouchActivates;
         return TRUE;
     }
@@ -6631,7 +6633,7 @@ static void Cmd_removeitem(void)
     MarkBattlerForControllerExec(battler);
 
     ClearBattlerItemEffectHistory(battler);
-    if (!TryCheekPouch(battler, itemId) && !TrySymbiosis(battler, itemId, FALSE))
+    if (!TryCheekPouch(battler, itemId, cmd->nextInstr) && !TrySymbiosis(battler, itemId, FALSE))
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -11158,6 +11160,8 @@ static void Cmd_handleballthrow(void)
             case BALL_SAFARI:
                 if (B_SAFARI_BALL_MODIFIER <= GEN_7)
                     ballMultiplier = 150;
+                else if (B_SAFARI_BALL_MODIFIER == GEN_1)
+                    ballMultiplier = 200;
                 break;
             case BALL_NET:
                 if (IS_BATTLER_ANY_TYPE(gBattlerTarget, TYPE_WATER, TYPE_BUG))
@@ -15459,7 +15463,15 @@ void BS_ConsumeBerry(void)
     if (cmd->fromBattler)
         gLastUsedItem = gBattleMons[battler].item;
 
-    if (GetItemPocket(gLastUsedItem) != POCKET_BERRIES || gBattleScripting.overrideBerryRequirements == 2)
+    if (gBattleScripting.overrideBerryRequirements == 2)
+    {
+        gBattleScripting.overrideBerryRequirements = 0;
+        if (!cmd->fromBattler && TryCheekPouch(battler, gLastUsedItem, cmd->nextInstr))
+            return;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
+    if (GetItemPocket(gLastUsedItem) != POCKET_BERRIES)
     {
         gBattleScripting.overrideBerryRequirements = 0;
         gBattlescriptCurrInstr = cmd->nextInstr;

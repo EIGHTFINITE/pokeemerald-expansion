@@ -579,6 +579,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "izrofid",
+      "name": "Kildemal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/206095739?v=4",
+      "profile": "https://github.com/izrofid",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Skeli789",
+      "name": "Skeli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17243618?v=4",
+      "profile": "https://github.com/Skeli789",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,

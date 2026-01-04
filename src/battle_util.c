@@ -57,7 +57,7 @@ static bool32 TryRemoveScreens(u32 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler);
 static u32 GetFlingPowerFromItemId(u32 itemId);
 static void SetRandomMultiHitCounter();
-static bool32 IsNonVolatileStatusBlocked(u32 battlerDef, enum Ability abilityDef, enum Ability abilityAffected, const u8 *battleScript, enum FunctionCallOption option);
+static bool32 IsNonVolatileStatusBlocked(u32 battlerDef, enum Ability abilityDef, bool32 abilityAffected, const u8 *battleScript, enum FunctionCallOption option);
 static bool32 CanSleepDueToSleepClause(u32 battlerAtk, u32 battlerDef, enum FunctionCallOption option);
 static bool32 IsOpposingSideEmpty(u32 battler);
 static void ResetParadoxWeatherStat(u32 battler);
@@ -6730,7 +6730,7 @@ bool32 CanSetNonVolatileStatus(u32 battlerAtk, u32 battlerDef, enum Ability abil
     return TRUE;
 }
 
-static bool32 IsNonVolatileStatusBlocked(u32 battlerDef, enum Ability abilityDef, enum Ability abilityAffected, const u8 *battleScript, enum FunctionCallOption option)
+static bool32 IsNonVolatileStatusBlocked(u32 battlerDef, enum Ability abilityDef, bool32 abilityAffected, const u8 *battleScript, enum FunctionCallOption option)
 {
     if (battleScript != NULL)
     {
@@ -8999,8 +8999,20 @@ s32 DoFixedDamageMoveCalc(struct BattleContext *ctx)
         dmg = gBattleMons[ctx->battlerAtk].level;
         break;
     case EFFECT_PSYWAVE:
-        randDamage = B_PSYWAVE_DMG >= GEN_5 ? (Random() % 101) : ((Random() % 11) * 10);
-        dmg = gBattleMons[ctx->battlerAtk].level * (randDamage + 50) / 100;
+        if (B_PSYWAVE_DMG >= GEN_5)
+        {
+            randDamage = Random() % 101;
+            dmg = gBattleMons[ctx->battlerAtk].level * (randDamage + 50) / 100;
+        }
+        else if (B_PSYWAVE_DMG >= GEN_3)
+        {
+            randDamage = Random() % 11;
+            dmg = gBattleMons[ctx->battlerAtk].level * ((randDamage * 10) + 50) / 100;
+        }
+        else
+        {
+            dmg = Random() % ((gBattleMons[ctx->battlerAtk].level + (gBattleMons[ctx->battlerAtk].level / 2)) + 1);
+        }
         break;
     case EFFECT_FIXED_HP_DAMAGE:
         dmg = GetMoveFixedHPDamage(ctx->move);
