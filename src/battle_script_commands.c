@@ -10067,7 +10067,7 @@ static void Cmd_trymemento(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (B_MEMENTO_FAIL >= GEN_4
+    if (B_MEMENTO_FAIL >= GEN_5
       && (gBattleCommunication[MISS_TYPE] == B_MSG_PROTECTED
         || IsSemiInvulnerable(gBattlerTarget, CHECK_ALL)
         || IsBattlerProtected(gBattlerAttacker, gBattlerTarget, gCurrentMove)
@@ -11215,6 +11215,7 @@ static void ComputeBallData(u32 wildMonBattler, u32 playerBattler, struct BallDa
         }
         break;
     case BALL_MOON:
+    {
         const struct Evolution *evolutions = GetSpeciesEvolutions(battleMon->species);
         if (evolutions == NULL)
             break;
@@ -11225,6 +11226,7 @@ static void ComputeBallData(u32 wildMonBattler, u32 playerBattler, struct BallDa
                 ball->multiplier = 400;
         }
         break;
+    }
     case BALL_LOVE:
         if (battleMon->species == gBattleMons[playerBattler].species)
         {
@@ -15026,7 +15028,6 @@ void BS_TryBestow(void)
         || gBattleMons[gBattlerTarget].item != ITEM_NONE
         || !CanBattlerGetOrLoseItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerAttacker].item)
         || !CanBattlerGetOrLoseItem(gBattlerTarget, gBattlerAttacker, gBattleMons[gBattlerAttacker].item)
-        || GetBattlerAbility(gBattlerAttacker) == ABILITY_STICKY_HOLD
         || GetBattlerPartyState(gBattlerTarget)->knockedOffItem)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
