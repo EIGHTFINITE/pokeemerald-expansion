@@ -8480,11 +8480,19 @@ const struct Item gItemsInfo[] =
         .name = ITEM_NAME("Lax Incense"),
         .price = (I_PRICE >= GEN_7) ? 5000 : 9600,
         .holdEffect = HOLD_EFFECT_EVASION_UP,
+    #if I_LAX_INCENSE_BOOST >= GEN_4
         .holdEffectParam = 10,
+        .description = COMPOUND_STRING(
+            "A hold item that\n"
+            "lowers the\n"
+            "foe's accuracy."),
+    #else
+        .holdEffectParam = 5,
         .description = COMPOUND_STRING(
             "A hold item that\n"
             "slightly lowers the\n"
             "foe's accuracy."),
+    #endif
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_INCENSE,
         .type = ITEM_USE_BAG_MENU,
