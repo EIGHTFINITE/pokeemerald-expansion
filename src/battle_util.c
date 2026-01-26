@@ -5929,6 +5929,26 @@ static inline bool32 IsSideProtected(u32 battler, enum ProtectMethod method)
         || gProtectStructs[BATTLE_PARTNER(battler)].protected == method;
 }
 
+static bool32 IsCraftyShieldProtected(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    if (!IsBattleMoveStatus(move))
+        return FALSE;
+
+    if (!IsSideProtected(battlerDef, PROTECT_CRAFTY_SHIELD))
+        return FALSE;
+
+    if (GetMoveEffect(move) == EFFECT_HOLD_HANDS)
+        return TRUE;
+
+    u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
+    if (!IsBattlerAlly(battlerAtk, battlerDef)
+     && moveTarget != TARGET_OPPONENTS_FIELD
+     && moveTarget != TARGET_ALL_BATTLERS)
+        return TRUE;
+
+    return FALSE;
+}
+
 bool32 IsBattlerProtected(struct BattleContext *ctx)
 {
     if (gProtectStructs[ctx->battlerDef].protected == PROTECT_NONE
@@ -5952,9 +5972,7 @@ bool32 IsBattlerProtected(struct BattleContext *ctx)
 
     bool32 isProtected = FALSE;
 
-    if (IsSideProtected(ctx->battlerDef, PROTECT_CRAFTY_SHIELD)
-     && IsBattleMoveStatus(ctx->move)
-     && GetMoveEffect(ctx->move) != EFFECT_COACHING)
+    if (IsCraftyShieldProtected(ctx->battlerAtk, ctx->battlerDef, ctx->move))
         isProtected = TRUE;
     else if (MoveIgnoresProtect(ctx->move))
         isProtected = FALSE;
@@ -8601,6 +8619,9 @@ bool32 DoesSpeciesUseHoldItemToChangeForm(u16 species, u16 heldItemId)
 {
     u32 i;
     const struct FormChange *formChanges = GetSpeciesFormChanges(species);
+
+    if (heldItemId == ITEM_NONE)
+        return FALSE;
 
     for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
