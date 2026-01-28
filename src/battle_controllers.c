@@ -981,6 +981,7 @@ void BtlController_EmitMoveAnimation(enum BattlerId battler, u32 bufferId, enum 
     anim.furyCutterCounter  = gBattleMons[battler].volatiles.furyCutterCounter;
     anim.syrupBombIsShiny = gBattleMons[battler].volatiles.syrupBombIsShiny;
     anim.isTransformedMonShiny = gBattleMons[battler].volatiles.isTransformedMonShiny;
+    anim.stockpileCounter = gBattleMons[battler].volatiles.stockpileCounter;
     memcpy(&gBattleResources->transferBuffer[16], &anim, sizeof(struct LinkBattleAnim));
 
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 16 + sizeof(struct LinkBattleAnim));
@@ -1378,6 +1379,7 @@ void BtlController_EmitBattleAnimation(enum BattlerId battler, u32 bufferId, u8 
     anim.furyCutterCounter  = gBattleMons[battler].volatiles.furyCutterCounter;
     anim.syrupBombIsShiny = gBattleMons[battler].volatiles.syrupBombIsShiny;
     anim.isTransformedMonShiny = gBattleMons[battler].volatiles.isTransformedMonShiny;
+    anim.stockpileCounter = gBattleMons[battler].volatiles.stockpileCounter;
     memcpy(&gBattleResources->transferBuffer[4], &anim, sizeof(struct LinkBattleAnim));
 
     PrepareBufferDataTransfer(battler, bufferId, gBattleResources->transferBuffer, 4 + sizeof(struct LinkBattleAnim));

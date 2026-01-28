@@ -3777,3 +3777,9 @@ void AnimTask_GetFuryCutterHitCount(u8 taskId)
     gBattleAnimArgs[ARG_RET_ID] = gAnimDisableStructPtr->furyCutterCounter;
     DestroyAnimVisualTask(taskId);
 }
+
+void AnimTask_GetStockpileCounter(u8 taskId)
+{
+    gBattleAnimArgs[ARG_RET_ID] = gAnimDisableStructPtr->stockpileCounter;
+    DestroyAnimVisualTask(taskId);
+}

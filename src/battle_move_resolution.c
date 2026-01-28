@@ -22,6 +22,7 @@ static bool32 CanBattlerBounceBackMove(struct BattleContext *ctx);
 static bool32 TryMagicBounce(struct BattleContext *ctx);
 static bool32 TryMagicCoat(struct BattleContext *ctx);
 static bool32 TryActivatePowderStatus(enum Move move);
+static void CalculateMagnitudeDamage(void);
 
 // Submoves
 static enum Move GetMirrorMoveMove(void);
@@ -124,17 +125,22 @@ static enum CancelerResult CancelerAsleepOrFrozen(struct BattleContext *ctx)
             else
                 gBattleMons[ctx->battlerAtk].status1 -= toSub;
 
-            enum BattleMoveEffects moveEffect = GetMoveEffect(ctx->move);
             if (gBattleMons[ctx->battlerAtk].status1 & STATUS1_SLEEP)
             {
-                if (!IsUsableWhileAsleepEffect(moveEffect))
+                enum BattleMoveEffects moveEffect = GetMoveEffect(ctx->move);
+                if (moveEffect == EFFECT_SNORE)
                 {
-                    result = CANCELER_RESULT_FAILURE;
-                    gBattlescriptCurrInstr = BattleScript_MoveUsedIsAsleep;
+                    BattleScriptCall(BattleScript_BeforeSnoreMessage);
+                    result = CANCELER_RESULT_BREAK;
+                }
+                else if (moveEffect == EFFECT_SLEEP_TALK)
+                {
+                    result = CANCELER_RESULT_BREAK;
                 }
                 else
                 {
-                    result = CANCELER_RESULT_BREAK;
+                    gBattlescriptCurrInstr = BattleScript_MoveUsedIsAsleep;
+                    result = CANCELER_RESULT_FAILURE;
                 }
             }
             else
@@ -905,6 +911,13 @@ static enum CancelerResult CancelerMoveFailure(struct BattleContext *ctx)
         if (GetActiveGimmick(ctx->battlerDef) == GIMMICK_DYNAMAX)
             battleScript = BattleScript_MoveBlockedByDynamax;
         break;
+    case EFFECT_NATURAL_GIFT:
+        if (GetItemPocket(gBattleMons[ctx->battlerAtk].item) != POCKET_BERRIES
+         || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+         || ctx->abilityAtk == ABILITY_KLUTZ
+         || gBattleMons[ctx->battlerAtk].volatiles.embargo)
+            battleScript = BattleScript_ButItFailed;
+        break;
     default:
         break;
     }
@@ -1091,6 +1104,29 @@ static enum CancelerResult CancelerCharging(struct BattleContext *ctx)
     return result;
 }
 
+static enum CancelerResult CancelerMoveSpecificMessage(struct BattleContext *ctx)
+{
+    switch (GetMoveEffect(ctx->move))
+    {
+    case EFFECT_MAGNITUDE:
+        CalculateMagnitudeDamage();
+        BattleScriptCall(BattleScript_MagnitudeMessage);
+        return CANCELER_RESULT_BREAK;
+    case EFFECT_FICKLE_BEAM:
+        gBattleStruct->fickleBeamBoosted = RandomPercentage(RNG_FICKLE_BEAM, 30);
+        if (gBattleStruct->fickleBeamBoosted)
+        {
+            BattleScriptCall(BattleScript_FickleBeamMessage);
+            return CANCELER_RESULT_BREAK;
+        }
+        break;
+    default:
+        break;
+    }
+
+    return CANCELER_RESULT_SUCCESS;
+}
+
 static bool32 NoTargetPresent(enum BattlerId battler, enum Move move, enum MoveTarget moveTarget)
 {
     switch (moveTarget)
@@ -1185,9 +1221,7 @@ static bool32 IsTargetingBothFoes(enum BattlerId battlerAtk, enum BattlerId batt
 
 static bool32 IsTargetingSelf(enum BattlerId battlerAtk, enum BattlerId battlerDef)
 {
-    if (battlerAtk != battlerDef)
-        return skipFailure;
-    return skipFailure; // In Gen3 the user checks it's own failure. Unclear because no such moves exists
+    return skipFailure;
 }
 
 static bool32 IsTargetingAlly(enum BattlerId battlerAtk, enum BattlerId battlerDef)
@@ -1208,7 +1242,7 @@ static bool32 IsTargetingSelfAndAlly(enum BattlerId battlerAtk, enum BattlerId b
             gBattleStruct->moveResultFlags[battlerDef] = MOVE_RESULT_NO_EFFECT;
         return skipFailure;
     }
-    return checkFailure; // In Gen3 the user checks it's own failure. Unclear because no such moves exists
+    return checkFailure;
 }
 
 static bool32 IsTargetingSelfOrAlly(enum BattlerId battlerAtk, enum BattlerId battlerDef)
@@ -1222,7 +1256,7 @@ static bool32 IsTargetingSelfOrAlly(enum BattlerId battlerAtk, enum BattlerId ba
         return skipFailure;
     }
 
-    return checkFailure; // In Gen3 the user checks it's own failure. Unclear because no such move exists
+    return checkFailure;
 }
 
 static bool32 IsTargetingFoesAndAlly(enum BattlerId battlerAtk, enum BattlerId battlerDef)
@@ -1249,7 +1283,6 @@ static bool32 IsTargetingAllBattlers(enum BattlerId battlerAtk, enum BattlerId b
     return checkFailure;
 }
 
-// ShouldCheckFailureOnTarget
 static bool32 (*const sShouldCheckTargetMoveFailure[])(enum BattlerId battlerAtk, enum BattlerId battlerDef) =
 {
     [TARGET_NONE] = IsTargetingField,
@@ -1579,6 +1612,7 @@ static enum CancelerResult (*const sMoveSuccessOrderCancelers[])(struct BattleCo
     [CANCELER_EXPLODING_DAMP] = CancelerExplodingDamp,
     [CANCELER_EXPLOSION] = CancelerExplosion,
     [CANCELER_CHARGING] = CancelerCharging,
+    [CANCELER_MOVE_SPECIFIC_MESSAGE] = CancelerMoveSpecificMessage,
     [CANCELER_NO_TARGET] = CancelerNoTarget,
     [CANCELER_TOOK_ATTACK] = CancelerTookAttack,
     [CANCELER_TARGET_FAILURE] = CancelerTargetFailure,
@@ -1601,11 +1635,12 @@ enum CancelerResult DoAttackCanceler(void)
     while (gBattleStruct->eventState.atkCanceler < CANCELER_END && result == CANCELER_RESULT_SUCCESS)
     {
         result = sMoveSuccessOrderCancelers[gBattleStruct->eventState.atkCanceler](&ctx);
-        gBattleStruct->unableToUseMove = (result == CANCELER_RESULT_FAILURE);
         if (result != CANCELER_RESULT_PAUSE)
             gBattleStruct->eventState.atkCanceler++;
     }
 
+    if (result == CANCELER_RESULT_FAILURE)
+        gBattleStruct->unableToUseMove = TRUE;
     return result;
 }
 
@@ -2303,14 +2338,7 @@ static enum MoveEndResult MoveEndNextTarget(void)
             gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = nextTarget; // Fix for moxie spread moves
             gBattleScripting.moveendState = 0;
             MoveValuesCleanUp();
-
-            enum BattleMoveEffects moveEffect = GetMoveEffect(gCurrentMove);
-
-            // Edge cases for moves that shouldn't repeat their own script
-            if (moveEffect == EFFECT_MAGNITUDE)
-                BattleScriptPush(gBattleMoveEffects[EFFECT_HIT].battleScript);
-            else
-                BattleScriptPush(GetMoveBattleScript(gCurrentMove));
+            BattleScriptPush(GetMoveBattleScript(gCurrentMove));
             gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
             return MOVEEND_RESULT_BREAK;
         }
@@ -2430,6 +2458,18 @@ static enum MoveEndResult MoveEndMoveBlock(void)
 
     switch (moveEffect)
     {
+    case EFFECT_SPIT_UP:
+    case EFFECT_SWALLOW:
+        if (!gBattleStruct->unableToUseMove)
+        {
+            gBattleMons[gBattlerAttacker].volatiles.stockpileCounter = 0;
+            if (B_STOCKPILE_RAISES_DEFS >= GEN_4)
+            {
+                BattleScriptCall(BattleScript_MoveEffectStockpileWoreOff);
+                result = MOVEEND_RESULT_RUN_SCRIPT;
+            }
+        }
+        break;
     case EFFECT_KNOCK_OFF:
         if (gBattleMons[gBattlerTarget].item != ITEM_NONE
          && IsBattlerAlive(gBattlerAttacker)
@@ -3725,4 +3765,47 @@ static bool32 TryActivatePowderStatus(enum Move move)
     if (move == MOVE_GRASS_PLEDGE && partnerMove == MOVE_FIRE_PLEDGE && gBattleStruct->pledgeMove)
         return TRUE;
     return FALSE;
+}
+
+static void CalculateMagnitudeDamage(void)
+{
+    u32 magnitude = RandomUniform(RNG_MAGNITUDE, 0, 99);
+
+    if (magnitude < 5)
+    {
+        gBattleStruct->magnitudeBasePower = 10;
+        magnitude = 4;
+    }
+    else if (magnitude < 15)
+    {
+        gBattleStruct->magnitudeBasePower = 30;
+        magnitude = 5;
+    }
+    else if (magnitude < 35)
+    {
+        gBattleStruct->magnitudeBasePower = 50;
+        magnitude = 6;
+    }
+    else if (magnitude < 65)
+    {
+        gBattleStruct->magnitudeBasePower = 70;
+        magnitude = 7;
+    }
+    else if (magnitude < 85)
+    {
+        gBattleStruct->magnitudeBasePower = 90;
+        magnitude = 8;
+    }
+    else if (magnitude < 95)
+    {
+        gBattleStruct->magnitudeBasePower = 110;
+        magnitude = 9;
+    }
+    else
+    {
+        gBattleStruct->magnitudeBasePower = 150;
+        magnitude = 10;
+    }
+
+    PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 2, magnitude)
 }

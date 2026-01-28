@@ -469,25 +469,20 @@ static void Cmd_jumpifplayerran(void);
 static void Cmd_hpthresholds(void);
 static void Cmd_hpthresholds2(void);
 static void Cmd_useitemonopponent(void);
-static void Cmd_unused_0x78(void);
 static void Cmd_setprotectlike(void);
 static void Cmd_tryexplosion(void);
 static void Cmd_setatkhptozero(void);
 static void Cmd_jumpifnexttargetvalid(void);
 static void Cmd_tryhealhalfhealth(void);
-static void Cmd_unused_0x7e(void);
 static void Cmd_setfieldweather(void);
 static void Cmd_setreflect(void);
 static void Cmd_setseeded(void);
 static void Cmd_manipulatedamage(void);
 static void Cmd_trysetrest(void);
-static void Cmd_unused_0x82(void);
-static void Cmd_unused_0x83(void);
 static void Cmd_jumpifuproarwakes(void);
 static void Cmd_stockpile(void);
 static void Cmd_stockpiletobasedamage(void);
 static void Cmd_stockpiletohpheal(void);
-static void Cmd_unused_0x88(void);
 static void Cmd_statbuffchange(void);
 static void Cmd_normalisebuffs(void);
 static void Cmd_setbide(void);
@@ -510,19 +505,12 @@ static void Cmd_transformdataexecution(void);
 static void Cmd_setsubstitute(void);
 static void Cmd_mimicattackcopy(void);
 static void Cmd_setcalledmove(void);
-static void Cmd_unused_0x9f(void);
-static void Cmd_unused_0xA0(void);
-static void Cmd_unused_0xA1(void);
-static void Cmd_unused_0xA2(void);
 static void Cmd_disablelastusedattack(void);
 static void Cmd_trysetencore(void);
 static void Cmd_painsplitdmgcalc(void);
 static void Cmd_settypetorandomresistance(void);
 static void Cmd_setalwayshitflag(void);
 static void Cmd_copymovepermanently(void);
-static void Cmd_unused_0xA9(void);
-static void Cmd_unused_AA(void);
-static void Cmd_unused_0xab(void);
 static void Cmd_settailwind(void);
 static void Cmd_tryspiteppreduce(void);
 static void Cmd_healpartystatus(void);
@@ -530,35 +518,25 @@ static void Cmd_cursetarget(void);
 static void Cmd_trysetspikes(void);
 static void Cmd_setvolatile(void);
 static void Cmd_trysetperishsong(void);
-static void Cmd_unused_0xb3(void);
 static void Cmd_jumpifconfusedandstatmaxed(void);
-static void Cmd_unused_0xb5(void);
 static void Cmd_setembargo(void);
 static void Cmd_presentdamagecalculation(void);
 static void Cmd_setsafeguard(void);
-static void Cmd_magnitudedamagecalculation(void);
 static void Cmd_jumpifnopursuitswitchdmg(void);
 static void Cmd_tryactivateitem(void);
 static void Cmd_halvehp(void);
 static void Cmd_copyfoestats(void);
 static void Cmd_rapidspinfree(void);
-static void Cmd_unused_0xBF(void);
 static void Cmd_recoverbasedonsunlight(void);
 static void Cmd_setstickyweb(void);
 static void Cmd_selectfirstvalidtarget(void);
 static void Cmd_setfutureattack(void);
 static void Cmd_trydobeatup(void);
 static void Cmd_setsemiinvulnerablebit(void);
-static void Cmd_unused_0xC6(void);
-static void Cmd_unused_0xC7(void);
-static void Cmd_unused_c8(void);
 static void Cmd_trymemento(void);
 static void Cmd_setforcedtarget(void);
-static void Cmd_unused_0xcb(void);
-static void Cmd_unused_0xCC(void);
 static void Cmd_curestatuswithmove(void);
 static void Cmd_settorment(void);
-static void Cmd_unused_0xCF(void);
 static void Cmd_settaunt(void);
 static void Cmd_trysethelpinghand(void);
 static void Cmd_tryswapitems(void);
@@ -567,29 +545,22 @@ static void Cmd_trywish(void);
 static void Cmd_settoxicspikes(void);
 static void Cmd_setgastroacid(void);
 static void Cmd_setyawn(void);
-static void Cmd_unused0xd8(void);
 static void Cmd_setroom(void);
 static void Cmd_tryswapabilities(void);
 static void Cmd_tryimprison(void);
 static void Cmd_setstealthrock(void);
 static void Cmd_trysetvolatile(void);
-static void Cmd_unused_0xde(void);
 static void Cmd_trysetmagiccoat(void);
 static void Cmd_trysetsnatch(void);
-static void Cmd_unused2(void);
 static void Cmd_switchoutabilities(void);
 static void Cmd_jumpifhasnohp(void);
-static void Cmd_unused_0xE4(void);
 static void Cmd_pickup(void);
-static void Cmd_unused_0xE6(void);
-static void Cmd_unused_0xE7(void);
 static void Cmd_settypebasedhalvers(void);
 static void Cmd_jumpifsubstituteblocks(void);
 static void Cmd_tryrecycleitem(void);
 static void Cmd_settypetoenvironment(void);
 static void Cmd_pursuitdoubles(void);
 static void Cmd_snatchsetbattlers(void);
-static void Cmd_unused_0xee(void);
 static void Cmd_handleballthrow(void);
 static void Cmd_givecaughtmon(void);
 static void Cmd_trysetcaughtmondexflags(void);
@@ -606,7 +577,7 @@ static void Cmd_averagestats(void);
 static void Cmd_jumpifcaptivateaffected(void);
 static void Cmd_setnonvolatilestatus(void);
 static void Cmd_tryoverwriteability(void);
-static void Cmd_unused_1(void);
+static void Cmd_dummy(void);
 static void Cmd_callnative(void);
 
 void (*const gBattleScriptingCommandsTable[])(void) =
@@ -728,25 +699,20 @@ void (*const gBattleScriptingCommandsTable[])(void) =
     [B_SCR_OP_HPTHRESHOLDS]                          = Cmd_hpthresholds,
     [B_SCR_OP_HPTHRESHOLDS2]                         = Cmd_hpthresholds2,
     [B_SCR_OP_USEITEMONOPPONENT]                     = Cmd_useitemonopponent,
-    [B_SCR_OP_UNUSED_0X78]                           = Cmd_unused_0x78,
     [B_SCR_OP_SETPROTECTLIKE]                        = Cmd_setprotectlike,
     [B_SCR_OP_TRYEXPLOSION]                          = Cmd_tryexplosion,
     [B_SCR_OP_SETATKHPTOZERO]                        = Cmd_setatkhptozero,
     [B_SCR_OP_JUMPIFNEXTTARGETVALID]                 = Cmd_jumpifnexttargetvalid,
     [B_SCR_OP_TRYHEALHALFHEALTH]                     = Cmd_tryhealhalfhealth,
-    [B_SCR_OP_UNUSED_0X7E]                           = Cmd_unused_0x7e,
     [B_SCR_OP_SETFIELDWEATHER]                       = Cmd_setfieldweather,
     [B_SCR_OP_SETREFLECT]                            = Cmd_setreflect,
     [B_SCR_OP_SETSEEDED]                             = Cmd_setseeded,
     [B_SCR_OP_MANIPULATEDAMAGE]                      = Cmd_manipulatedamage,
     [B_SCR_OP_TRYSETREST]                            = Cmd_trysetrest,
-    [B_SCR_OP_UNUSED_0X82]                           = Cmd_unused_0x82,
-    [B_SCR_OP_UNUSED_0X83]                           = Cmd_unused_0x83,
     [B_SCR_OP_JUMPIFUPROARWAKES]                     = Cmd_jumpifuproarwakes,
     [B_SCR_OP_STOCKPILE]                             = Cmd_stockpile,
     [B_SCR_OP_STOCKPILETOBASEDAMAGE]                 = Cmd_stockpiletobasedamage,
     [B_SCR_OP_STOCKPILETOHPHEAL]                     = Cmd_stockpiletohpheal,
-    [B_SCR_OP_UNUSED_0X88]                           = Cmd_unused_0x88,
     [B_SCR_OP_STATBUFFCHANGE]                        = Cmd_statbuffchange,
     [B_SCR_OP_NORMALISEBUFFS]                        = Cmd_normalisebuffs,
     [B_SCR_OP_SETBIDE]                               = Cmd_setbide,
@@ -769,19 +735,12 @@ void (*const gBattleScriptingCommandsTable[])(void) =
     [B_SCR_OP_SETSUBSTITUTE]                         = Cmd_setsubstitute,
     [B_SCR_OP_MIMICATTACKCOPY]                       = Cmd_mimicattackcopy,
     [B_SCR_OP_SETCALLEDMOVE]                         = Cmd_setcalledmove,
-    [B_SCR_OP_UNUSED_0X9F]                           = Cmd_unused_0x9f,
-    [B_SCR_OP_UNUSED_0XA0]                           = Cmd_unused_0xA0,
-    [B_SCR_OP_UNUSED_0XA1]                           = Cmd_unused_0xA1,
-    [B_SCR_OP_UNUSED_0XA2]                           = Cmd_unused_0xA2,
     [B_SCR_OP_DISABLELASTUSEDATTACK]                 = Cmd_disablelastusedattack,
     [B_SCR_OP_TRYSETENCORE]                          = Cmd_trysetencore,
     [B_SCR_OP_PAINSPLITDMGCALC]                      = Cmd_painsplitdmgcalc,
     [B_SCR_OP_SETTYPETORANDOMRESISTANCE]             = Cmd_settypetorandomresistance,
     [B_SCR_OP_SETALWAYSHITFLAG]                      = Cmd_setalwayshitflag,
     [B_SCR_OP_COPYMOVEPERMANENTLY]                   = Cmd_copymovepermanently,
-    [B_SCR_OP_UNUSED_0XA9]                           = Cmd_unused_0xA9,
-    [B_SCR_OP_UNUSED_AA]                             = Cmd_unused_AA,
-    [B_SCR_OP_UNUSED_0XAB]                           = Cmd_unused_0xab,
     [B_SCR_OP_SETTAILWIND]                           = Cmd_settailwind,
     [B_SCR_OP_TRYSPITEPPREDUCE]                      = Cmd_tryspiteppreduce,
     [B_SCR_OP_HEALPARTYSTATUS]                       = Cmd_healpartystatus,
@@ -789,35 +748,25 @@ void (*const gBattleScriptingCommandsTable[])(void) =
     [B_SCR_OP_TRYSETSPIKES]                          = Cmd_trysetspikes,
     [B_SCR_OP_SETVOLATILE]                           = Cmd_setvolatile,
     [B_SCR_OP_TRYSETPERISHSONG]                      = Cmd_trysetperishsong,
-    [B_SCR_OP_UNUSED_0XB3]                           = Cmd_unused_0xb3,
     [B_SCR_OP_JUMPIFCONFUSEDANDSTATMAXED]            = Cmd_jumpifconfusedandstatmaxed,
-    [B_SCR_OP_UNUSED_0XB5]                           = Cmd_unused_0xb5,
     [B_SCR_OP_SETEMBARGO]                            = Cmd_setembargo,
     [B_SCR_OP_PRESENTDAMAGECALCULATION]              = Cmd_presentdamagecalculation,
     [B_SCR_OP_SETSAFEGUARD]                          = Cmd_setsafeguard,
-    [B_SCR_OP_MAGNITUDEDAMAGECALCULATION]            = Cmd_magnitudedamagecalculation,
     [B_SCR_OP_JUMPIFNOPURSUITSWITCHDMG]              = Cmd_jumpifnopursuitswitchdmg,
     [B_SCR_OP_TRYACTIVATEITEM]                       = Cmd_tryactivateitem,
     [B_SCR_OP_HALVEHP]                               = Cmd_halvehp,
     [B_SCR_OP_COPYFOESTATS]                          = Cmd_copyfoestats,
     [B_SCR_OP_RAPIDSPINFREE]                         = Cmd_rapidspinfree,
-    [B_SCR_OP_UNUSED_0XBF]                           = Cmd_unused_0xBF,
     [B_SCR_OP_RECOVERBASEDONSUNLIGHT]                = Cmd_recoverbasedonsunlight,
     [B_SCR_OP_SETSTICKYWEB]                          = Cmd_setstickyweb,
     [B_SCR_OP_SELECTFIRSTVALIDTARGET]                = Cmd_selectfirstvalidtarget,
     [B_SCR_OP_SETFUTUREATTACK]                       = Cmd_setfutureattack,
     [B_SCR_OP_TRYDOBEATUP]                           = Cmd_trydobeatup,
     [B_SCR_OP_SETSEMIINVULNERABLEBIT]                = Cmd_setsemiinvulnerablebit,
-    [B_SCR_OP_UNUSED_0XC6]                           = Cmd_unused_0xC6,
-    [B_SCR_OP_UNUSED_0XC7]                           = Cmd_unused_0xC7,
-    [B_SCR_OP_UNUSED_C8]                             = Cmd_unused_c8,
     [B_SCR_OP_TRYMEMENTO]                            = Cmd_trymemento,
     [B_SCR_OP_SETFORCEDTARGET]                       = Cmd_setforcedtarget,
-    [B_SCR_OP_UNUSED_0XCB]                           = Cmd_unused_0xcb,
-    [B_SCR_OP_UNUSED_0XCC]                           = Cmd_unused_0xCC,
     [B_SCR_OP_CURESTATUSWITHMOVE]                    = Cmd_curestatuswithmove,
     [B_SCR_OP_SETTORMENT]                            = Cmd_settorment,
-    [B_SCR_OP_UNUSED_0XCF]                           = Cmd_unused_0xCF,
     [B_SCR_OP_SETTAUNT]                              = Cmd_settaunt,
     [B_SCR_OP_TRYSETHELPINGHAND]                     = Cmd_trysethelpinghand,
     [B_SCR_OP_TRYSWAPITEMS]                          = Cmd_tryswapitems,
@@ -826,29 +775,22 @@ void (*const gBattleScriptingCommandsTable[])(void) =
     [B_SCR_OP_SETTOXICSPIKES]                        = Cmd_settoxicspikes,
     [B_SCR_OP_SETGASTROACID]                         = Cmd_setgastroacid,
     [B_SCR_OP_SETYAWN]                               = Cmd_setyawn,
-    [B_SCR_OP_UNUSED0XD8]                            = Cmd_unused0xd8,
     [B_SCR_OP_SETROOM]                               = Cmd_setroom,
     [B_SCR_OP_TRYSWAPABILITIES]                      = Cmd_tryswapabilities,
     [B_SCR_OP_TRYIMPRISON]                           = Cmd_tryimprison,
     [B_SCR_OP_SETSTEALTHROCK]                        = Cmd_setstealthrock,
     [B_SCR_OP_TRYSETVOLATILE]                        = Cmd_trysetvolatile,
-    [B_SCR_OP_UNUSED_0XDE]                           = Cmd_unused_0xde,
     [B_SCR_OP_TRYSETMAGICCOAT]                       = Cmd_trysetmagiccoat,
     [B_SCR_OP_TRYSETSNATCH]                          = Cmd_trysetsnatch,
-    [B_SCR_OP_UNUSED2]                               = Cmd_unused2,
     [B_SCR_OP_SWITCHOUTABILITIES]                    = Cmd_switchoutabilities,
     [B_SCR_OP_JUMPIFHASNOHP]                         = Cmd_jumpifhasnohp,
-    [B_SCR_OP_UNUSED_0XE4]                           = Cmd_unused_0xE4,
     [B_SCR_OP_PICKUP]                                = Cmd_pickup,
-    [B_SCR_OP_UNUSED_0XE6]                           = Cmd_unused_0xE6,
-    [B_SCR_OP_UNUSED_0XE7]                           = Cmd_unused_0xE7,
     [B_SCR_OP_SETTYPEBASEDHALVERS]                   = Cmd_settypebasedhalvers,
     [B_SCR_OP_JUMPIFSUBSTITUTEBLOCKS]                = Cmd_jumpifsubstituteblocks,
     [B_SCR_OP_TRYRECYCLEITEM]                        = Cmd_tryrecycleitem,
     [B_SCR_OP_SETTYPETOENVIRONMENT]                  = Cmd_settypetoenvironment,
     [B_SCR_OP_PURSUITDOUBLES]                        = Cmd_pursuitdoubles,
     [B_SCR_OP_SNATCHSETBATTLERS]                     = Cmd_snatchsetbattlers,
-    [B_SCR_OP_UNUSED_0XEE]                           = Cmd_unused_0xee,
     [B_SCR_OP_HANDLEBALLTHROW]                       = Cmd_handleballthrow,
     [B_SCR_OP_GIVECAUGHTMON]                         = Cmd_givecaughtmon,
     [B_SCR_OP_TRYSETCAUGHTMONDEXFLAGS]               = Cmd_trysetcaughtmondexflags,
@@ -865,7 +807,36 @@ void (*const gBattleScriptingCommandsTable[])(void) =
     [B_SCR_OP_JUMPIFCAPTIVATEAFFECTED]               = Cmd_jumpifcaptivateaffected,
     [B_SCR_OP_SETNONVOLATILESTATUS]                  = Cmd_setnonvolatilestatus,
     [B_SCR_OP_TRYOVERWRITEABILITY]                   = Cmd_tryoverwriteability,
-    [B_SCR_OP_UNUSED_1]                              = Cmd_unused_1,
+    [B_SCR_OP_UNUSED_1]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_2]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_3]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_4]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_5]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_6]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_7]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_8]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_9]                              = Cmd_dummy,
+    [B_SCR_OP_UNUSED_10]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_11]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_12]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_13]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_14]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_15]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_16]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_17]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_18]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_19]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_20]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_21]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_22]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_23]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_24]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_25]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_26]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_27]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_28]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_29]                             = Cmd_dummy,
+    [B_SCR_OP_UNUSED_30]                             = Cmd_dummy,
     [B_SCR_OP_CALLNATIVE]                            = Cmd_callnative,
 };
 
@@ -3511,47 +3482,43 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         break;
     case MOVE_EFFECT_STEAL_STATS:
         if (gBattleStruct->moveResultFlags[gBattlerTarget] & MOVE_RESULT_NO_EFFECT)
-        {
             break;
-        }
-        else
+
+        bool32 contrary = abilities[gBattlerAttacker] == ABILITY_CONTRARY;
+        gBattleStruct->stolenStats[0] = 0; // Stats to steal.
+        gBattleScripting.animArg1 = 0;
+        for (enum Stat stat = STAT_ATK; stat < NUM_BATTLE_STATS; stat++)
         {
-            bool32 contrary = abilities[gBattlerAttacker] == ABILITY_CONTRARY;
-            gBattleStruct->stolenStats[0] = 0; // Stats to steal.
-            gBattleScripting.animArg1 = 0;
-            for (enum Stat stat = STAT_ATK; stat < NUM_BATTLE_STATS; stat++)
+            if (gBattleMons[gBattlerTarget].statStages[stat] > DEFAULT_STAT_STAGE && gBattleMons[gBattlerAttacker].statStages[stat] != MAX_STAT_STAGE)
             {
-                if (gBattleMons[gBattlerTarget].statStages[stat] > DEFAULT_STAT_STAGE && gBattleMons[gBattlerAttacker].statStages[stat] != MAX_STAT_STAGE)
+                bool32 byTwo = FALSE;
+
+                gBattleStruct->stolenStats[0] |= (1 << (stat));
+                // Store by how many stages to raise the stat.
+                gBattleStruct->stolenStats[stat] = gBattleMons[gBattlerTarget].statStages[stat] - DEFAULT_STAT_STAGE;
+
+                while (gBattleMons[gBattlerAttacker].statStages[stat] + gBattleStruct->stolenStats[stat] > MAX_STAT_STAGE)
+                    gBattleStruct->stolenStats[stat]--;
+
+                gBattleMons[gBattlerTarget].statStages[stat] = DEFAULT_STAT_STAGE;
+
+                if (gBattleStruct->stolenStats[stat] >= 2)
+                    byTwo++;
+
+                if (gBattleScripting.animArg1 == 0)
                 {
-                    bool32 byTwo = FALSE;
-
-                    gBattleStruct->stolenStats[0] |= (1 << (stat));
-                    // Store by how many stages to raise the stat.
-                    gBattleStruct->stolenStats[stat] = gBattleMons[gBattlerTarget].statStages[stat] - DEFAULT_STAT_STAGE;
-
-                    while (gBattleMons[gBattlerAttacker].statStages[stat] + gBattleStruct->stolenStats[stat] > MAX_STAT_STAGE)
-                    	gBattleStruct->stolenStats[stat]--;
-
-                    gBattleMons[gBattlerTarget].statStages[stat] = DEFAULT_STAT_STAGE;
-
-                    if (gBattleStruct->stolenStats[stat] >= 2)
-                    	byTwo++;
-
-                    if (gBattleScripting.animArg1 == 0)
-                    {
-                    	if (byTwo)
-                    		gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS2 : STAT_ANIM_PLUS2) + stat;
-                    	else
-                    		gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS1 : STAT_ANIM_PLUS1) + stat;
-                    }
+                    if (byTwo)
+                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS2 : STAT_ANIM_PLUS2) + stat;
                     else
-                    {
-                    	if (byTwo)
-                    		gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS2 : STAT_ANIM_MULTIPLE_PLUS2);
-                    	else
-                    		gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS1 : STAT_ANIM_MULTIPLE_PLUS1);
-                    }
-            	}
+                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MINUS1 : STAT_ANIM_PLUS1) + stat;
+                }
+                else
+                {
+                    if (byTwo)
+                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS2 : STAT_ANIM_MULTIPLE_PLUS2);
+                    else
+                        gBattleScripting.animArg1 = (contrary ? STAT_ANIM_MULTIPLE_MINUS1 : STAT_ANIM_MULTIPLE_PLUS1);
+                }
             }
 
             if (gBattleStruct->stolenStats[0] != 0)
@@ -3560,6 +3527,26 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
                 BattleScriptPush(battleScript);
                 gBattlescriptCurrInstr = BattleScript_StealStats;
             }
+        }
+        break;
+    case MOVE_EFFECT_BEAT_UP_MESSAGE:
+        if (GetConfig(CONFIG_BEAT_UP) >= GEN_5) // Gen5+ don't print any custom message on attack
+            break;
+
+        if (!IsBattlerAlive(gBattlerTarget))
+        {
+            gMultiHitCounter = 0;
+            gBattlescriptCurrInstr = BattleScript_MoveEnd;
+        }
+        else if (gBattleStruct->beatUpSlot == 0 && gMultiHitCounter == 0)
+        {
+            gBattlescriptCurrInstr = BattleScript_ButItFailed;
+        }
+        else
+        {
+            PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattleStruct->beatUpSpecies[gBattleStruct->beatUpSlot])
+            BattleScriptPush(battleScript);
+            gBattlescriptCurrInstr = BattleScript_BeatUpAttackMessage;
         }
         break;
     default:
@@ -7201,10 +7188,6 @@ static void HandleScriptMegaPrimalBurst(u32 caseId, enum BattlerId battler, u32 
     }
 }
 
-static void Cmd_unused_0x78(void)
-{
-}
-
 static void Cmd_setprotectlike(void)
 {
     CMD_ARGS();
@@ -7301,10 +7284,6 @@ static void Cmd_tryhealhalfhealth(void)
         gBattlescriptCurrInstr = failInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0x7e(void)
-{
 }
 
 static void Cmd_setfieldweather(void)
@@ -7411,14 +7390,6 @@ static void Cmd_trysetrest(void)
     }
 }
 
-static void Cmd_unused_0x82(void)
-{
-}
-
-static void Cmd_unused_0x83(void)
-{
-}
-
 bool8 UproarWakeUpCheck(enum BattlerId battler)
 {
     enum BattlerId i;
@@ -7489,12 +7460,6 @@ static void Cmd_stockpile(void)
 
 static void Cmd_stockpiletobasedamage(void)
 {
-    CMD_ARGS();
-
-    if (gBattleCommunication[MISS_TYPE] != B_MSG_PROTECTED)
-        gBattleScripting.animTurn = gBattleMons[gBattlerAttacker].volatiles.stockpileCounter;
-
-    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_stockpiletohpheal(void)
@@ -7525,28 +7490,6 @@ static void Cmd_stockpiletohpheal(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
         gBattlerTarget = gBattlerAttacker;
     }
-}
-
-void BS_RemoveStockpileCounters(void)
-{
-    NATIVE_ARGS();
-
-    if (GetMoveEffect(gCurrentMove) == EFFECT_SPIT_UP
-     && gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT
-     && IsBattlerAlive(gBattlerTarget))
-    {
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-    else
-    {
-        gBattleMons[gBattlerAttacker].volatiles.stockpileCounter = 0;
-        BattleScriptPush(cmd->nextInstr);
-        gBattlescriptCurrInstr = BattleScript_MoveEffectStockpileWoreOff;
-    }
-}
-
-static void Cmd_unused_0x88(void)
-{
 }
 
 static u16 ReverseStatChangeMoveEffect(u16 moveEffect)
@@ -8693,22 +8636,6 @@ static void Cmd_setcalledmove(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused_0x9f(void)
-{
-}
-
-static void Cmd_unused_0xA0(void)
-{
-}
-
-static void Cmd_unused_0xA1(void)
-{
-}
-
-static void Cmd_unused_0xA2(void)
-{
-}
-
 static void Cmd_disablelastusedattack(void)
 {
     CMD_ARGS(const u8 *failInstr);
@@ -8949,10 +8876,6 @@ static void Cmd_copymovepermanently(void)
     }
 }
 
-static void Cmd_unused_0xA9(void)
-{
-}
-
 static inline bool32 IsDanamaxMonPresent(void)
 {
     for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
@@ -8965,14 +8888,6 @@ static inline bool32 IsDanamaxMonPresent(void)
     }
 
     return FALSE;
-}
-
-static void Cmd_unused_AA(void)
-{
-}
-
-static void Cmd_unused_0xab(void)
-{
 }
 
 static void Cmd_settailwind(void)
@@ -9231,10 +9146,6 @@ static void Cmd_trysetperishsong(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused_0xb3(void)
-{
-}
-
 static void Cmd_jumpifconfusedandstatmaxed(void)
 {
     CMD_ARGS(u8 stat, const u8 *jumpInstr);
@@ -9244,10 +9155,6 @@ static void Cmd_jumpifconfusedandstatmaxed(void)
         gBattlescriptCurrInstr = cmd->jumpInstr; // Fails if we're confused AND stat cannot be raised
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xb5(void)
-{
 }
 
 static void Cmd_setembargo(void)
@@ -9333,52 +9240,6 @@ static void Cmd_setsafeguard(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_SAFEGUARD;
     }
 
-    gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_magnitudedamagecalculation(void)
-{
-    CMD_ARGS();
-
-    u32 magnitude = RandomUniform(RNG_MAGNITUDE, 0, 99);
-
-    if (magnitude < 5)
-    {
-        gBattleStruct->magnitudeBasePower = 10;
-        magnitude = 4;
-    }
-    else if (magnitude < 15)
-    {
-        gBattleStruct->magnitudeBasePower = 30;
-        magnitude = 5;
-    }
-    else if (magnitude < 35)
-    {
-        gBattleStruct->magnitudeBasePower = 50;
-        magnitude = 6;
-    }
-    else if (magnitude < 65)
-    {
-        gBattleStruct->magnitudeBasePower = 70;
-        magnitude = 7;
-    }
-    else if (magnitude < 85)
-    {
-        gBattleStruct->magnitudeBasePower = 90;
-        magnitude = 8;
-    }
-    else if (magnitude < 95)
-    {
-        gBattleStruct->magnitudeBasePower = 110;
-        magnitude = 9;
-    }
-    else
-    {
-        gBattleStruct->magnitudeBasePower = 150;
-        magnitude = 10;
-    }
-
-    PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 2, magnitude)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -9508,10 +9369,6 @@ static void Cmd_rapidspinfree(void)
     }
 }
 
-static void Cmd_unused_0xBF(void)
-{
-}
-
 static void Cmd_recoverbasedonsunlight(void)
 {
     CMD_ARGS(const u8 *failInstr);
@@ -9633,22 +9490,6 @@ static void Cmd_setfutureattack(void)
 
 static void Cmd_trydobeatup(void)
 {
-    CMD_ARGS(const u8 *endInstr, const u8 *failInstr);
-
-    if (!IsBattlerAlive(gBattlerTarget))
-    {
-        gMultiHitCounter = 0;
-        gBattlescriptCurrInstr = cmd->endInstr;
-    }
-    else if (gBattleStruct->beatUpSlot == 0 && gMultiHitCounter == 0)
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
-    }
-    else
-    {
-        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattleStruct->beatUpSpecies[gBattleStruct->beatUpSlot])
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
 }
 
 static void Cmd_setsemiinvulnerablebit(void)
@@ -9665,18 +9506,6 @@ static void Cmd_setsemiinvulnerablebit(void)
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xC6(void)
-{
-}
-
-static void Cmd_unused_0xC7(void)
-{
-}
-
-static void Cmd_unused_c8(void)
-{
 }
 
 static void Cmd_trymemento(void)
@@ -9716,14 +9545,6 @@ static void Cmd_setforcedtarget(void)
     gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTarget = gBattlerTarget;
     gSideTimers[GetBattlerSide(gBattlerTarget)].followmePowder = IsPowderMove(gCurrentMove);
     gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xcb(void)
-{
-}
-
-static void Cmd_unused_0xCC(void)
-{
 }
 
 static void Cmd_curestatuswithmove(void)
@@ -9766,10 +9587,6 @@ static void Cmd_settorment(void)
         gBattleMons[gBattlerTarget].volatiles.torment = TRUE;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-}
-
-static void Cmd_unused_0xCF(void)
-{
 }
 
 static void Cmd_settaunt(void)
@@ -10080,10 +9897,6 @@ static void Cmd_setyawn(void)
     }
 }
 
-static void Cmd_unused0xd8(void)
-{
-}
-
 static void HandleRoomMove(u32 statusFlag, u16 *timer, u8 stringId)
 {
     if (gFieldStatuses & statusFlag)
@@ -10249,10 +10062,6 @@ static void Cmd_trysetvolatile(void)
     }
 }
 
-static void Cmd_unused_0xde(void)
-{
-}
-
 static void Cmd_trysetmagiccoat(void)
 {
     CMD_ARGS(const u8 *failInstr);
@@ -10282,10 +10091,6 @@ static void Cmd_trysetsnatch(void)
         gProtectStructs[gBattlerAttacker].stealMove = TRUE;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-}
-
-static void Cmd_unused2(void)
-{
 }
 
 static void Cmd_switchoutabilities(void)
@@ -10347,10 +10152,6 @@ static void Cmd_jumpifhasnohp(void)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xE4(void)
-{
 }
 
 static void Cmd_pickup(void)
@@ -10425,14 +10226,6 @@ static void Cmd_pickup(void)
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xE6(void)
-{
-}
-
-static void Cmd_unused_0xE7(void)
-{
 }
 
 // Water and Mud Sport
@@ -10638,10 +10431,6 @@ static void Cmd_snatchsetbattlers(void)
 
     gBattleScripting.battler = gEffectBattler;
     gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-static void Cmd_unused_0xee(void)
-{
 }
 
 u8 GetCatchingBattler(void)
@@ -11659,7 +11448,7 @@ static void Cmd_tryoverwriteability(void)
     }
 }
 
-static void Cmd_unused_1(void)
+static void Cmd_dummy(void)
 {
 }
 
@@ -12815,21 +12604,6 @@ void BS_JumpIfSleepClause(void)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-void BS_FickleBeamDamageCalculation(void)
-{
-    NATIVE_ARGS();
-
-    if (RandomPercentage(RNG_FICKLE_BEAM, 30))
-    {
-        gBattleStruct->fickleBeamBoosted = TRUE;
-        gBattlescriptCurrInstr = BattleScript_FickleBeamDoubled;
-    }
-    else
-    {
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
 }
 
 void BS_TryTarShot(void)
@@ -15055,7 +14829,7 @@ void BS_CutOneThirdHpAndRaiseStats(void)
 
 void BS_SetPoltergeistMessage(void)
 {
-    NATIVE_ARGS(const u8 *failInstr);
+    NATIVE_ARGS();
     PREPARE_ITEM_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].item);
     gLastUsedItem = gBattleMons[gBattlerTarget].item;
     gBattlescriptCurrInstr = cmd->nextInstr;
