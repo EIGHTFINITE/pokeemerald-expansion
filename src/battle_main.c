@@ -515,9 +515,7 @@ static void CB2_InitBattleInternal(void)
     gBattle_BG3_Y = 0;
 
     if (!DEBUG_OVERWORLD_MENU || (DEBUG_OVERWORLD_MENU && !gIsDebugBattle))
-    {
         gBattleEnvironment = BattleSetup_GetEnvironmentId();
-    }
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         gBattleEnvironment = BATTLE_ENVIRONMENT_BUILDING;
     if (TestRunner_Battle_GetForcedEnvironment())
@@ -5954,6 +5952,10 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
     case EFFECT_TERA_STARSTORM:
         if (species == SPECIES_TERAPAGOS_STELLAR)
             return TYPE_STELLAR;
+        break;
+    case EFFECT_NATURE_POWER:
+        if (state == MON_IN_BATTLE)
+            return GetMoveType(GetNaturePowerMove(battler));
         break;
     default:
         break;
