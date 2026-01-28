@@ -46,15 +46,16 @@ static enum CancelerResult CancelerClearFlags(struct BattleContext *ctx)
 
 static bool32 TryFormChangeBeforeMove(void)
 {
-    bool32 result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE);
-    if (!result)
-        result = TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY);
-    if (!result)
-        return FALSE;
+    enum Ability ability = GetBattlerAbility(gBattlerAttacker);
 
-    gBattleScripting.battler = gBattlerAttacker;
-    BattleScriptCall(BattleScript_BattlerFormChange);
-    return TRUE;
+    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE, ability)
+        || TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_BEFORE_MOVE_CATEGORY, ability))
+    {
+        gBattleScripting.battler = gBattlerAttacker;
+        BattleScriptCall(BattleScript_BattlerFormChange);
+        return TRUE;
+    }
+    return FALSE;
 }
 
 static enum CancelerResult CancelerStanceChangeOne(struct BattleContext *ctx)
@@ -1870,6 +1871,17 @@ static enum MoveEndResult MoveEndAbilities(void)
     return result;
 }
 
+static enum MoveEndResult MoveEndFormChangeOnHit(void)
+{
+    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
+
+    if (AbilityBattleEffects(ABILITYEFFECT_FORM_CHANGE_ON_HIT, gBattlerTarget, GetBattlerAbility(gBattlerTarget), 0, TRUE))
+        result = MOVEEND_RESULT_RUN_SCRIPT;
+
+    gBattleScripting.moveendState++;
+    return result;
+}
+
 static enum MoveEndResult MoveEndAbilitiesAttacker(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
@@ -2919,7 +2931,7 @@ static enum MoveEndResult MoveEndFormChange(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
 
-    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_AFTER_MOVE))
+    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_AFTER_MOVE, GetBattlerAbility(gBattlerAttacker)))
     {
         result = MOVEEND_RESULT_RUN_SCRIPT;
         BattleScriptCall(BattleScript_AttackerFormChangeMoveEffect);
@@ -3391,6 +3403,7 @@ static enum MoveEndResult (*const sMoveEndHandlers[])(void) =
     [MOVEEND_RAGE] = MoveEndRage,
     [MOVEEND_SYNCHRONIZE_TARGET] = MoveEndSynchronizeTarget,
     [MOVEEND_ABILITIES] = MoveEndAbilities,
+    [MOVEEND_FORM_CHANGE_ON_HIT] = MoveEndFormChangeOnHit,
     [MOVEEND_ABILITIES_ATTACKER] = MoveEndAbilitiesAttacker,
     [MOVEEND_STATUS_IMMUNITY_ABILITIES] = MoveEndStatusImmunityAbilities,
     [MOVEEND_SYNCHRONIZE_ATTACKER] = MoveEndSynchronizeAttacker,
