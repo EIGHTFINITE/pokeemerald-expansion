@@ -195,7 +195,6 @@ SINGLE_BATTLE_TEST("Pickpocket activates after Sticky Barb transfers")
 SINGLE_BATTLE_TEST("Pickpocket activates after Thief or Covet steals an item")
 {
     u16 move;
-    KNOWN_FAILING;
     PARAMETRIZE { move = MOVE_THIEF; }
     PARAMETRIZE { move = MOVE_COVET; }
     GIVEN {
