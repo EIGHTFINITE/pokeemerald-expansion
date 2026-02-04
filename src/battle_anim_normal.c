@@ -960,8 +960,6 @@ static void AnimShakeMonOrBattlePlatforms(struct Sprite *sprite)
 
 static void AnimShakeMonOrBattlePlatforms_Step(struct Sprite *sprite)
 {
-    u16 var0;
-
     if (sprite->sTimer > 0)
     {
         sprite->sTimer--;
