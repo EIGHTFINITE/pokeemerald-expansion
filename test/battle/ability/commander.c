@@ -380,7 +380,6 @@ DOUBLE_BATTLE_TEST("Commander Tatsugiri does not attack if Dondozo faints the sa
 DOUBLE_BATTLE_TEST("Commander Tatsugiri does not get hit by Dragon Darts when a commanded Dondozo faints")
 {
     GIVEN {
-        KNOWN_FAILING;
         ASSUME(GetMoveTarget(MOVE_DRAGON_DARTS) == TARGET_SMART);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DONDOZO) { HP(1); }
