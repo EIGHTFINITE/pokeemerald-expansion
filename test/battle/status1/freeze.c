@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Freeze is thawed by opponent's Fire-type attacks even if She
 SINGLE_BATTLE_TEST("Freeze is thawed by opponent's attack that can burn (Gen 6+)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_BURN_HIT_THAW, GEN_6);
+        WITH_CONFIG(B_BURN_HIT_THAW, GEN_6);
         ASSUME(MoveHasAdditionalEffect(MOVE_SCALD, MOVE_EFFECT_BURN));
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_FREEZE); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Freeze is thawed by opponent's attack that can burn (Gen 6+)
 SINGLE_BATTLE_TEST("Freeze isn't thawed by opponent's attack that can burn if Sheer Force affected (Gen 6+)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_BURN_HIT_THAW, GEN_6);
+        WITH_CONFIG(B_BURN_HIT_THAW, GEN_6);
         ASSUME(MoveHasAdditionalEffect(MOVE_SCALD, MOVE_EFFECT_BURN));
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_FREEZE); }
         OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_SHEER_FORCE); }
