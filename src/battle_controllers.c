@@ -2472,8 +2472,8 @@ void BtlController_HandleDrawTrainerPic(enum BattlerId battler, enum TrainerPicI
 
             // Sets sprite priority to 1 so mons don't remain in foreground
             gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.priority = 1;
-            // Aiming for palette slots 8 and 9 for Player and PlayerPartner to prevent Trainer Slides causing mons to change colour
-            gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (8 + battler/2);
+            // Aiming for palette slots 14 and 15 for Player and PlayerPartner to prevent Trainer Slides causing mons to change colour
+            gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (14 + battler/2);
         }
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].x2 = DISPLAY_WIDTH;
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].sSpeedX = -2;
@@ -2500,8 +2500,8 @@ void BtlController_HandleTrainerSlide(enum BattlerId battler, enum TrainerPicID 
             gBattlerSpriteIds[battler] = gBattleStruct->trainerSlideSpriteIds[battler];
         // Sets sprite priority to 1 so mons don't remain in foreground
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.priority = 1;
-        // Aiming for palette slots 8 and 9 for Player and PlayerPartner to prevent Trainer Slides causing mons to change colour
-        gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (8 + battler/2);
+        // Aiming for palette slots 14 and 15 for Player and PlayerPartner to prevent Trainer Slides causing mons to change colour
+        gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].oam.paletteNum = (14 + battler/2);
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].x2 = -96;
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].sSpeedX = 2;
     }
