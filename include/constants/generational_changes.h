@@ -104,7 +104,7 @@
     F(B_TELEPORT_BEHAVIOR,         teleportBehavior,        (u32, GEN_COUNT - 1)) \
     F(B_BEAT_UP,                   beatUp,                  (u32, GEN_COUNT - 1)) \
     F(B_DARK_VOID_FAIL,            darkVoidFail,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_BURN_HIT_THAW,             burnHitThaw,             (u32, GEN_COUNT - 1)) \
+    F(B_HIT_THAW,                  hitThaw,                 (u32, GEN_COUNT - 1)) \
     F(B_HEALING_WISH_SWITCH,       healingWishSwitch,       (u32, GEN_COUNT - 1)) \
     F(B_DEFOG_EFFECT_CLEARING,     defogEffectClearing,     (u32, GEN_COUNT - 1)) \
     F(B_STOCKPILE_RAISES_DEFS,     stockpileRaisesDefs,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
