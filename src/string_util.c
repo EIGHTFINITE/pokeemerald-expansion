@@ -845,3 +845,14 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     *dest = EOS;
     return dest;
 }
+
+bool32 DoesStringProperlyTerminate(const u8 *str, u32 last)
+{
+    for (u32 i = 0; i < last; i++)
+    {
+        if (str[i] == EOS)
+            return TRUE;
+    }
+
+    return FALSE;
+}
