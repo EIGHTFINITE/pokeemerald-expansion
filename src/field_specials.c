@@ -4625,7 +4625,7 @@ u8 GetLeadMonFriendship(void)
 
 u16 GetFirstPartnerMove(u16 species)
 {
-    switch(species)
+    switch (species)
     {
         case SPECIES_VENUSAUR:
             return MOVE_FRENZY_PLANT;
@@ -4656,7 +4656,7 @@ bool8 CapeBrinkGetMoveToTeachLeadPokemon(void)
         return FALSE;
 
     moveId = GetFirstPartnerMove(GetMonData(leadMon, MON_DATA_SPECIES_OR_EGG));
-    switch(moveId)
+    switch (moveId)
     {
         case MOVE_FRENZY_PLANT:
             tutorFlag = FLAG_TUTOR_FRENZY_PLANT;
