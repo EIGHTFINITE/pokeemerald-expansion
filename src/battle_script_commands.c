@@ -2362,7 +2362,67 @@ static void SetNonVolatileStatus(enum BattlerId effectBattler, enum MoveEffect e
         gBattleStruct->poisonPuppeteerConfusion = TRUE;
 }
 
-// To avoid confusion the arguments are naned battler/effectBattler since they can be different from gBattlerAttacker/gBattlerTarget
+static inline bool32 IgnoreTargetingForMoveEffect(enum MoveEffect moveEffect) // Currently only used to determine move effects which happen even if the move's defined effectbattler is fainted
+{
+    switch (moveEffect) 
+    {
+    case MOVE_EFFECT_PAYDAY:
+    case MOVE_EFFECT_BUG_BITE:
+    case MOVE_EFFECT_FLAME_BURST:
+    case MOVE_EFFECT_STEALTH_ROCK:
+    case MOVE_EFFECT_STEELSURGE:
+    case MOVE_EFFECT_SUN:
+    case MOVE_EFFECT_RAIN:
+    case MOVE_EFFECT_SANDSTORM:
+    case MOVE_EFFECT_HAIL:
+    case MOVE_EFFECT_MISTY_TERRAIN:
+    case MOVE_EFFECT_GRASSY_TERRAIN: 
+    case MOVE_EFFECT_ELECTRIC_TERRAIN:
+    case MOVE_EFFECT_PSYCHIC_TERRAIN:
+    case MOVE_EFFECT_DEFOG:
+    case MOVE_EFFECT_REFLECT:
+    case MOVE_EFFECT_LIGHT_SCREEN:
+    case MOVE_EFFECT_AURORA_VEIL:
+    case MOVE_EFFECT_GRAVITY:
+    case MOVE_EFFECT_HEAL_TEAM:
+    case MOVE_EFFECT_AROMATHERAPY:
+    case MOVE_EFFECT_RECYCLE_BERRIES:
+    case MOVE_EFFECT_ION_DELUGE:
+    case MOVE_EFFECT_HAZE:
+    case MOVE_EFFECT_RAISE_TEAM_ATTACK:
+    case MOVE_EFFECT_RAISE_TEAM_DEFENSE:
+    case MOVE_EFFECT_RAISE_TEAM_SPEED:
+    case MOVE_EFFECT_RAISE_TEAM_SP_ATK:
+    case MOVE_EFFECT_RAISE_TEAM_SP_DEF:
+    case MOVE_EFFECT_CRIT_PLUS_SIDE:
+    case MOVE_EFFECT_LOWER_ATTACK_SIDE:
+    case MOVE_EFFECT_LOWER_DEFENSE_SIDE:
+    case MOVE_EFFECT_LOWER_SPEED_SIDE:
+    case MOVE_EFFECT_LOWER_SP_ATK_SIDE:
+    case MOVE_EFFECT_LOWER_SP_DEF_SIDE:
+    case MOVE_EFFECT_LOWER_SPEED_2_SIDE:
+    case MOVE_EFFECT_LOWER_EVASIVENESS_SIDE:
+    case MOVE_EFFECT_VINE_LASH:
+    case MOVE_EFFECT_WILDFIRE:
+    case MOVE_EFFECT_CANNONADE:
+    case MOVE_EFFECT_VOLCALITH:
+    case MOVE_EFFECT_PREVENT_ESCAPE_SIDE:
+    case MOVE_EFFECT_SANDBLAST_SIDE:
+    case MOVE_EFFECT_FIRE_SPIN_SIDE:
+    case MOVE_EFFECT_PARALYZE_SIDE:
+    case MOVE_EFFECT_POISON_SIDE:
+    case MOVE_EFFECT_CONFUSE_PAY_DAY_SIDE:
+    case MOVE_EFFECT_POISON_PARALYZE_SIDE:
+    case MOVE_EFFECT_EFFECT_SPORE_SIDE:
+    case MOVE_EFFECT_INFATUATE_SIDE:
+    case MOVE_EFFECT_CONFUSE_SIDE:
+    case MOVE_EFFECT_TORMENT_SIDE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum MoveEffect moveEffect, const u8 *battleScript, enum SetMoveEffectFlags effectFlags)
 {
     enum Ability abilities[MAX_BATTLERS_COUNT] = {ABILITY_NONE};
@@ -2375,7 +2435,6 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
     bool32 affectsUser = (battlerAtk == effectBattler);
     bool32 mirrorArmorReflected = (abilities[gBattlerTarget] == ABILITY_MIRROR_ARMOR);
     union StatChangeFlags flags = {0};
-    bool32 activateAfterFaint = FALSE;
 
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT
         && IsBattlerAlive(gBattlerTarget)
@@ -2384,19 +2443,7 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         gBattlescriptCurrInstr = battleScript;
         return;
     }
-
-    switch (moveEffect) // Set move effects which happen later on
-    {
-    case MOVE_EFFECT_STEALTH_ROCK:
-    case MOVE_EFFECT_PAYDAY:
-    case MOVE_EFFECT_BUG_BITE:
-    case MOVE_EFFECT_FLAME_BURST:
-        activateAfterFaint = TRUE;
-        break;
-    default:
-        break;
-    }
-
+    
     gBattleScripting.battler = battlerAtk;
     gEffectBattler = effectBattler;
 
@@ -2406,7 +2453,7 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
           && IsSheerForceAffected(gCurrentMove, abilities[battlerAtk])
           && !(moveEffect == MOVE_EFFECT_ORDER_UP && gBattleStruct->battlerState[gBattlerAttacker].commanderSpecies != SPECIES_NONE))
         moveEffect = MOVE_EFFECT_NONE;
-    else if (!IsBattlerAlive(gEffectBattler) && !activateAfterFaint)
+    else if (!IsBattlerAlive(gEffectBattler) && !IgnoreTargetingForMoveEffect(moveEffect))
         moveEffect = MOVE_EFFECT_NONE;
     else if (DoesSubstituteBlockMove(gBattlerAttacker, gEffectBattler, gCurrentMove) && !affectsUser)
         moveEffect = MOVE_EFFECT_NONE;
@@ -4990,6 +5037,7 @@ static void PlayAnimation(enum BattlerId battler, u8 animId, const u16 *argPtr, 
      || animId == B_ANIM_FORM_CHANGE
      || animId == B_ANIM_SUBSTITUTE_FADE
      || animId == B_ANIM_PRIMAL_REVERSION
+     || animId == B_ANIM_POWER_CONSTRUCT
      || animId == B_ANIM_ULTRA_BURST
      || animId == B_ANIM_TERA_CHARGE
      || animId == B_ANIM_TERA_ACTIVATE
@@ -8525,6 +8573,7 @@ static void Cmd_transformdataexecution(void)
         gBattleMons[gBattlerAttacker].volatiles.transformed = TRUE;
         gBattleMons[gBattlerAttacker].volatiles.disabledMove = MOVE_NONE;
         gBattleMons[gBattlerAttacker].volatiles.disableTimer = 0;
+        gBattleMons[gBattlerAttacker].volatiles.transformedMonSpecies = gBattleMons[gBattlerAttacker].species;
         gBattleMons[gBattlerAttacker].volatiles.transformedMonPID = gBattleMons[gBattlerTarget].personality;
 
         if (B_TRANSFORM_SHINY >= GEN_4)
@@ -13274,6 +13323,12 @@ void BS_JumpIfAbilityCantBeReactivated(void)
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
     enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
     u32 ability = gBattleMons[battler].ability;
+
+    if (GetBattlerHoldEffectIgnoreAbility(battler) == HOLD_EFFECT_ABILITY_SHIELD)
+    {
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+        return;
+    }
 
     switch (ability)
     {
