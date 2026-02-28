@@ -617,6 +617,13 @@ static void CB2_InitBattleInternal(void)
         TryFormChange(&gEnemyParty[i], FORM_CHANGE_BEGIN_BATTLE);
     }
 
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+    {
+        TryFormChange(&gEnemyParty[0], FORM_CHANGE_BEGIN_WILD_ENCOUNTER);
+        if (IsDoubleBattle())
+            TryFormChange(&gEnemyParty[1], FORM_CHANGE_BEGIN_WILD_ENCOUNTER);
+    }
+
     #if TESTING
     gPlayerPartyCount = CalculatePartyCount(gPlayerParty);
     gEnemyPartyCount = CalculatePartyCount(gEnemyParty);
