@@ -3319,12 +3319,17 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
         if (gBattleMons[battlerAtkPartner].volatiles.dragonCheer
          || gBattleMons[battlerAtkPartner].volatiles.focusEnergy
          || !HasDamagingMove(battlerAtkPartner))
+        {
             ADJUST_SCORE(-5);
-        else if (atkPartnerHoldEffect == HOLD_EFFECT_SCOPE_LENS
-              || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_DRAGON)
-              || GetMoveCriticalHitStage(aiData->partnerMove) > 0
-              || HasMoveWithCriticalHitChance(battlerAtkPartner))
+        }
+        else if (!partnerProtecting
+         && (atkPartnerHoldEffect == HOLD_EFFECT_SCOPE_LENS
+          || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_DRAGON)
+          || GetMoveCriticalHitStage(aiData->partnerMove) > 0
+          || HasMoveWithCriticalHitChance(battlerAtkPartner)))
+        {
             ADJUST_SCORE(GOOD_EFFECT);
+        }
         break;
     case EFFECT_COACHING:
         if (!hasPartner
@@ -3466,7 +3471,9 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             switch (atkPartnerHoldEffect)
             {
             case HOLD_EFFECT_WEAKNESS_POLICY:
-                if (aiData->effectiveness[battlerAtk][battlerAtkPartner][gAiThinkingStruct->movesetIndex] >= UQ_4_12(2.0) && isFriendlyFireOK)
+                if (!partnerProtecting
+                 && aiData->effectiveness[battlerAtk][battlerAtkPartner][gAiThinkingStruct->movesetIndex] >= UQ_4_12(2.0)
+                 && isFriendlyFireOK)
                 {
                     ADJUST_SCORE(GOOD_EFFECT);
                 }
