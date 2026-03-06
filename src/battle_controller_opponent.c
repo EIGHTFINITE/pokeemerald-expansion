@@ -465,6 +465,9 @@ static void OpponentHandleChooseMove(enum BattlerId battler)
             if (target == TARGET_USER)
                 gBattlerTarget = battler;
 
+            if (target == TARGET_ALLY)
+                gBattlerTarget = BATTLE_PARTNER(battler);
+
             if (target == TARGET_BOTH)
             {
                 gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
@@ -499,6 +502,10 @@ static void OpponentHandleChooseMove(enum BattlerId battler)
         if (moveTarget == TARGET_USER || moveTarget == TARGET_USER_OR_ALLY)
         {
             BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_EXEC_SCRIPT, (chosenMoveIndex) | (battler << 8));
+        }
+        else if (moveTarget == TARGET_ALLY)
+        {
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_EXEC_SCRIPT, (chosenMoveIndex) | (BATTLE_PARTNER(battler) << 8));
         }
         else if (IsDoubleBattle())
         {
