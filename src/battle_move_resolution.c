@@ -2244,15 +2244,6 @@ static enum MoveEndResult MoveEndRage(void)
     return result;
 }
 
-static enum MoveEndResult MoveEndSynchronizeTarget(void)
-{
-    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
-    if (AbilityBattleEffects(ABILITYEFFECT_SYNCHRONIZE, gBattlerTarget, 0, 0, TRUE))
-        result = MOVEEND_RESULT_RUN_SCRIPT;
-    gBattleScripting.moveendState++;
-    return result;
-}
-
 static enum MoveEndResult MoveEndAbilities(void)
 {
     enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
@@ -2327,17 +2318,6 @@ static enum MoveEndResult MoveEndStatusImmunityAbilities(void)
 
     if (result == MOVEEND_RESULT_CONTINUE)
         gBattleScripting.moveendState++;
-    return result;
-}
-
-static enum MoveEndResult MoveEndSynchronizeAttacker(void)
-{
-    enum MoveEndResult result = MOVEEND_RESULT_CONTINUE;
-
-    if (AbilityBattleEffects(ABILITYEFFECT_ATK_SYNCHRONIZE, gBattlerAttacker, 0, 0, TRUE))
-        result = MOVEEND_RESULT_RUN_SCRIPT;
-
-    gBattleScripting.moveendState++;
     return result;
 }
 
@@ -2726,7 +2706,6 @@ static enum MoveEndResult MoveEndNextTarget(void)
             BattleScriptPush(GetMoveBattleScript(gCurrentMove));
             gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
             gBattleScripting.moveendState = 0;
-            MoveValuesCleanUp();
             return MOVEEND_RESULT_BREAK;
         }
     }
@@ -2738,7 +2717,6 @@ static enum MoveEndResult MoveEndNextTarget(void)
         {
             gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = nextTarget; // Fix for moxie spread moves
             gBattleScripting.moveendState = 0;
-            MoveValuesCleanUp();
             BattleScriptPush(GetMoveBattleScript(gCurrentMove));
             gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
             return MOVEEND_RESULT_BREAK;
@@ -2760,7 +2738,6 @@ static enum MoveEndResult MoveEndNextTarget(void)
                 gBattleScripting.moveendState = 0;
                 gBattleScripting.animTurn = 0;
                 gBattleScripting.animTargetsHit = 0;
-                MoveValuesCleanUp();
                 BattleScriptPush(GetMoveBattleScript(gCurrentMove));
                 gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                 return MOVEEND_RESULT_BREAK;
@@ -2829,7 +2806,6 @@ static enum MoveEndResult MoveEndMultihitMove(void)
                 gBattleScripting.animTargetsHit = 0;
                 gBattleScripting.moveendState = 0;
                 gSpecialStatuses[gBattlerAttacker].multiHitOn = TRUE;
-                MoveValuesCleanUp();
                 BattleScriptPush(GetMoveBattleScript(gCurrentMove));
                 gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
                 return MOVEEND_RESULT_BREAK;
@@ -3800,13 +3776,11 @@ static enum MoveEndResult (*const sMoveEndHandlers[])(void) =
     [MOVEEND_PROTECT_LIKE_EFFECT] = MoveEndProtectLikeEffect,
     [MOVEEND_ABSORB] = MoveEndAbsorb,
     [MOVEEND_RAGE] = MoveEndRage,
-    [MOVEEND_SYNCHRONIZE_TARGET] = MoveEndSynchronizeTarget,
     [MOVEEND_ABILITIES] = MoveEndAbilities,
     [MOVEEND_FORM_CHANGE_ON_HIT] = MoveEndFormChangeOnHit,
     [MOVEEND_ABILITIES_ATTACKER] = MoveEndAbilitiesAttacker,
     [MOVEEND_QUEUE_DANCER] = MoveEndQueueDancer,
     [MOVEEND_STATUS_IMMUNITY_ABILITIES] = MoveEndStatusImmunityAbilities,
-    [MOVEEND_SYNCHRONIZE_ATTACKER] = MoveEndSynchronizeAttacker,
     [MOVEEND_ATTACKER_INVISIBLE] = MoveEndAttackerInvisible,
     [MOVEEND_ATTACKER_VISIBLE] = MoveEndAttackerVisible,
     [MOVEEND_TARGET_VISIBLE] = MoveEndTargetVisible,
@@ -3947,14 +3921,6 @@ static inline bool32 IsBattlerUsingBeakBlast(enum BattlerId battler)
     if (GetMoveEffect(gChosenMoveByBattler[battler]) != EFFECT_BEAK_BLAST)
         return FALSE;
     return !HasBattlerActedThisTurn(battler);
-}
-
-// Is there any point in still doing this?
-void MoveValuesCleanUp(void)
-{
-    gBattleScripting.moveEffect = MOVE_EFFECT_NONE;
-    gBattleStruct->synchronizeMoveEffect = MOVE_EFFECT_NONE;
-    gBattleCommunication[MISS_TYPE] = 0;
 }
 
 static void RequestNonVolatileChange(enum BattlerId battlerAtk)
