@@ -10957,3 +10957,21 @@ void SetOrClearRageVolatile(void)
     else
         gBattleMons[gBattlerAttacker].volatiles.rage = FALSE;
 }
+
+enum BattlerId GetTargetBySlot(enum BattlerId battlerAtk, enum BattlerId battlerDef)
+{
+    switch (battlerDef)
+    {
+    case B_BATTLER_0:
+        return battlerAtk;
+    case B_BATTLER_1:
+        return BATTLE_PARTNER(battlerAtk);
+    case B_BATTLER_2:
+        return LEFT_FOE(battlerAtk);
+    case B_BATTLER_3:
+        return RIGHT_FOE(battlerAtk);
+    default:
+        errorf("Illegal battler");
+        return B_BATTLER_0;
+    }
+}
