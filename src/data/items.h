@@ -12884,7 +12884,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM51] =
+    [ITEM_TM_ROOST] =
     {
         .name = ITEM_NAME("TM51"),
         .price = 3000,
@@ -12895,7 +12895,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM52] =
+    [ITEM_TM_FOCUS_BLAST] =
     {
         .name = ITEM_NAME("TM52"),
         .price = 3000,
@@ -12906,7 +12906,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM53] =
+    [ITEM_TM_ENERGY_BALL] =
     {
         .name = ITEM_NAME("TM53"),
         .price = 3000,
@@ -12917,7 +12917,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM54] =
+    [ITEM_TM_FALSE_SWIPE] =
     {
         .name = ITEM_NAME("TM54"),
         .price = 3000,
@@ -12928,7 +12928,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM55] =
+    [ITEM_TM_BRINE] =
     {
         .name = ITEM_NAME("TM55"),
         .price = 3000,
@@ -12939,7 +12939,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM56] =
+    [ITEM_TM_FLING] =
     {
         .name = ITEM_NAME("TM56"),
         .price = 3000,
@@ -12950,7 +12950,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM57] =
+    [ITEM_TM_CHARGE_BEAM] =
     {
         .name = ITEM_NAME("TM57"),
         .price = 3000,
@@ -12961,7 +12961,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM58] =
+    [ITEM_TM_ENDURE] =
     {
         .name = ITEM_NAME("TM58"),
         .price = 3000,
@@ -12972,7 +12972,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM59] =
+    [ITEM_TM_DRAGON_PULSE] =
     {
         .name = ITEM_NAME("TM59"),
         .price = 3000,
@@ -12983,7 +12983,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM60] =
+    [ITEM_TM_DRAIN_PUNCH] =
     {
         .name = ITEM_NAME("TM60"),
         .price = 3000,
@@ -12994,7 +12994,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM61] =
+    [ITEM_TM_WILL_O_WISP] =
     {
         .name = ITEM_NAME("TM61"),
         .price = 3000,
@@ -13005,7 +13005,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM62] =
+    [ITEM_TM_SILVER_WIND] =
     {
         .name = ITEM_NAME("TM62"),
         .price = 3000,
@@ -13016,7 +13016,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM63] =
+    [ITEM_TM_EMBARGO] =
     {
         .name = ITEM_NAME("TM63"),
         .price = 3000,
@@ -13027,7 +13027,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM64] =
+    [ITEM_TM_EXPLOSION] =
     {
         .name = ITEM_NAME("TM64"),
         .price = 3000,
@@ -13038,7 +13038,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM65] =
+    [ITEM_TM_SHADOW_CLAW] =
     {
         .name = ITEM_NAME("TM65"),
         .price = 3000,
@@ -13049,7 +13049,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM66] =
+    [ITEM_TM_PAYBACK] =
     {
         .name = ITEM_NAME("TM66"),
         .price = 3000,
@@ -13060,7 +13060,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM67] =
+    [ITEM_TM_RECYCLE] =
     {
         .name = ITEM_NAME("TM67"),
         .price = 3000,
@@ -13071,7 +13071,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM68] =
+    [ITEM_TM_GIGA_IMPACT] =
     {
         .name = ITEM_NAME("TM68"),
         .price = 3000,
@@ -13082,7 +13082,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM69] =
+    [ITEM_TM_ROCK_POLISH] =
     {
         .name = ITEM_NAME("TM69"),
         .price = 3000,
@@ -13093,7 +13093,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM70] =
+    [ITEM_TM_STONE_EDGE] =
     {
         .name = ITEM_NAME("TM70"),
         .price = 3000,
@@ -13104,7 +13104,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM71] =
+    [ITEM_TM_AVALANCHE] =
     {
         .name = ITEM_NAME("TM71"),
         .price = 3000,
@@ -13115,7 +13115,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM72] =
+    [ITEM_TM_THUNDER_WAVE] =
     {
         .name = ITEM_NAME("TM72"),
         .price = 3000,
@@ -13126,7 +13126,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM73] =
+    [ITEM_TM_GYRO_BALL] =
     {
         .name = ITEM_NAME("TM73"),
         .price = 3000,
@@ -13137,7 +13137,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM74] =
+    [ITEM_TM_SWORDS_DANCE] =
     {
         .name = ITEM_NAME("TM74"),
         .price = 3000,
@@ -13148,7 +13148,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM75] =
+    [ITEM_TM_STEALTH_ROCK] =
     {
         .name = ITEM_NAME("TM75"),
         .price = 3000,
@@ -13159,7 +13159,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM76] =
+    [ITEM_TM_PSYCH_UP] =
     {
         .name = ITEM_NAME("TM76"),
         .price = 3000,
@@ -13170,7 +13170,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM77] =
+    [ITEM_TM_CAPTIVATE] =
     {
         .name = ITEM_NAME("TM77"),
         .price = 3000,
@@ -13181,7 +13181,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM78] =
+    [ITEM_TM_DARK_PULSE] =
     {
         .name = ITEM_NAME("TM78"),
         .price = 3000,
@@ -13192,7 +13192,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM79] =
+    [ITEM_TM_ROCK_SLIDE] =
     {
         .name = ITEM_NAME("TM79"),
         .price = 3000,
@@ -13203,7 +13203,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM80] =
+    [ITEM_TM_X_SCISSOR] =
     {
         .name = ITEM_NAME("TM80"),
         .price = 3000,
@@ -13214,7 +13214,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM81] =
+    [ITEM_TM_SLEEP_TALK] =
     {
         .name = ITEM_NAME("TM81"),
         .price = 3000,
@@ -13225,7 +13225,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM82] =
+    [ITEM_TM_NATURAL_GIFT] =
     {
         .name = ITEM_NAME("TM82"),
         .price = 3000,
@@ -13236,7 +13236,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM83] =
+    [ITEM_TM_POISON_JAB] =
     {
         .name = ITEM_NAME("TM83"),
         .price = 3000,
@@ -13247,7 +13247,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM84] =
+    [ITEM_TM_DREAM_EATER] =
     {
         .name = ITEM_NAME("TM84"),
         .price = 3000,
@@ -13258,7 +13258,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM85] =
+    [ITEM_TM_GRASS_KNOT] =
     {
         .name = ITEM_NAME("TM85"),
         .price = 3000,
@@ -13269,7 +13269,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM86] =
+    [ITEM_TM_SWAGGER] =
     {
         .name = ITEM_NAME("TM86"),
         .price = 3000,
@@ -13280,7 +13280,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM87] =
+    [ITEM_TM_PLUCK] =
     {
         .name = ITEM_NAME("TM87"),
         .price = 3000,
@@ -13291,7 +13291,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM88] =
+    [ITEM_TM_U_TURN] =
     {
         .name = ITEM_NAME("TM88"),
         .price = 3000,
@@ -13302,7 +13302,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM89] =
+    [ITEM_TM_SUBSTITUTE] =
     {
         .name = ITEM_NAME("TM89"),
         .price = 3000,
@@ -13313,7 +13313,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM90] =
+    [ITEM_TM_FLASH_CANNON] =
     {
         .name = ITEM_NAME("TM90"),
         .price = 3000,
@@ -13324,7 +13324,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM91] =
+    [ITEM_TM_TRICK_ROOM] =
     {
         .name = ITEM_NAME("TM91"),
         .price = 3000,
@@ -13335,7 +13335,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM92] =
+    [ITEM_TM_HONE_CLAWS] =
     {
         .name = ITEM_NAME("TM92"),
         .price = 3000,
@@ -13346,7 +13346,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM93] =
+    [ITEM_TM_PSYSHOCK] =
     {
         .name = ITEM_NAME("TM93"),
         .price = 3000,
@@ -13357,7 +13357,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM94] =
+    [ITEM_TM_VENOSHOCK] =
     {
         .name = ITEM_NAME("TM94"),
         .price = 3000,
@@ -13368,7 +13368,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM95] =
+    [ITEM_TM_TELEKINESIS] =
     {
         .name = ITEM_NAME("TM95"),
         .price = 3000,
@@ -13379,7 +13379,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM96] =
+    [ITEM_TM_SMACK_DOWN] =
     {
         .name = ITEM_NAME("TM96"),
         .price = 3000,
@@ -13390,7 +13390,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM97] =
+    [ITEM_TM_SLUDGE_WAVE] =
     {
         .name = ITEM_NAME("TM97"),
         .price = 3000,
@@ -13401,7 +13401,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM98] =
+    [ITEM_TM_FLAME_CHARGE] =
     {
         .name = ITEM_NAME("TM98"),
         .price = 3000,
@@ -13412,7 +13412,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM99] =
+    [ITEM_TM_LOW_SWEEP] =
     {
         .name = ITEM_NAME("TM99"),
         .price = 3000,
@@ -13423,7 +13423,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM100] =
+    [ITEM_TM_ROUND] =
     {
         .name = ITEM_NAME("TM100"),
         .price = 3000,
@@ -13434,7 +13434,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM101] =
+    [ITEM_TM_ECHOED_VOICE] =
     {
         .name = ITEM_NAME("TM101"),
         .price = 3000,
@@ -13445,7 +13445,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM102] =
+    [ITEM_TM_ALLY_SWITCH] =
     {
         .name = ITEM_NAME("TM102"),
         .price = 3000,
@@ -13456,7 +13456,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM103] =
+    [ITEM_TM_SCALD] =
     {
         .name = ITEM_NAME("TM103"),
         .price = 3000,
@@ -13467,7 +13467,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM104] =
+    [ITEM_TM_SKY_DROP] =
     {
         .name = ITEM_NAME("TM104"),
         .price = 3000,
@@ -13478,7 +13478,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM105] =
+    [ITEM_TM_INCINERATE] =
     {
         .name = ITEM_NAME("TM105"),
         .price = 3000,
@@ -13489,7 +13489,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM106] =
+    [ITEM_TM_QUASH] =
     {
         .name = ITEM_NAME("TM106"),
         .price = 3000,
@@ -13500,7 +13500,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM107] =
+    [ITEM_TM_ACROBATICS] =
     {
         .name = ITEM_NAME("TM107"),
         .price = 3000,
@@ -13511,7 +13511,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM108] =
+    [ITEM_TM_RETALIATE] =
     {
         .name = ITEM_NAME("TM108"),
         .price = 3000,
@@ -13522,7 +13522,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM109] =
+    [ITEM_TM_VOLT_SWITCH] =
     {
         .name = ITEM_NAME("TM109"),
         .price = 3000,
@@ -13533,7 +13533,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM110] =
+    [ITEM_TM_STRUGGLE_BUG] =
     {
         .name = ITEM_NAME("TM110"),
         .price = 3000,
@@ -13544,7 +13544,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM111] =
+    [ITEM_TM_BULLDOZE] =
     {
         .name = ITEM_NAME("TM111"),
         .price = 3000,
@@ -13555,7 +13555,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM112] =
+    [ITEM_TM_FROST_BREATH] =
     {
         .name = ITEM_NAME("TM112"),
         .price = 3000,
@@ -13566,7 +13566,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM113] =
+    [ITEM_TM_DRAGON_TAIL] =
     {
         .name = ITEM_NAME("TM113"),
         .price = 3000,
@@ -13577,7 +13577,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM114] =
+    [ITEM_TM_WORK_UP] =
     {
         .name = ITEM_NAME("TM114"),
         .price = 3000,
@@ -13588,7 +13588,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM115] =
+    [ITEM_TM_WILD_CHARGE] =
     {
         .name = ITEM_NAME("TM115"),
         .price = 3000,
@@ -13599,7 +13599,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM116] =
+    [ITEM_TM_SNARL] =
     {
         .name = ITEM_NAME("TM116"),
         .price = 3000,
@@ -13610,7 +13610,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM117] =
+    [ITEM_TM_INFESTATION] =
     {
         .name = ITEM_NAME("TM117"),
         .price = 3000,
@@ -13621,7 +13621,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM118] =
+    [ITEM_TM_NATURE_POWER] =
     {
         .name = ITEM_NAME("TM118"),
         .price = 3000,
@@ -13632,7 +13632,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM119] =
+    [ITEM_TM_POWER_UP_PUNCH] =
     {
         .name = ITEM_NAME("TM119"),
         .price = 3000,
@@ -13643,7 +13643,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM120] =
+    [ITEM_TM_DAZZLING_GLEAM] =
     {
         .name = ITEM_NAME("TM120"),
         .price = 3000,
@@ -13654,7 +13654,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM121] =
+    [ITEM_TM_CONFIDE] =
     {
         .name = ITEM_NAME("TM121"),
         .price = 3000,
@@ -13665,7 +13665,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM122] =
+    [ITEM_TM_LEECH_LIFE] =
     {
         .name = ITEM_NAME("TM122"),
         .price = 3000,
@@ -13676,7 +13676,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM123] =
+    [ITEM_TM_BRUTAL_SWING] =
     {
         .name = ITEM_NAME("TM123"),
         .price = 3000,
@@ -13687,7 +13687,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM124] =
+    [ITEM_TM_SMART_STRIKE] =
     {
         .name = ITEM_NAME("TM124"),
         .price = 3000,
@@ -13698,7 +13698,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM125] =
+    [ITEM_TM_AURORA_VEIL] =
     {
         .name = ITEM_NAME("TM125"),
         .price = 3000,
@@ -13709,7 +13709,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM126] =
+    [ITEM_TM_HEADBUTT] =
     {
         .name = ITEM_NAME("TM126"),
         .price = 3000,
@@ -13720,7 +13720,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM127] =
+    [ITEM_TM_CURSE] =
     {
         .name = ITEM_NAME("TM127"),
         .price = 3000,
@@ -13731,7 +13731,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM128] =
+    [ITEM_TM_SNORE] =
     {
         .name = ITEM_NAME("TM128"),
         .price = 3000,
@@ -13742,7 +13742,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM129] =
+    [ITEM_TM_ICY_WIND] =
     {
         .name = ITEM_NAME("TM129"),
         .price = 3000,
@@ -13753,7 +13753,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM130] =
+    [ITEM_TM_MUD_SLAP] =
     {
         .name = ITEM_NAME("TM130"),
         .price = 3000,
@@ -13764,7 +13764,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM131] =
+    [ITEM_TM_ICE_PUNCH] =
     {
         .name = ITEM_NAME("TM131"),
         .price = 3000,
@@ -13775,7 +13775,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM132] =
+    [ITEM_TM_SWIFT] =
     {
         .name = ITEM_NAME("TM132"),
         .price = 3000,
@@ -13786,7 +13786,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM133] =
+    [ITEM_TM_THUNDER_PUNCH] =
     {
         .name = ITEM_NAME("TM133"),
         .price = 3000,
@@ -13797,7 +13797,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM134] =
+    [ITEM_TM_FIRE_PUNCH] =
     {
         .name = ITEM_NAME("TM134"),
         .price = 3000,
@@ -13808,7 +13808,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM135] =
+    [ITEM_TM_MEGA_PUNCH] =
     {
         .name = ITEM_NAME("TM135"),
         .price = 3000,
@@ -13819,7 +13819,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM136] =
+    [ITEM_TM_RAZOR_WIND] =
     {
         .name = ITEM_NAME("TM136"),
         .price = 3000,
@@ -13830,7 +13830,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM137] =
+    [ITEM_TM_WHIRLWIND] =
     {
         .name = ITEM_NAME("TM137"),
         .price = 3000,
@@ -13841,7 +13841,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM138] =
+    [ITEM_TM_MEGA_KICK] =
     {
         .name = ITEM_NAME("TM138"),
         .price = 3000,
@@ -13852,7 +13852,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM139] =
+    [ITEM_TM_BODY_SLAM] =
     {
         .name = ITEM_NAME("TM139"),
         .price = 3000,
@@ -13863,7 +13863,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM140] =
+    [ITEM_TM_TAKE_DOWN] =
     {
         .name = ITEM_NAME("TM140"),
         .price = 3000,
@@ -13874,7 +13874,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM141] =
+    [ITEM_TM_DOUBLE_EDGE] =
     {
         .name = ITEM_NAME("TM141"),
         .price = 3000,
@@ -13885,7 +13885,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM142] =
+    [ITEM_TM_PAY_DAY] =
     {
         .name = ITEM_NAME("TM142"),
         .price = 3000,
@@ -13896,7 +13896,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM143] =
+    [ITEM_TM_SEISMIC_TOSS] =
     {
         .name = ITEM_NAME("TM143"),
         .price = 3000,
@@ -13907,7 +13907,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM144] =
+    [ITEM_TM_MEGA_DRAIN] =
     {
         .name = ITEM_NAME("TM144"),
         .price = 3000,
@@ -13918,7 +13918,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM145] =
+    [ITEM_TM_FISSURE] =
     {
         .name = ITEM_NAME("TM145"),
         .price = 3000,
@@ -13929,7 +13929,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM146] =
+    [ITEM_TM_TELEPORT] =
     {
         .name = ITEM_NAME("TM146"),
         .price = 3000,
@@ -13940,7 +13940,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM147] =
+    [ITEM_TM_MIMIC] =
     {
         .name = ITEM_NAME("TM147"),
         .price = 3000,
@@ -13951,7 +13951,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM148] =
+    [ITEM_TM_METRONOME] =
     {
         .name = ITEM_NAME("TM148"),
         .price = 3000,
@@ -13962,7 +13962,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM149] =
+    [ITEM_TM_SELF_DESTRUCT] =
     {
         .name = ITEM_NAME("TM149"),
         .price = 3000,
@@ -13973,7 +13973,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM150] =
+    [ITEM_TM_SKULL_BASH] =
     {
         .name = ITEM_NAME("TM150"),
         .price = 3000,
@@ -13984,7 +13984,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM151] =
+    [ITEM_TM_SKY_ATTACK] =
     {
         .name = ITEM_NAME("TM151"),
         .price = 3000,
@@ -13995,7 +13995,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM152] =
+    [ITEM_TM_TRI_ATTACK] =
     {
         .name = ITEM_NAME("TM152"),
         .price = 3000,
@@ -14006,7 +14006,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM153] =
+    [ITEM_TM_HELPING_HAND] =
     {
         .name = ITEM_NAME("TM153"),
         .price = 3000,
@@ -14017,7 +14017,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM154] =
+    [ITEM_TM_FOUL_PLAY] =
     {
         .name = ITEM_NAME("TM154"),
         .price = 3000,
@@ -14028,7 +14028,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM155] =
+    [ITEM_TM_OUTRAGE] =
     {
         .name = ITEM_NAME("TM155"),
         .price = 3000,
@@ -14039,7 +14039,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM156] =
+    [ITEM_TM_PLAY_ROUGH] =
     {
         .name = ITEM_NAME("TM156"),
         .price = 3000,
@@ -14050,7 +14050,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM157] =
+    [ITEM_TM_DRILL_RUN] =
     {
         .name = ITEM_NAME("TM157"),
         .price = 3000,
@@ -14061,7 +14061,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM158] =
+    [ITEM_TM_MAGICAL_LEAF] =
     {
         .name = ITEM_NAME("TM158"),
         .price = 3000,
@@ -14072,7 +14072,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM159] =
+    [ITEM_TM_SOLAR_BLADE] =
     {
         .name = ITEM_NAME("TM159"),
         .price = 3000,
@@ -14083,7 +14083,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM160] =
+    [ITEM_TM_FIRE_SPIN] =
     {
         .name = ITEM_NAME("TM160"),
         .price = 3000,
@@ -14094,7 +14094,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM161] =
+    [ITEM_TM_SCARY_FACE] =
     {
         .name = ITEM_NAME("TM161"),
         .price = 3000,
@@ -14105,7 +14105,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM162] =
+    [ITEM_TM_CHARM] =
     {
         .name = ITEM_NAME("TM162"),
         .price = 3000,
@@ -14116,7 +14116,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM163] =
+    [ITEM_TM_IMPRISON] =
     {
         .name = ITEM_NAME("TM163"),
         .price = 3000,
@@ -14127,7 +14127,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM164] =
+    [ITEM_TM_WEATHER_BALL] =
     {
         .name = ITEM_NAME("TM164"),
         .price = 3000,
@@ -14138,7 +14138,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM165] =
+    [ITEM_TM_FAKE_TEARS] =
     {
         .name = ITEM_NAME("TM165"),
         .price = 3000,
@@ -14149,7 +14149,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM166] =
+    [ITEM_TM_SAND_TOMB] =
     {
         .name = ITEM_NAME("TM166"),
         .price = 3000,
@@ -14160,7 +14160,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM167] =
+    [ITEM_TM_ICICLE_SPEAR] =
     {
         .name = ITEM_NAME("TM167"),
         .price = 3000,
@@ -14171,7 +14171,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM168] =
+    [ITEM_TM_MUD_SHOT] =
     {
         .name = ITEM_NAME("TM168"),
         .price = 3000,
@@ -14182,7 +14182,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM169] =
+    [ITEM_TM_ROCK_BLAST] =
     {
         .name = ITEM_NAME("TM169"),
         .price = 3000,
@@ -14193,7 +14193,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM170] =
+    [ITEM_TM_THUNDER_FANG] =
     {
         .name = ITEM_NAME("TM170"),
         .price = 3000,
@@ -14204,7 +14204,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM171] =
+    [ITEM_TM_ICE_FANG] =
     {
         .name = ITEM_NAME("TM171"),
         .price = 3000,
@@ -14215,7 +14215,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM172] =
+    [ITEM_TM_FIRE_FANG] =
     {
         .name = ITEM_NAME("TM172"),
         .price = 3000,
@@ -14226,7 +14226,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM173] =
+    [ITEM_TM_HEX] =
     {
         .name = ITEM_NAME("TM173"),
         .price = 3000,
@@ -14237,7 +14237,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM174] =
+    [ITEM_TM_ELECTROWEB] =
     {
         .name = ITEM_NAME("TM174"),
         .price = 3000,
@@ -14248,7 +14248,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM175] =
+    [ITEM_TM_PHANTOM_FORCE] =
     {
         .name = ITEM_NAME("TM175"),
         .price = 3000,
@@ -14259,7 +14259,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM176] =
+    [ITEM_TM_DRAINING_KISS] =
     {
         .name = ITEM_NAME("TM176"),
         .price = 3000,
@@ -14270,7 +14270,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM177] =
+    [ITEM_TM_GRASSY_TERRAIN] =
     {
         .name = ITEM_NAME("TM177"),
         .price = 3000,
@@ -14281,7 +14281,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM178] =
+    [ITEM_TM_MISTY_TERRAIN] =
     {
         .name = ITEM_NAME("TM178"),
         .price = 3000,
@@ -14292,7 +14292,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM179] =
+    [ITEM_TM_ELECTRIC_TERRAIN] =
     {
         .name = ITEM_NAME("TM179"),
         .price = 3000,
@@ -14303,7 +14303,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM180] =
+    [ITEM_TM_PSYCHIC_TERRAIN] =
     {
         .name = ITEM_NAME("TM180"),
         .price = 3000,
@@ -14314,7 +14314,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM181] =
+    [ITEM_TM_EERIE_IMPULSE] =
     {
         .name = ITEM_NAME("TM181"),
         .price = 3000,
@@ -14325,7 +14325,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM182] =
+    [ITEM_TM_AIR_SLASH] =
     {
         .name = ITEM_NAME("TM182"),
         .price = 3000,
@@ -14336,7 +14336,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM183] =
+    [ITEM_TM_STOMPING_TANTRUM] =
     {
         .name = ITEM_NAME("TM183"),
         .price = 3000,
@@ -14347,7 +14347,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM184] =
+    [ITEM_TM_BREAKING_SWIPE] =
     {
         .name = ITEM_NAME("TM184"),
         .price = 3000,
@@ -14358,7 +14358,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM185] =
+    [ITEM_TM_BUG_BUZZ] =
     {
         .name = ITEM_NAME("TM185"),
         .price = 3000,
@@ -14369,7 +14369,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM186] =
+    [ITEM_TM_NASTY_PLOT] =
     {
         .name = ITEM_NAME("TM186"),
         .price = 3000,
@@ -14380,7 +14380,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM187] =
+    [ITEM_TM_AGILITY] =
     {
         .name = ITEM_NAME("TM187"),
         .price = 3000,
@@ -14391,7 +14391,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM188] =
+    [ITEM_TM_ACID_SPRAY] =
     {
         .name = ITEM_NAME("TM188"),
         .price = 3000,
@@ -14402,7 +14402,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM189] =
+    [ITEM_TM_TRAILBLAZE] =
     {
         .name = ITEM_NAME("TM189"),
         .price = 3000,
@@ -14413,7 +14413,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM190] =
+    [ITEM_TM_CHILLING_WATER] =
     {
         .name = ITEM_NAME("TM190"),
         .price = 3000,
@@ -14424,7 +14424,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM191] =
+    [ITEM_TM_ZEN_HEADBUTT] =
     {
         .name = ITEM_NAME("TM191"),
         .price = 3000,
@@ -14435,7 +14435,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM192] =
+    [ITEM_TM_PSYCHIC_FANGS] =
     {
         .name = ITEM_NAME("TM192"),
         .price = 3000,
@@ -14446,7 +14446,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM193] =
+    [ITEM_TM_SEED_BOMB] =
     {
         .name = ITEM_NAME("TM193"),
         .price = 3000,
@@ -14457,7 +14457,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM194] =
+    [ITEM_TM_SPIKES] =
     {
         .name = ITEM_NAME("TM194"),
         .price = 3000,
@@ -14468,7 +14468,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM195] =
+    [ITEM_TM_TOXIC_SPIKES] =
     {
         .name = ITEM_NAME("TM195"),
         .price = 3000,
@@ -14479,7 +14479,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM196] =
+    [ITEM_TM_IRON_HEAD] =
     {
         .name = ITEM_NAME("TM196"),
         .price = 3000,
@@ -14490,7 +14490,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM197] =
+    [ITEM_TM_POWER_GEM] =
     {
         .name = ITEM_NAME("TM197"),
         .price = 3000,
@@ -14501,7 +14501,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM198] =
+    [ITEM_TM_GUNK_SHOT] =
     {
         .name = ITEM_NAME("TM198"),
         .price = 3000,
@@ -14512,7 +14512,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM199] =
+    [ITEM_TM_IRON_DEFENSE] =
     {
         .name = ITEM_NAME("TM199"),
         .price = 3000,
@@ -14523,7 +14523,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM200] =
+    [ITEM_TM_CRUNCH] =
     {
         .name = ITEM_NAME("TM200"),
         .price = 3000,
@@ -14534,7 +14534,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM201] =
+    [ITEM_TM_LIQUIDATION] =
     {
         .name = ITEM_NAME("TM201"),
         .price = 3000,
@@ -14545,7 +14545,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM202] =
+    [ITEM_TM_HYPER_VOICE] =
     {
         .name = ITEM_NAME("TM202"),
         .price = 3000,
@@ -14556,7 +14556,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM203] =
+    [ITEM_TM_HEAT_WAVE] =
     {
         .name = ITEM_NAME("TM203"),
         .price = 3000,
@@ -14567,7 +14567,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM204] =
+    [ITEM_TM_EARTH_POWER] =
     {
         .name = ITEM_NAME("TM204"),
         .price = 3000,
@@ -14578,7 +14578,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM205] =
+    [ITEM_TM_HYDRO_PUMP] =
     {
         .name = ITEM_NAME("TM205"),
         .price = 3000,
@@ -14589,7 +14589,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM206] =
+    [ITEM_TM_BLAST_BURN] =
     {
         .name = ITEM_NAME("TM206"),
         .price = 3000,
@@ -14600,7 +14600,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM207] =
+    [ITEM_TM_HYDRO_CANNON] =
     {
         .name = ITEM_NAME("TM207"),
         .price = 3000,
@@ -14611,7 +14611,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM208] =
+    [ITEM_TM_FRENZY_PLANT] =
     {
         .name = ITEM_NAME("TM208"),
         .price = 3000,
@@ -14622,7 +14622,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM209] =
+    [ITEM_TM_HURRICANE] =
     {
         .name = ITEM_NAME("TM209"),
         .price = 3000,
@@ -14633,7 +14633,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM210] =
+    [ITEM_TM_FLARE_BLITZ] =
     {
         .name = ITEM_NAME("TM210"),
         .price = 3000,
@@ -14644,7 +14644,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM211] =
+    [ITEM_TM_CLOSE_COMBAT] =
     {
         .name = ITEM_NAME("TM211"),
         .price = 3000,
@@ -14655,7 +14655,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM212] =
+    [ITEM_TM_DRACO_METEOR] =
     {
         .name = ITEM_NAME("TM212"),
         .price = 3000,
@@ -14666,7 +14666,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM213] =
+    [ITEM_TM_STEEL_BEAM] =
     {
         .name = ITEM_NAME("TM213"),
         .price = 3000,
@@ -14677,7 +14677,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM214] =
+    [ITEM_TM_KNOCK_OFF] =
     {
         .name = ITEM_NAME("TM214"),
         .price = 3000,
@@ -14688,7 +14688,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM215] =
+    [ITEM_TM_VACUUM_WAVE] =
     {
         .name = ITEM_NAME("TM215"),
         .price = 3000,
@@ -14699,7 +14699,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM216] =
+    [ITEM_TM_FLIP_TURN] =
     {
         .name = ITEM_NAME("TM216"),
         .price = 3000,
@@ -14710,7 +14710,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM217] =
+    [ITEM_TM_DUAL_WINGBEAT] =
     {
         .name = ITEM_NAME("TM217"),
         .price = 3000,
@@ -14721,7 +14721,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM218] =
+    [ITEM_TM_SCALE_SHOT] =
     {
         .name = ITEM_NAME("TM218"),
         .price = 3000,
@@ -14732,7 +14732,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM219] =
+    [ITEM_TM_MUDDY_WATER] =
     {
         .name = ITEM_NAME("TM219"),
         .price = 3000,
@@ -14743,7 +14743,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM220] =
+    [ITEM_TM_TRIPLE_AXEL] =
     {
         .name = ITEM_NAME("TM220"),
         .price = 3000,
@@ -14754,7 +14754,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM221] =
+    [ITEM_TM_SCORCHING_SANDS] =
     {
         .name = ITEM_NAME("TM221"),
         .price = 3000,
@@ -14765,7 +14765,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM222] =
+    [ITEM_TM_FUTURE_SIGHT] =
     {
         .name = ITEM_NAME("TM222"),
         .price = 3000,
@@ -14776,7 +14776,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM223] =
+    [ITEM_TM_METEOR_BEAM] =
     {
         .name = ITEM_NAME("TM223"),
         .price = 3000,
@@ -15152,7 +15152,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM09] =
+    [ITEM_HM_DEFOG] =
     {
         .name = ITEM_NAME("HM09"),
         .price = 0,
@@ -15163,7 +15163,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM10] =
+    [ITEM_HM_WHIRLPOOL] =
     {
         .name = ITEM_NAME("HM10"),
         .price = 0,
@@ -15174,7 +15174,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_HM11] =
+    [ITEM_HM_ROCK_CLIMB] =
     {
         .name = ITEM_NAME("HM11"),
         .price = 0,
