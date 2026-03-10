@@ -2991,30 +2991,31 @@ void SetMoveEffect(enum BattlerId battlerAtk, enum BattlerId effectBattler, enum
         }
         break;
     case MOVE_EFFECT_SECRET_POWER:
-        if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+        if (IsBattlerAlive(battlerAtk))
         {
-            switch (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+            moveEffect = gBattleEnvironmentInfo[gBattleEnvironment].secretPowerEffect;
+            if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
             {
-            case STATUS_FIELD_MISTY_TERRAIN:
-                moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1;
-                break;
-            case STATUS_FIELD_GRASSY_TERRAIN:
-                moveEffect = MOVE_EFFECT_SLEEP;
-                break;
-            case STATUS_FIELD_ELECTRIC_TERRAIN:
-                moveEffect = MOVE_EFFECT_PARALYSIS;
-                break;
-            case STATUS_FIELD_PSYCHIC_TERRAIN:
-                moveEffect = MOVE_EFFECT_SPD_MINUS_1;
-                break;
-            default:
-                moveEffect = MOVE_EFFECT_PARALYSIS;
-                break;
+                switch (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+                {
+                case STATUS_FIELD_MISTY_TERRAIN:
+                    moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1;
+                    break;
+                case STATUS_FIELD_GRASSY_TERRAIN:
+                    moveEffect = MOVE_EFFECT_SLEEP;
+                    break;
+                case STATUS_FIELD_ELECTRIC_TERRAIN:
+                    moveEffect = MOVE_EFFECT_PARALYSIS;
+                    break;
+                case STATUS_FIELD_PSYCHIC_TERRAIN:
+                    moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                    break;
+                default:
+                    moveEffect = MOVE_EFFECT_PARALYSIS;
+                    break;
+                }
             }
-        }
-        else
-        {
-            SetMoveEffect(battlerAtk, effectBattler, gBattleEnvironmentInfo[gBattleEnvironment].secretPowerEffect, battleScript, effectFlags);
+            SetMoveEffect(battlerAtk, effectBattler, moveEffect, battleScript, effectFlags);
         }
         break;
     case MOVE_EFFECT_PSYCHIC_NOISE:
