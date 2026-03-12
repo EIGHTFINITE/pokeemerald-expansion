@@ -941,7 +941,7 @@ static void GetItemNameFromPocket(u8 *dest, enum Item itemId)
         if (GetItemTMHMIndex(itemId) > NUM_TECHNICAL_MACHINES)
         {
             // Get HM number
-            ConvertIntToDecimalStringN(gStringVar1, GetItemTMHMIndex(itemId) - NUM_TECHNICAL_MACHINES, STR_CONV_MODE_LEADING_ZEROS, 1);
+            ConvertIntToDecimalStringN(gStringVar1, GetItemTMHMIndex(itemId) - NUM_TECHNICAL_MACHINES, STR_CONV_MODE_LEADING_ZEROS, NUM_HIDDEN_MACHINES >= 10 ? 2 : 1);
             StringExpandPlaceholders(dest, gText_NumberItem_HM);
         }
         else
