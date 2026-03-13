@@ -1130,8 +1130,8 @@ bool32 ShouldDefiantCompetitiveActivate(enum BattlerId battler, enum Ability abi
 
 void PrepareStringBattle(enum StringID stringId, enum BattlerId battler)
 {
-    u16 battlerAbility = GetBattlerAbility(battler);
-    u16 targetAbility = GetBattlerAbility(gBattlerTarget);
+    enum Ability battlerAbility = GetBattlerAbility(battler);
+    enum Ability targetAbility = GetBattlerAbility(gBattlerTarget);
     // Support for Contrary ability.
     // If a move attempted to raise stat - print "won't increase".
     // If a move attempted to lower stat - print "won't decrease".
@@ -5000,7 +5000,7 @@ enum Stat GetHighestStatId(enum BattlerId battler)
     bool32 wonderRoom = (gFieldStatuses & STATUS_FIELD_WONDER_ROOM) != 0;
     u32 highestStat = gBattleMons[battler].attack;
 
-    for (u32 stat = STAT_DEF; stat < NUM_STATS; stat++)
+    for (enum Stat stat = STAT_DEF; stat < NUM_STATS; stat++)
     {
         if (stat == STAT_SPEED)
             continue;
@@ -5074,7 +5074,7 @@ enum Stat GetParadoxHighestStatId(enum BattlerId battler)
     bool32 wonderRoom = gFieldStatuses & STATUS_FIELD_WONDER_ROOM;
     u32 highestStat = GetStatValueWithStages(battler, STAT_ATK);
 
-    for (u32 stat = STAT_DEF; stat < NUM_STATS; stat++)
+    for (enum Stat stat = STAT_DEF; stat < NUM_STATS; stat++)
     {
         if (stat == STAT_SPEED)
             continue;
@@ -7153,7 +7153,7 @@ static inline u32 CalcDefenseStat(struct BattleContext *ctx)
         break;
     case ABILITY_QUARK_DRIVE:
         {
-            u32 defHighestStat = GetParadoxBoostedStatId(battlerDef);
+            enum Stat defHighestStat = GetParadoxBoostedStatId(battlerDef);
             if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleMons[battlerDef].volatiles.boosterEnergyActivated)
              && ((IsBattleMovePhysical(move) && defHighestStat == STAT_DEF) || (IsBattleMoveSpecial(move) && defHighestStat == STAT_SPDEF))
              && !(gBattleMons[battlerDef].volatiles.transformed))
@@ -10903,4 +10903,3 @@ bool32 IsNaturalEnemy(u32 speciesAttacker, u32 speciesTarget)
     }
     return FALSE;
 }
-
