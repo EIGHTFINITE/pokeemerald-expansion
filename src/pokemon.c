@@ -6556,6 +6556,8 @@ enum Type CheckDynamicMoveType(struct Pokemon *mon, enum Move move, enum Battler
     enum Type moveType = GetDynamicMoveType(mon, move, battler, GetBattlerAbility(battler), GetBattlerHoldEffect(battler), state);
     if (moveType != TYPE_NONE)
         return moveType;
+    if (move == MOVE_CURSE)
+        return TYPE_MYSTERY;
     return GetMoveType(move);
 }
 
