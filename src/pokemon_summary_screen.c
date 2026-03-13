@@ -4486,6 +4486,8 @@ static void SetMoveTypeIcons(void)
                 enum MonState state = gMain.inBattle ? MON_IN_BATTLE : MON_OUTSIDE_BATTLE;
                 type = CheckDynamicMoveType(mon, summary->moves[i], 0, state); // Bug: in battle, this only shows the dynamic type of battler in position 0
             }
+            else if (summary->moves[i] == MOVE_CURSE)
+                type = TYPE_MYSTERY;
 
             SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
@@ -4519,6 +4521,8 @@ static void SetNewMoveTypeIcon(void)
         enum MonState state = gMain.inBattle ? MON_IN_BATTLE : MON_OUTSIDE_BATTLE;
         type = CheckDynamicMoveType(mon, sMonSummaryScreen->newMove, 0, state);  // Bug: in battle, this only shows the dynamic type of battler in position 0
     }
+    else if (sMonSummaryScreen->newMove == MOVE_CURSE)
+        type = TYPE_MYSTERY;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {

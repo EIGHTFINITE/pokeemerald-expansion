@@ -175,12 +175,19 @@ const void *GetItemIconPic(enum Item itemId)
 
 const u16 *GetItemIconPalette(enum Item itemId)
 {
+    enum Move move;
+
     if (itemId == ITEM_LIST_END)
         return gItemIconPalette_ReturnToFieldArrow;
     if (itemId >= ITEMS_COUNT)
         return gItemsInfo[0].iconPalette;
     if (gItemsInfo[itemId].pocket == POCKET_TM_HM)
-        return gTypesInfo[GetMoveType(GetItemTMHMMoveId(itemId))].paletteTMHM;
+    {
+        move = GetItemTMHMMoveId(itemId);
+        if (move == MOVE_CURSE)
+            return gTypesInfo[TYPE_MYSTERY].paletteTMHM;
+        return gTypesInfo[GetMoveType(move)].paletteTMHM;
+    }
 
     return gItemsInfo[itemId].iconPalette;
 }
