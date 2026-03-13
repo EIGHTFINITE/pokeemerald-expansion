@@ -4397,7 +4397,11 @@ static enum BattlerId GetCurrentBattlerFromSumIndex(u32 sumIndex)
 static enum Type SummaryScreen_GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum Type type)
 {
     if (!P_SHOW_DYNAMIC_TYPES)
+    {
+        if (move == MOVE_CURSE)
+            return TYPE_MYSTERY;
         return type;
+    }
 
     if (gBattleStruct == NULL)
         return CheckDynamicMoveType(mon, move, 0, MON_OUTSIDE_BATTLE);
