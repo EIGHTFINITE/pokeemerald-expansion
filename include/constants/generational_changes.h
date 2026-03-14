@@ -231,6 +231,7 @@
     F(POKERUS_HERD_IMMUNITY,     pokerusHerdImmunity,     (u32, TRUE))          \
     F(POKERUS_WEAK_VARIANT,      pokerusWeakVariant,      (u32, TRUE))          \
 
+#define AI_CONFIG_DEFINITIONS(F) \
 
 #define GET_CONFIG_MAXIMUM(_typeMaxValue, ...) INVOKE_WITH_B(GET_CONFIG_MAXIMUM_, _typeMaxValue)
 #define GET_CONFIG_MAXIMUM_(_type, ...) FIRST(__VA_OPT__(FIRST(__VA_ARGS__),) MAX_BITS((sizeof(_type) * 8)))
@@ -241,6 +242,7 @@ enum ConfigTag
 {
     BATTLE_CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
     POKEMON_CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
+    AI_CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
     CONFIG_COUNT
 };
 
