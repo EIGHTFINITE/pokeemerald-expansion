@@ -6551,9 +6551,12 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_RETALIATE:
-        if (gSideTimers[atkSide].retaliateTimer == 1)
+    {
+        u32 retaliateTimer = gSideTimers[atkSide].retaliateTimer;
+        if (retaliateTimer  == 1 || (gAiLogicData->switchInCalc && retaliateTimer == 2))
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
+    }
     case EFFECT_SOLAR_BEAM:
         if ((GetConfig(B_SANDSTORM_SOLAR_BEAM) >= GEN_3 && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_LOW_LIGHT))
             || IsBattlerWeatherAffected(battlerAtk, (B_WEATHER_RAIN | B_WEATHER_ICY_ANY | B_WEATHER_FOG))) // Excludes Sandstorm
