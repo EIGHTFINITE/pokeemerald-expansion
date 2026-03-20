@@ -5602,6 +5602,39 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         break;
     case EFFECT_HIDDEN_POWER:
         {
+            if (move == MOVE_HIDDEN_POWER_FIGHTING)
+                return TYPE_FIGHTING;
+            if (move == MOVE_HIDDEN_POWER_FLYING)
+                return TYPE_FLYING;
+            if (move == MOVE_HIDDEN_POWER_POISON)
+                return TYPE_POISON;
+            if (move == MOVE_HIDDEN_POWER_GROUND)
+                return TYPE_GROUND;
+            if (move == MOVE_HIDDEN_POWER_ROCK)
+                return TYPE_ROCK;
+            if (move == MOVE_HIDDEN_POWER_BUG)
+                return TYPE_BUG;
+            if (move == MOVE_HIDDEN_POWER_GHOST)
+                return TYPE_GHOST;
+            if (move == MOVE_HIDDEN_POWER_STEEL)
+                return TYPE_STEEL;
+            if (move == MOVE_HIDDEN_POWER_FIRE)
+                return TYPE_FIRE;
+            if (move == MOVE_HIDDEN_POWER_WATER)
+                return TYPE_WATER;
+            if (move == MOVE_HIDDEN_POWER_GRASS)
+                return TYPE_GRASS;
+            if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+                return TYPE_ELECTRIC;
+            if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+                return TYPE_PSYCHIC;
+            if (move == MOVE_HIDDEN_POWER_ICE)
+                return TYPE_ICE;
+            if (move == MOVE_HIDDEN_POWER_DRAGON)
+                return TYPE_DRAGON;
+            if (move == MOVE_HIDDEN_POWER_DARK)
+                return TYPE_DARK;
+
             u32 typeBits = 0;
             if (state == MON_IN_BATTLE)
             {
