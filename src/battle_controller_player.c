@@ -1747,6 +1747,38 @@ static void MoveSelectionDisplayMoveType(enum BattlerId battler)
     }
     else if (move == MOVE_CURSE)
         type = TYPE_MYSTERY;
+    else if (move == MOVE_HIDDEN_POWER_FIGHTING)
+        type = TYPE_FIGHTING;
+    else if (move == MOVE_HIDDEN_POWER_FLYING)
+        type = TYPE_FLYING;
+    else if (move == MOVE_HIDDEN_POWER_POISON)
+        type = TYPE_POISON;
+    else if (move == MOVE_HIDDEN_POWER_GROUND)
+        type = TYPE_GROUND;
+    else if (move == MOVE_HIDDEN_POWER_ROCK)
+        type = TYPE_ROCK;
+    else if (move == MOVE_HIDDEN_POWER_BUG)
+        type = TYPE_BUG;
+    else if (move == MOVE_HIDDEN_POWER_GHOST)
+        type = TYPE_GHOST;
+    else if (move == MOVE_HIDDEN_POWER_STEEL)
+        type = TYPE_STEEL;
+    else if (move == MOVE_HIDDEN_POWER_FIRE)
+        type = TYPE_FIRE;
+    else if (move == MOVE_HIDDEN_POWER_WATER)
+        type = TYPE_WATER;
+    else if (move == MOVE_HIDDEN_POWER_GRASS)
+        type = TYPE_GRASS;
+    else if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+        type = TYPE_ELECTRIC;
+    else if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+        type = TYPE_PSYCHIC;
+    else if (move == MOVE_HIDDEN_POWER_ICE)
+        type = TYPE_ICE;
+    else if (move == MOVE_HIDDEN_POWER_DRAGON)
+        type = TYPE_DRAGON;
+    else if (move == MOVE_HIDDEN_POWER_DARK)
+        type = TYPE_DARK;
     end = StringCopy(txtPtr, gTypesInfo[type].name);
 
     PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
