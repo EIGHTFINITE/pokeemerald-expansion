@@ -2691,6 +2691,38 @@ static void PrintTMHMMoveData(enum Item itemId)
         move = ItemIdToBattleMoveId(itemId);
         if (move == MOVE_CURSE)
             BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_MYSTERY + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_FIGHTING)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_FIGHTING + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_FLYING)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_FLYING + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_POISON)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_POISON + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_GROUND)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_GROUND + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_ROCK)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_ROCK + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_BUG)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_BUG + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_GHOST)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_GHOST + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_STEEL)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_STEEL + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_FIRE)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_FIRE + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_WATER)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_WATER + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_GRASS)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_GRASS + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_ELECTRIC + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_PSYCHIC + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_ICE)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_ICE + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_DRAGON)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_DRAGON + 1, 0, 0);
+        else if (move == MOVE_HIDDEN_POWER_DARK)
+            BlitMenuInfoIcon(WIN_TMHM_INFO, TYPE_DARK + 1, 0, 0);
         else
             BlitMenuInfoIcon(WIN_TMHM_INFO, GetMoveType(move) + 1, 0, 0);
 
