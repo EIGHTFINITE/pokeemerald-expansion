@@ -178,3 +178,275 @@ SINGLE_BATTLE_TEST("Hidden Power always triggers Counter instead of Mirror Coat 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COUNTER, opponent);
     }
 }
+
+SINGLE_BATTLE_TEST("Hidden Power Fighting is a Normal-type move that always changes to a Fighting-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_FIGHTING && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_FIGHTING);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_FIGHTING) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_FIGHTING) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_FIGHTING); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Fighting type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_FIGHTING, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Flying is a Normal-type move that always changes to a Flying-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_FLYING && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_FLYING);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_FLYING) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_FLYING) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_FLYING); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Flying type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_FLYING, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Poison is a Normal-type move that always changes to a Poison-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_POISON && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_POISON);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_POISON) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_POISON) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_POISON); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Poison type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_POISON, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Ground is a Normal-type move that always changes to a Ground-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_GROUND && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_GROUND);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_GROUND) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_GROUND) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_GROUND); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Ground type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_GROUND, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Rock is a Normal-type move that always changes to a Rock-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_ROCK && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_ROCK);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_ROCK) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_ROCK) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_ROCK); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Rock type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_ROCK, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Bug is a Normal-type move that always changes to a Bug-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_BUG && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_BUG);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_BUG) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_BUG) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_BUG); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Bug type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_BUG, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Ghost is a Normal-type move that always changes to a Ghost-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_GHOST && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_GHOST);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_GHOST) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_GHOST) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_GHOST); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Ghost type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_GHOST, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Steel is a Normal-type move that always changes to a Steel-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_STEEL && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_STEEL);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_STEEL) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_STEEL) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_STEEL); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Steel type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_STEEL, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Fire is a Normal-type move that always changes to a Fire-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_FIRE && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_FIRE);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_FIRE) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_FIRE) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_FIRE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Fire type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_FIRE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Water is a Normal-type move that always changes to a Water-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_WATER && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_WATER);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_WATER) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_WATER) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_WATER); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Water type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_WATER, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Grass is a Normal-type move that always changes to a Grass-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_GRASS && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_GRASS);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_GRASS) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_GRASS) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_GRASS); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Grass type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_GRASS, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Electric is a Normal-type move that always changes to a Electric-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_ELECTRIC && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_ELECTRIC);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_ELECTRIC) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_ELECTRIC) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_ELECTRIC); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Electric type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_ELECTRIC, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Psychic is a Normal-type move that always changes to a Psychic-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_PSYCHIC && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_PSYCHIC);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_PSYCHIC) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_PSYCHIC) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_PSYCHIC); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Psychic type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_PSYCHIC, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Ice is a Normal-type move that always changes to a Ice-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_ICE && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_ICE);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_ICE) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_ICE) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_ICE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Ice type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_ICE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Dragon is a Normal-type move that always changes to a Dragon-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_DRAGON && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_DRAGON);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_DRAGON) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_DRAGON) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_DRAGON); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Dragon type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_DRAGON, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Hidden Power Dark is a Normal-type move that always changes to a Dark-type move")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_DARK && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_DARK);
+        ASSUME(GetMoveType(MOVE_HIDDEN_POWER_DARK) == TYPE_NORMAL);
+        ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER_DARK) == EFFECT_HIDDEN_POWER);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HIDDEN_POWER_DARK); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_PROTEAN);
+        MESSAGE("The opposing Kecleon transformed into the Dark type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HIDDEN_POWER_DARK, opponent);
+    }
+}
