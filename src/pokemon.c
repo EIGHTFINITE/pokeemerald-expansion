@@ -7277,6 +7277,38 @@ enum Type CheckDynamicMoveType(struct Pokemon *mon, enum Move move, enum Battler
         return moveType;
     if (move == MOVE_CURSE)
         return TYPE_MYSTERY;
+    else if (move == MOVE_HIDDEN_POWER_FIGHTING)
+        return TYPE_FIGHTING;
+    else if (move == MOVE_HIDDEN_POWER_FLYING)
+        return TYPE_FLYING;
+    else if (move == MOVE_HIDDEN_POWER_POISON)
+        return TYPE_POISON;
+    else if (move == MOVE_HIDDEN_POWER_GROUND)
+        return TYPE_GROUND;
+    else if (move == MOVE_HIDDEN_POWER_ROCK)
+        return TYPE_ROCK;
+    else if (move == MOVE_HIDDEN_POWER_BUG)
+        return TYPE_BUG;
+    else if (move == MOVE_HIDDEN_POWER_GHOST)
+        return TYPE_GHOST;
+    else if (move == MOVE_HIDDEN_POWER_STEEL)
+        return TYPE_STEEL;
+    else if (move == MOVE_HIDDEN_POWER_FIRE)
+        return TYPE_FIRE;
+    else if (move == MOVE_HIDDEN_POWER_WATER)
+        return TYPE_WATER;
+    else if (move == MOVE_HIDDEN_POWER_GRASS)
+        return TYPE_GRASS;
+    else if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+        return TYPE_ELECTRIC;
+    else if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+        return TYPE_PSYCHIC;
+    else if (move == MOVE_HIDDEN_POWER_ICE)
+        return TYPE_ICE;
+    else if (move == MOVE_HIDDEN_POWER_DRAGON)
+        return TYPE_DRAGON;
+    else if (move == MOVE_HIDDEN_POWER_DARK)
+        return TYPE_DARK;
     return GetMoveType(move);
 }
 

@@ -5180,6 +5180,38 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     {
         if (move == MOVE_CURSE)
             SetTypeIconPosAndPal(TYPE_MYSTERY, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_FIGHTING)
+            SetTypeIconPosAndPal(TYPE_FIGHTING, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_FLYING)
+            SetTypeIconPosAndPal(TYPE_FLYING, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_POISON)
+            SetTypeIconPosAndPal(TYPE_POISON, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_GROUND)
+            SetTypeIconPosAndPal(TYPE_GROUND, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_ROCK)
+            SetTypeIconPosAndPal(TYPE_ROCK, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_BUG)
+            SetTypeIconPosAndPal(TYPE_BUG, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_GHOST)
+            SetTypeIconPosAndPal(TYPE_GHOST, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_STEEL)
+            SetTypeIconPosAndPal(TYPE_STEEL, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_FIRE)
+            SetTypeIconPosAndPal(TYPE_FIRE, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_WATER)
+            SetTypeIconPosAndPal(TYPE_WATER, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_GRASS)
+            SetTypeIconPosAndPal(TYPE_GRASS, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+            SetTypeIconPosAndPal(TYPE_ELECTRIC, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+            SetTypeIconPosAndPal(TYPE_PSYCHIC, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_ICE)
+            SetTypeIconPosAndPal(TYPE_ICE, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_DRAGON)
+            SetTypeIconPosAndPal(TYPE_DRAGON, moves_x + 146, moves_y + 17, 0);
+        else if (move == MOVE_HIDDEN_POWER_DARK)
+            SetTypeIconPosAndPal(TYPE_DARK, moves_x + 146, moves_y + 17, 0);
         else
             SetTypeIconPosAndPal(GetMoveType(move), moves_x + 146, moves_y + 17, 0);
         SetSpriteInvisibility(1, TRUE);

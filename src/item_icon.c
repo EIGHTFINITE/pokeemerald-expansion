@@ -184,6 +184,38 @@ const u16 *GetItemIconPalette(enum Item itemId)
         enum Move move = GetItemTMHMMoveId(itemId);
         if (move == MOVE_CURSE)
             return gTypesInfo[TYPE_MYSTERY].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_FIGHTING)
+            return gTypesInfo[TYPE_FIGHTING].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_FLYING)
+            return gTypesInfo[TYPE_FLYING].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_POISON)
+            return gTypesInfo[TYPE_POISON].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_GROUND)
+            return gTypesInfo[TYPE_GROUND].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_ROCK)
+            return gTypesInfo[TYPE_ROCK].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_BUG)
+            return gTypesInfo[TYPE_BUG].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_GHOST)
+            return gTypesInfo[TYPE_GHOST].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_STEEL)
+            return gTypesInfo[TYPE_STEEL].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_FIRE)
+            return gTypesInfo[TYPE_FIRE].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_WATER)
+            return gTypesInfo[TYPE_WATER].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_GRASS)
+            return gTypesInfo[TYPE_GRASS].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+            return gTypesInfo[TYPE_ELECTRIC].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+            return gTypesInfo[TYPE_PSYCHIC].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_ICE)
+            return gTypesInfo[TYPE_ICE].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_DRAGON)
+            return gTypesInfo[TYPE_DRAGON].paletteTMHM;
+        else if (move == MOVE_HIDDEN_POWER_DARK)
+            return gTypesInfo[TYPE_DARK].paletteTMHM;
         return gTypesInfo[GetMoveType(move)].paletteTMHM;
     }
 

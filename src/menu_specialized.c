@@ -785,6 +785,38 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     }
     else if (chosenMove == MOVE_CURSE)
         str = gTypesInfo[TYPE_MYSTERY].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_FIGHTING)
+        str = gTypesInfo[TYPE_FIGHTING].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_FLYING)
+        str = gTypesInfo[TYPE_FLYING].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_POISON)
+        str = gTypesInfo[TYPE_POISON].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_GROUND)
+        str = gTypesInfo[TYPE_GROUND].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_ROCK)
+        str = gTypesInfo[TYPE_ROCK].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_BUG)
+        str = gTypesInfo[TYPE_BUG].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_GHOST)
+        str = gTypesInfo[TYPE_GHOST].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_STEEL)
+        str = gTypesInfo[TYPE_STEEL].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_FIRE)
+        str = gTypesInfo[TYPE_FIRE].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_WATER)
+        str = gTypesInfo[TYPE_WATER].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_GRASS)
+        str = gTypesInfo[TYPE_GRASS].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_ELECTRIC)
+        str = gTypesInfo[TYPE_ELECTRIC].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_PSYCHIC)
+        str = gTypesInfo[TYPE_PSYCHIC].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_ICE)
+        str = gTypesInfo[TYPE_ICE].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_DRAGON)
+        str = gTypesInfo[TYPE_DRAGON].name;
+    else if (chosenMove == MOVE_HIDDEN_POWER_DARK)
+        str = gTypesInfo[TYPE_DARK].name;
     else
         str = gTypesInfo[GetMoveType(chosenMove)].name;
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 4, 25, TEXT_SKIP_DRAW, NULL);
