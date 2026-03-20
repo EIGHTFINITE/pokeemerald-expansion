@@ -4488,6 +4488,38 @@ static void SetMoveTypeIcons(void)
             }
             else if (summary->moves[i] == MOVE_CURSE)
                 type = TYPE_MYSTERY;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_FIGHTING)
+                type = TYPE_FIGHTING;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_FLYING)
+                type = TYPE_FLYING;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_POISON)
+                type = TYPE_POISON;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_GROUND)
+                type = TYPE_GROUND;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_ROCK)
+                type = TYPE_ROCK;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_BUG)
+                type = TYPE_BUG;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_GHOST)
+                type = TYPE_GHOST;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_STEEL)
+                type = TYPE_STEEL;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_FIRE)
+                type = TYPE_FIRE;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_WATER)
+                type = TYPE_WATER;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_GRASS)
+                type = TYPE_GRASS;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_ELECTRIC)
+                type = TYPE_ELECTRIC;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_PSYCHIC)
+                type = TYPE_PSYCHIC;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_ICE)
+                type = TYPE_ICE;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_DRAGON)
+                type = TYPE_DRAGON;
+            else if (summary->moves[i] == MOVE_HIDDEN_POWER_DARK)
+                type = TYPE_DARK;
 
             SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
@@ -4523,6 +4555,38 @@ static void SetNewMoveTypeIcon(void)
     }
     else if (sMonSummaryScreen->newMove == MOVE_CURSE)
         type = TYPE_MYSTERY;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_FIGHTING)
+        type = TYPE_FIGHTING;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_FLYING)
+        type = TYPE_FLYING;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_POISON)
+        type = TYPE_POISON;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_GROUND)
+        type = TYPE_GROUND;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_ROCK)
+        type = TYPE_ROCK;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_BUG)
+        type = TYPE_BUG;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_GHOST)
+        type = TYPE_GHOST;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_STEEL)
+        type = TYPE_STEEL;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_FIRE)
+        type = TYPE_FIRE;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_WATER)
+        type = TYPE_WATER;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_GRASS)
+        type = TYPE_GRASS;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_ELECTRIC)
+        type = TYPE_ELECTRIC;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_PSYCHIC)
+        type = TYPE_PSYCHIC;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_ICE)
+        type = TYPE_ICE;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_DRAGON)
+        type = TYPE_DRAGON;
+    else if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER_DARK)
+        type = TYPE_DARK;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {

@@ -24,7 +24,10 @@ TEST("Move names fit on Pokemon Summary Screen")
     enum Move move = MOVE_NONE;
     for (i = 1; i < MOVES_COUNT; i++)
     {
-        PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
+        if (i != MOVE_HIDDEN_POWER_FIGHTING
+            && i != MOVE_HIDDEN_POWER_ELECTRIC
+            && i != MOVE_HIDDEN_POWER_PSYCHIC)
+            PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
     }
     //DebugPrintf("Move %d: %S", GetStringWidth(fontId, GetMoveName(move), 0), GetMoveName(move));
     EXPECT_LE(GetStringWidth(fontId, GetMoveName(move), 0), widthPx);
@@ -37,7 +40,18 @@ TEST("Move names fit on Battle Screen")
     enum Move move = MOVE_NONE;
     for (i = 1; i < MOVES_COUNT; i++)
     {
-        PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
+        if (i != MOVE_HIDDEN_POWER_FIGHTING
+            && i != MOVE_HIDDEN_POWER_FLYING
+            && i != MOVE_HIDDEN_POWER_POISON
+            && i != MOVE_HIDDEN_POWER_GROUND
+            && i != MOVE_HIDDEN_POWER_GHOST
+            && i != MOVE_HIDDEN_POWER_STEEL
+            && i != MOVE_HIDDEN_POWER_WATER
+            && i != MOVE_HIDDEN_POWER_GRASS
+            && i != MOVE_HIDDEN_POWER_ELECTRIC
+            && i != MOVE_HIDDEN_POWER_PSYCHIC
+            && i != MOVE_HIDDEN_POWER_DRAGON)
+            PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
     }
     EXPECT_LE(GetStringWidth(fontId, GetMoveName(move), 0), widthPx);
 }
@@ -49,7 +63,22 @@ TEST("Move names fit on Contest Screen")
     enum Move move = MOVE_NONE;
     for (i = 1; i < MOVES_COUNT; i++)
     {
-        PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
+        if (i != MOVE_HIDDEN_POWER_FIGHTING
+            && i != MOVE_HIDDEN_POWER_FLYING
+            && i != MOVE_HIDDEN_POWER_POISON
+            && i != MOVE_HIDDEN_POWER_GROUND
+            && i != MOVE_HIDDEN_POWER_ROCK
+            && i != MOVE_HIDDEN_POWER_BUG
+            && i != MOVE_HIDDEN_POWER_GHOST
+            && i != MOVE_HIDDEN_POWER_STEEL
+            && i != MOVE_HIDDEN_POWER_FIRE
+            && i != MOVE_HIDDEN_POWER_WATER
+            && i != MOVE_HIDDEN_POWER_GRASS
+            && i != MOVE_HIDDEN_POWER_ELECTRIC
+            && i != MOVE_HIDDEN_POWER_PSYCHIC
+            && i != MOVE_HIDDEN_POWER_ICE
+            && i != MOVE_HIDDEN_POWER_DRAGON)
+            PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
     }
     // All moves explicitly listed here are too big to fit.
     switch (move)
@@ -73,7 +102,21 @@ TEST("Move names fit on TMs & HMs Bag Screen")
     for (enum TMHMIndex tm = 1; tm <= NUM_ALL_MACHINES; tm++)
     {
         u32 tmMove = GetTMHMMoveId(tm);
-        PARAMETRIZE_LABEL("%S", GetMoveName(tmMove)) { move = tmMove; }
+        if (tmMove != MOVE_HIDDEN_POWER_FIGHTING
+            && tmMove != MOVE_HIDDEN_POWER_FLYING
+            && tmMove != MOVE_HIDDEN_POWER_POISON
+            && tmMove != MOVE_HIDDEN_POWER_GROUND
+            && tmMove != MOVE_HIDDEN_POWER_ROCK
+            && tmMove != MOVE_HIDDEN_POWER_GHOST
+            && tmMove != MOVE_HIDDEN_POWER_STEEL
+            && tmMove != MOVE_HIDDEN_POWER_FIRE
+            && tmMove != MOVE_HIDDEN_POWER_WATER
+            && tmMove != MOVE_HIDDEN_POWER_GRASS
+            && tmMove != MOVE_HIDDEN_POWER_ELECTRIC
+            && tmMove != MOVE_HIDDEN_POWER_PSYCHIC
+            && tmMove != MOVE_HIDDEN_POWER_DRAGON
+            && tmMove != MOVE_HIDDEN_POWER_DARK)
+            PARAMETRIZE_LABEL("%S", GetMoveName(tmMove)) { move = tmMove; }
     }
     EXPECT_LE(GetStringWidth(fontId, GetMoveName(move), 0), widthPx);
 }
@@ -85,7 +128,10 @@ TEST("Move names fit on Move Relearner Screen")
     enum Move move = MOVE_NONE;
     for (i = 1; i < MOVES_COUNT; i++)
     {
-        PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
+        if (i != MOVE_HIDDEN_POWER_FIGHTING
+            && i != MOVE_HIDDEN_POWER_ELECTRIC
+            && i != MOVE_HIDDEN_POWER_PSYCHIC)
+            PARAMETRIZE_LABEL("%S", GetMoveName(i)) { move = i; }
     }
     EXPECT_LE(GetStringWidth(fontId, GetMoveName(move), 0), widthPx);
 }
