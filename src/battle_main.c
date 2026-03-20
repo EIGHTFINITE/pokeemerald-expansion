@@ -5930,6 +5930,39 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
         break;
     case EFFECT_HIDDEN_POWER:
         {
+            if (move == MOVE_HIDDEN_POWER_FIGHTING)
+                return ((TYPE_FIGHTING | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_FLYING)
+                return ((TYPE_FLYING | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_POISON)
+                return ((TYPE_POISON | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_GROUND)
+                return ((TYPE_GROUND | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_ROCK)
+                return ((TYPE_ROCK | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_BUG)
+                return ((TYPE_BUG | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_GHOST)
+                return ((TYPE_GHOST | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_STEEL)
+                return ((TYPE_STEEL | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_FIRE)
+                return ((TYPE_FIRE | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_WATER)
+                return ((TYPE_WATER | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_GRASS)
+                return ((TYPE_GRASS | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_ELECTRIC)
+                return ((TYPE_ELECTRIC | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_PSYCHIC)
+                return ((TYPE_PSYCHIC | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_ICE)
+                return ((TYPE_ICE | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_DRAGON)
+                return ((TYPE_DRAGON | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+            if (move == MOVE_HIDDEN_POWER_DARK)
+                return ((TYPE_DARK | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY) & 0x3F);
+
             u32 typeBits = 0;
             if (state == MON_IN_BATTLE)
             {
