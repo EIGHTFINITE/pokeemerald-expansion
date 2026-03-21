@@ -888,7 +888,7 @@ SECTIONS {
         sound/songs/midi/se_m_explosion.o(.rodata);
         sound/songs/midi/se_m_absorb_2.o(.rodata);
         sound/songs/midi/se_m_absorb.o(.rodata);
-        sound/songs/se_m_screech.o(.rodata);
+        sound/songs/midi/se_m_screech.o(.rodata);
         sound/songs/midi/se_m_bubble_beam.o(.rodata);
         sound/songs/midi/se_m_bubble_beam2.o(.rodata);
         sound/songs/midi/se_m_supersonic.o(.rodata);
@@ -904,7 +904,7 @@ SECTIONS {
         sound/songs/midi/se_m_swagger2.o(.rodata);
         sound/songs/midi/se_m_heal_bell.o(.rodata);
         sound/songs/midi/se_m_confuse_ray.o(.rodata);
-        sound/songs/se_m_snore.o(.rodata);
+        sound/songs/midi/se_m_snore.o(.rodata);
         sound/songs/midi/se_m_brick_break.o(.rodata);
         sound/songs/midi/se_m_giga_drain.o(.rodata);
         sound/songs/midi/se_m_psybeam2.o(.rodata);
@@ -944,7 +944,7 @@ SECTIONS {
         sound/songs/midi/se_m_earthquake.o(.rodata);
         sound/songs/midi/se_m_twister.o(.rodata);
         sound/songs/midi/se_m_sweet_scent.o(.rodata);
-        sound/songs/se_m_yawn.o(.rodata);
+        sound/songs/midi/se_m_yawn.o(.rodata);
         sound/songs/midi/se_m_sky_uppercut.o(.rodata);
         sound/songs/midi/se_m_stat_increase.o(.rodata);
         sound/songs/midi/se_m_heat_wave.o(.rodata);
