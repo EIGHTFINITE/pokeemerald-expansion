@@ -9923,7 +9923,7 @@ bool32 IsSleepClauseActiveForSide(enum BattleSide battlerSide)
 
 bool32 IsSleepClauseEnabled(void)
 {
-    if (B_SLEEP_CLAUSE)
+    if (GetConfig(B_SLEEP_CLAUSE))
         return TRUE;
     if (FlagGet(B_FLAG_SLEEP_CLAUSE))
         return TRUE;
