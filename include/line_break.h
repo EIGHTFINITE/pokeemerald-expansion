@@ -28,7 +28,9 @@ enum ToggleScrollPrompt
 };
 
 void StripLineBreaks(u8 *src);
+void StripLineBreaksReconnectHyphens(u8 *src);
 u32 CountLineBreaks(u8 *src);
+u32 RedoStringBreaksAndGetFontId(u8 *string, u32 maxWidth, u32 screenLines, u8 widestFontId, enum ToggleScrollPrompt toggleScrollPrompt);
 void BreakStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, enum ToggleScrollPrompt toggleScrollPrompt);
 void BreakSubStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, enum ToggleScrollPrompt toggleScrollPrompt);
 
