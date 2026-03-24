@@ -24,6 +24,7 @@
 
 // TM config
 #define I_REUSABLE_TMS          TRUE        // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
+#define I_TM_HM_MOVE_DESCRIPTION    GEN_5   // In Gen5+, TMs & HMs always use the move description. Setting this to GEN_5 or higher may reduce effort needed to add new TMs but customizing the formatting of TM & HM descriptions will no longer be possible.
 
 // Exp. Share config
 // To use this feature, replace the 0 with the flag ID you're assigning it to.
