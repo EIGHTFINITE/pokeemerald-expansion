@@ -2599,7 +2599,7 @@ static u32 GetGlyphWidth_ShortNarrower(u16 glyphId, bool32 isJapanese)
         return gFontShortNarrowerLatinGlyphWidths[glyphId];
 }
 
-static const s8 sNarrowerFontIds[] =
+const s8 gNarrowerFontIds[] =
 {
     [FONT_SMALL] = FONT_SMALL_NARROW,
     [FONT_NORMAL] = FONT_NARROW,
@@ -2623,7 +2623,7 @@ u32 GetFontIdToFit(const u8 *string, u32 fontId, u32 letterSpacing, u32 widthPx)
 {
     for (;;)
     {
-        s32 narrowerFontId = sNarrowerFontIds[fontId];
+        s32 narrowerFontId = gNarrowerFontIds[fontId];
         if (narrowerFontId == -1)
             return fontId;
         if (GetStringWidth(fontId, string, letterSpacing) <= widthPx)
