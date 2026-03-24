@@ -157,6 +157,7 @@ struct FontInfo
 };
 
 extern const struct FontInfo *gFonts;
+extern const s8 gNarrowerFontIds[];
 
 struct GlyphWidthFunc
 {
