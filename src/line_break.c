@@ -14,6 +14,45 @@ void StripLineBreaks(u8 *src)
     }
 }
 
+//  This needs to deal with double spaces otherwise hyphens might still not connect.
+//  Incidentally trims so it might as well delete the final potential space character at the end of the string.
+void StripLineBreaksReconnectHyphens(u8 *src)
+{
+    u32 readIndex = 0;
+    u32 currIndex = 0;
+    u32 prevChar = CHAR_SPACE;
+    while (src[readIndex] != EOS)
+    {
+        if (src[readIndex] == CHAR_PROMPT_SCROLL || src[readIndex] == CHAR_NEWLINE)
+        {
+            if(prevChar == CHAR_SPACE || prevChar == CHAR_HYPHEN)
+            {
+                //  Skip over this line break replacing it with the next character
+                readIndex++;
+                continue;
+            }
+            else
+                //  Swap line break with space
+                src[currIndex] = CHAR_SPACE;
+        }
+        else if (src[readIndex] == CHAR_SPACE && prevChar == CHAR_SPACE)
+        {
+            //  Trim and double spaces
+            readIndex++;
+            continue;
+        }
+        else
+            src[currIndex] = src[readIndex];
+        prevChar = src[readIndex];
+        readIndex++;
+        currIndex++;
+    }
+    if (prevChar == CHAR_SPACE && currIndex != 0)
+        //  String ends on a space no longer
+        currIndex--;
+    src[currIndex] = EOS;
+}
+
 u32 CountLineBreaks(u8 *src)
 {
     u32 currIndex = 0;
@@ -26,6 +65,21 @@ u32 CountLineBreaks(u8 *src)
     }
 
     return numNewLines;
+}
+
+//  Takes a string that was already formatted and redoes the line breaks to fit it someplace new.
+//  Note that this alters the string in addition to returning the font needed to display it.
+u32 RedoStringBreaksAndGetFontId(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, enum ToggleScrollPrompt toggleScrollPrompt)
+{
+    StripLineBreaksReconnectHyphens(src);
+    BreakStringAutomatic(src, maxWidth, screenLines, fontId, toggleScrollPrompt);
+    while (gNarrowerFontIds[fontId] != -1 && (CountLineBreaks(src) >= screenLines || GetFontIdToFit(src, fontId, 0, maxWidth) != fontId))
+    {
+        fontId = gNarrowerFontIds[fontId];
+        StripLineBreaks(src);
+        BreakStringAutomatic(src, maxWidth, screenLines, fontId, toggleScrollPrompt);
+    }
+    return fontId;
 }
 
 void BreakStringAutomatic(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId, enum ToggleScrollPrompt toggleScrollPrompt)
