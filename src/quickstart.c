@@ -18,8 +18,14 @@
 
 enum { TAG_SKIP_INTRO = 2000 };
 
-static const u32 gSkipBannerGfx[] = INCBIN_U32("graphics/title_screen/skip_intro.4bpp.smol");
-static const u16 gSkipBannerPal[] = INCBIN_U16("graphics/title_screen/skip_intro.gbapal");
+static const u32 gQuickstartHudGfx[] = INCBIN_U32("graphics/quickstart/quickstart_hud.4bpp.smol");
+#if FIRERED
+static const u16 gQuickstartHudPal[] = INCBIN_U16("graphics/quickstart/firered.gbapal");
+#elif LEAFGREEN
+static const u16 gQuickstartHudPal[] = INCBIN_U16("graphics/quickstart/leafgreen.gbapal");
+#else
+static const u16 gQuickstartHudPal[] = INCBIN_U16("graphics/quickstart/emerald.gbapal");
+#endif
 
 static const struct OamData sSkipBannerOam = {
     .y = DISPLAY_HEIGHT,
@@ -55,11 +61,11 @@ static const struct SpriteTemplate sSkipBannerTemplate = {
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_SkipBanner[] = {
-    {.data = gSkipBannerGfx, .size = 0x200, .tag = TAG_SKIP_INTRO},
+    {.data = gQuickstartHudGfx, .size = 0x200, .tag = TAG_SKIP_INTRO},
 };
 
 static const struct SpritePalette sSpritePalette_SkipBanner[] = {
-    {.data = gSkipBannerPal, .tag = TAG_SKIP_INTRO},
+    {.data = gQuickstartHudPal, .tag = TAG_SKIP_INTRO},
 };
 
 static inline enum Gender SetQuickstartPlayerGender()
