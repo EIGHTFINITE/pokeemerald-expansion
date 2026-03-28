@@ -101,8 +101,8 @@ static void CB2_SkipToNewGameFrlg(void)
     static const u8 sText_Blue[] = _("BLUE");
     if (!UpdatePaletteFade())
     {
-        gSaveBlock2Ptr->playerGender = RandomPercentage(RNG_NONE, 50) ? FEMALE : MALE;
         const u8* textPtr = gSaveBlock2Ptr->playerGender ? sText_Leaf : sText_Red;
+        gSaveBlock2Ptr->playerGender = SetQuickstartPlayerGender();
         StringCopy_PlayerName(gSaveBlock2Ptr->playerName, textPtr);
         StringCopy_PlayerName(gSaveBlock1Ptr->rivalName, sText_Blue);
         SetMainCallback2(CB2_NewGame);
