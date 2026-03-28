@@ -33,30 +33,18 @@ static const struct OamData sQuickstartHudOam = {
     .objMode = ST_OAM_OBJ_NORMAL,
     .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
-    .shape = SPRITE_SHAPE(32x8),
+    .shape = SPRITE_SHAPE(64x32),
     .x = 0,
-    .size = SPRITE_SIZE(32x8),
+    .size = SPRITE_SIZE(64x32),
     .priority = 0,
     .paletteNum = 0,
 };
 
-static const union AnimCmd sSkipAnim_0[] = {ANIMCMD_FRAME(0, 0), ANIMCMD_END};
-static const union AnimCmd sSkipAnim_1[] = {ANIMCMD_FRAME(4, 0), ANIMCMD_END};
-static const union AnimCmd sSkipAnim_2[] = {ANIMCMD_FRAME(8, 0), ANIMCMD_END};
-static const union AnimCmd sSkipAnim_3[] = {ANIMCMD_FRAME(12, 0), ANIMCMD_END};
-
-static const union AnimCmd* const sSkipAnimTable[] = {
-    sSkipAnim_0,
-    sSkipAnim_1,
-    sSkipAnim_2,
-    sSkipAnim_3,
-};
-
-static const struct SpriteTemplate sQuickstartHudTemplate  = {
+static const struct SpriteTemplate sQuickstartHudTemplate = {
     .tileTag = TAG_SKIP_INTRO,
     .paletteTag = TAG_SKIP_INTRO,
     .oam = &sQuickstartHudOam,
-    .anims = sSkipAnimTable,
+    .anims = gDummySpriteAnimTable,
     .callback = SpriteCallbackDummy,
 };
 
@@ -123,20 +111,9 @@ void CreateQuickstartHud(s16 x, s16 y)
     if (!QUICKSTART || !QUICKSTART_HUD)
         return;
 
+    y+=16;
     LoadQuickstartSpritsheetAndPal();
-    u8 i, spriteId;
-
-    x-=16;
-    y+=8;
-
-    for (i = 0; i < 4; i++)
-    {
-        s16 dx = (i & 1) * 32;
-        s16 dy = 4 * (2*(!!(i>>1)) - 1);
-
-        spriteId = CreateSprite(&sQuickstartHudTemplate, x + dx, y + dy, 0);
-        StartSpriteAnim(&gSprites[spriteId], i);
-    }
+    CreateSprite(&sQuickstartHudTemplate, x, y, 0);
 }
 
 void QuickstartFrlg()
