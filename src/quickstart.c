@@ -16,7 +16,7 @@
 #include "task.h"
 
 
-enum { TAG_SKIP_INTRO = 2000 };
+#define TAG_SKIP_INTRO 2000
 
 static const u32 gQuickstartHudGfx[] = INCBIN_U32("graphics/quickstart/quickstart_hud.4bpp.smol");
 #if FIRERED
