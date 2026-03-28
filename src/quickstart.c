@@ -27,7 +27,7 @@ static const u16 gQuickstartHudPal[] = INCBIN_U16("graphics/quickstart/leafgreen
 static const u16 gQuickstartHudPal[] = INCBIN_U16("graphics/quickstart/emerald.gbapal");
 #endif
 
-static const struct OamData sSkipBannerOam = {
+static const struct OamData sQuickstartHudOam = {
     .y = DISPLAY_HEIGHT,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
@@ -52,18 +52,18 @@ static const union AnimCmd* const sSkipAnimTable[] = {
     sSkipAnim_3,
 };
 
-static const struct SpriteTemplate sSkipBannerTemplate = {
+static const struct SpriteTemplate sQuickstartHudTemplate  = {
     .tileTag = TAG_SKIP_INTRO,
     .paletteTag = TAG_SKIP_INTRO,
-    .oam = &sSkipBannerOam,
+    .oam = &sQuickstartHudOam,
     .anims = sSkipAnimTable,
     .callback = SpriteCallbackDummy,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_SkipBanner = {
+static const struct CompressedSpriteSheet sSpriteSheet_QuickstartHud = {
     .data = gQuickstartHudGfx, .size = 0x200, .tag = TAG_SKIP_INTRO};
 
-static const struct SpritePalette sSpritePalette_SkipBanner = {
+static const struct SpritePalette sSpritePalette_QuickstartHud = {
     .data = gQuickstartHudPal, .tag = TAG_SKIP_INTRO};
 
 static inline enum Gender SetQuickstartPlayerGender()
@@ -114,10 +114,11 @@ static void LoadQuickstartSpritsheetAndPal(void)
 {
     if (!QUICKSTART)
         return;
-    LoadCompressedSpriteSheet(&sSpriteSheet_SkipBanner);
-    LoadSpritePalette(&sSpritePalette_SkipBanner);
+    LoadCompressedSpriteSheet(&sSpriteSheet_QuickstartHud);
+    LoadSpritePalette(&sSpritePalette_QuickstartHud);
 }
-void CreateQuickstartBanner(s16 x, s16 y)
+
+void CreateQuickstartHud(s16 x, s16 y)
 {
     if (!QUICKSTART || !QUICKSTART_HUD)
         return;
@@ -133,7 +134,7 @@ void CreateQuickstartBanner(s16 x, s16 y)
         s16 dx = (i & 1) * 32;
         s16 dy = 4 * (2*(!!(i>>1)) - 1);
 
-        spriteId = CreateSprite(&sSkipBannerTemplate, x + dx, y + dy, 0);
+        spriteId = CreateSprite(&sQuickstartHudTemplate, x + dx, y + dy, 0);
         StartSpriteAnim(&gSprites[spriteId], i);
     }
 }

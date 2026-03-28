@@ -9,7 +9,7 @@
     #define QUICKSTART ENABLE_QUICKSTART
 #endif
 
-void CreateQuickstartBanner(s16 x, s16 y);
+void CreateQuickstartHud(s16 x, s16 y);
 void QuickstartFrlg();
 void QuickstartEmerald(void);
 
