@@ -100,17 +100,12 @@ static void CB2_SkipToNewGameFrlg(void)
 
 static void LoadQuickstartSpritsheetAndPal(void)
 {
-    if (!QUICKSTART)
-        return;
     LoadCompressedSpriteSheet(&sSpriteSheet_QuickstartHud);
     LoadSpritePalette(&sSpritePalette_QuickstartHud);
 }
 
 void CreateQuickstartHud(s16 x, s16 y)
 {
-    if (!QUICKSTART || !QUICKSTART_HUD)
-        return;
-
     y+=16;
     LoadQuickstartSpritsheetAndPal();
     CreateSprite(&sQuickstartHudTemplate, x, y, 0);
@@ -118,9 +113,6 @@ void CreateQuickstartHud(s16 x, s16 y)
 
 void QuickstartFrlg()
 {
-    if (!QUICKSTART)
-        return;
-
     if (!gPaletteFade.active)
     {
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
@@ -133,9 +125,6 @@ void QuickstartFrlg()
 
 void QuickstartEmerald(void)
 {
-    if (!QUICKSTART)
-        return;
-
     FadeOutBGM(4);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     SetMainCallback2(CB2_SkipToNewGameEmerald);

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "config/quickstart.h"
 #include "quickstart.h"
 #include "title_screen.h"
 #include "sprite.h"
@@ -756,7 +757,8 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_OBJ_ON);
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
-        CreateQuickstartHud(DISPLAY_WIDTH - 32, 0);
+        if (QUICKSTART && QUICKSTART_HUD)
+            CreateQuickstartHud(DISPLAY_WIDTH - 32, 0);
         gTasks[taskId].tBg1Y = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
