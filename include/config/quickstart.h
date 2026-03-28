@@ -10,4 +10,7 @@
 #define QUICKSTART_HUD               TRUE  // Displays a small hud element on the titlescreen when Quickstart is enabled
 #define QUICKSTART_GENDER            GENDER_RANDOM
 
+#define QUICKSTART_HUD_POSX          DISPLAY_WIDTH - 32 // Quickstart HUD X Position
+#define QUICKSTART_HUD_POSY          16                 // Quickstart HUD Y Position
+
 #endif // GUARD_CONFIG_QUICKSTART_H

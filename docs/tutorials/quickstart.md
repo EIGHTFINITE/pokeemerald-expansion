@@ -39,6 +39,7 @@ The configuration options are briefly covered below.
 | **`ENABLE_QUICKSTART`**  | `TRUE` / `FALSE` | Enables quickstart in dev builds.<br>Always disabled in release builds. |
 | **`QUICKSTART_HUD`**     | `TRUE` / `FALSE`| Shows a small HUD when quickstart is enabled. No effect otherwise. |
 | **`QUICKSTART_GENDER`**  | `GENDER_MALE`, `GENDER_FEMALE`, `GENDER_RANDOM` | Sets player gender for quickstart.<br>`RANDOM` = 50% chance for `MALE`/`FEMALE`. |
+| **`QUICKSTART_HUD_POSX`**<br>**`QUICKSTART_HUD_POSY`**| `s16 Coordinates` | X & Y Coordinate for the HUD element sprite |
 
 ## Public Functions
 
@@ -47,16 +48,13 @@ The interface of the Quickstart feature has been kept minimal. It exposes only t
 #### `CreateQuickstartHud`
 
 ```c
-void CreateQuickstartHud(s16 x, s16 y);
+void CreateQuickstartHud(void);
 ```
 
 ```
-Initializes and places a small HUD element on screen at the specified coordinates.
+Initializes and places a small HUD element on screen. Coordinates specifed in config
 Only has an effect when quickstart is enabled.
 
-Parameters
-s16 x: Horizontal position (left edge)
-s16 y: Vertical position (top edge)
 ```
 
 #### `Quickstart`
@@ -76,7 +74,7 @@ The aforementioned functions may be of use for integrating this feature into cus
 ```c
 // For the HUD
 if (QUICKSTART && QUICKSTART_HUD)
-  CreateQuickstartHud(x, y);
+  CreateQuickstartHud();
 ```
 
 ```

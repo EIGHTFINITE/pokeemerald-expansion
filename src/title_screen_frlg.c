@@ -656,7 +656,7 @@ static void SetTitleScreenScene_Run(s16 *data)
     {
     case 0:
         if (QUICKSTART && QUICKSTART_HUD)
-            CreateQuickstartHud(DISPLAY_WIDTH - 32, 0);
+            CreateQuickstartHud();
         CreateTask(Task_TitleScreen_BlinkPressStart, 0);
 #if defined(FIRERED)
         CreateTask(Task_FlameSpawner, 5);
