@@ -130,3 +130,4 @@ void QuickstartEmerald(void)
     SetMainCallback2(CB2_SkipToNewGameEmerald);
     return;
 }
+
