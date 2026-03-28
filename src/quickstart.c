@@ -49,10 +49,14 @@ static const struct SpriteTemplate sQuickstartHudTemplate = {
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_QuickstartHud = {
-    .data = gQuickstartHudGfx, .size = 0x200, .tag = TAG_SKIP_INTRO};
-
+    .data = gQuickstartHudGfx,
+    .size = 0x200,
+    .tag = TAG_SKIP_INTRO
+};
 static const struct SpritePalette sSpritePalette_QuickstartHud = {
-    .data = gQuickstartHudPal, .tag = TAG_SKIP_INTRO};
+    .data = gQuickstartHudPal,
+    .tag = TAG_SKIP_INTRO
+};
 
 static inline enum Gender SetQuickstartPlayerGender()
 {
