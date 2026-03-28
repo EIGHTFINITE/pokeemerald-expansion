@@ -111,7 +111,7 @@ void CreateQuickstartHud(s16 x, s16 y)
     CreateSprite(&sQuickstartHudTemplate, x, y, 0);
 }
 
-void QuickstartFrlg()
+void QuickstartFrlg(void)
 {
     if (!gPaletteFade.active)
     {
