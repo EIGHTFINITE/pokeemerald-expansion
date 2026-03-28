@@ -108,8 +108,8 @@ static void LoadQuickstartSpritsheetAndPal(void)
 
 void CreateQuickstartHud(void)
 {
-    s16 x = QUICKSTART_HUD_POSX;
-    s16 y = QUICKSTART_HUD_POSY;
+    s16 x = QUICKSTART_HUD_X;
+    s16 y = QUICKSTART_HUD_Y;
 
     LoadQuickstartSpritsheetAndPal();
     CreateSprite(&sQuickstartHudTemplate, x, y, 0);

@@ -39,7 +39,7 @@ The configuration options are briefly covered below.
 | **`ENABLE_QUICKSTART`**  | `TRUE` / `FALSE` | Enables quickstart in dev builds.<br>Always disabled in release builds. |
 | **`QUICKSTART_HUD`**     | `TRUE` / `FALSE`| Shows a small HUD when quickstart is enabled. No effect otherwise. |
 | **`QUICKSTART_GENDER`**  | `GENDER_MALE`, `GENDER_FEMALE`, `GENDER_RANDOM` | Sets player gender for quickstart.<br>`RANDOM` = 50% chance for `MALE`/`FEMALE`. |
-| **`QUICKSTART_HUD_POSX`**<br>**`QUICKSTART_HUD_POSY`**| `s16 Coordinates` | X & Y Coordinate for the HUD element sprite |
+| **`QUICKSTART_HUD_X`**<br>**`QUICKSTART_HUD_Y`**| `s16 Coordinates` | X & Y Coordinate for the HUD element sprite |
 
 ## Public Functions
 
