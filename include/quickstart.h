@@ -10,7 +10,6 @@
 #endif
 
 void CreateQuickstartHud(s16 x, s16 y);
-void QuickstartFrlg(void);
-void QuickstartEmerald(void);
+void Quickstart(void);
 
 #endif // GUARD_QUICKSTART_H

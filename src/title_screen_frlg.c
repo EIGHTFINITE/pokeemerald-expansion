@@ -692,7 +692,7 @@ static void SetTitleScreenScene_Run(s16 *data)
         }
         else if (QUICKSTART && JOY_NEW(SELECT_BUTTON))
         {
-            QuickstartFrlg();
+            Quickstart();
         }
         else if (!FuncIsActiveTask(Task_TitleScreenTimer))
         {

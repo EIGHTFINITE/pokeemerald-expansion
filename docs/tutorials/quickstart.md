@@ -42,7 +42,7 @@ The configuration options are briefly covered below.
 
 ## Public Functions
 
-The interface of the Quickstart feature has been kept minimal. It exposes only three functions.
+The interface of the Quickstart feature has been kept minimal. It exposes only two functions.
 
 #### `CreateQuickstartHud`
 
@@ -59,16 +59,14 @@ s16 x: Horizontal position (left edge)
 s16 y: Vertical position (top edge)
 ```
 
-#### `QuickstartEmerald` `QuickstartFrlg`
+#### `Quickstart`
 
 ```c
-void QuickstartEmerald(void);
-void QuickstartFrlg(void);
+void Quickstart(void);
 ```
 
 ```
 Starts a new game from the title screen when called.
-We have two functions because of the differences in how the two title screens work
 ```
 
 ## Integration
@@ -84,5 +82,5 @@ if (QUICKSTART && QUICKSTART_HUD)
 ```
 // To trigger Quickstart
 if (QUICKSTART && JOY_NEW(SELECT_BUTTON))
-    QuickstartEmerald();
+    Quickstart();
 ```

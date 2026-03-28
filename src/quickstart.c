@@ -68,34 +68,32 @@ static inline enum Gender SetQuickstartPlayerGender()
     }
 }
 
-static void CB2_SkipToNewGameEmerald(void)
+static void CB2_SkipToNewGame(void)
 {
-    static const u8 sText_Brendan[] = _("BRENDAN");
-    static const u8 sText_May[] = _("MAY");
-    if (!UpdatePaletteFade())
-    {
-        gSaveBlock2Ptr->playerGender = SetQuickstartPlayerGender();
-        const u8* textPtr = gSaveBlock2Ptr->playerGender == FEMALE ? sText_May : sText_Brendan;
-        StringCopy_PlayerName(gSaveBlock2Ptr->playerName, textPtr);
-        SetMainCallback2(CB2_NewGame);
-    }
-}
+#if IS_FRLG
+    static const u8 sText_PlayerMale[] = _("RED");
+    static const u8 sText_PlayerFemale[] = _("LEAF");
+    static const u8 sText_Rival[] = _("BLUE");
+#else
+    static const u8 sText_PlayerMale[] = _("BRENDAN");
+    static const u8 sText_PlayerFemale[] = _("MAY");
+#endif  // IS_FRLG
 
-static void CB2_SkipToNewGameFrlg(void)
-{
-    #if IS_FRLG
-    static const u8 sText_Red[] = _("RED");
-    static const u8 sText_Leaf[] = _("LEAF");
-    static const u8 sText_Blue[] = _("BLUE");
     if (!UpdatePaletteFade())
     {
         gSaveBlock2Ptr->playerGender = SetQuickstartPlayerGender();
-        const u8* textPtr = gSaveBlock2Ptr->playerGender == FEMALE ? sText_Leaf : sText_Red;
+        const u8* textPtr = gSaveBlock2Ptr->playerGender == FEMALE ? sText_PlayerFemale : sText_PlayerMale;
         StringCopy_PlayerName(gSaveBlock2Ptr->playerName, textPtr);
-        StringCopy_PlayerName(gSaveBlock1Ptr->rivalName, sText_Blue);
+
+#if IS_FRLG
+        StringCopy_PlayerName(gSaveBlock1Ptr->rivalName, sText_Rival);
+#endif  // IS_FRLG
+
+        ResetSpriteData();
+        FreeAllSpritePalettes();
+        ResetTasks();
         SetMainCallback2(CB2_NewGame);
     }
-    #endif /* if IS_FRLG */
 }
 
 static void LoadQuickstartSpritsheetAndPal(void)
@@ -111,23 +109,13 @@ void CreateQuickstartHud(s16 x, s16 y)
     CreateSprite(&sQuickstartHudTemplate, x, y, 0);
 }
 
-void QuickstartFrlg(void)
+void Quickstart(void)
 {
     if (!gPaletteFade.active)
     {
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         FadeOutBGM(4);
-        FreeAllSpritePalettes();
-        ResetTasks();
-        SetMainCallback2(CB2_SkipToNewGameFrlg);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        SetMainCallback2(CB2_SkipToNewGame);
     }
-}
-
-void QuickstartEmerald(void)
-{
-    FadeOutBGM(4);
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-    SetMainCallback2(CB2_SkipToNewGameEmerald);
-    return;
 }
 

@@ -781,7 +781,7 @@ static void Task_TitleScreenPhase2(u8 taskId)
 static void Task_TitleScreenPhase3(u8 taskId)
 {
     if (QUICKSTART && JOY_NEW(SELECT_BUTTON))
-        QuickstartEmerald();
+        Quickstart();
 
     if (JOY_NEW(A_BUTTON) || JOY_NEW(START_BUTTON))
     {
