@@ -60,13 +60,11 @@ static const struct SpriteTemplate sSkipBannerTemplate = {
     .callback = SpriteCallbackDummy,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_SkipBanner[] = {
-    {.data = gQuickstartHudGfx, .size = 0x200, .tag = TAG_SKIP_INTRO},
-};
+static const struct CompressedSpriteSheet sSpriteSheet_SkipBanner = {
+    .data = gQuickstartHudGfx, .size = 0x200, .tag = TAG_SKIP_INTRO};
 
-static const struct SpritePalette sSpritePalette_SkipBanner[] = {
-    {.data = gQuickstartHudPal, .tag = TAG_SKIP_INTRO},
-};
+static const struct SpritePalette sSpritePalette_SkipBanner = {
+    .data = gQuickstartHudPal, .tag = TAG_SKIP_INTRO};
 
 static inline enum Gender SetQuickstartPlayerGender()
 {
@@ -116,8 +114,8 @@ static void LoadQuickstartSpritsheetAndPal(void)
 {
     if (!QUICKSTART)
         return;
-    LoadCompressedSpriteSheet(sSpriteSheet_SkipBanner);
-    LoadSpritePalette(&sSpritePalette_SkipBanner[0]);
+    LoadCompressedSpriteSheet(&sSpriteSheet_SkipBanner);
+    LoadSpritePalette(&sSpritePalette_SkipBanner);
 }
 void CreateQuickstartBanner(s16 x, s16 y)
 {
