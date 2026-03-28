@@ -87,7 +87,7 @@ static void CB2_SkipToNewGameEmerald(void)
     if (!UpdatePaletteFade())
     {
         gSaveBlock2Ptr->playerGender = SetQuickstartPlayerGender();
-        const u8* textPtr = gSaveBlock2Ptr->playerGender ? sText_May : sText_Brendan;
+        const u8* textPtr = gSaveBlock2Ptr->playerGender == FEMALE ? sText_May : sText_Brendan;
         StringCopy_PlayerName(gSaveBlock2Ptr->playerName, textPtr);
         SetMainCallback2(CB2_NewGame);
     }
@@ -101,8 +101,8 @@ static void CB2_SkipToNewGameFrlg(void)
     static const u8 sText_Blue[] = _("BLUE");
     if (!UpdatePaletteFade())
     {
-        const u8* textPtr = gSaveBlock2Ptr->playerGender ? sText_Leaf : sText_Red;
         gSaveBlock2Ptr->playerGender = SetQuickstartPlayerGender();
+        const u8* textPtr = gSaveBlock2Ptr->playerGender == FEMALE ? sText_Leaf : sText_Red;
         StringCopy_PlayerName(gSaveBlock2Ptr->playerName, textPtr);
         StringCopy_PlayerName(gSaveBlock1Ptr->rivalName, sText_Blue);
         SetMainCallback2(CB2_NewGame);
