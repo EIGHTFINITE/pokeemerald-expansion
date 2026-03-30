@@ -843,6 +843,26 @@ static const u16 sLinooneFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_ZIGZAGOON
 
+#if P_FAMILY_SEEDOT
+static const u16 sSeedotFormSpeciesIdTable[] = {
+    SPECIES_SEEDOT,
+    SPECIES_SEEDOT_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sNuzleafFormSpeciesIdTable[] = {
+    SPECIES_NUZLEAF,
+    SPECIES_NUZLEAF_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sShiftryFormSpeciesIdTable[] = {
+    SPECIES_SHIFTRY,
+    SPECIES_SHIFTRY_GEN8,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_SEEDOT
+
 #if P_FAMILY_RALTS
 static const u16 sGardevoirFormSpeciesIdTable[] = {
     SPECIES_GARDEVOIR,
@@ -1084,6 +1104,26 @@ static const u16 sDeoxysFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_DEOXYS
 
+#if P_FAMILY_PIPLUP
+static const u16 sPiplupFormSpeciesIdTable[] = {
+    SPECIES_PIPLUP,
+    SPECIES_PIPLUP_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sPrinplupFormSpeciesIdTable[] = {
+    SPECIES_PRINPLUP,
+    SPECIES_PRINPLUP_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sEmpoleonFormSpeciesIdTable[] = {
+    SPECIES_EMPOLEON,
+    SPECIES_EMPOLEON_GEN8,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_PIPLUP
+
 #if P_FAMILY_STARLY
 static const u16 sStaraptorFormSpeciesIdTable[] = {
     SPECIES_STARAPTOR,
@@ -1314,10 +1354,24 @@ static const u16 sAudinoFormSpeciesIdTable[] = {
 #endif //P_FAMILY_AUDINO
 
 #if P_FAMILY_VENIPEDE
+static const u16 sVenipedeFormSpeciesIdTable[] = {
+    SPECIES_VENIPEDE,
+    SPECIES_VENIPEDE_GEN5,
+    FORM_SPECIES_END,
+};
+
+static const u16 sWhirlipedeFormSpeciesIdTable[] = {
+    SPECIES_WHIRLIPEDE,
+    SPECIES_WHIRLIPEDE_GEN5,
+    FORM_SPECIES_END,
+};
+
 static const u16 sScolipedeFormSpeciesIdTable[] = {
     SPECIES_SCOLIPEDE,
+    SPECIES_SCOLIPEDE_GEN5,
 #if P_GEN_9_MEGA_EVOLUTIONS
     SPECIES_SCOLIPEDE_MEGA,
+    SPECIES_SCOLIPEDE_MEGA_GEN5,
 #endif
     FORM_SPECIES_END,
 };
