@@ -1061,6 +1061,16 @@ static const struct FormChange sScolipedeFormChangeTable[] =
     {FORM_CHANGE_END_BATTLE,                    SPECIES_SCOLIPEDE},
     {FORM_CHANGE_TERMINATOR},
 };
+
+static const struct FormChange sScolipedeGen5FormChangeTable[] =
+{
+#if P_GEN_9_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_SCOLIPEDE_MEGA_GEN5, ITEM_SCOLIPITE},
+#endif
+    {FORM_CHANGE_FAINT,                         SPECIES_SCOLIPEDE_GEN5},
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_SCOLIPEDE_GEN5},
+    {FORM_CHANGE_TERMINATOR},
+};
 #endif //P_FAMILY_VENIPEDE
 
 #if P_FAMILY_DARUMAKA
