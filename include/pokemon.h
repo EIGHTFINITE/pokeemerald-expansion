@@ -605,15 +605,6 @@ struct NatureInfo
     const u8 *natureGirlMessage;
 };
 
-#define SPINDA_SPOT_WIDTH 16
-#define SPINDA_SPOT_HEIGHT 16
-
-struct SpindaSpot
-{
-    u8 x, y;
-    u16 image[SPINDA_SPOT_HEIGHT];
-};
-
 struct LevelUpMove
 {
     enum Move move;
@@ -853,7 +844,6 @@ enum HoennDexOrder SpeciesToHoennPokedexNum(enum Species species);
 enum NationalDexOrder RegionalToNationalOrder(u32 regionNum);
 enum NationalDexOrder KantoToNationalOrder(enum KantoDexOrder kantoNum);
 enum NationalDexOrder HoennToNationalOrder(enum HoennDexOrder hoennNum);
-void DrawSpindaSpots(u32 personality, u8 *dest, bool32 isSecondFrame);
 void EvolutionRenameMon(struct Pokemon *mon, enum Species oldSpecies, enum Species newSpecies);
 u8 GetPlayerFlankId(void);
 u16 GetLinkTrainerFlankId(u8 linkPlayerId);
