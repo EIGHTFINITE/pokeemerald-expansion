@@ -506,7 +506,78 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sPiplupLevelUpLearnset,
         .teachableLearnset = sPiplupTeachableLearnset,
         .eggMoveLearnset = sPiplupEggMoveLearnset,
+        .formSpeciesIdTable = sPiplupFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PRINPLUP}),
+    },
+
+    [SPECIES_PIPLUP_GEN8] =
+    {
+        .baseHP        = 53,
+        .baseAttack    = 51,
+        .baseDefense   = 53,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 56,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 63 : 66,
+        .evYield_SpAttack = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Piplup"),
+        .cryId = CRY_PIPLUP,
+        .natDexNum = NATIONAL_DEX_PIPLUP,
+        .categoryName = _("Penguin"),
+        .height = 4,
+        .weight = 52,
+        .description = COMPOUND_STRING(
+            "A poor walker, it often falls down. However,\n"
+            "its strong pride makes it puff up its chest\n"
+            "without a care. It's difficult to bond with\n"
+            "since it won't listen to its Trainer."),
+        .pokemonScale = 491,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Piplup,
+        .frontPicSize = MON_COORDS_SIZE(24, 40),
+        .frontPicYOffset = 14,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Piplup,
+        .backPicSize = MON_COORDS_SIZE(40, 48),
+        .backPicYOffset = 10,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_Piplup,
+        .shinyPalette = gMonShinyPalette_Piplup,
+        .iconSprite = gMonIcon_Piplup,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NORMAL,
+        SHADOW(0, -1, SHADOW_SIZE_S)
+        FOOTPRINT(Piplup)
+        OVERWORLD(
+            sPicTable_Piplup,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Piplup,
+            gShinyOverworldPalette_Piplup
+        )
+        .levelUpLearnset = sPiplupLevelUpLearnset,
+        .teachableLearnset = sPiplupTeachableLearnset,
+        .eggMoveLearnset = sPiplupEggMoveLearnset,
+        .formSpeciesIdTable = sPiplupFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PRINPLUP_GEN8}),
     },
 
     [SPECIES_PRINPLUP] =
@@ -580,7 +651,83 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sPrinplupLevelUpLearnset,
         .teachableLearnset = sPrinplupTeachableLearnset,
+        .formSpeciesIdTable = sPrinplupFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_EMPOLEON}),
+    },
+
+    [SPECIES_PRINPLUP_GEN8] =
+    {
+        .baseHP        = 64,
+        .baseAttack    = 66,
+        .baseDefense   = 68,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 81,
+        .baseSpDefense = 76,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 142 : 143,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Prinplup"),
+        .cryId = CRY_PRINPLUP,
+        .natDexNum = NATIONAL_DEX_PRINPLUP,
+        .categoryName = _("Penguin"),
+        .height = 8,
+        .weight = 230,
+        .description = COMPOUND_STRING(
+            "Because every Prinplup considers itself\n"
+            "to be the most important, they can never\n"
+            "form a group. It searches for prey in\n"
+            "icy seas."),
+        .pokemonScale = 366,
+        .pokemonOffset = 10,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Prinplup,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 50),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPic = gMonBackPic_Prinplup,
+        .backPicSize = MON_COORDS_SIZE(48, 56),
+        .backPicYOffset = 7,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .palette = gMonPalette_Prinplup,
+        .shinyPalette = gMonShinyPalette_Prinplup,
+        .iconSprite = gMonIcon_Prinplup,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 7, SHADOW_SIZE_M)
+        FOOTPRINT(Prinplup)
+        OVERWORLD(
+            sPicTable_Prinplup,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Prinplup,
+            gShinyOverworldPalette_Prinplup
+        )
+        .levelUpLearnset = sPrinplupLevelUpLearnset,
+        .teachableLearnset = sPrinplupTeachableLearnset,
+        .formSpeciesIdTable = sPrinplupFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_EMPOLEON_GEN8}),
     },
 
     [SPECIES_EMPOLEON] =
@@ -654,6 +801,81 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sEmpoleonLevelUpLearnset,
         .teachableLearnset = sEmpoleonTeachableLearnset,
+        .formSpeciesIdTable = sEmpoleonFormSpeciesIdTable,
+    },
+
+    [SPECIES_EMPOLEON_GEN8] =
+    {
+        .baseHP        = 84,
+        .baseAttack    = 86,
+        .baseDefense   = 88,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 111,
+        .baseSpDefense = 101,
+        .types = MON_TYPES(TYPE_WATER, TYPE_STEEL),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 265,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 239,
+    #else
+        .expYield = 210,
+    #endif
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Empoleon"),
+        .cryId = CRY_EMPOLEON,
+        .natDexNum = NATIONAL_DEX_EMPOLEON,
+        .categoryName = _("Emperor"),
+        .height = 17,
+        .weight = 845,
+        .description = COMPOUND_STRING(
+            "The three horns that extend from its\n"
+            "beak attest to its power. It avoids\n"
+            "unnecessary disputes, but it will decimate\n"
+            "anything that threatens its pride."),
+        .pokemonScale = 259,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_Empoleon,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 1),
+            ANIMCMD_FRAME(1, 36),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPic = gMonBackPic_Empoleon,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
+        .palette = gMonPalette_Empoleon,
+        .shinyPalette = gMonShinyPalette_Empoleon,
+        .iconSprite = gMonIcon_Empoleon,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(2, 12, SHADOW_SIZE_M)
+        FOOTPRINT(Empoleon)
+        OVERWORLD(
+            sPicTable_Empoleon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Empoleon,
+            gShinyOverworldPalette_Empoleon
+        )
+        .levelUpLearnset = sEmpoleonLevelUpLearnset,
+        .teachableLearnset = sEmpoleonTeachableLearnset,
+        .formSpeciesIdTable = sEmpoleonFormSpeciesIdTable,
     },
 #endif //P_FAMILY_PIPLUP
 
