@@ -3894,7 +3894,83 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sVenipedeLevelUpLearnset,
         .teachableLearnset = sVenipedeTeachableLearnset,
         .eggMoveLearnset = sVenipedeEggMoveLearnset,
+        .formSpeciesIdTable = sVenipedeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_WHIRLIPEDE}),
+    },
+
+    [SPECIES_VENIPEDE_GEN5] =
+    {
+        .baseHP        = 30,
+        .baseAttack    = 45,
+        .baseDefense   = 59,
+        .baseSpeed     = 57,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 39,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 255,
+        .expYield = 52,
+        .evYield_Defense = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Venipede"),
+        .cryId = CRY_VENIPEDE,
+        .natDexNum = NATIONAL_DEX_VENIPEDE,
+        .categoryName = _("Centipede"),
+        .height = 4,
+        .weight = 53,
+        .description = COMPOUND_STRING(
+            "Using the feelers on its head and tail,\n"
+            "it picks up vibrations in the air to\n"
+            "determine its prey's location and state.\n"
+            "It is brutally aggressive."),
+        .pokemonScale = 491,
+        .pokemonOffset = 16,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Venipede,
+        .frontPicSize = MON_COORDS_SIZE(48, 32),
+        .frontPicYOffset = 16,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 5),
+        ),
+        .frontAnimId = ANIM_H_SLIDE,
+        .backPic = gMonBackPic_Venipede,
+        .backPicSize = MON_COORDS_SIZE(64, 40),
+        .backPicYOffset = 14,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_Venipede,
+        .shinyPalette = gMonShinyPalette_Venipede,
+        .iconSprite = gMonIcon_Venipede,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_FAST,
+        SHADOW(-2, -3, SHADOW_SIZE_M)
+        FOOTPRINT(Venipede)
+        OVERWORLD(
+            sPicTable_Venipede,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Venipede,
+            gShinyOverworldPalette_Venipede
+        )
+        .levelUpLearnset = sVenipedeLevelUpLearnset,
+        .teachableLearnset = sVenipedeTeachableLearnset,
+        .eggMoveLearnset = sVenipedeEggMoveLearnset,
+        .formSpeciesIdTable = sVenipedeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_WHIRLIPEDE_GEN5}),
     },
 
     [SPECIES_WHIRLIPEDE] =
@@ -3966,7 +4042,81 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sWhirlipedeLevelUpLearnset,
         .teachableLearnset = sWhirlipedeTeachableLearnset,
+        .formSpeciesIdTable = sWhirlipedeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SCOLIPEDE}),
+    },
+
+    [SPECIES_WHIRLIPEDE_GEN5] =
+    {
+        .baseHP        = 40,
+        .baseAttack    = 55,
+        .baseDefense   = 99,
+        .baseSpeed     = 47,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 79,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 120,
+        .expYield = 126,
+        .evYield_Defense = 2,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Whirlipede"),
+        .cryId = CRY_WHIRLIPEDE,
+        .natDexNum = NATIONAL_DEX_WHIRLIPEDE,
+        .categoryName = _("Curlipede"),
+        .height = 12,
+        .weight = 585,
+        .description = COMPOUND_STRING(
+            "Storing energy for evolution, it sits.\n"
+            "But when attacked, it spins its body at\n"
+            "high speed like a wheel and then\n"
+            "crashes furiously into its opponent."),
+        .pokemonScale = 282,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Whirlipede,
+        .frontPicSize = MON_COORDS_SIZE(56, 40),
+        .frontPicYOffset = 13,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backPic = gMonBackPic_Whirlipede,
+        .backPicSize = MON_COORDS_SIZE(64, 40),
+        .backPicYOffset = 15,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        .palette = gMonPalette_Whirlipede,
+        .shinyPalette = gMonShinyPalette_Whirlipede,
+        .iconSprite = gMonIcon_Whirlipede,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 1, SHADOW_SIZE_S)
+        FOOTPRINT(Whirlipede)
+        OVERWORLD(
+            sPicTable_Whirlipede,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Whirlipede,
+            gShinyOverworldPalette_Whirlipede
+        )
+        .levelUpLearnset = sWhirlipedeLevelUpLearnset,
+        .teachableLearnset = sWhirlipedeTeachableLearnset,
+        .formSpeciesIdTable = sWhirlipedeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SCOLIPEDE_GEN5}),
     },
 
     [SPECIES_SCOLIPEDE] =
@@ -4044,6 +4194,81 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .formChangeTable = sScolipedeFormChangeTable,
     },
 
+    [SPECIES_SCOLIPEDE_GEN5] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 100 : 90,
+        .baseDefense   = 89,
+        .baseSpeed     = 112,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 69,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 243,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_6
+        .expYield = 218,
+    #else
+        .expYield = 214,
+    #endif
+        .evYield_Speed = 3,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Scolipede"),
+        .cryId = CRY_SCOLIPEDE,
+        .natDexNum = NATIONAL_DEX_SCOLIPEDE,
+        .categoryName = _("Megapede"),
+        .height = 25,
+        .weight = 2005,
+        .description = COMPOUND_STRING(
+            "With quick movements, it chases down\n"
+            "its foes, attacking relentlessly with its\n"
+            "horns until it prevails. Then it finishes\n"
+            "them off with deadly poison."),
+        .pokemonScale = 257,
+        .pokemonOffset = 2,
+        .trainerScale = 423,
+        .trainerOffset = 8,
+        .frontPic = gMonFrontPic_Scolipede,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 5),
+        ),
+        .frontAnimId = ANIM_H_SHAKE,
+        .backPic = gMonBackPic_Scolipede,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
+        .palette = gMonPalette_Scolipede,
+        .shinyPalette = gMonShinyPalette_Scolipede,
+        .iconSprite = gMonIcon_Scolipede,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 12, SHADOW_SIZE_L)
+        FOOTPRINT(Scolipede)
+        OVERWORLD(
+            sPicTable_Scolipede,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Scolipede,
+            gShinyOverworldPalette_Scolipede
+        )
+        .levelUpLearnset = sScolipedeLevelUpLearnset,
+        .teachableLearnset = sScolipedeTeachableLearnset,
+        .formSpeciesIdTable = sScolipedeFormSpeciesIdTable,
+        .formChangeTable = sScolipedeGen5FormChangeTable,
+    },
+
 #if P_GEN_9_MEGA_EVOLUTIONS
     [SPECIES_SCOLIPEDE_MEGA] =
     {
@@ -4100,6 +4325,63 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sScolipedeTeachableLearnset,
         .formSpeciesIdTable = sScolipedeFormSpeciesIdTable,
         .formChangeTable = sScolipedeFormChangeTable,
+    },
+
+    [SPECIES_SCOLIPEDE_MEGA_GEN5] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 140,
+        .baseDefense   = 149,
+        .baseSpeed     = 62,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 99,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 45,
+        .expYield = 243,
+        .evYield_Speed = 3,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Scolipede"),
+    #if P_MODIFIED_MEGA_CRIES
+        .cryId = CRY_SCOLIPEDE_MEGA,
+    #else
+        .cryId = CRY_SCOLIPEDE,
+    #endif // P_MODIFIED_MEGA_CRIES
+        .natDexNum = NATIONAL_DEX_SCOLIPEDE,
+        .categoryName = _("Megapede"),
+        .height = 32,
+        .weight = 2305,
+        .description = COMPOUND_STRING(
+            "Its deadly venom gives off a faint\n"
+            "glow. The venom affects Scolipede's\n"
+            "mind, honing its viciousness."),
+        .frontPic = gMonFrontPic_ScolipedeMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_ScolipedeMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 2,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_ScolipedeMega,
+        .shinyPalette = gMonShinyPalette_ScolipedeMega,
+        .iconSprite = gMonIcon_ScolipedeMega,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Scolipede)
+        SHADOW(2, 14, SHADOW_SIZE_L)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sScolipedeLevelUpLearnset,
+        .teachableLearnset = sScolipedeTeachableLearnset,
+        .formSpeciesIdTable = sScolipedeFormSpeciesIdTable,
+        .formChangeTable = sScolipedeGen5FormChangeTable,
     },
 #endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_VENIPEDE
