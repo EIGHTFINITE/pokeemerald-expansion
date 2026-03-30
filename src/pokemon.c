@@ -3260,6 +3260,23 @@ enum Type GetSpeciesType(enum Species species, u8 slot)
 
 enum Ability GetSpeciesAbility(enum Species species, u8 slot)
 {
+    #if P_UPDATED_ABILITIES == GEN_CUSTOM
+    if (species == SPECIES_SHIFTRY)
+    {
+        if (slot != 2 && Random() % 3 == 2)
+            return ABILITY_EARLY_BIRD;
+    }
+    else if (species == SPECIES_PIPLUP || species == SPECIES_PRINPLUP || species == SPECIES_EMPOLEON)
+    {
+        if (slot == 2 && Random() % 2 == 1)
+            return ABILITY_DEFIANT;
+    }
+    else if (species == SPECIES_VENIPEDE || species == SPECIES_WHIRLIPEDE || species == SPECIES_SCOLIPEDE)
+    {
+        if (slot == 2 && Random() % 2 == 1)
+            return ABILITY_QUICK_FEET;
+    }
+    #endif
     return gSpeciesInfo[SanitizeSpeciesId(species)].abilities[slot];
 }
 
