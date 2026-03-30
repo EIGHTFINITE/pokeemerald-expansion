@@ -2160,7 +2160,85 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sSeedotLevelUpLearnset,
         .teachableLearnset = sSeedotTeachableLearnset,
         .eggMoveLearnset = sSeedotEggMoveLearnset,
+        .formSpeciesIdTable = sSeedotFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_NUZLEAF}),
+    },
+
+    [SPECIES_SEEDOT_GEN8] =
+    {
+        .baseHP        = 40,
+        .baseAttack    = 40,
+        .baseDefense   = 50,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 30,
+        .types = MON_TYPES(TYPE_GRASS),
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 44 : 74,
+        .evYield_Defense = 1,
+        .itemRare = ITEM_POWER_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Seedot"),
+        .cryId = CRY_SEEDOT,
+        .natDexNum = NATIONAL_DEX_SEEDOT,
+        .categoryName = _("Acorn"),
+        .height = 5,
+        .weight = 40,
+        .description = COMPOUND_STRING(
+            "It hangs off branches and absorbs\n"
+            "nutrients. When it finishes eating, its\n"
+            "body becomes so heavy that it drops to\n"
+            "the ground with a thump."),
+        .pokemonScale = 472,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Seedot,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(32, 48) : MON_COORDS_SIZE(32, 40),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 16 : 12,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = P_GBA_STYLE_SPECIES_GFX ? ANIM_BOUNCE_ROTATE_TO_SIDES : ANIM_V_JUMPS_H_JUMPS,
+        .backPic = gMonBackPic_Seedot,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(64, 48) : MON_COORDS_SIZE(48, 48),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 9 : 10,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        .palette = gMonPalette_Seedot,
+        .shinyPalette = gMonShinyPalette_Seedot,
+        .iconSprite = gMonIcon_Seedot,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_FAST,
+        SHADOW(0, 1, SHADOW_SIZE_S)
+        FOOTPRINT(Seedot)
+        OVERWORLD(
+            sPicTable_Seedot,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Seedot,
+            gShinyOverworldPalette_Seedot
+        )
+        .levelUpLearnset = sSeedotLevelUpLearnset,
+        .teachableLearnset = sSeedotTeachableLearnset,
+        .eggMoveLearnset = sSeedotEggMoveLearnset,
+        .formSpeciesIdTable = sSeedotFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_NUZLEAF_GEN8}),
     },
 
     [SPECIES_NUZLEAF] =
@@ -2248,7 +2326,98 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sNuzleafLevelUpLearnset,
         .teachableLearnset = sNuzleafTeachableLearnset,
+        .formSpeciesIdTable = sNuzleafFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_SHIFTRY}),
+    },
+
+
+    [SPECIES_NUZLEAF_GEN8] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 70,
+        .baseDefense   = 40,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 40,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DARK),
+        .catchRate = 120,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 119 : 141,
+        .evYield_Attack = 2,
+        .itemRare = ITEM_POWER_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Nuzleaf"),
+        .cryId = CRY_NUZLEAF,
+        .natDexNum = NATIONAL_DEX_NUZLEAF,
+        .categoryName = _("Wily"),
+        .height = 10,
+        .weight = 280,
+        .description = COMPOUND_STRING(
+            "A forest-dwelling Pokémon that is skilled\n"
+            "at climbing trees. Its long and pointed\n"
+            "nose is its weak point. It loses power if\n"
+            "the nose is gripped."),
+        .pokemonScale = 299,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Nuzleaf,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(40, 48) : MON_COORDS_SIZE(40, 56),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 8 : 7,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 7),
+        ),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Nuzleaf,
+        .backPicSize = MON_COORDS_SIZE(56, 48),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 10 : 9,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .palette = gMonPalette_Nuzleaf,
+        .shinyPalette = gMonShinyPalette_Nuzleaf,
+        .iconSprite = gMonIcon_Nuzleaf,
+        .iconPalIndex = 1,
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .frontPicFemale = gMonFrontPic_NuzleafF,
+        .frontPicSizeFemale = MON_COORDS_SIZE(40, 56),
+        .backPicFemale = gMonBackPic_NuzleafF,
+        .backPicSizeFemale = MON_COORDS_SIZE(56, 48),
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-3, 5, SHADOW_SIZE_S)
+        FOOTPRINT(Nuzleaf)
+        OVERWORLD(
+            sPicTable_Nuzleaf,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Nuzleaf,
+            gShinyOverworldPalette_Nuzleaf
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_NuzleafF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following
+        )
+        .levelUpLearnset = sNuzleafLevelUpLearnset,
+        .teachableLearnset = sNuzleafTeachableLearnset,
+        .formSpeciesIdTable = sNuzleafFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_SHIFTRY_GEN8}),
     },
 
     [SPECIES_SHIFTRY] =
@@ -2336,6 +2505,95 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sShiftryLevelUpLearnset,
         .teachableLearnset = sShiftryTeachableLearnset,
+        .formSpeciesIdTable = sShiftryFormSpeciesIdTable,
+    },
+
+    [SPECIES_SHIFTRY_GEN8] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 100,
+        .baseDefense   = 60,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DARK),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 240,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 216,
+    #else
+        .expYield = 181,
+    #endif
+        .evYield_Attack = 3,
+        .itemRare = ITEM_POWER_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Shiftry"),
+        .cryId = CRY_SHIFTRY,
+        .natDexNum = NATIONAL_DEX_SHIFTRY,
+        .categoryName = _("Wicked"),
+        .height = 13,
+        .weight = 596,
+        .description = COMPOUND_STRING(
+            "It is said to arrive on chilly, wintry winds.\n"
+            "Feared from long ago as the guardian of\n"
+            "forests, this Pokémon lives in a deep\n"
+            "forest where people do not venture."),
+        .pokemonScale = 290,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Shiftry,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(64, 64) : MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 2 : 7,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backPic = gMonBackPic_Shiftry,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(64, 48) : MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 8 : 9,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Shiftry,
+        .shinyPalette = gMonShinyPalette_Shiftry,
+        .iconSprite = gMonIcon_Shiftry,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 0 : 5,
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .frontPicFemale = gMonFrontPic_ShiftryF,
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
+        .backPicFemale = gMonBackPic_ShiftryF,
+        .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-5, 5, SHADOW_SIZE_M)
+        FOOTPRINT(Shiftry)
+        OVERWORLD(
+            sPicTable_Shiftry,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Shiftry,
+            gShinyOverworldPalette_Shiftry
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_ShiftryF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following
+        )
+        .levelUpLearnset = sShiftryLevelUpLearnset,
+        .teachableLearnset = sShiftryTeachableLearnset,
+        .formSpeciesIdTable = sShiftryFormSpeciesIdTable,
     },
 #endif //P_FAMILY_SEEDOT
 
