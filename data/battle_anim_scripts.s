@@ -2762,13 +2762,13 @@ gBattleAnimMove_IronHead::
 
 gBattleAnimMove_MagnetBomb::
 	delay 0
-	playsewithpan 119, 192
+	playsewithpan 119, SOUND_PAN_ATTACKER
 	createsprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 32, 24, 190, 12, ANIM_ATTACKER, 1, 0
 	delay 0
 	createsprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 80, 24, 22, 12, ANIM_ATTACKER, 1, 0
 	createsprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 156, 24, 121, 13, ANIM_ATTACKER, 1, 1
 	delay 0
-	playsewithpan 119, 192
+	playsewithpan 119, SOUND_PAN_ATTACKER
 	createsprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 100, 24, 60, 10, ANIM_ATTACKER, 1, 0
 	createsprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 170, 24, 42, 11, ANIM_ATTACKER, 1, 1
 	delay 0
@@ -3672,7 +3672,7 @@ ShadowForceAttack:
 	call ShadowForceBg
 	waitbgfadein
 	delay 10
-	playsewithpan SOUND_PAN_ATTACKER, 192
+	playsewithpan SOUND_PAN_ATTACKER, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_NightShadeClone, 5, 85
 	delay 70
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 12, 1
@@ -4162,13 +4162,13 @@ gBattleAnimMove_Soak::
 	splitbgprio ANIM_TARGET
 	setalpha 12, 8
 	createsprite gWaterGunProjectileSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 40, -25
-	playsewithpan SE_M_BUBBLE, 192
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_ATTACKER
 	delay 2
 	createsprite gWaterGunProjectileSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 5, 0, 40, -25
-	playsewithpan SE_M_BUBBLE, 192
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_ATTACKER
 	delay 2
 	createsprite gWaterGunProjectileSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, -5, 0, 40, -25
-	playsewithpan SE_M_BUBBLE, 192
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_ATTACKER
 	delay 30
 	playsewithpan SE_M_WATERFALL, 63
 	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 4, 0, 17, 1
@@ -7158,7 +7158,7 @@ PhantomForceAttack:
 	blend_color_cycle selector=F_PAL_TARGET, delay=0, num_blends=2, initial_blend_y=0, target_blend_y=13, color=RGB_PURPLE
 	waitforvisualfinish
 	delay 1
-	playsewithpan SOUND_PAN_ATTACKER, 192
+	playsewithpan SOUND_PAN_ATTACKER, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_NightShadeClone, 5, 10
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
@@ -12324,7 +12324,7 @@ gBattleAnimMove_JawLock::
 	end
 
 gBattleAnimMove_StuffCheeks::
-	playsewithpan SE_M_METRONOME, 192
+	playsewithpan SE_M_METRONOME, SOUND_PAN_ATTACKER
 	createsprite gFloatingBerryTemplate, ANIM_ATTACKER, 1, 0
 	delay 69
 	createvisualtask AnimTask_IsTargetPlayerSide, 2
@@ -12341,7 +12341,7 @@ BERRYEAT_ON_PLAYER:
 	call BitePlayer
 	delay 10
 POST_BERRY_EAT:
-	playsewithpan SE_SHINY, 192
+	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 3, 7, 0, RGB(17, 31, 25)
 	createsprite gThinRingExpandingSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 0
 	waitforvisualfinish
@@ -13179,7 +13179,7 @@ gBattleAnimMove_FalseSurrender::
 	fadetobg BG_DARK
 	waitbgfadein
 	delay 0
-	playsewithpan SE_M_FAINT_ATTACK, 192
+	playsewithpan SE_M_FAINT_ATTACK, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 18, 6, 1, 3
 	attacker_fade_to_invisible priority=2, step_delay=1
 	waitforvisualfinish
@@ -14142,7 +14142,7 @@ gBattleAnimMove_JungleHealing::
 	waitbgfadeout
 	call CreateIngrainRoots
 	call CreateIngrainOrbs
-	playsewithpan SE_M_STAT_INCREASE, 192
+	playsewithpan SE_M_STAT_INCREASE, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_StatusClearedEffect, 2, 1
 	waitforvisualfinish
 	restorebg
@@ -14386,7 +14386,7 @@ gBattleAnimMove_FreezingGlare::
 
 gBattleAnimMove_FieryWrath::
 	monbg ANIM_DEF_PARTNER
-	playsewithpan SE_M_SACRED_FIRE2, 192
+	playsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 2, 0, 14, RGB_BLACK
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 4, 0, 8, RGB_RED
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 32, 1
@@ -15207,7 +15207,7 @@ gBattleAnimMove_InfernalParade::
 	monbg ANIM_TARGET
 	splitbgprio_foes ANIM_TARGET
 	fadetobg BG_GHOST
-	playsewithpan SE_M_PSYBEAM, 192
+	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
 	waitbgfadein
 	createsprite gSpriteTemplate_InfernalParadeFlame, ANIM_TARGET, 2, -30, 10, 20 @;Bottom left
 	delay 3
