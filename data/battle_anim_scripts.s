@@ -1731,7 +1731,7 @@ gBattleAnimMove_EarthPower::
 	waitbgfadeout
 	createvisualtask AnimTask_PositionFissureBgOnBattler, 5, ANIM_TARGET, 5, -1
 	waitbgfadein
-	loopsewithpan 145, SOUND_PAN_TARGET 11, 3
+	loopsewithpan SE_M_FLAME_WHEEL2, SOUND_PAN_TARGET 11, 3
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 3, 25, 1
 	call CreateDragonRageFirePlumes
 	waitforvisualfinish
@@ -2486,7 +2486,7 @@ DischargeElectrify:
 	return
 
 gBattleAnimMove_LavaPlume::
-	loopsewithpan 152, SOUND_PAN_ATTACKER, 9, 2
+	loopsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER, 9, 2
 	blend_color_cycle selector=F_PAL_ATTACKER, delay=2, num_blends=2, initial_blend_y=0, target_blend_y=11, color=RGB_RED
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 32, 1
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 1, 0, 32, 1
@@ -2826,7 +2826,7 @@ gBattleAnimMove_StoneEdge::
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, ANIM_TARGET, 2, 0, 32, 480, 20, 16, -46, 1
 	delay 2
-	loopsewithpan 131, SOUND_PAN_TARGET 24, 3
+	loopsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET 24, 3
 	createsprite gStoneEdgeSpriteTemplate, ANIM_TARGET, 2, 0, 33, 576, 20, 8, 42, 1
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, ANIM_TARGET, 2, 0, 31, 400, 25, 11, -42, 1
@@ -3339,7 +3339,7 @@ gBattleAnimMove_RoarOfTime::
 	delay 32
 	monbg ANIM_ATK_PARTNER
 	setalpha 12, 8
-	loopsewithpan 133, SOUND_PAN_ATTACKER 13 3
+	loopsewithpan SE_M_GUST2, SOUND_PAN_ATTACKER 13 3
 	call RecoverAbsorbEffect
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER
@@ -3376,7 +3376,7 @@ gBattleAnimMove_SpacialRend::
 	monbg ANIM_ATK_PARTNER
 	setalpha 12, 8
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 1, 0, 16, RGB_BLACK
-	loopsewithpan 133, SOUND_PAN_ATTACKER 13 2
+	loopsewithpan SE_M_GUST2, SOUND_PAN_ATTACKER 13 2
 	createsprite gSpacialRendBladesTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 0
 	delay 2
 	createsprite gSpacialRendBladesTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 4
@@ -22419,7 +22419,7 @@ gBattleAnimMove_Hail::
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 3, 0, 6, RGB_BLACK
 	waitforvisualfinish
 	createvisualtask AnimTask_Hail, 5
-	loopsewithpan SE_M_HAIL, 0, 8, 10
+	loopsewithpan SE_M_HAIL, SOUND_PAN_TARGET, 8, 10
 	waitforvisualfinish
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 3, 6, 0, RGB_BLACK
 	end
