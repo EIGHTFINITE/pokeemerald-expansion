@@ -234,7 +234,7 @@ gBattleAnimMove_GyroBall::
 gBattleAnimMove_HealingWish::
 	setalpha 0, 16
 	createvisualtask AnimTask_AlphaFadeIn, 3, 0, 16, 16, 0, 1
-	playsewithpan SE_M_MOONLIGHT, 0
+	playsewithpan SE_M_MOONLIGHT, SOUND_PAN_MIDDLE
 	delay 30
 	createsprite gMoonlightSparkleSpriteTemplate, ANIM_ATTACKER, 40, -12, 0
 	delay 30
@@ -816,7 +816,7 @@ gBattleAnimMove_Copycat::
 	end
 
 gBattleAnimMove_PowerSwap::
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 0, 42, -32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 0, 42, -32
@@ -825,7 +825,7 @@ gBattleAnimMove_PowerSwap::
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 0, 42, -32
 	delay 2
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 1, 42, 32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 1, 42, 32
@@ -835,7 +835,7 @@ gBattleAnimMove_PowerSwap::
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 1, 42, 32
 
 	waitforvisualfinish
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 0, 42, -32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 0, 42, -32
@@ -844,7 +844,7 @@ gBattleAnimMove_PowerSwap::
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 0, 42, -32
 	delay 2
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 1, 42, 32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 1, 42, 32
@@ -857,7 +857,7 @@ gBattleAnimMove_PowerSwap::
 	end
 
 gBattleAnimMove_GuardSwap::
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 2, 0, 42, -32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 0, 42, -32
@@ -866,7 +866,7 @@ gBattleAnimMove_GuardSwap::
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 0, 42, -32
 	delay 2
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 2, 1, 42, 32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 1, 42, 32
@@ -876,7 +876,7 @@ gBattleAnimMove_GuardSwap::
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 1, 42, 32
 
 	waitforvisualfinish
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 2, 0, 42, -32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 0, 42, -32
@@ -885,7 +885,7 @@ gBattleAnimMove_GuardSwap::
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 0, 42, -32
 	delay 2
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 2, 1, 42, 32
 	delay 2
 	createsprite gPowerSwapGuardSwapSpriteTemplate, ANIM_TARGET, 3, 0, 0, 3, 1, 42, 32
@@ -1208,7 +1208,7 @@ gBattleAnimMove_AuraSphere::
 	splitbgprio ANIM_ATTACKER
 	setalpha 12, 8
 	call SetAuraSphereBG
-	playsewithpan SE_M_SKY_UPPERCUT, 0
+	playsewithpan SE_M_SKY_UPPERCUT, SOUND_PAN_MIDDLE
 	delay 60
 	createsprite gAuraSphereBlast, ANIM_TARGET, 3, 0
 	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
@@ -3410,7 +3410,7 @@ gBattleAnimMove_LunarDance::
 	waitforvisualfinish
 	createsprite gMoonSpriteTemplate, ANIM_ATTACKER, 2, 120, 56
 	createvisualtask AnimTask_AlphaFadeIn, 3, 0, 16, 16, 0, 1
-	playsewithpan 211, 0
+	playsewithpan 211, SOUND_PAN_MIDDLE
 	delay 30
 	createsprite gMoonlightSparkleSpriteTemplate, ANIM_ATTACKER, 40, -12, 0
 	delay 30
@@ -3583,7 +3583,7 @@ gBattleAnimMove_SeedFlare::
 
 gBattleAnimMove_OminousWind::
 	panse SE_M_GUST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET 2, 0
-	playsewithpan 228, 0
+	playsewithpan 228, SOUND_PAN_MIDDLE
 	delay 0
 	monbg ANIM_DEF_PARTNER
 	@bankBG_over_partnerBG
@@ -8503,13 +8503,13 @@ gBattleAnimMove_HoldHands::
 	createsprite gHelpingHandClapSpriteTemplate, ANIM_ATTACKER, 40, 0
 	createsprite gHelpingHandClapSpriteTemplate, ANIM_ATTACKER, 40, 1
 	delay 19
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 2, 0, 5, 1
 	delay 14
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 2, 0, 5, 1
 	delay 20
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 3, 0, 10, 1
 	createvisualtask AnimTask_BlendMonInAndOut, 2, ANIM_ATK_PARTNER, RGB_YELLOW, 12, 1, 1
 	end
@@ -8870,7 +8870,7 @@ gBattleAnimMove_LandsWrath::
 	waitforvisualfinish
 	fadetobg BG_FISSURE
 	waitbgfadeout
-	playsewithpan SE_M_EARTHQUAKE, 0
+	playsewithpan SE_M_EARTHQUAKE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_HorizontalShake, 5, (MAX_BATTLERS_COUNT + 1), 10, 50
 	createvisualtask AnimTask_HorizontalShake, 5, MAX_BATTLERS_COUNT, 10, 50
 	createvisualtask AnimTask_PositionFissureBgOnBattler, 5, ANIM_TARGET, 5, -1
@@ -9028,7 +9028,7 @@ gBattleAnimMove_PrecipiceBlades::
 	createvisualtask AnimTask_PositionFissureBgOnBattler, 5, ANIM_TARGET, 5, -1
 	createvisualtask AnimTask_HorizontalShake, 5, (MAX_BATTLERS_COUNT + 1), 10, 5
 	createvisualtask AnimTask_HorizontalShake, 5, MAX_BATTLERS_COUNT, 10, 5
-	playsewithpan SE_M_EARTHQUAKE, 0
+	playsewithpan SE_M_EARTHQUAKE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_IsTargetPlayerSide, 2
 	jumpargeq 7, ANIM_TARGET, PrecipiceBladesOpponent
 PrecipiceBladesPlayer:
@@ -9194,7 +9194,7 @@ HyperspaceFuryRandomImpact:
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 7 @@@@@@@@@@@@@@@@@@@@@@@
 gBattleAnimMove_ShoreUp::
-	playsewithpan SE_M_SANDSTORM, 0
+	playsewithpan SE_M_SANDSTORM, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_LoadSandstormBackground, 5, 0
 	delay 16
 	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 10, 2304, 96, 0
@@ -9446,7 +9446,7 @@ gBattleAnimMove_FloralHealing::
 	call CIRCLES_LEAVES
 	waitforvisualfinish
 	panse SE_M_COMET_PUNCH, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 2, 0
-	playsewithpan SE_M_TWISTER, 0
+	playsewithpan SE_M_TWISTER, SOUND_PAN_MIDDLE
 	createsprite gSweetScentPetalSpriteTemplate, ANIM_ATTACKER, 2, 70, 1, 64
 	clearmonbg ANIM_ATTACKER
 	delay 2
@@ -15887,7 +15887,7 @@ gBattleAnimMove_UpperHand::
 	createsprite gForcePalmSpriteTemplate 3, 4, 0, 0, 1, 2
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 4, 0, 6, 1
 	waitforvisualfinish
-	playsewithpan SE_M_FLATTER, 0
+	playsewithpan SE_M_FLATTER, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_FakeOut, 5
 	waitforvisualfinish
 	playsewithpan SE_M_SKETCH, SOUND_PAN_TARGET
@@ -16824,7 +16824,7 @@ gBattleAnimMove_BloodMoon::
 	createsprite gMoonUpSpriteTemplate, ANIM_ATTACKER, 2
 	waitforvisualfinish
 	delay 15
-	playsewithpan SE_M_DETECT, 0
+	playsewithpan SE_M_DETECT, SOUND_PAN_MIDDLE
 	waitforvisualfinish
 	createvisualtask AnimTask_IsTargetPlayerSide, 2
 	jumpargeq 7 ANIM_TARGET BloodMoonOnPlayer
@@ -20840,21 +20840,21 @@ gBattleAnimMove_PainSplit::
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_ATTACKER, 2, -8, -42, ANIM_ATTACKER
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_TARGET, 2, -8, -42, ANIM_TARGET
 	delay 10
-	playsewithpan SE_M_SWAGGER2, 0
+	playsewithpan SE_M_SWAGGER2, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_ATTACKER, 0
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_TARGET, 0
 	waitforvisualfinish
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_ATTACKER, 2, -24, -42, ANIM_ATTACKER
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_TARGET, 2, -24, -42, ANIM_TARGET
 	delay 10
-	playsewithpan SE_M_SWAGGER2, 0
+	playsewithpan SE_M_SWAGGER2, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_ATTACKER, 1
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_TARGET, 1
 	waitforvisualfinish
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_ATTACKER, 2, 8, -42, ANIM_ATTACKER
 	createsprite gPainSplitProjectileSpriteTemplate, ANIM_TARGET, 2, 8, -42, ANIM_TARGET
 	delay 10
-	playsewithpan SE_M_SWAGGER2, 0
+	playsewithpan SE_M_SWAGGER2, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_ATTACKER, 2
 	createvisualtask AnimTask_PainSplitMovement, 2, ANIM_TARGET, 2
 	end
@@ -21232,7 +21232,7 @@ gBattleAnimMove_IcyWind::
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG | F_PAL_ATK_SIDE, 4, 0, 4, RGB_BLACK
 	fadetobg BG_ICE
 	waitbgfadeout
-	playsewithpan SE_M_ICY_WIND, 0
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_MIDDLE
 	waitbgfadein
 	waitforvisualfinish
 	panse SE_M_GUST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
@@ -21585,7 +21585,7 @@ gBattleAnimMove_LowKick::
 gBattleAnimMove_Earthquake::
 	createvisualtask AnimTask_HorizontalShake, 5, (MAX_BATTLERS_COUNT + 1), 10, 50
 	createvisualtask AnimTask_HorizontalShake, 5, MAX_BATTLERS_COUNT, 10, 50
-	playsewithpan SE_M_EARTHQUAKE, 0
+	playsewithpan SE_M_EARTHQUAKE, SOUND_PAN_MIDDLE
 	delay 10
 	complex_palette_blend selector=F_PAL_BG, delay=3, num_blends=1, color1=RGB_BLACK, blend_y1=14, color2=RGB_WHITE, blend_y2=14
 	delay 16
@@ -22316,7 +22316,7 @@ gBattleAnimMove_Moonlight::
 	waitforvisualfinish
 	createsprite gMoonSpriteTemplate, ANIM_ATTACKER, 2, 120, 56
 	createvisualtask AnimTask_AlphaFadeIn, 3, 0, 16, 16, 0, 1
-	playsewithpan SE_M_MOONLIGHT, 0
+	playsewithpan SE_M_MOONLIGHT, SOUND_PAN_MIDDLE
 	delay 30
 	createsprite gMoonlightSparkleSpriteTemplate, ANIM_ATTACKER, 40, -12, 0
 	delay 30
@@ -22541,13 +22541,13 @@ gBattleAnimMove_HelpingHand::
 	createsprite gHelpingHandClapSpriteTemplate, ANIM_ATTACKER, 40, 0
 	createsprite gHelpingHandClapSpriteTemplate, ANIM_ATTACKER, 40, 1
 	delay 19
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 2, 0, 5, 1
 	delay 14
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 2, 0, 5, 1
 	delay 20
-	playsewithpan SE_M_ENCORE, 0
+	playsewithpan SE_M_ENCORE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATK_PARTNER, 3, 0, 10, 1
 	createvisualtask AnimTask_BlendMonInAndOut, 2, ANIM_ATK_PARTNER, RGB_YELLOW, 12, 1, 1
 	end
@@ -22556,16 +22556,16 @@ gBattleAnimMove_Assist::
 	createsprite gAssistPawprintSpriteTemplate, ANIM_ATTACKER, 50, 112, -16, 140, 128, 36
 	delay 2
 	createsprite gAssistPawprintSpriteTemplate, ANIM_ATTACKER, 50, 208, 128, -16, 48, 36
-	playsewithpan SE_M_SCRATCH, 0
+	playsewithpan SE_M_SCRATCH, SOUND_PAN_MIDDLE
 	delay 2
 	createsprite gAssistPawprintSpriteTemplate, ANIM_ATTACKER, 50, -16, 112, 256, -16, 36
-	playsewithpan SE_M_SCRATCH, 0
+	playsewithpan SE_M_SCRATCH, SOUND_PAN_MIDDLE
 	delay 2
 	createsprite gAssistPawprintSpriteTemplate, ANIM_ATTACKER, 50, 108, 128, 84, -16, 36
-	playsewithpan SE_M_SCRATCH, 0
+	playsewithpan SE_M_SCRATCH, SOUND_PAN_MIDDLE
 	delay 2
 	createsprite gAssistPawprintSpriteTemplate, ANIM_ATTACKER, 50, -16, 56, 256, 56, 36
-	playsewithpan SE_M_SCRATCH, 0
+	playsewithpan SE_M_SCRATCH, SOUND_PAN_MIDDLE
 	end
 
 gBattleAnimMove_Superpower::
@@ -22846,7 +22846,7 @@ gBattleAnimMove_MistBall::
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 5, 0, 10, 0
 	complex_palette_blend unused_subpriority_offset=0, selector=F_PAL_BG, delay=1, num_blends=1, color1=RGB(23, 16, 31), blend_y1=16, color2=RGB_WHITE, blend_y2=16
 	delay 0
-	playsewithpan SE_M_HAZE, 0
+	playsewithpan SE_M_HAZE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_MistBallFog, 5
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 3, 0, 16, RGB_WHITE
 	delay 8
@@ -23015,7 +23015,7 @@ CreateClawSlashes2:
 	return
 
 gBattleAnimMove_Aromatherapy::
-	playsewithpan SE_M_PETAL_DANCE, 0
+	playsewithpan SE_M_PETAL_DANCE, SOUND_PAN_MIDDLE
 	simple_palette_blend unused_subpriority_offset=0, selector=F_PAL_BG, delay=0, initial_blend_y=0, target_blend_y=7, color=RGB(13, 31, 12)
 	delay 1
 	monbg ANIM_ATTACKER
@@ -25114,7 +25114,7 @@ FlamethrowerCreateFlames:
 
 @ Also used by Sandstorm weather
 gBattleAnimMove_Sandstorm::
-	playsewithpan SE_M_SANDSTORM, 0
+	playsewithpan SE_M_SANDSTORM, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_LoadSandstormBackground, 5, FALSE
 	delay 16
 	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 10, 2304, 96, 0
@@ -25689,7 +25689,7 @@ MistCloud:
 
 gBattleAnimMove_Haze::
 	waitforvisualfinish
-	playsewithpan SE_M_HAZE, 0
+	playsewithpan SE_M_HAZE, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_HazeScrollingFog, 5
 	delay 30
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BATTLERS_2, 2, 0, 16, RGB_BLACK
@@ -26462,7 +26462,7 @@ HealBellRing:
 	return
 
 gBattleAnimMove_FakeOut::
-	playsewithpan SE_M_FLATTER, 0
+	playsewithpan SE_M_FLATTER, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_FakeOut, 5
 	waitforvisualfinish
 	playsewithpan SE_M_SKETCH, SOUND_PAN_TARGET
@@ -26574,7 +26574,7 @@ gBattleAnimMove_Present::
 	delay 14
 	playsewithpan SE_M_BUBBLE2, SOUND_PAN_ATTACKER
 	delay 14
-	playsewithpan SE_M_BUBBLE2, 0
+	playsewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE
 	delay 20
 	playsewithpan SE_M_BUBBLE2, SOUND_PAN_TARGET
 	waitforvisualfinish
@@ -26820,23 +26820,23 @@ SwapItems:
 	create_trick_bag_sprite ANIM_ATTACKER, 2, initial_y=-40, wave_offset=80
 	create_trick_bag_sprite ANIM_ATTACKER, 2, initial_y=-40, wave_offset=208
 	delay 16
-	playsewithpan SE_M_SKETCH, 0
+	playsewithpan SE_M_SKETCH, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_StretchTargetUp, 3
 	createvisualtask AnimTask_StretchAttackerUp, 3
 	delay 30
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 24
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 16
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 16
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 16
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 16
-	playsewithpan SE_M_DOUBLE_TEAM, 0
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_MIDDLE
 	delay 16
-	playsewithpan SE_M_ATTRACT, 0
+	playsewithpan SE_M_ATTRACT, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ShakeMon, 3, ANIM_ATTACKER, 5, 0, 7, 2
 	createvisualtask AnimTask_ShakeMon, 3, ANIM_TARGET, 5, 0, 7, 2
 	waitforvisualfinish
@@ -27227,7 +27227,7 @@ SandTombSwirlingDirt:
 gBattleAnimMove_SheerCold::
 	fadetobg BG_ICE
 	waitbgfadeout
-	playsewithpan SE_M_ICY_WIND, 0
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_MIDDLE
 	waitbgfadein
 	monbg ANIM_DEF_PARTNER
 	splitbgprio ANIM_TARGET
@@ -27465,7 +27465,7 @@ gBattleAnimMove_FrenzyPlant::
 	playsewithpan SE_M_SCRATCH, -22
 	delay 5
 	create_frenzy_plant_root_sprite ANIM_ATTACKER, 2, interpolate_percent=40, offset_x=-8, offset_y=4, subpriority=0, animation=1, duration=85
-	playsewithpan SE_M_SCRATCH, 0
+	playsewithpan SE_M_SCRATCH, SOUND_PAN_MIDDLE
 	delay 5
 	create_frenzy_plant_root_sprite ANIM_ATTACKER, 2, interpolate_percent=50, offset_x=8, offset_y=0, subpriority=0, animation=0, duration=85
 	playsewithpan SE_M_SCRATCH, +21
@@ -27710,7 +27710,7 @@ ReturnStrongestHit:
 
 gBattleAnimMove_CosmicPower::
 	createvisualtask SoundTask_PlaySE2WithPanning, 5, SE_M_COSMIC_POWER, 0
-	playsewithpan SE_M_COSMIC_POWER, 0
+	playsewithpan SE_M_COSMIC_POWER, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_BlendNonAttackerPalettes, 2, 0, 0, 15, RGB_BLACK
 	waitforvisualfinish
 	fadetobg BG_COSMIC
@@ -27833,7 +27833,7 @@ UnsetBugBg:
 
 gBattleAnimMove_SilverWind::
 	panse SE_M_GUST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
-	playsewithpan SE_M_MORNING_SUN, 0
+	playsewithpan SE_M_MORNING_SUN, SOUND_PAN_MIDDLE
 	delay 0
 	monbg ANIM_DEF_PARTNER
 	splitbgprio_all
@@ -28071,7 +28071,7 @@ gBattleAnimMove_SeismicToss::
 	fadetobg BG_IN_AIR
 	waitbgfadeout
 	createvisualtask AnimTask_MoveSeismicTossBg, 3
-	playsewithpan SE_M_SKY_UPPERCUT, 0
+	playsewithpan SE_M_SKY_UPPERCUT, SOUND_PAN_MIDDLE
 	waitbgfadein
 	waitforvisualfinish
 	createvisualtask AnimTask_SeismicTossBgAccelerateDownAtEnd, 3
@@ -28435,7 +28435,7 @@ gBattleAnimMove_WeatherBall::
 	createsprite gWeatherBallUpSpriteTemplate, ANIM_ATTACKER, 2
 	waitforvisualfinish
 	delay 15
-	playsewithpan SE_M_DETECT, 0
+	playsewithpan SE_M_DETECT, SOUND_PAN_MIDDLE
 	complex_palette_blend selector=F_PAL_BG | F_PAL_BATTLERS, delay=5, num_blends=1, color1=RGB_WHITE, blend_y1=10, color2=RGB_BLACK, blend_y2=0
 	waitforvisualfinish
 	createvisualtask AnimTask_GetWeather, 2
@@ -28876,7 +28876,7 @@ gBattleAnimStatus_Paralysis::
 	end
 
 gBattleAnimStatus_Freeze::
-	playsewithpan SE_M_ICY_WIND, 0
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_MIDDLE
 	monbg ANIM_DEF_PARTNER
 	splitbgprio ANIM_TARGET
 	waitplaysewithpan SE_M_HAIL, SOUND_PAN_TARGET, 17
@@ -28904,7 +28904,7 @@ gBattleAnimStatus_Nightmare::
 	end
 
 gBattleAnimStatus_Frostbite::
-	playsewithpan SE_M_ICY_WIND, 0
+	playsewithpan SE_M_ICY_WIND, SOUND_PAN_MIDDLE
 	monbg ANIM_DEF_PARTNER
 	splitbgprio ANIM_TARGET
 	call IceCrystalEffectShort
@@ -29244,7 +29244,7 @@ gBattleAnimGeneral_DoomDesireHit::
 	delay 9
 	playsewithpan SE_M_CONFUSE_RAY, SOUND_PAN_ATTACKER
 	delay 9
-	playsewithpan SE_M_CONFUSE_RAY, 0
+	playsewithpan SE_M_CONFUSE_RAY, SOUND_PAN_MIDDLE
 	delay 9
 	playsewithpan SE_M_CONFUSE_RAY, SOUND_PAN_TARGET
 	delay 25
@@ -29550,7 +29550,7 @@ gBattleAnimGeneral_GulpMissile:: @ Tackle anim (placeholder)
 	end
 
 gBattleAnimGeneral_StrongWinds::
-	playsewithpan SE_M_GUST, 0
+	playsewithpan SE_M_GUST, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_FLYING_DIRT, 0, 12, 12, RGB(20, 20, 20)
 	waitforvisualfinish
 	createvisualtask AnimTask_LoadWindstormBackground, 5, FALSE
@@ -29929,7 +29929,7 @@ SnatchMoveSwapMonForSubstitute:
 
 @ Healthbox blue flash effect on level up
 gBattleAnimSpecial_LevelUp::
-	playsewithpan SE_EXP_MAX, 0
+	playsewithpan SE_EXP_MAX, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_LoadHealthboxPalsForLevelUp, 2
 	delay 0
 	createvisualtask AnimTask_FlashHealthboxOnLevelUp, 5, 0, 0
@@ -29952,7 +29952,7 @@ gBattleAnimSpecial_SwitchOutOpponentMon::
 gBattleAnimSpecial_BallThrow::
 	createvisualtask AnimTask_LoadBallGfx, 2
 	delay 0
-	playsewithpan SE_BALL_THROW, 0
+	playsewithpan SE_BALL_THROW, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ThrowBall, 2
 	createvisualtask AnimTask_IsBallBlockedByTrainer, 2
 	jumpreteq -1, BallThrowTrainerBlock
@@ -29991,7 +29991,7 @@ gBattleAnimSpecial_MonToSubstitute::
 gBattleAnimSpecial_CriticalCaptureBallThrow::
 	createvisualtask AnimTask_LoadBallGfx, 2
 	delay 0
-	playsewithpan SE_FALL, 0
+	playsewithpan SE_FALL, SOUND_PAN_MIDDLE
 	createvisualtask AnimTask_ThrowBall, 2
 	createvisualtask AnimTask_IsBallBlockedByTrainer, 2
 	jumpreteq -1, BallThrowTrainerBlock
@@ -30001,7 +30001,7 @@ gBattleAnimSpecial_CriticalCaptureBallThrow::
 gBattleAnimMove_BreakneckBlitz::
 	createvisualtask AnimTask_HorizontalShake, 5, (MAX_BATTLERS_COUNT + 1), 5, 32 	@ shake screen
 	createvisualtask AnimTask_HorizontalShake, 5, MAX_BATTLERS_COUNT, 5, 32 	@ shake banks
-	playsewithpan SE_M_EARTHQUAKE, 0
+	playsewithpan SE_M_EARTHQUAKE, SOUND_PAN_MIDDLE
 	monbg ANIM_ATTACKER
 	splitbgprio ANIM_ATTACKER
 	delay 1
@@ -30184,7 +30184,7 @@ gBattleAnimMove_SupersonicSkystrike::
 	delay 9
 	playsewithpan SE_M_MORNING_SUN, SOUND_PAN_ATTACKER
 	delay 9
-	playsewithpan SE_M_MORNING_SUN, 0
+	playsewithpan SE_M_MORNING_SUN, SOUND_PAN_MIDDLE
 	delay 9
 	playsewithpan SE_M_MORNING_SUN, SOUND_PAN_TARGET
 	delay 25
