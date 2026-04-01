@@ -21014,7 +21014,7 @@ gBattleAnimMove_Attract::
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -128, -22
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -384, -31
 	waitforvisualfinish
-	waitplaysewithpan SE_M_ATTRACT2, 0, 15
+	waitplaysewithpan SE_M_ATTRACT2, SOUND_PAN_MIDDLE, 15
 	createvisualtask AnimTask_HeartsBackground, 5
 	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 16, 256, 0
 	createsprite gRedHeartRisingSpriteTemplate, ANIM_ATTACKER, 40, 224, 240, 15
@@ -22910,34 +22910,34 @@ gBattleAnimMove_MudSport::
 	playsewithpan SE_M_DIG, SOUND_PAN_ATTACKER
 	delay 16
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 220, 60
-	waitplaysewithpan SE_M_BUBBLE2, 0, 15
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 15
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 60, 100
-	waitplaysewithpan SE_M_BUBBLE2, 0, 25
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 25
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 140, 55
-	waitplaysewithpan SE_M_BUBBLE2, 0, 14
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 14
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 180, 50
-	waitplaysewithpan SE_M_BUBBLE2, 0, 10
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 10
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 20, 90
-	waitplaysewithpan SE_M_BUBBLE2, 0, 22
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 22
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 90, 90
-	waitplaysewithpan SE_M_BUBBLE2, 0, 22
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 22
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 160, 60
-	waitplaysewithpan SE_M_BUBBLE2, 0, 15
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 15
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 30, 90
-	waitplaysewithpan SE_M_BUBBLE2, 0, 22
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 22
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 120, 60
-	waitplaysewithpan SE_M_BUBBLE2, 0, 15
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 15
 	delay 2
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 1, 200, 40
-	waitplaysewithpan SE_M_BUBBLE2, 0, 10
+	waitplaysewithpan SE_M_BUBBLE2, SOUND_PAN_MIDDLE, 10
 	end
 
 gBattleAnimMove_NeedleArm::
