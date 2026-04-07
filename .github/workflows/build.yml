@@ -32,6 +32,13 @@ jobs:
           GAME_VERSION: EMERALD
         run: make -j1 -O all
 
+      - name: Upload Emerald
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokeemerald-${{ github.run_id }}
+          path: pokeemerald.gba
+          retention-days: 1
+
   build-firered:
     if: github.actor != 'allcontributors[bot]'
     runs-on: ubuntu-latest
@@ -47,6 +54,13 @@ jobs:
       - name: ROM (Firered)
         run: make firered -j1 -O
 
+      - name: Upload Firered
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokefirered-${{ github.run_id }}
+          path: pokefirered.gba
+          retention-days: 1
+
   build-leafgreen:
     if: github.actor != 'allcontributors[bot]'
     runs-on: ubuntu-latest
@@ -61,6 +75,13 @@ jobs:
 
       - name: ROM (Leafgreen)
         run: make leafgreen -j1 -O
+
+      - name: Upload Leafgreen
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokeleafgreen-${{ github.run_id }}
+          path: pokeleafgreen.gba
+          retention-days: 1
 
   release:
     if: github.actor != 'allcontributors[bot]'
@@ -78,6 +99,13 @@ jobs:
         env:
           GAME_VERSION: EMERALD
         run: make -j1 release
+
+      - name: Upload Release
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokeemerald-release-${{ github.run_id }}
+          path: pokeemerald-release.gba
+          retention-days: 1
 
   test:
     if: github.actor != 'allcontributors[bot]'
