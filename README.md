@@ -16,7 +16,7 @@ git remote add pret https://github.com/pret/pokeemerald.git
 git remote add merrp https://github.com/aarant/pokeemerald.git
 git remote add team_aqua https://github.com/TeamAquasHideout/pokeemerald.git
 git fetch --force --all --tags
-git reset --hard
+git reset --hard refs/remotes/origin/master
 git checkout -B master refs/remotes/origin/master
 
 ```
