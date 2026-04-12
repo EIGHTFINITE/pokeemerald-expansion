@@ -944,6 +944,7 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
     ctx.isCrit = ShouldCalcCritDamage(&ctx);
     ctx.typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(&ctx);
 
+
     u32 movePower = GetMovePower(move);
 
     if (movePower && !IsDamageMoveUnusable(&ctx))

@@ -3339,7 +3339,6 @@ void FaintClearSetData(enum BattlerId battler)
     gBattleStruct->palaceFlags &= ~(1u << battler);
     if (battler == gBattlerAttacker)
         gBattleStruct->moldBreakerActive = FALSE;
-
     ClearPursuitValuesIfSet(battler);
 
     if (gBattleStruct->battlerState[battler].commanderSpecies != SPECIES_NONE)
@@ -5767,6 +5766,9 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
     case ABILITY_GALVANIZE:
         ateType = TYPE_ELECTRIC;
         break;
+    case ABILITY_DRAGONIZE:
+        ateType = TYPE_DRAGON;
+        break;
     default:
         ateType = TYPE_NONE;
         break;
@@ -5816,22 +5818,22 @@ enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId
     case EFFECT_WEATHER_BALL:
         if (state == MON_IN_BATTLE)
         {
-            if (HasWeatherEffect())
-            {
-                if (gBattleWeather & B_WEATHER_RAIN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-                    return TYPE_WATER;
-                else if (gBattleWeather & B_WEATHER_SANDSTORM)
-                    return TYPE_ROCK;
-                else if (gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-                    return TYPE_FIRE;
-                else if (gBattleWeather & B_WEATHER_ICY_ANY)
-                    return TYPE_ICE;
-                else
-                    return moveType;
-            }
+            u32 weather =  GetAttackerWeather(holdEffect, ability, GetWeather());
+            if (weather & B_WEATHER_SUN)
+                return TYPE_FIRE;
+            else if (weather & B_WEATHER_RAIN)
+                return TYPE_WATER;
+            else if (weather & B_WEATHER_SANDSTORM)
+                return TYPE_ROCK;
+            else if (weather & B_WEATHER_ICY_ANY)
+                return TYPE_ICE;
+            else
+                return moveType;
         }
         else
         {
+            if (ability == ABILITY_MEGA_SOL)
+                return TYPE_FIRE;
             switch (gWeatherPtr->currWeather)
             {
             case WEATHER_DROUGHT:
