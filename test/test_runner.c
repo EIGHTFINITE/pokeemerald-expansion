@@ -1,6 +1,6 @@
 #include <stdarg.h>
-#include "fake_rtc.h"
 #include "global.h"
+#include "fake_rtc.h"
 #include "gpu_regs.h"
 #include "load_save.h"
 #include "main.h"
@@ -135,6 +135,8 @@ void TestRunner_CheckMemory(void)
     if (gTestRunnerState.result == TEST_RESULT_PASS
      && !gTestRunnerState.expectLeaks)
     {
+        TestFreeConfigData();
+
         int i;
         const struct MemBlock *head = HeapHead();
         const struct MemBlock *block = head;
@@ -154,16 +156,11 @@ void TestRunner_CheckMemory(void)
                 const char *location = MemBlockLocation(block);
                 if (location)
                 {
-                    const char cmpString[] = "src/config_changes.c";
-                    if (strncmp(cmpString, location, sizeof(cmpString) - 1) != 0)
-                    {
-                        Test_MgbaPrintf("%s: %d bytes not freed", location, block->size);
-                        gTestRunnerState.result = TEST_RESULT_FAIL;
-    
-                        if (gTestRunnerState.expectedFailState == EXPECT_FAIL_OPEN)
-                            gTestRunnerState.expectedFailState = EXPECT_FAIL_SUCCESS;
-                        break;
-                    }
+                    Test_MgbaPrintf("%s: %d bytes not freed", location, block->size);
+                    gTestRunnerState.result = TEST_RESULT_FAIL;
+
+                    if (gTestRunnerState.expectedFailState == EXPECT_FAIL_OPEN)
+                        gTestRunnerState.expectedFailState = EXPECT_FAIL_SUCCESS;
                 }
                 else
                 {
