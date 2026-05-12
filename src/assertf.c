@@ -236,6 +236,10 @@ static void Vprintf(const void *return1, const void *return0, const char *fmt, v
             char f = *fmt++;
             switch (f)
             {
+            case '%':
+                if (!Putc(&x, &y, '%'))
+                    return;
+                break;
             case 'd':
                 if (!Puti(&x, &y, va_arg(va, int)))
                     return;
