@@ -2864,23 +2864,24 @@ static bool32 IsRestrictedAbility(enum BattlerId battler, enum Ability ability)
 
 static bool32 TryDancer(void)
 {
-    bool32 anyDancerQueued = FALSE;
+    u32 order = 0;
     enum BattlerId dancerBattler = MAX_BATTLERS_COUNT;
 
     if (!IsDanceMove(gCurrentMove))
         return FALSE;
 
-    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+    for (order = 0; order < gBattlersCount; order++)
     {
-        if (gBattleMons[battler].volatiles.activateDancer && !gSpecialStatuses[battler].dancerUsedMove)
-        {
-            if (!anyDancerQueued || (gBattleMons[battler].speed < gBattleMons[dancerBattler].speed))
-                dancerBattler = battler;
-            anyDancerQueued = TRUE;
-        }
+        if (GetConfig(B_DANCER_ORDER) < GEN_8)
+            dancerBattler = gBattlersByRawSpeed[gBattlersCount - order - 1]; // pick from slowest to fastest Raw Speed
+        else
+            dancerBattler = gBattlersBySpeed[order]; // pick from fastest to slowest Speed including modifiers
+
+        if (gBattleMons[dancerBattler].volatiles.activateDancer && !gSpecialStatuses[dancerBattler].dancerUsedMove)
+            break;
     }
 
-    if (!anyDancerQueued)
+    if (order >= gBattlersCount) // no battler activates Dancer
         return FALSE;
 
     // Dance move succeeds
@@ -2892,9 +2893,7 @@ static bool32 TryDancer(void)
         gSpecialStatuses[gBattlerAttacker].dancerUsedMove = TRUE;
     }
 
-    if (IsBattlerAlive(dancerBattler)
-     && !gSpecialStatuses[dancerBattler].dancerUsedMove
-     && gBattlerAttacker != dancerBattler)
+    if (IsBattlerAlive(dancerBattler))
     {
         gSpecialStatuses[dancerBattler].dancerUsedMove = TRUE;
         gSpecialStatuses[dancerBattler].backUpTarget = gBattleStruct->moveTarget[dancerBattler] + 1;
@@ -2950,13 +2949,11 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
         switch (gLastUsedAbility)
         {
         case ABILITY_TRACE:
+            if (!gBattleMons[battler].volatiles.traceActivated)
             {
                 enum BattlerId chosenTarget;
                 enum BattlerId target1;
                 enum BattlerId target2;
-
-                if (GetBattlerHoldEffectIgnoreAbility(battler) == HOLD_EFFECT_ABILITY_SHIELD)
-                    break;
 
                 side = (BATTLE_OPPOSITE(GetBattlerPosition(battler))) & BIT_SIDE;
                 target1 = GetBattlerAtPosition(side);
@@ -2979,6 +2976,9 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
 
                 if (effect != 0)
                 {
+                    gBattleMons[battler].volatiles.traceActivated = TRUE;
+                    if (GetBattlerHoldEffectIgnoreAbility(battler) == HOLD_EFFECT_ABILITY_SHIELD)
+                        break;
                     BattleScriptCall(BattleScript_TraceActivates);
                     gBattleStruct->tracedAbility[battler] = gLastUsedAbility = gBattleMons[chosenTarget].ability;
                     RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
@@ -9185,11 +9185,6 @@ bool32 CanStealItem(enum BattlerId battlerStealing, enum BattlerId battlerItem, 
         return FALSE;
     }
 
-    // It's supposed to pop before trying to steal but this also works
-    // Now that the order is correct this is redundant. The question is whether Trick can steal it.
-    if (GetItemHoldEffect(item) == HOLD_EFFECT_AIR_BALLOON)
-        return FALSE;
-
     if (!CanBattlerGetOrLoseItem(battlerItem, battlerStealing, item)  // Battler with item cannot have it stolen
      || !CanBattlerGetOrLoseItem(battlerStealing, battlerItem, item)) // Stealer cannot take the item
         return FALSE;
@@ -10838,33 +10833,39 @@ void TryUpdateEvolutionTracker(enum EvolutionConditions evolutionCondition, u32 
     }
 }
 
-static const u16 sProtectSuccessRates[] =
+static const u16 sProtectFailChances[] =
 {
-    USHRT_MAX,
-    USHRT_MAX / 2,
-    USHRT_MAX / 4,
-    USHRT_MAX / 8
+    1,
+    2,
+    4,
+    8
 };
 
-static const u16 sGen5ProtectSuccessRates[] =
+static const u16 sGen5ProtectFailChances[] =
 {
-    USHRT_MAX,
-    USHRT_MAX / 3,
-    USHRT_MAX / 9,
-    USHRT_MAX / 27
+    1,
+    3,
+    9,
+    27
 };
 
 bool32 CanUseMoveConsecutively(enum BattlerId battler)
 {
     u32 moveUses = gBattleMons[battler].volatiles.consecutiveMoveUses;
-    if (moveUses >= ARRAY_COUNT(sProtectSuccessRates))
-        moveUses = ARRAY_COUNT(sProtectSuccessRates) - 1;
+    if (moveUses >= ARRAY_COUNT(sProtectFailChances))
+        moveUses = ARRAY_COUNT(sProtectFailChances) - 1;
 
-    u32 successRate = sGen5ProtectSuccessRates[moveUses];
+    u32 failChances;
+
     if (B_PROTECT_FAILURE_RATE < GEN_5)
-        successRate = sProtectSuccessRates[moveUses];
+        failChances = sProtectFailChances[moveUses];
+    else
+        failChances = sGen5ProtectFailChances[moveUses];
 
-    return successRate >= RandomUniform(RNG_PROTECT_FAIL, 0, USHRT_MAX);
+    if (failChances == 1)
+        return TRUE;
+
+    return RandomUniform(RNG_PROTECT_FAIL, 1, failChances) == 1;
 }
 
 // Used for Protect, Endure and Ally switch
