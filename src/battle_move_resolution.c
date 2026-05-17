@@ -3745,6 +3745,7 @@ static bool32 HasAnyBattlerQueuedSwitch(void)
 static bool32 TryRedCard(enum BattlerId battlerAtk, enum BattlerId redCardBattler, enum Move move)
 {
     if (!IsBattlerAlive(redCardBattler)
+     || !IsBattlerAlive(battlerAtk)
      || gBattleStruct->redCardActivated
      || !IsBattlerTurnDamaged(redCardBattler, EXCLUDING_SUBSTITUTES)
      || !CanBattlerSwitch(battlerAtk))
