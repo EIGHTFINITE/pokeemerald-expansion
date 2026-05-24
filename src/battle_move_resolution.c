@@ -970,6 +970,8 @@ static enum CancelerResult CancelerPPDeduction(struct BattleContext *ctx)
         gBattleMons[ctx->battlerAtk].pp[movePosition] -= ppToDeduct;
     else
         gBattleMons[ctx->battlerAtk].pp[movePosition] = 0;
+        
+    gLastMoves[ctx->battlerAtk] = gChosenMove;
 
     if (MOVE_IS_PERMANENT(ctx->battlerAtk, movePosition))
     {
