@@ -3029,6 +3029,12 @@ u8 CalculatePlayerPartyCount(void)
     return gPartiesCount[B_TRAINER_PLAYER];
 }
 
+u8 CalculatePartnerPartyCount(void)
+{
+    gPartiesCount[B_TRAINER_PARTNER] = CalculatePartyCount(B_TRAINER_PARTNER);
+    return gPartiesCount[B_TRAINER_PARTNER];
+}
+
 u8 CalculateEnemyPartyCount(void)
 {
     gPartiesCount[B_TRAINER_OPPONENT_A] = CalculatePartyCount(B_TRAINER_OPPONENT_A);
