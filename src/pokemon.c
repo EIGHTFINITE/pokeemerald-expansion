@@ -101,6 +101,11 @@ EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GF
 EWRAM_DATA u8 gTriedEvolving = 0;
 EWRAM_DATA u16 gFollowerSteps = 0;
 
+struct Pokemon (*const gPlayerPartyPtr)[6] = &gParties[B_TRAINER_PLAYER];
+u8 (*const gPlayerPartyCountPtr) = &gPartiesCount[B_TRAINER_PLAYER];
+struct Pokemon (*const gEnemyPartyPtr)[6] = &gParties[B_TRAINER_OPPONENT_A];
+u8 (*const gEnemyPartyCountPtr) = &gPartiesCount[B_TRAINER_OPPONENT_A];
+
 #include "data/abilities.h"
 
 // Used in an unreferenced function in RS.
@@ -783,7 +788,7 @@ void ZeroPlayerPartyMons(void)
 {
     for (s32 i = 0; i < PARTY_SIZE; i++)
         ZeroMonData(&gParties[B_TRAINER_PLAYER][i]);
-    gPlayerPartyCount = 0;
+    gPartiesCount[B_TRAINER_PLAYER] = 0;
 }
 
 void ZeroEnemyPartyMons(void)
