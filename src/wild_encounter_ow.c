@@ -1054,8 +1054,9 @@ void TryTriggerOverworldWildEncounter(struct ObjectEvent *obstacle, struct Objec
 
 const u8 *GetOverworlWildEncounterScript(u32 objectEventId)
 {
-    const u8 *script = GetObjectEventScriptPointerByObjectEventId(objectEventId);
-    if (script)
+    const u8 *script;
+    if (GetOverworldWildEncounterType(&gObjectEvents[objectEventId]) == OWE_MANUAL
+     && (script = GetObjectEventScriptPointerByObjectEventId(objectEventId)) != NULL)
         return script;
     
     return InteractWithOverworldWildEncounter;
