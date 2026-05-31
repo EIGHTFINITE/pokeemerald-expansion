@@ -231,6 +231,7 @@ static enum CancelerResult CancelerObedience(struct BattleCalcValues *cv)
             return CANCELER_RESULT_FAILURE;
         case DISOBEYS_RANDOM_MOVE:
             gCurrentMove = gCalledMove = gBattleMons[cv->battlerAtk].moves[gCurrMovePos];
+            gBattlescriptCurrInstr = GetMoveBattleScript(gCalledMove);
             BattleScriptCall(BattleScript_IgnoresAndUsesRandomMove);
             gBattlerTarget = GetBattleMoveTarget(gCalledMove, TARGET_NONE);
             return CANCELER_RESULT_RUN_SCRIPT_AND_INCREMENT;
