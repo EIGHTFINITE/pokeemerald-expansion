@@ -1934,22 +1934,19 @@ static enum CancelerResult CancelerTookAttack(struct BattleCalcValues *cv)
     return CANCELER_RESULT_SUCCESS;
 }
 
-static bool32 CanMoveBeBlockedByTargetHelper(struct BattleCalcValues *cv, s32 movePriority)
+static void SetDamageContextValues(struct DamageContext *ctx, struct BattleCalcValues *cv)
 {
-    struct DamageContext ctx = {0};
-
-    ctx.battlerAtk = cv->battlerAtk;
-    ctx.battlerDef = cv->battlerDef;
-    ctx.move = cv->move;
-    ctx.moveType = GetBattleMoveType(cv->move);
-    ctx.updateFlags = TRUE;
-    ctx.runScript = TRUE;
-    ctx.abilities[ctx.battlerAtk] = cv->abilities[cv->battlerAtk];
-    ctx.abilities[ctx.battlerDef] = cv->abilities[cv->battlerDef];
-    ctx.holdEffects[ctx.battlerAtk] = cv->holdEffects[cv->battlerAtk];
-    ctx.holdEffects[ctx.battlerDef] = cv->holdEffects[cv->battlerDef];
-
-    return CanMoveBeBlockedByTarget(&ctx, movePriority);
+    ctx->battlerAtk = cv->battlerAtk;
+    ctx->battlerDef = cv->battlerDef;
+    ctx->move = cv->move;
+    ctx->chosenMove = gChosenMove;
+    ctx->moveType = GetBattleMoveType(cv->move);
+    ctx->updateFlags = TRUE;
+    ctx->runScript = TRUE;
+    ctx->abilities[ctx->battlerAtk] = cv->abilities[cv->battlerAtk];
+    ctx->abilities[ctx->battlerDef] = cv->abilities[cv->battlerDef];
+    ctx->holdEffects[ctx->battlerAtk] = cv->holdEffects[cv->battlerAtk];
+    ctx->holdEffects[ctx->battlerDef] = cv->holdEffects[cv->battlerDef];
 }
 
 static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
@@ -1967,6 +1964,9 @@ static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
 
         if (ShouldSkipFailureCheckOnBattler(cv->battlerAtk, cv->battlerDef, FALSE))
             continue;
+
+        struct DamageContext ctx = {0};
+        SetDamageContextValues(&ctx, cv);
 
         if (moveTarget == TARGET_OPPONENTS_FIELD)
         {
@@ -1995,6 +1995,12 @@ static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
                 BattleScriptCall(BattleScript_BattlerAvoidedAttack);
             targetAvoidedAttack = TRUE;
         }
+        else if (CanPsychicTerrainProtectTarget(&ctx, movePriority))
+        {
+            gBattleStruct->moveResultFlags[cv->battlerDef] |= MOVE_RESULT_FAILED;
+            gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
+            targetAvoidedAttack = TRUE;
+        }
         else if (IsBattlerProtected(cv))
         {
             SetOrClearRageVolatile();
@@ -2009,7 +2015,7 @@ static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
         {
             gBattleStruct->moveResultFlags[cv->battlerDef] |= MOVE_RESULT_FAILED;
         }
-        else if (CanMoveBeBlockedByTargetHelper(cv, movePriority))
+        else if (CanMoveBeBlockedByTarget(&ctx, movePriority))
         {
             gBattleStruct->moveResultFlags[cv->battlerDef] |= MOVE_RESULT_FAILED;
             gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
@@ -2031,30 +2037,11 @@ static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
         }
         else
         {
-            struct DamageContext ctx = {0};
-            ctx.battlerAtk = cv->battlerAtk;
-            ctx.battlerDef = cv->battlerDef;
-            ctx.move = cv->move;
-            ctx.moveType = GetBattleMoveType(cv->move);
-            ctx.updateFlags = TRUE;
-            ctx.runScript = TRUE;
-            ctx.abilities[ctx.battlerAtk] = cv->abilities[cv->battlerAtk];
-            ctx.abilities[ctx.battlerDef] = cv->abilities[cv->battlerDef];
-            ctx.holdEffects[ctx.battlerAtk] = cv->holdEffects[cv->battlerAtk];
-            ctx.holdEffects[ctx.battlerDef] = cv->holdEffects[cv->battlerDef];
             ctx.typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(&ctx);
-
-            if (ctx.typeEffectivenessModifier == UQ_4_12(0.0))
-                gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
-
-            if (ctx.typeEffectivenessModifier > UQ_4_12(0.0) && ShouldTeraShellDistortTypeMatchups(&ctx))
-            {
-                gSpecialStatuses[ctx.battlerDef].distortedTypeMatchups = TRUE;
-                gSpecialStatuses[ctx.battlerDef].teraShellAbilityDone = TRUE;
-            }
 
             if (ctx.abilityBlocked)
             {
+                gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
                 gBattleStruct->moveResultFlags[cv->battlerDef] = MOVE_RESULT_FAILED;
                 gBattlerAbility = cv->battlerDef;
                 RecordAbilityBattle(cv->battlerDef, cv->abilities[cv->battlerDef]);
@@ -2063,9 +2050,23 @@ static enum CancelerResult CancelerTargetFailure(struct BattleCalcValues *cv)
             }
             else if (ctx.airBalloonBlocked)
             {
+                gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
                 gBattleStruct->moveResultFlags[cv->battlerDef] = MOVE_RESULT_FAILED;
                 BattleScriptCall(BattleScript_DoesntAffectScripting);
                 targetAvoidedAttack = TRUE;
+            }
+            else if (ctx.typeEffectivenessModifier == UQ_4_12(0.0)) // Technically goes before air balloon and levitate but after wonder guard, but does not cause any regression and only a minor issue. Can be fixed later.
+            {
+                TryInitializeTrainerSlideEnemyMonUnaffected(cv->battlerDef);
+                gSpecialStatuses[cv->battlerDef].updateStallMons = TRUE;
+                gBattleStruct->moveResultFlags[cv->battlerDef] = MOVE_RESULT_FAILED;
+                BattleScriptCall(BattleScript_DoesntAffectScripting);
+                targetAvoidedAttack = TRUE;
+            }
+            else if (ctx.typeEffectivenessModifier > UQ_4_12(0.0) && ShouldTeraShellDistortTypeMatchups(&ctx))
+            {
+                gSpecialStatuses[ctx.battlerDef].distortedTypeMatchups = TRUE;
+                gSpecialStatuses[ctx.battlerDef].teraShellAbilityDone = TRUE;
             }
         }
 
