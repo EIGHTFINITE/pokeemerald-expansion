@@ -179,6 +179,46 @@ SINGLE_BATTLE_TEST("EXPECT_FAIL: Incorrect use of SUB_HIT results in test failur
     }
 }
 
+SINGLE_BATTLE_TEST("USE_ITEM will add item to bag if GIVE_PLAYER_ITEM was not used")
+{
+    GIVEN {
+        ASSUME(GetItemImportance(ITEM_POKE_FLUTE));
+        PLAYER(SPECIES_WOBBUFFET) { Level(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { USE_ITEM(player, ITEM_POKE_FLUTE); }
+    } THEN {
+        EXPECT_EQ(TRUE, CheckBagHasItem(ITEM_POKE_FLUTE, 1));
+    }
+}
+
+SINGLE_BATTLE_TEST("USE_ITEM for opponent does not add item to bag")
+{
+    GIVEN {
+        ASSUME(GetItemImportance(ITEM_POKE_FLUTE));
+        PLAYER(SPECIES_WOBBUFFET) { Level(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { USE_ITEM(opponent, ITEM_POKE_FLUTE); }
+    } THEN {
+        EXPECT_EQ(FALSE, CheckBagHasItem(ITEM_POKE_FLUTE, 1));
+    }
+}
+
+SINGLE_BATTLE_TEST("GIVE_PLAYER_ITEM adds an item to bag")
+{
+    GIVEN {
+        ASSUME(GetItemImportance(ITEM_POKE_FLUTE));
+        PLAYER(SPECIES_WOBBUFFET) { Level(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        GIVE_PLAYER_ITEM(ITEM_POTION, 1);
+    } WHEN {
+        TURN { }
+    } THEN {
+        EXPECT_EQ(TRUE, CheckBagHasItem(ITEM_POTION, 1));
+    }
+}
+
 MULTI_BATTLE_TEST("Celebrate does not need to be explicitly set in a non-AI test")
 {
     GIVEN {
