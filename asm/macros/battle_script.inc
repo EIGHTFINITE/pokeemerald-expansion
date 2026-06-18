@@ -16,10 +16,6 @@
 	.4byte \ptr
 	.endm
 
-	.macro damagecalc
-	.byte B_SCR_OP_DAMAGECALC
-	.endm
-
 	.macro typecalc
 	.byte B_SCR_OP_TYPECALC
 	.endm
@@ -82,10 +78,6 @@
 	.macro printfromtable ptr:req
 	.byte B_SCR_OP_PRINTFROMTABLE
 	.4byte \ptr
-	.endm
-
-	.macro setpreattackadditionaleffect
-	.byte B_SCR_OP_SETPREATTACKADDITIONALEFFECT
 	.endm
 
 	.macro setadditionaleffects
@@ -1255,12 +1247,6 @@
 	.macro jumpifcantloseitem ptr:req
 	callnative BS_JumpIfCantLoseItem
 	.4byte \ptr
-	.endm
-
-	.macro jumpifshelltrap battler:req, jumpInstr:req
-	callnative BS_JumpIfShellTrap
-	.byte \battler
-	.4byte \jumpInstr
 	.endm
 
 	.macro setterrain failInstr:req
