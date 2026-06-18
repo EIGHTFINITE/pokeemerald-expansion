@@ -1763,7 +1763,7 @@ enum Ability AI_DecideKnownAbilityForTurn(enum BattlerId battlerId)
         return gBattleMons[battlerId].volatiles.overwrittenAbility;
 
     // The AI knows its own ability, and omniscience handling
-    if (IsAiBattlerAware(battlerId) || (IsAiBattlerAssumingStab(battlerId) && ASSUME_STAB_SEES_ABILITY))
+    if (IsAiBattlerAware(battlerId) || (IsAiBattlerAssumingStab(battlerId) && ASSUME_STAB_SEES_ABILITY) || IsAiFlagPresent(AI_FLAG_ABILITY_OMNISCIENCE))
         return knownAbility;
 
     // Check neutralizing gas, gastro acid
@@ -1803,7 +1803,7 @@ enum HoldEffect AI_DecideHoldEffectForTurn(enum BattlerId battlerId)
     if (gBattleMons[battlerId].item == ITEM_NONE) // Failsafe for when user recorded an item but it was consumed
         return holdEffect;
 
-    if (!IsAiBattlerAware(battlerId))
+    if (!IsAiBattlerAware(battlerId) && !IsAiFlagPresent(AI_FLAG_ITEM_OMNISCIENCE))
         holdEffect = gAiPartyData->mons[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]].heldEffect;
     else
         holdEffect = GetBattlerHoldEffectIgnoreNegation(battlerId);
@@ -2486,7 +2486,7 @@ bool32 CanIndexMoveFaintTarget(enum BattlerId battlerAtk, enum BattlerId battler
 
 enum Move *GetMovesArray(enum BattlerId battler)
 {
-    if (IsAiBattlerAware(battler) || IsAiBattlerAware(BATTLE_PARTNER(battler)))
+    if (IsAiBattlerAware(battler) || IsAiBattlerAware(BATTLE_PARTNER(battler)) || IsAiFlagPresent(AI_FLAG_MOVE_OMNISCIENCE))
         return gBattleMons[battler].moves;
     else
         return gBattleHistory->usedMoves[battler];
