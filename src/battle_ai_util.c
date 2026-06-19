@@ -3064,6 +3064,20 @@ bool32 IsSelfSacrificeEffect(enum Move move)
     }
 }
 
+bool32 IsRecoilDamageEffect(enum BattleMoveEffects effect)
+{
+    // All recoil effects that guarantee dealing self damage like Double Edge, Mind Blown, Chloroblast, etc.
+    switch (effect)
+    {
+    case EFFECT_RECOIL:
+    case EFFECT_MAX_HP_50_RECOIL:
+    case EFFECT_CHLOROBLAST:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 bool32 IsSubstituteEffect(enum BattleMoveEffects effect)
 {
     // Substitute effects like Substitute, Shed Tail, etc.
@@ -3837,20 +3851,6 @@ bool32 AnyPartyMemberStatused(enum BattlerId battlerId, bool32 checkSoundproof)
     return hasStatusToCure;
 }
 
-bool32 ShouldUseRecoilMove(enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 recoilDmg, u32 moveIndex)
-{
-    if (recoilDmg >= gBattleMons[battlerAtk].hp //Recoil kills attacker
-      && CountUsablePartyMons(battlerDef) != 0) //Foe has more than 1 target left
-    {
-        if (recoilDmg >= gBattleMons[battlerDef].hp && !CanAIFaintTarget(battlerAtk, battlerDef, 0))
-            return TRUE; //If it's the only KO move then just use it
-        else
-            return FALSE; //Not as good to use move if you'll faint and not win
-    }
-
-    return TRUE;
-}
-
 static inline bool32 RecoveryEnablesWinning1v1(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move, bool32 aiIsFaster, u32 healAmount)
 {
     if (aiIsFaster)
@@ -4482,6 +4482,14 @@ s32 CountUsablePartyMons(enum BattlerId battlerId)
     }
 
     return ret;
+}
+
+s32 CountUsableSideMons(enum BattlerId battlerId)
+{
+    if (BattleSideHasTwoTrainers(GetBattlerSide(battlerId)))
+        return (CountUsablePartyMons(battlerId) + CountUsablePartyMons(GetPartnerBattler(battlerId)));
+    else
+        return CountUsablePartyMons(battlerId);
 }
 
 bool32 IsPartyFullyHealedExceptBattler(enum BattlerId battlerId)
