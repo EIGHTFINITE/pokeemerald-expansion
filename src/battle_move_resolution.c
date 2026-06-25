@@ -3711,7 +3711,7 @@ static enum MoveEndResult MoveEndMoveBlock(struct BattleCalcValues *cv)
 
             gBattleMons[cv->battlerDef].volatiles.smackDown = TRUE;
             gBattleMons[cv->battlerDef].volatiles.telekinesis = FALSE;
-            gBattleMons[cv->battlerDef].volatiles.magnetRise = FALSE;
+            gBattleMons[cv->battlerDef].volatiles.magnetRiseTimer = 0;
 
             if (onAir)
             {
