@@ -2904,6 +2904,10 @@ void SwitchInClearSetData(enum BattlerId battler, struct Volatiles *volatilesCop
         }
     }
 
+    // Clear Rage Fist stacks
+    if (GetConfig(B_RAGE_FIST) >= GEN_CHAMPIONS)
+        GetBattlerPartyState(battler)->timesGotHit = 0;
+
     // Clear volatiles - reapply some if Baton Pass was used
     memset(&gBattleMons[battler].volatiles, 0, sizeof(struct Volatiles));
     if (effect == EFFECT_BATON_PASS)
@@ -3029,6 +3033,10 @@ void FaintClearSetData(enum BattlerId battler)
 {
     for (enum Stat i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[battler].statStages[i] = DEFAULT_STAT_STAGE;
+
+    // Clear Rage Fist stacks
+    if (GetConfig(B_RAGE_FIST) >= GEN_CHAMPIONS)
+        GetBattlerPartyState(battler)->timesGotHit = 0;
 
     bool32 keepTransformed = gBattleMons[battler].volatiles.transformed;
     memset(&gBattleMons[battler].volatiles, 0, sizeof(struct Volatiles));
