@@ -684,9 +684,7 @@ static bool32 IsTargetingBothFoes(enum BattlerId battlerAtk, enum BattlerId batt
 {
     if (battlerDef == BATTLE_PARTNER(battlerAtk) || battlerAtk == battlerDef)
     {
-        // Because of Magic Bounce and Magic Coat we don't want to set MOVE_RESULT_NO_EFFECT
-        if (GetMoveCategory(gCurrentMove) != DAMAGE_CATEGORY_STATUS)
-            gBattleStruct->moveResultFlags[battlerDef] = MOVE_RESULT_DOESNT_AFFECT_FOE;
+        gBattleStruct->moveResultFlags[battlerDef] = MOVE_RESULT_DOESNT_AFFECT_FOE;
         return skipFailure;
     }
     return checkFailure;
@@ -3143,9 +3141,8 @@ static enum MoveEndResult MoveEndBouncedMove(struct BattleCalcValues *cv)
 {
     if (gBattleStruct->bouncedMoveIsUsed)
     {
-        RestoreAttacker();
-        RestoreTarget();
-        gBattleStruct->bouncedMoveIsUsed = FALSE;
+        gBattleScripting.moveendState++;
+        return MOVEEND_RESULT_CONTINUE;
     }
 
     if (gBattleStruct->magicBouncePending || gBattleStruct->magicCoatPending)
@@ -3188,12 +3185,15 @@ static enum MoveEndResult MoveEndBouncedMove(struct BattleCalcValues *cv)
             gBattlerTarget = cv->battlerAtk;
             gBattlerAttacker = bounceBattler;
             gBattleStruct->bouncedMoveIsUsed = TRUE;
+            for (enum BattlerId i = B_BATTLER_0; i < gBattlersCount; i++)
+            {
+                gBattleStruct->savedMoveResultFlags[i] = gBattleStruct->moveResultFlags[i];
+                gBattleStruct->battlerState[cv->battlerAtk].targetsDone[i] = FALSE;
+            }
 
             ClearDamageCalcResults();
             gBattleStruct->eventState.atkCanceler = CANCELER_SET_TARGETS;
             gBattleStruct->eventState.atkCancelerBattler = 0;
-            for (enum BattlerId i = B_BATTLER_0; i < gBattlersCount; i++)
-                gBattleStruct->battlerState[cv->battlerAtk].targetsDone[i] = FALSE;
             gBattleStruct->moveTarget[cv->battlerAtk] = cv->battlerDef;
             gBattleScripting.moveendState = 0;
             gBattleScripting.animTurn = 0;
@@ -4272,6 +4272,18 @@ static bool32 ShouldSetStompingTantrumTimer(void)
 
 static enum MoveEndResult MoveEndClearBits(struct BattleCalcValues *cv)
 {
+    // go to next Bouncer or original attacker if possible
+    if (gBattleStruct->bouncedMoveIsUsed)
+    {
+        RestoreAttacker();
+        RestoreTarget();
+        gBattleStruct->bouncedMoveIsUsed = FALSE;
+        gBattleScripting.moveendState = MOVEEND_BOUNCED_MOVE;
+        for (enum BattlerId battler = B_BATTLER_0; battler < gBattlersCount; battler++)
+            gBattleStruct->moveResultFlags[battler] = gBattleStruct->savedMoveResultFlags[battler];
+        return MOVEEND_RESULT_RUN_SCRIPT;
+    }
+
     ValidateBattlers();
 
     enum Move originallyUsedMove = GetOriginallyUsedMove(gChosenMove);
