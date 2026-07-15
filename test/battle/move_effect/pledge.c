@@ -155,7 +155,7 @@ DOUBLE_BATTLE_TEST("Sea Of Fire does not damage Fire-types or Magic Guard Pokemo
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, playerRight);
         HP_BAR(opponentRight);
-        MESSAGE("A sea of fire enveloped the opposing team!");
+        MESSAGE("A sea of fire enveloped the opposing side!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentLeft);
             HP_BAR(opponentLeft);
