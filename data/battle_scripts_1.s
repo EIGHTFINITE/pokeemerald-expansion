@@ -2264,6 +2264,18 @@ BattleScript_EffectShoreUp::
 	recoverbasedonsunlight BattleScript_AlreadyAtFullHp
 	goto BattleScript_HealTarget
 
+BattleScript_MegaSolActivatesHealing::
+	attackanimation
+	waitanimation
+	call BattleScript_AbilityPopUp
+	pause B_WAIT_TIME_SHORT
+	goto BattleScript_HealTargetContinue
+
+BattleScript_MegaSolActivatesTwoTurnMove::
+	call BattleScript_AbilityPopUpScripting
+	pause B_WAIT_TIME_SHORT
+	return
+
 BattleScript_EffectWeather::
 	attackcanceler
 BattleScript_EffectWeatherSetWeather:
@@ -2374,6 +2386,8 @@ BattleScript_EffectSoftboiled::
 BattleScript_HealTarget::
 	attackanimation
 	waitanimation
+BattleScript_HealTargetContinue::
+	playanimation BS_ATTACKER, B_ANIM_SIMPLE_HEAL
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
