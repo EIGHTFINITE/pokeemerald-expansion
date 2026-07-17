@@ -749,49 +749,39 @@ static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, enum BattlerId battler
 }
 #undef BYPASSES_ACCURACY_CALC
 
-static void SetBattlerTurnOrder(u8 *aiTurnOrder)
-{
-    for (u32 i = 0; i < gBattlersCount; i++)
-    {
-        for (u32 j = 0; j < gBattlersCount; j++)
-        {
-            if (AI_WhoStrikesFirst(aiTurnOrder[i], aiTurnOrder[j], MOVE_NONE, MOVE_NONE, DONT_CONSIDER_PRIORITY) == AI_IS_FASTER)
-            {
-                u32 temp = aiTurnOrder[i];
-                aiTurnOrder[i] = aiTurnOrder[j];
-                aiTurnOrder[j] = temp;
-            }
-        }
-    }
-}
-
 void CalcBattlerAiMovesData(struct AiLogicData *aiData, enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 weather, enum BattleTerrain terrain)
 {
-    enum Move move;
     enum Move *moves = GetMovesArray(battlerAtk);
     u32 moveLimitations = aiData->moveLimitations[battlerAtk];
+
+    struct AiCalcValues aiCalc = {
+        .gimmickAtk = gBattleStruct->gimmick.usableGimmick[battlerAtk],
+        .gimmickDef = GIMMICK_NONE,
+        .weather = weather,
+        .terrain = terrain,
+    };
 
     for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
     {
         struct SimulatedDamage dmg = {0};
-        uq4_12_t effectiveness = Q_4_12(0.0);
-        move = moves[moveIndex];
+        aiCalc.typeEffectiveness = Q_4_12(0.0);
+        aiCalc.move = moves[moveIndex];
 
         // Move data is reused for consecutive switch-in candidates, so reset every slot before skipping unusable moves.
         aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
-        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
+        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = aiCalc.typeEffectiveness;
         aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = 0;
         aiData->resistBerryAffected[battlerAtk][battlerDef][moveIndex] = FALSE;
 
-        if (IsMoveUnusable(moveIndex, move, moveLimitations))
+        if (IsMoveUnusable(moveIndex, aiCalc.move, moveLimitations))
             continue;
 
         // Also get effectiveness of status moves
-        dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, USE_GIMMICK, NO_GIMMICK, weather, terrain);
-        aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
+        dmg = AI_CalcDamage(&aiCalc, battlerAtk, battlerDef);
+        aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, aiCalc.move);
 
         aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
-        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = effectiveness;
+        aiData->effectiveness[battlerAtk][battlerDef][moveIndex] = aiCalc.typeEffectiveness;
     }
 }
 
@@ -835,10 +825,6 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
 
         SetBattlerAiData(battler, aiData);
     }
-
-    for (enum BattlerId battler = 0; battler < battlersCount; battler++)
-        aiData->turnOrder[battler] = battler;
-    SetBattlerTurnOrder(aiData->turnOrder);
 
     u32 weather = AI_GetWeather(); // Needs SetBattlerAiData
 
