@@ -443,10 +443,49 @@ void ReconsiderGimmick(enum BattlerId battlerAtk, enum BattlerId battlerDef, enu
         SetAIUsingGimmick(battlerAtk, NO_GIMMICK);
 }
 
+static bool32 IsThinkingBeforePartner(enum BattlerId battler, enum BattlerId battlerPartner)
+{
+    if (!BattlerHasAi(battlerPartner))
+        return TRUE;
+
+    if (gAiLogicData->reverseBattlerLogicOrder)
+        return (battlerPartner < battler);
+
+    return (battlerPartner > battler);
+}
+
+static void SetAllyMove(u32 battler)
+{
+    enum BattlerId partnerBattler = BATTLE_PARTNER(battler);
+    gAiLogicData->partnerMove = MOVE_NONE; // Make sure no garbage is stored for simulation
+
+    if (!IsBattlerAlive(partnerBattler) || !IsAiBattlerAware(partnerBattler))
+    {
+        gAiLogicData->partnerMove = MOVE_NONE;
+    }
+    else if (IsThinkingBeforePartner(battler, partnerBattler))
+    {
+        // DebugPrintf("partnerBattler %d", partnerBattler );
+        gAiLogicData->partnerMoveSimulation = TRUE;
+        u32 simulatedMoveIndex = ChooseMoveOrAction_Doubles(partnerBattler);
+        gAiLogicData->partnerMoveSimulation = FALSE;
+        gAiLogicData->partnerMove = gBattleMons[partnerBattler].moves[simulatedMoveIndex];
+    }
+    else
+    {
+        // Move for battler has already been calculated so set as partner move
+        u32 moveIndex = gAiBattleData->chosenMoveIndex[partnerBattler];
+        gAiLogicData->partnerMove = gBattleMons[partnerBattler].moves[moveIndex];
+    }
+}
+
 static u32 ChooseMoveOrAction(enum BattlerId battler)
 {
     if (IsDoubleBattle())
+    {
+        SetAllyMove(battler);
         return ChooseMoveOrAction_Doubles(battler);
+    }
     return ChooseMoveOrAction_Singles(battler);
 }
 
@@ -985,7 +1024,6 @@ static u32 ChooseMoveOrAction_Doubles(enum BattlerId battler)
 
             gBattlerTarget = battlerIndex;
 
-            gAiLogicData->partnerMove = GetAllyChosenMove(battler);
             gAiThinkingStruct->aiLogicId = 0;
             gAiThinkingStruct->movesetIndex = 0;
             flags = gAiThinkingStruct->aiFlags[battler];
@@ -3162,6 +3200,23 @@ static s32 AI_DoubleBattle(enum BattlerId battlerAtk, enum BattlerId battlerDef,
     // consider our move effect relative to partner state
     switch (effect)
     {
+    case EFFECT_FUSION_COMBO:
+        if (ShouldUseFusionMove(battlerAtk))
+        {
+            ADJUST_SCORE(BEST_EFFECT);
+        }
+    case EFFECT_ROUND:
+        if (ShouldUseRound(battlerAtk, EFFECT_ROUND))
+        {
+            ADJUST_SCORE(BEST_EFFECT);
+        }
+        break;
+    case EFFECT_PLEDGE:
+        if (ShouldUsePledgeMove(battlerAtk, battlerDef, move))
+        {
+            ADJUST_SCORE(BEST_EFFECT);
+        }
+        break;
     case EFFECT_HELPING_HAND:
         if (!hasPartner
          || !HasDamagingMove(battlerAtkPartner)
@@ -6476,7 +6531,7 @@ static s32 AI_PredictSwitch(enum BattlerId battlerAtk, enum BattlerId battlerDef
             ADJUST_SCORE(GOOD_EFFECT);
         else if (hitsToKO == 1)
             ADJUST_SCORE(BEST_EFFECT);
-        else if (IsSwitchOutEffect(GetMoveEffect(incomingMove)) && AI_WhoStrikesFirst(battlerAtk, battlerDef, move, predictedMove, CONSIDER_PRIORITY) == AI_IS_SLOWER) // Pursuit against fast U-Turn
+        else if (IsSwitchOutEffect(GetMoveEffect(incomingMove)) && AI_IsSlower(battlerAtk, battlerDef, move, predictedMove, CONSIDER_PRIORITY)) // Pursuit against fast U-Turn
             ADJUST_SCORE(DECENT_EFFECT);
         break;
     }

@@ -1163,25 +1163,6 @@ bool32 IsLastMonToMove(enum BattlerId battler)
     return TRUE;
 }
 
-static void SetBattlerTurnOrder(u8 *aiTurnOrder)
-{
-    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
-        aiTurnOrder[battler] = battler;
-
-    for (u32 i = 0; i < gBattlersCount; i++)
-    {
-        for (u32 j = 0; j < gBattlersCount; j++)
-        {
-            if (AI_WhoStrikesFirst(aiTurnOrder[i], aiTurnOrder[j], MOVE_NONE, MOVE_NONE, DONT_CONSIDER_PRIORITY) == AI_IS_FASTER)
-            {
-                u32 temp = aiTurnOrder[i];
-                aiTurnOrder[i] = aiTurnOrder[j];
-                aiTurnOrder[j] = temp;
-            }
-        }
-    }
-}
-
 static u32 GetAiTurnOrder(u8 *aiTurnOrder, enum BattlerId battler)
 {
     for (u32 i = 0; i < gBattlersCount; i++)
@@ -1195,7 +1176,7 @@ static u32 GetAiTurnOrder(u8 *aiTurnOrder, enum BattlerId battler)
 static bool32 Ai_AttackerMovesAfterTarget(enum BattlerId battlerAtk, enum BattlerId battlerDef)
 {
     u8 aiTurnOrder[4] = {0};
-    SetBattlerTurnOrder(aiTurnOrder);
+    AI_SetBattlerTurnOrder(aiTurnOrder);
 
     return GetAiTurnOrder(aiTurnOrder, battlerAtk) > GetAiTurnOrder(aiTurnOrder, battlerDef);
 }
@@ -1203,7 +1184,7 @@ static bool32 Ai_AttackerMovesAfterTarget(enum BattlerId battlerAtk, enum Battle
 static bool32 Ai_AttackerMovesLast(enum BattlerId battlerAtk)
 {
     u8 aiTurnOrder[4] = {0};
-    SetBattlerTurnOrder(aiTurnOrder);
+    AI_SetBattlerTurnOrder(aiTurnOrder);
     u32 numAliveBattlers = 0;
     u32 battlerTurnOrder = GetAiTurnOrder(aiTurnOrder, battlerAtk);
 
@@ -1662,12 +1643,12 @@ u32 CheckMoveLimitations(enum BattlerId battler, u8 unusableMoves, u32 check)
     return unusableMoves;
 }
 
-#define ALL_MOVES_MASK ((1 << MAX_MON_MOVES) - 1)
 bool32 AreAllMovesUnusable(enum BattlerId battler)
 {
     u32 unusable = CheckMoveLimitations(battler, 0, MOVE_LIMITATIONS_ALL);
+    u32 allMovesMask = ((1 << MAX_MON_MOVES) - 1);
 
-    if (unusable == ALL_MOVES_MASK) // All moves are unusable.
+    if (unusable == allMovesMask) // All moves are unusable.
     {
         gProtectStructs[battler].noValidMoves = TRUE;
         gSelectionBattleScripts[battler] = BattleScript_NoMovesLeft;
@@ -1677,7 +1658,7 @@ bool32 AreAllMovesUnusable(enum BattlerId battler)
         gProtectStructs[battler].noValidMoves = FALSE;
     }
 
-    return (unusable == ALL_MOVES_MASK);
+    return (unusable == allMovesMask);
 }
 
 u8 GetImprisonedMovesCount(enum BattlerId battler, enum Move move)
@@ -7270,17 +7251,18 @@ static inline u32 CalcDefenseStat(struct DamageContext *ctx)
         break;
     }
 
+    u32 attackerWeather = GetAttackerWeather(ctx->holdEffects[ctx->battlerAtk], ctx->abilities[ctx->battlerAtk], ctx->weather);
     // sandstorm sp.def boost for rock types
     if (GetConfig(B_SANDSTORM_SPDEF_BOOST) >= GEN_4
+	 && attackerWeather & B_WEATHER_SANDSTORM
 	 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)
-	 && GetAttackerWeather(ctx->holdEffects[ctx->battlerAtk], ctx->abilities[ctx->battlerAtk], ctx->weather) & B_WEATHER_SANDSTORM
 	 && !usesDefStat)
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
     // snow def boost for ice types
-    if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE)
-	 && GetAttackerWeather(ctx->holdEffects[ctx->battlerAtk], ctx->abilities[ctx->battlerAtk], ctx->weather) & B_WEATHER_SNOW
+    if (attackerWeather  & B_WEATHER_SNOW
+	 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE)
 	 && usesDefStat)
-            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
 
     modifier = ApplyDefensiveBadgeBoost(modifier, battlerDef, move);
 
@@ -7297,9 +7279,10 @@ static inline uq4_12_t GetTargetDamageModifier(struct DamageContext *ctx)
 {
     if (IsDoubleBattle())
     {
-        if (GetMoveTargetCount(ctx) == 2)
+        u32 targetCount = GetMoveTargetCount(ctx);
+        if (targetCount == 2)
             return B_MULTIPLE_TARGETS_DMG >= GEN_4 ? UQ_4_12(0.75) : UQ_4_12(0.5);
-        else if (GetMoveTargetCount(ctx) >= 3)
+        else if (targetCount >= 3)
             return B_MULTIPLE_TARGETS_DMG >= GEN_4 ? UQ_4_12(0.75) : UQ_4_12(1.0);
     }
     return UQ_4_12(1.0);
