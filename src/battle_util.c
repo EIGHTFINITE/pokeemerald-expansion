@@ -1961,17 +1961,47 @@ bool32 HasNoMonsToSwitch(enum BattlerId battler, u8 partyIdBattlerOn1, u8 partyI
     }
 }
 
-bool32 TryChangeBattleWeather(enum BattlerId battler, u32 battleWeatherId, enum Ability ability)
+static bool32 TryChangeWeatherWithAbility(enum BattlerId battler, u32 battleWeather, enum Ability ability)
+{
+    switch (TryChangeBattleWeather(battler, battleWeather, ability))
+    {
+    case WEATHER_FAILURE_SAME_WEATHER:
+        if (ability == ABILITY_ORICHALCUM_PULSE)
+        {
+            BattleScriptCall(BattleScript_OrichalcumPulseActivatesInSun);
+            return TRUE;
+        }
+        return FALSE;
+    case WEATHER_FAILURE_OVERWORLD:
+        BattleScriptCall(BattleScript_BlockedByOverworldWeather);
+        return TRUE;
+    case WEATHER_FAILURE_PRIMAL:
+        BattleScriptCall(BattleScript_BlockedByPrimalWeather);
+        return TRUE;
+    case WEATHER_FAILURE_SUCCESS:
+        if (ability == ABILITY_ORICHALCUM_PULSE)
+            BattleScriptCall(BattleScript_OrichalcumPulseActivates);
+        else
+            BattleScriptCall(BattleScript_WeatherAbilityActivates);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+enum WeatherFailure TryChangeBattleWeather(enum BattlerId battler, u32 battleWeatherId, enum Ability ability)
 {
     if (gBattleWeather & sBattleWeatherInfo[battleWeatherId].flag)
-        return FALSE;
+        return WEATHER_FAILURE_SAME_WEATHER;
 
-    else if (gBattleWeather & B_WEATHER_PRIMAL_ANY
+    if (gBattleStruct->overworldWeatherPresent)
+        return WEATHER_FAILURE_OVERWORLD;
+
+    if (gBattleWeather & B_WEATHER_PRIMAL_ANY
           && ability != ABILITY_DESOLATE_LAND
           && ability != ABILITY_PRIMORDIAL_SEA
           && ability != ABILITY_DELTA_STREAM)
     {
-        return FALSE;
+        return WEATHER_FAILURE_PRIMAL;
     }
 
     if (GetConfig(B_ABILITY_WEATHER) < GEN_6 && ability != ABILITY_NONE)
@@ -2007,7 +2037,7 @@ bool32 TryChangeBattleWeather(enum BattlerId battler, u32 battleWeatherId, enum 
         ResetParadoxWeatherStat(i);
     }
 
-    return TRUE;
+    return WEATHER_FAILURE_SUCCESS;
 }
 
 bool32 TryChangeBattleTerrain(enum BattlerId battler, enum BattleTerrain terrain)
@@ -2478,6 +2508,8 @@ static bool32 SetStartingWeatherStatus(enum BattleWeather weather, bool32 isPerm
     gBattleWeather = sBattleWeatherInfo[weather].flag;
     gBattleCommunication[MULTISTRING_CHOOSER] = sBattleWeatherInfo[weather].moveStartMessage;
     gBattleScripting.animArg1 = sBattleWeatherInfo[weather].animation;
+    if (GetConfig(B_OVERWORLD_WEATHER_OVERRIDE) >= GEN_9)
+        gBattleStruct->overworldWeatherPresent = TRUE;
 
     if (isPermanent)
         gBattleStruct->weatherDuration = 0;
@@ -2865,6 +2897,8 @@ bool32 TryFieldEffects(enum FieldEffectCases caseId)
         }
         if (effect)
         {
+            if (GetConfig(B_OVERWORLD_WEATHER_OVERRIDE) >= GEN_9)
+                gBattleStruct->overworldWeatherPresent = TRUE;
             gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();
             BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
         }
@@ -2967,7 +3001,15 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
         switch (gLastUsedAbility)
         {
         case ABILITY_TERAFORM_ZERO:
-            if (gBattleWeather != WEATHER_NONE || gFieldTimers.terrain != B_TERRAIN_NONE)
+            if (gBattleStruct->overworldWeatherPresent)
+            {
+                if (gFieldTimers.terrain != B_TERRAIN_NONE)
+                    BattleScriptCall(BattleScript_ActivateTeraformZeroRemovesOnlyTerrain);
+                else
+                    BattleScriptCall(BattleScript_BlockedByOverworldWeather);
+                effect++;
+            }
+            else if (gBattleWeather != WEATHER_NONE || gFieldTimers.terrain != B_TERRAIN_NONE)
             {
                 BattleScriptCall(BattleScript_ActivateTeraformZero);
                 effect++;
@@ -3231,82 +3273,21 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             }
             break;
         case ABILITY_DRIZZLE:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_RAIN, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_RAIN, gLastUsedAbility))
                 effect++;
-            }
-            else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-            {
-                BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                effect++;
-            }
             break;
         case ABILITY_SAND_STREAM:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SANDSTORM, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_SANDSTORM, gLastUsedAbility))
                 effect++;
-            }
-            else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-            {
-                BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                effect++;
-            }
             break;
         case ABILITY_DROUGHT:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SUN, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
-                effect++;
-            }
-            else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-            {
-                BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                effect++;
-            }
-            break;
         case ABILITY_ORICHALCUM_PULSE:
-            if (!shouldAbilityTrigger)
-                break;
-            if (GetWeather() & B_WEATHER_SUN_NORMAL)
-            {
-                BattleScriptCall(BattleScript_OrichalcumPulseActivatesInSun);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_SUN, gLastUsedAbility))
                 effect++;
-            }
-            else if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SUN, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_OrichalcumPulseActivates);
-                effect++;
-            }
-            else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-            {
-                BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                effect++;
-            }
             break;
         case ABILITY_SNOW_WARNING:
-            if (!shouldAbilityTrigger)
-                break;
-            {
-                u32 weather = (GetConfig(B_SNOW_WARNING) >= GEN_9 ? BATTLE_WEATHER_SNOW : BATTLE_WEATHER_HAIL);
-                if (TryChangeBattleWeather(battler, weather, gLastUsedAbility))
-                {
-                    BattleScriptCall(BattleScript_WeatherAbilityActivates);
-                    effect++;
-                }
-                else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-                {
-                    BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                    effect++;
-                }
-            }
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, GetConfig(B_SNOW_WARNING) >= GEN_9 ? BATTLE_WEATHER_SNOW : BATTLE_WEATHER_HAIL, gLastUsedAbility))
+                effect++;
             break;
         case ABILITY_ELECTRIC_SURGE:
             if (!shouldAbilityTrigger)
@@ -3440,31 +3421,16 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             }
             break;
         case ABILITY_DESOLATE_LAND:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SUN_PRIMAL, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_SUN_PRIMAL, gLastUsedAbility))
                 effect++;
-            }
             break;
         case ABILITY_PRIMORDIAL_SEA:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_RAIN_PRIMAL, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_RAIN_PRIMAL, gLastUsedAbility))
                 effect++;
-            }
             break;
         case ABILITY_DELTA_STREAM:
-            if (!shouldAbilityTrigger)
-                break;
-            if (TryChangeBattleWeather(battler, BATTLE_WEATHER_STRONG_WINDS, gLastUsedAbility))
-            {
-                BattleScriptCall(BattleScript_WeatherAbilityActivates);
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_STRONG_WINDS, gLastUsedAbility))
                 effect++;
-            }
             break;
         case ABILITY_VESSEL_OF_RUIN:
             if (shouldAbilityTrigger)
@@ -4231,20 +4197,8 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             }
             break;
         case ABILITY_SAND_SPIT:
-            if (IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES) && !(GetWeather() & B_WEATHER_SANDSTORM))
-            {
-                if (GetWeather() & B_WEATHER_PRIMAL_ANY)
-                {
-                    BattleScriptCall(BattleScript_BlockedByPrimalWeather);
-                    effect++;
-                }
-                else if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SANDSTORM, ABILITY_NONE)) // use ability none since it's not a switch in ability weather setter
-                {
-                    gBattleScripting.battler = battler;
-                    BattleScriptCall(BattleScript_WeatherAbilityActivates);
-                    effect++;
-                }
-            }
+            if (IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES) && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_SANDSTORM, gLastUsedAbility))
+                effect++;
             break;
         case ABILITY_PERISH_BODY:
             if (IsBattlerTurnDamaged(gBattlerTarget, EXCLUDING_SUBSTITUTES)
