@@ -396,11 +396,14 @@ static enum CancelerResult CancelerImprisoned(struct BattleCalcValues *cv)
 
 static enum CancelerResult CancelerConfused(struct BattleCalcValues *cv)
 {
-    if (gBattleMons[cv->battlerAtk].volatiles.confusionTurns)
+    struct Volatiles *vol = &gBattleMons[cv->battlerAtk].volatiles;
+
+    if (vol->confusionTimer)
     {
-        if (!gBattleMons[cv->battlerAtk].volatiles.infiniteConfusion)
-            gBattleMons[cv->battlerAtk].volatiles.confusionTurns--;
-        if (gBattleMons[cv->battlerAtk].volatiles.confusionTurns)
+        if (vol->confusionTimer != PERMANENT_VOLATILE)
+            vol->confusionTimer--;
+
+        if (vol->confusionTimer)
         {
              // confusion dmg
             if (RandomPercentage(RNG_CONFUSION, (GetConfig(B_CONFUSION_SELF_DMG_CHANCE) >= GEN_7 ? 33 : 50)))
@@ -4954,7 +4957,7 @@ static enum MoveEndResult MoveEndRampage(struct BattleCalcValues *cv)
         if (CanBeConfused(cv->battlerAtk, cv->battlerAtk))
         {
             gBattleScripting.battler = cv->battlerAtk;
-            gBattleMons[cv->battlerAtk].volatiles.confusionTurns = RandomUniform(RNG_CONFUSION_TURNS, 2, B_CONFUSION_TURNS); // 2-5 turns
+            gBattleMons[cv->battlerAtk].volatiles.confusionTimer = RandomUniform(RNG_CONFUSION_TURNS, 2, B_CONFUSION_TURNS); // 2-5 turns
             BattleScriptCall(BattleScript_ConfusionAfterRampage);
             result = MOVEEND_RESULT_BREAK;
         }
@@ -4980,7 +4983,7 @@ static enum MoveEndResult MoveEndConfusionAfterSkyDrop(struct BattleCalcValues *
         if (CanBeConfused(cv->battlerDef, cv->battlerDef))
         {
             gBattleScripting.battler = cv->battlerDef;
-            gBattleMons[cv->battlerDef].volatiles.confusionTurns = RandomUniform(RNG_CONFUSION_TURNS, 2, B_CONFUSION_TURNS); // 2-5 turns
+            gBattleMons[cv->battlerDef].volatiles.confusionTimer = RandomUniform(RNG_CONFUSION_TURNS, 2, B_CONFUSION_TURNS); // 2-5 turns
             BattleScriptCall(BattleScript_ConfusionAfterRampage);
             result = MOVEEND_RESULT_BREAK;
         }
