@@ -552,10 +552,17 @@ BattleScript_AffectionBasedStatusHeal_Continue:
 
 BattleScript_ShellTrapSetUp::
 	flushtextbox
-	playanimation BS_ATTACKER, B_ANIM_SHELL_TRAP_SETUP, NULL
+	playanimation BS_SCRIPTING, B_ANIM_SHELL_TRAP_SETUP, NULL
 	printstring STRINGID_PREPARESHELLTRAP
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_ShellTrapSetUpEncored::
+	flushtextbox
+	playanimation BS_SCRIPTING, B_ANIM_SHELL_TRAP_SETUP, NULL
+	printstring STRINGID_PREPARESHELLTRAP
+	waitmessage B_WAIT_TIME_LONG
+	end
 
 BattleScript_ShellTrapFailed::
 	printstring STRINGID_SHELLTRAPDIDNTWORK
@@ -574,10 +581,17 @@ BattleScript_EffectCourtChange::
 
 BattleScript_BeakBlastSetUp::
 	flushtextbox
-	playanimation BS_ATTACKER, B_ANIM_BEAK_BLAST_SETUP, NULL
+	playanimation BS_SCRIPTING, B_ANIM_BEAK_BLAST_SETUP, NULL
 	printstring STRINGID_HEATUPBEAK
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_BeakBlastSetUpEncored::
+	flushtextbox
+	playanimation BS_SCRIPTING, B_ANIM_BEAK_BLAST_SETUP, NULL
+	printstring STRINGID_HEATUPBEAK
+	waitmessage B_WAIT_TIME_LONG
+	end
 
 BattleScript_BeakBlastBurn::
 	setbyte cMULTISTRING_CHOOSER, 0
@@ -1974,6 +1988,7 @@ BattleScript_EffectEncore::
 	waitanimation
 	printstring STRINGID_PKMNGOTENCORE
 	waitmessage B_WAIT_TIME_LONG
+	trydomoveeffectsbeforemoves
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPainSplit::
@@ -3905,11 +3920,20 @@ BattleScript_MoveEffectClearSmog::
 BattleScript_FocusPunchSetUp::
 	flushtextbox
 	call BattleScript_SwapFromSubstitute
-	playanimation BS_ATTACKER, B_ANIM_FOCUS_PUNCH_SETUP
+	playanimation BS_SCRIPTING, B_ANIM_FOCUS_PUNCH_SETUP
 	call BattleScript_SwapToSubstitute
 	printstring STRINGID_PKMNTIGHTENINGFOCUS
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_FocusPunchSetUpEncored::
+	flushtextbox
+	call BattleScript_SwapFromSubstitute
+	playanimation BS_SCRIPTING, B_ANIM_FOCUS_PUNCH_SETUP
+	call BattleScript_SwapToSubstitute
+	printstring STRINGID_PKMNTIGHTENINGFOCUS
+	waitmessage B_WAIT_TIME_LONG
+	end
 
 BattleScript_MegaEvolution::
 	flushtextbox
