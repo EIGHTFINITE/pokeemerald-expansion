@@ -1621,7 +1621,7 @@ void PutMonInRoute5Daycare(void)
 void GetCostToWithdrawRoute5DaycareMon(void)
 {
 #if IS_FRLG
-    u16 cost = GetDaycareCostForSelectedMon(&gSaveBlock1Ptr->route5DayCareMon);
+    u16 cost = PrepareDaycareCostStringForSelectedMon(&gSaveBlock1Ptr->route5DayCareMon);
 #else
     u16 cost = 100;
 #endif
