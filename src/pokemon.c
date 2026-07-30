@@ -2016,7 +2016,6 @@ u32 GetMonData2(struct Pokemon *mon, s32 field)
     return GetMonData3(mon, field, NULL);
 }
 
-
 union EvolutionTracker
 {
     u16 combinedValue:10;
