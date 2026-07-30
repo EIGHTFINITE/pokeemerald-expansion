@@ -11339,7 +11339,7 @@ void BS_ItemIncreaseStat(void)
 
     if (GetItemBattleUsage(gLastUsedItem) == EFFECT_ITEM_INCREASE_STAT)
     {
-        if (B_X_ITEMS_BUFF >= GEN_7)
+        if (GetConfig(B_X_ITEMS_BUFF) >= GEN_7)
             SetStatChange(gBattlerAttacker, GetItemEffect(gLastUsedItem)[1], 2);
         else
             SetStatChange(gBattlerAttacker, GetItemEffect(gLastUsedItem)[1], 1);
