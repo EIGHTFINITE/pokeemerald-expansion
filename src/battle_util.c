@@ -10652,6 +10652,9 @@ bool32 IsAnyTargetAffected(void)
 
     for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
     {
+        if (gBattleStruct->moveResultFlags[battler] & MOVE_RESULT_NOT_PRESENT)
+            continue;
+
         switch (moveTarget)
         {
         case TARGET_ALL_BATTLERS: // check all battlers
