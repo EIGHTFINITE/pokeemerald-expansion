@@ -3356,7 +3356,11 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 effect++;
             break;
         case ABILITY_SNOW_WARNING:
-            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, GetConfig(B_SNOW_WARNING) >= GEN_9 ? BATTLE_WEATHER_SNOW : BATTLE_WEATHER_HAIL, gLastUsedAbility))
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_SNOW, gLastUsedAbility))
+                effect++;
+            break;
+        case ABILITY_SNOW_WARNING_GEN8:
+            if (shouldAbilityTrigger && TryChangeWeatherWithAbility(battler, BATTLE_WEATHER_HAIL, gLastUsedAbility))
                 effect++;
             break;
         case ABILITY_ELECTRIC_SURGE:

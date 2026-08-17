@@ -648,6 +648,16 @@ static const struct FormChange sFroslassFormChangeTable[] =
     {FORM_CHANGE_END_BATTLE,                    SPECIES_FROSLASS},
     {FORM_CHANGE_TERMINATOR},
 };
+
+static const struct FormChange sFroslassGen8FormChangeTable[] =
+{
+#if P_GEN_9_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_FROSLASS_MEGA_GEN8, ITEM_FROSLASSITE},
+#endif
+    {FORM_CHANGE_FAINT,                         SPECIES_FROSLASS_GEN8},
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_FROSLASS_GEN8},
+    {FORM_CHANGE_TERMINATOR},
+};
 #endif //P_FAMILY_SNORUNT
 
 #if P_FAMILY_CASTFORM
@@ -893,6 +903,16 @@ static const struct FormChange sAbomasnowFormChangeTable[] =
 #endif
     {FORM_CHANGE_FAINT,                         SPECIES_ABOMASNOW},
     {FORM_CHANGE_END_BATTLE,                    SPECIES_ABOMASNOW},
+    {FORM_CHANGE_TERMINATOR},
+};
+
+static const struct FormChange sAbomasnowGen8FormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_ABOMASNOW_MEGA_GEN8, ITEM_ABOMASITE},
+#endif
+    {FORM_CHANGE_FAINT,                         SPECIES_ABOMASNOW_GEN8},
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_ABOMASNOW_GEN8},
     {FORM_CHANGE_TERMINATOR},
 };
 #endif //P_FAMILY_SNOVER
