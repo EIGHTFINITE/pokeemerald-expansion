@@ -8033,7 +8033,81 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sVanilliteLevelUpLearnset,
         .teachableLearnset = sVanilliteTeachableLearnset,
         .eggMoveLearnset = sVanilliteEggMoveLearnset,
+        .formSpeciesIdTable = sVanilliteFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VANILLISH}),
+    },
+
+    [SPECIES_VANILLITE_GEN8] =
+    {
+        .baseHP        = 36,
+        .baseAttack    = 50,
+        .baseDefense   = 50,
+        .baseSpeed     = 44,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_ICE),
+        .catchRate = 255,
+        .expYield = 61,
+        .evYield_SpAttack = 1,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_ICE_BODY, ABILITY_SNOW_CLOAK, ABILITY_WEAK_ARMOR },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Vanillite"),
+        .cryId = CRY_VANILLITE,
+        .natDexNum = NATIONAL_DEX_VANILLITE,
+        .categoryName = _("Fresh Snow"),
+        .height = 4,
+        .weight = 57,
+        .description = COMPOUND_STRING(
+            "The temperature of their breath is -58ºF.\n"
+            "They create snow crystals and make snow\n"
+            "fall in the areas around them. Vanillite is\n"
+            "treasured by households in warm regions."),
+        .pokemonScale = 491,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Vanillite,
+        .frontPicSize = MON_COORDS_SIZE(32, 40),
+        .frontPicYOffset = 14,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_H_SLIDE,
+        .backPic = gMonBackPic_Vanillite,
+        .backPicSize = MON_COORDS_SIZE(40, 48),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_H_SLIDE,
+        .palette = gMonPalette_Vanillite,
+        .shinyPalette = gMonShinyPalette_Vanillite,
+        .iconSprite = gMonIcon_Vanillite,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-1, 0, SHADOW_SIZE_S)
+        FOOTPRINT(Vanillite)
+        OVERWORLD(
+            sPicTable_Vanillite,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Vanillite,
+            gShinyOverworldPalette_Vanillite
+        )
+        .levelUpLearnset = sVanilliteLevelUpLearnset,
+        .teachableLearnset = sVanilliteTeachableLearnset,
+        .eggMoveLearnset = sVanilliteEggMoveLearnset,
+        .formSpeciesIdTable = sVanilliteFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VANILLISH_GEN8}),
     },
 
     [SPECIES_VANILLISH] =
@@ -8102,7 +8176,78 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sVanillishLevelUpLearnset,
         .teachableLearnset = sVanillishTeachableLearnset,
+        .formSpeciesIdTable = sVanillishFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 47, SPECIES_VANILLUXE}),
+    },
+
+    [SPECIES_VANILLISH_GEN8] =
+    {
+        .baseHP        = 51,
+        .baseAttack    = 65,
+        .baseDefense   = 65,
+        .baseSpeed     = 59,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 75,
+        .types = MON_TYPES(TYPE_ICE),
+        .catchRate = 120,
+        .expYield = 138,
+        .evYield_SpAttack = 2,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_ICE_BODY, ABILITY_SNOW_CLOAK, ABILITY_WEAK_ARMOR },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Vanillish"),
+        .cryId = CRY_VANILLISH,
+        .natDexNum = NATIONAL_DEX_VANILLISH,
+        .categoryName = _("Icy Snow"),
+        .height = 11,
+        .weight = 410,
+        .description = COMPOUND_STRING(
+            "Vanillish has existed since the Ice Age.\n"
+            "It controls particles of ice, freezes its\n"
+            "opponents, and then shatters them with\n"
+            "a headbutt."),
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Vanillish,
+        .frontPicSize = MON_COORDS_SIZE(32, 56),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 15),
+        ),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Vanillish,
+        .backPicSize = MON_COORDS_SIZE(48, 56),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_H_SLIDE,
+        .palette = gMonPalette_Vanillish,
+        .shinyPalette = gMonShinyPalette_Vanillish,
+        .iconSprite = gMonIcon_Vanillish,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-3, 9, SHADOW_SIZE_S)
+        FOOTPRINT(Vanillish)
+        OVERWORLD(
+            sPicTable_Vanillish,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Vanillish,
+            gShinyOverworldPalette_Vanillish
+        )
+        .levelUpLearnset = sVanillishLevelUpLearnset,
+        .teachableLearnset = sVanillishTeachableLearnset,
+        .formSpeciesIdTable = sVanillishFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 47, SPECIES_VANILLUXE_GEN8}),
     },
 
     [SPECIES_VANILLUXE] =
@@ -8172,6 +8317,77 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sVanilluxeLevelUpLearnset,
         .teachableLearnset = sVanilluxeTeachableLearnset,
+        .formSpeciesIdTable = sVanilluxeFormSpeciesIdTable,
+    },
+
+    [SPECIES_VANILLUXE_GEN8] =
+    {
+        .baseHP        = 71,
+        .baseAttack    = 95,
+        .baseDefense   = 85,
+        .baseSpeed     = 79,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_ICE),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 268 : 241,
+        .evYield_SpAttack = 3,
+        .itemCommon = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_ICE_BODY, ABILITY_SNOW_WARNING_GEN8, ABILITY_WEAK_ARMOR },
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = TRUE,
+        .speciesName = _("Vanilluxe"),
+        .cryId = CRY_VANILLUXE,
+        .natDexNum = NATIONAL_DEX_VANILLUXE,
+        .categoryName = _("Snowstorm"),
+        .height = 13,
+        .weight = 575,
+        .description = COMPOUND_STRING(
+            "Each of its two heads has a brain, and\n"
+            "when they are in agreement, it attacks\n"
+            "its enemies by exhaling a violent blizzard.\n"
+            "It makes snow clouds inside its body."),
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Vanilluxe,
+        .frontPicSize = MON_COORDS_SIZE(56, 56),
+        .frontPicYOffset = 4,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 12),
+            ANIMCMD_FRAME(1, 45),
+            ANIMCMD_FRAME(0, 15),
+        ),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Vanilluxe,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_H_SHAKE,
+        .palette = gMonPalette_Vanilluxe,
+        .shinyPalette = gMonShinyPalette_Vanilluxe,
+        .iconSprite = gMonIcon_Vanilluxe,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-2, 10, SHADOW_SIZE_M)
+        FOOTPRINT(Vanilluxe)
+        OVERWORLD(
+            sPicTable_Vanilluxe,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+            gOverworldPalette_Vanilluxe,
+            gShinyOverworldPalette_Vanilluxe
+        )
+        .levelUpLearnset = sVanilluxeLevelUpLearnset,
+        .teachableLearnset = sVanilluxeTeachableLearnset,
+        .formSpeciesIdTable = sVanilluxeFormSpeciesIdTable,
     },
 #endif //P_FAMILY_VANILLITE
 

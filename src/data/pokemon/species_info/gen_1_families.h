@@ -5450,6 +5450,78 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLA}),
     },
 
+    [SPECIES_VULPIX_ALOLA_GEN8] =
+    {
+        .baseHP        = 38,
+        .baseAttack    = 41,
+        .baseDefense   = 40,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 65,
+        .types = MON_TYPES(TYPE_ICE),
+        .catchRate = 190,
+        .expYield = 60,
+        .evYield_Speed = 1,
+        .itemRare = ITEM_SNOWBALL,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING_GEN8 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Vulpix"),
+        .cryId = CRY_VULPIX,
+        .natDexNum = NATIONAL_DEX_VULPIX,
+        .categoryName = _("Fox"),
+        .height = 6,
+        .weight = 99,
+        .description = COMPOUND_STRING(
+            "They live together in a skulk, helping\n"
+            "one another. In hot weather, this Pokémon\n"
+            "makes ice shards with its six tails and\n"
+            "sprays them around to cool itself off."),
+        .pokemonScale = 542,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_VulpixAlola,
+        .frontPicSize = MON_COORDS_SIZE(48, 48),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPic = gMonBackPic_VulpixAlola,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_VulpixAlola,
+        .shinyPalette = gMonShinyPalette_VulpixAlola,
+        .iconSprite = gMonIcon_VulpixAlola,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NORMAL,
+        SHADOW(-2, 3, SHADOW_SIZE_M)
+        FOOTPRINT(Vulpix)
+        OVERWORLD(
+            sPicTable_VulpixAlola,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_VulpixAlola,
+            gShinyOverworldPalette_VulpixAlola
+        )
+        .isAlolanForm = TRUE,
+        .levelUpLearnset = sVulpixAlolaLevelUpLearnset,
+        .teachableLearnset = sVulpixAlolaTeachableLearnset,
+        .eggMoveLearnset = sVulpixAlolaEggMoveLearnset,
+        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLA_GEN8}),
+    },
+
     [SPECIES_NINETALES_ALOLA] =
     {
         .baseHP        = 73,
@@ -5470,6 +5542,77 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Ninetales"),
+        .cryId = CRY_NINETALES,
+        .natDexNum = NATIONAL_DEX_NINETALES,
+        .categoryName = _("Fox"),
+        .height = 11,
+        .weight = 199,
+        .description = COMPOUND_STRING(
+            "While it will guide travelers who get lost\n"
+            "on a snowy mountain down to the\n"
+            "mountain's base, it won't forgive anyone\n"
+            "who harms nature."),
+        .pokemonScale = 339,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_NinetalesAlola,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_STRETCH,
+        .frontAnimDelay = 10,
+        .backPic = gMonBackPic_NinetalesAlola,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_NinetalesAlola,
+        .shinyPalette = gMonShinyPalette_NinetalesAlola,
+        .iconSprite = gMonIcon_NinetalesAlola,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Ninetales)
+        OVERWORLD(
+            sPicTable_NinetalesAlola,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_NinetalesAlola,
+            gShinyOverworldPalette_NinetalesAlola
+        )
+        .isAlolanForm = TRUE,
+        .levelUpLearnset = sNinetalesAlolaLevelUpLearnset,
+        .teachableLearnset = sNinetalesAlolaTeachableLearnset,
+        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
+    },
+
+    [SPECIES_NINETALES_ALOLA_GEN8] =
+    {
+        .baseHP        = 73,
+        .baseAttack    = 67,
+        .baseDefense   = 75,
+        .baseSpeed     = 109,
+        .baseSpAttack  = 81,
+        .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_ICE, TYPE_FAIRY),
+        .catchRate = 75,
+        .expYield = 177,
+        .evYield_Speed = 1,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_SNOWBALL,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING_GEN8 },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Ninetales"),
         .cryId = CRY_NINETALES,
