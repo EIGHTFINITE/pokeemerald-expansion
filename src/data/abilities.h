@@ -1651,7 +1651,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_BATTLE_BOND] =
     {
-        .name = _("Battle Bond"),
+        .name = _("Bond Change"),
         .description = COMPOUND_STRING("Changes form after a KO."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
@@ -2552,5 +2552,18 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Hailstorm"),
         .description = COMPOUND_STRING("Summons hail in battle."),
         .aiRating = 8,
+    },
+
+    [ABILITY_BATTLE_BOND_GEN9] =
+    {
+        .name = _("Battle Bond"),
+        .description = COMPOUND_STRING("KO ups Atk/Sp. Atk/Speed."),
+        .aiRating = 6,
+        .cantBeCopied = TRUE,
+        .cantBeSwapped = TRUE,
+        .cantBeTraced = TRUE,
+        .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
+        .failsOnImposter = TRUE,
     },
 };

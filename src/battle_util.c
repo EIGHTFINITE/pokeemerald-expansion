@@ -4635,33 +4635,38 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                 if (GetBattlerPartyState(battler)->battleBondBoost || gBattleMons[battler].species != SPECIES_GRENINJA_BATTLE_BOND)
                     break;
 
-                if (GetConfig(B_BATTLE_BOND) < GEN_9)
+                gLastUsedAbility = ability;
+                GetBattlerPartyState(battler)->battleBondBoost = TRUE;
+                PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[battler].species);
+                TryBattleFormChange(battler, FORM_CHANGE_BATTLE_BOND, ability);
+                BattleScriptCall(BattleScript_BattleBondActivatesOnMoveEndAttacker);
+                effect = TRUE;
+            }
+            break;
+        case ABILITY_BATTLE_BOND_GEN9:
+            {
+                if (NoAliveMonsForEitherParty()
+                 || NumFaintedBattlersByAttacker(battler) == 0)
+                    break;
+
+                if (GetBattlerPartyState(battler)->battleBondBoost || gBattleMons[battler].species != SPECIES_GRENINJA_BATTLE_BOND)
+                    break;
+
+                if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
+                    SetStatChange(battler, STAT_ATK, 1);
+                if (CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
+                    SetStatChange(battler, STAT_SPATK, 1);
+                if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
+                    SetStatChange(battler, STAT_SPEED, 1);
+
+                if (gSpecialStatuses[battler].statStageAmount > 0)
                 {
                     gLastUsedAbility = ability;
+                    gEffectBattler = gBattlerAbility = battler;
+
                     GetBattlerPartyState(battler)->battleBondBoost = TRUE;
-                    PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[battler].species);
-                    TryBattleFormChange(battler, FORM_CHANGE_BATTLE_BOND, ability);
-                    BattleScriptCall(BattleScript_BattleBondActivatesOnMoveEndAttacker);
+                    BattleScriptCall(BattleScript_AbilityStatChange);
                     effect = TRUE;
-                }
-                else
-                {
-                    if (CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
-                        SetStatChange(battler, STAT_ATK, 1);
-                    if (CompareStat(battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
-                        SetStatChange(battler, STAT_SPATK, 1);
-                    if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN, ability))
-                        SetStatChange(battler, STAT_SPEED, 1);
-
-                    if (gSpecialStatuses[battler].statStageAmount > 0)
-                    {
-                        gLastUsedAbility = ability;
-                        gEffectBattler = gBattlerAbility = battler;
-
-                        GetBattlerPartyState(battler)->battleBondBoost = TRUE;
-                        BattleScriptCall(BattleScript_AbilityStatChange);
-                        effect = TRUE;
-                    }
                 }
             }
             break;
