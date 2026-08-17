@@ -169,6 +169,7 @@ static const u16 sVulpixFormSpeciesIdTable[] = {
     SPECIES_VULPIX,
 #if P_ALOLAN_FORMS
     SPECIES_VULPIX_ALOLA,
+    SPECIES_VULPIX_ALOLA_GEN8,
 #endif
     FORM_SPECIES_END,
 };
@@ -177,6 +178,7 @@ static const u16 sNinetalesFormSpeciesIdTable[] = {
     SPECIES_NINETALES,
 #if P_ALOLAN_FORMS
     SPECIES_NINETALES_ALOLA,
+    SPECIES_NINETALES_ALOLA_GEN8,
 #endif
     FORM_SPECIES_END,
 };
@@ -1017,8 +1019,10 @@ static const u16 sGlalieFormSpeciesIdTable[] = {
 
 static const u16 sFroslassFormSpeciesIdTable[] = {
     SPECIES_FROSLASS,
+    SPECIES_FROSLASS_GEN8,
 #if P_GEN_9_MEGA_EVOLUTIONS
     SPECIES_FROSLASS_MEGA,
+    SPECIES_FROSLASS_MEGA_GEN8,
 #endif
     FORM_SPECIES_END,
 };
@@ -1216,10 +1220,18 @@ static const u16 sLucarioFormSpeciesIdTable[] = {
 #endif //P_FAMILY_RIOLU
 
 #if P_FAMILY_SNOVER
+static const u16 sSnoverFormSpeciesIdTable[] = {
+    SPECIES_SNOVER,
+    SPECIES_SNOVER_GEN8,
+    FORM_SPECIES_END,
+};
+
 static const u16 sAbomasnowFormSpeciesIdTable[] = {
     SPECIES_ABOMASNOW,
+    SPECIES_ABOMASNOW_GEN8,
 #if P_MEGA_EVOLUTIONS
     SPECIES_ABOMASNOW_MEGA,
+    SPECIES_ABOMASNOW_MEGA_GEN8,
 #endif
     FORM_SPECIES_END,
 };
@@ -1469,6 +1481,26 @@ static const u16 sZoroarkFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_ZORUA
+
+#if P_FAMILY_VANILLITE
+static const u16 sVanilliteFormSpeciesIdTable[] = {
+    SPECIES_VANILLITE,
+    SPECIES_VANILLITE_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sVanillishFormSpeciesIdTable[] = {
+    SPECIES_VANILLISH,
+    SPECIES_VANILLISH_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sVanilluxeFormSpeciesIdTable[] = {
+    SPECIES_VANILLUXE,
+    SPECIES_VANILLUXE_GEN8,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_VANILLITE
 
 #if P_FAMILY_DEERLING
 static const u16 sDeerlingFormSpeciesIdTable[] = {
@@ -1812,6 +1844,20 @@ static const u16 sDragalgeFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_SKRELP
+
+#if P_FAMILY_HAWLUCHA
+static const u16 sAmauraFormSpeciesIdTable[] = {
+    SPECIES_AMAURA,
+    SPECIES_AMAURA_GEN8,
+    FORM_SPECIES_END,
+};
+
+static const u16 sAurorusFormSpeciesIdTable[] = {
+    SPECIES_AURORUS,
+    SPECIES_AURORUS_GEN8,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_HAWLUCHA
 
 #if P_FAMILY_HAWLUCHA
 static const u16 sHawluchaFormSpeciesIdTable[] = {
