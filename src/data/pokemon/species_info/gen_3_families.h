@@ -11030,6 +11030,76 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .formChangeTable = sFroslassFormChangeTable,
     },
 
+    [SPECIES_FROSLASS_GEN8] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 80,
+        .baseDefense   = 70,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_ICE, TYPE_GHOST),
+        .catchRate = 75,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 168 : 187,
+        .evYield_Speed = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_CURSED_BODY },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Froslass"),
+        .cryId = CRY_FROSLASS,
+        .natDexNum = NATIONAL_DEX_FROSLASS,
+        .categoryName = _("Snow Land"),
+        .height = 13,
+        .weight = 266,
+        .description = COMPOUND_STRING(
+            "When it finds people or Pokémon it likes,\n"
+            "it freezes them and takes them to its\n"
+            "chilly den, where they become its\n"
+            "decorations."),
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Froslass,
+        .frontPicSize = MON_COORDS_SIZE(48, 48),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 50),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .enemyMonElevation = 7,
+        .backPic = gMonBackPic_Froslass,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        .palette = gMonPalette_Froslass,
+        .shinyPalette = gMonShinyPalette_Froslass,
+        .iconSprite = gMonIcon_Froslass,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-1, 10, SHADOW_SIZE_S)
+        FOOTPRINT(Froslass)
+        OVERWORLD(
+            sPicTable_Froslass,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Froslass,
+            gShinyOverworldPalette_Froslass
+        )
+        .levelUpLearnset = sFroslassLevelUpLearnset,
+        .teachableLearnset = sFroslassTeachableLearnset,
+        .formSpeciesIdTable = sFroslassFormSpeciesIdTable,
+        .formChangeTable = sFroslassGen8FormChangeTable,
+    },
+
 #if P_GEN_9_MEGA_EVOLUTIONS
     [SPECIES_FROSLASS_MEGA] =
     {
@@ -11087,6 +11157,64 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .teachableLearnset = sFroslassTeachableLearnset,
         .formSpeciesIdTable = sFroslassFormSpeciesIdTable,
         .formChangeTable = sFroslassFormChangeTable,
+    },
+
+    [SPECIES_FROSLASS_MEGA_GEN8] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 80,
+        .baseDefense   = 70,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 140,
+        .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_ICE, TYPE_GHOST),
+        .catchRate = 75,
+        .expYield = 168,
+        .evYield_Speed = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_SNOW_WARNING_GEN8, ABILITY_SNOW_WARNING_GEN8, ABILITY_SNOW_WARNING_GEN8 },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Froslass"),
+    #if P_MODIFIED_MEGA_CRIES
+        .cryId = CRY_FROSLASS_MEGA,
+    #else
+        .cryId = CRY_FROSLASS,
+    #endif // P_MODIFIED_MEGA_CRIES
+        .natDexNum = NATIONAL_DEX_FROSLASS,
+        .categoryName = _("Snow Land"),
+        .height = 26,
+        .weight = 296,
+        .description = COMPOUND_STRING(
+            "This Pokémon can use eerie cold\n"
+            "air imbued with ghost energy to\n"
+            "freeze even insubstantial things,\n"
+            "such as flames or the wind."),
+        .frontPic = gMonFrontPic_FroslassMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 2,
+        .backPic = gMonBackPic_FroslassMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 1,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_FroslassMega,
+        .shinyPalette = gMonShinyPalette_FroslassMega,
+        .iconSprite = gMonIcon_FroslassMega,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Froslass)
+        SHADOW(0, 14, SHADOW_SIZE_L)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sFroslassLevelUpLearnset,
+        .teachableLearnset = sFroslassTeachableLearnset,
+        .formSpeciesIdTable = sFroslassFormSpeciesIdTable,
+        .formChangeTable = sFroslassGen8FormChangeTable,
     },
 #endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
