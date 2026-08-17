@@ -923,11 +923,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SNOW_WARNING] =
     {
         .name = _("Snow Warning"),
-    #if B_SNOW_WARNING >= GEN_9
         .description = COMPOUND_STRING("Summons snow in battle."),
-    #else
-        .description = COMPOUND_STRING("Summons hail in battle."),
-    #endif
         .aiRating = 8,
     },
 
@@ -2549,5 +2545,12 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     {
         .name = _("Spicy Spray"),
         .description = COMPOUND_STRING("Burns the foe when damaged."),
+    },
+
+    [ABILITY_SNOW_WARNING_GEN8] =
+    {
+        .name = _("Hailstorm"),
+        .description = COMPOUND_STRING("Summons hail in battle."),
+        .aiRating = 8,
     },
 };
