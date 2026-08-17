@@ -3301,8 +3301,23 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
             if (!shouldAbilityTrigger)
                 break;
             {
-                u32 weather = (GetConfig(B_SNOW_WARNING) >= GEN_9 ? BATTLE_WEATHER_SNOW : BATTLE_WEATHER_HAIL);
-                if (TryChangeBattleWeather(battler, weather, gLastUsedAbility))
+                if (TryChangeBattleWeather(battler, BATTLE_WEATHER_SNOW, gLastUsedAbility))
+                {
+                    BattleScriptCall(BattleScript_WeatherAbilityActivates);
+                    effect++;
+                }
+                else if (GetWeather() & B_WEATHER_PRIMAL_ANY)
+                {
+                    BattleScriptCall(BattleScript_BlockedByPrimalWeather);
+                    effect++;
+                }
+            }
+            break;
+        case ABILITY_SNOW_WARNING_GEN8:
+            if (!shouldAbilityTrigger)
+                break;
+            {
+                if (TryChangeBattleWeather(battler, BATTLE_WEATHER_HAIL, gLastUsedAbility))
                 {
                     BattleScriptCall(BattleScript_WeatherAbilityActivates);
                     effect++;

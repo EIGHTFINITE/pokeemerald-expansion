@@ -207,7 +207,6 @@
     F(B_SANDSTORM_SPDEF_BOOST,     sandstormSpDefBoost,     (u32, GEN_COUNT - 1)) \
     F(B_OVERWORLD_FOG,             overworldFog,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     F(B_OVERWORLD_SNOW,            overworldSnow,           (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SNOW_WARNING,              snowWarning,             (u32, GEN_COUNT - 1)) \
     F(B_PREFERRED_ICE_WEATHER,     preferredIceWeather,     (u32, B_ICE_WEATHER_SNOW)) /* TODO: use in tests */ \
     /* Terrain settings */ \
     F(B_TERRAIN_TYPE_BOOST,        terrainTypeBoost,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \

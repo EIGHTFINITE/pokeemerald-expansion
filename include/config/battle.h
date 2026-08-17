@@ -306,7 +306,6 @@
 #define B_SANDSTORM_SOLAR_BEAM          GEN_LATEST // In Gen3+, Sandstorm decreases the power of Solar Beam, when it didn't before.
 #define B_OVERWORLD_FOG                 B_FOG_BOTH // In Gen8+, overworld Fog summons Misty Terrain in battle. In Gen4 only, overworld Fog summons the unique fog weather condition in battle. Set to B_FOG_BOTH to summon both.
 #define B_OVERWORLD_SNOW                GEN_LATEST // In Gen9+, overworld Snow will summon snow instead of hail in battle.
-#define B_SNOW_WARNING                  GEN_LATEST // In Gen9+, Snow Warning will summon snow instead of hail.
 #define B_PREFERRED_ICE_WEATHER         B_ICE_WEATHER_BOTH // Toggles Hail move effects to Snow and vice versa.
 
 // Terrain settings
