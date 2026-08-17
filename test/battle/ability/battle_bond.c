@@ -17,7 +17,6 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
     PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 2; }
 
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_8);
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
         if (monsCountPlayer == 2) {
             PLAYER(SPECIES_WOBBUFFET);
@@ -68,7 +67,6 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
     PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 2; }
 
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_8);
         OPPONENT(SPECIES_GRENINJA_BATTLE_BOND);
         if (monsCountOpponent == 2) {
             OPPONENT(SPECIES_WOBBUFFET);
@@ -116,7 +114,6 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
     PARAMETRIZE { monsCountPlayer = 3; monsCountOpponent = 3; }
 
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_8);
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         if (monsCountPlayer == 3) {
@@ -148,8 +145,7 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 SINGLE_BATTLE_TEST("Battle Bond increases Atk, SpAtk and Speed by 1 stage (Gen9+)")
 {
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_9);
-        PLAYER(SPECIES_GRENINJA_BATTLE_BOND) { Ability(ABILITY_BATTLE_BOND); }
+        PLAYER(SPECIES_GRENINJA_BATTLE_BOND) { Ability(ABILITY_BATTLE_BOND_GEN9); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -157,7 +153,7 @@ SINGLE_BATTLE_TEST("Battle Bond increases Atk, SpAtk and Speed by 1 stage (Gen9+
     } SCENE {
         HP_BAR(opponent);
         MESSAGE("The opposing Wobbuffet fainted!");
-        ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
+        ABILITY_POPUP(player, ABILITY_BATTLE_BOND_GEN9);
     } THEN {
         EXPECT(player->species != SPECIES_GRENINJA_ASH);
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
@@ -169,8 +165,7 @@ SINGLE_BATTLE_TEST("Battle Bond increases Atk, SpAtk and Speed by 1 stage (Gen9+
 SINGLE_BATTLE_TEST("Battle Bond increases a Stat even if only one can be increased (Gen9+)")
 {
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_9);
-        PLAYER(SPECIES_GRENINJA_BATTLE_BOND) { Ability(ABILITY_BATTLE_BOND); }
+        PLAYER(SPECIES_GRENINJA_BATTLE_BOND) { Ability(ABILITY_BATTLE_BOND_GEN9); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -184,7 +179,7 @@ SINGLE_BATTLE_TEST("Battle Bond increases a Stat even if only one can be increas
     } SCENE {
         HP_BAR(opponent);
         MESSAGE("The opposing Wobbuffet fainted!");
-        ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
+        ABILITY_POPUP(player, ABILITY_BATTLE_BOND_GEN9);
     } THEN {
         EXPECT(player->species != SPECIES_GRENINJA_ASH);
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 6);
