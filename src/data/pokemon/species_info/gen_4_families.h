@@ -5899,8 +5899,94 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sSnoverLevelUpLearnset,
         .teachableLearnset = sSnoverTeachableLearnset,
         .eggMoveLearnset = sSnoverEggMoveLearnset,
+        .formSpeciesIdTable = sSnoverFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW}),
     },
+
+    [SPECIES_SNOVER_GEN8] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 62,
+        .baseDefense   = 50,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 62,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),
+        .catchRate = 120,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 67 : 131,
+        .evYield_Attack = 1,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_SNOW_WARNING_GEN8, ABILITY_NONE, ABILITY_SOUNDPROOF },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Snover"),
+        .cryId = CRY_SNOVER,
+        .natDexNum = NATIONAL_DEX_SNOVER,
+        .categoryName = _("Frost Tree"),
+        .height = 10,
+        .weight = 505,
+        .description = COMPOUND_STRING(
+            "During cold seasons, it migrates to the\n"
+            "mountain's lower reaches. Seemingly\n"
+            "curious about people, they gather around\n"
+            "footsteps they find on snowy mountains."),
+        .pokemonScale = 305,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Snover,
+        .frontPicSize = MON_COORDS_SIZE(64, 48),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 25),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Snover,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .palette = gMonPalette_Snover,
+        .shinyPalette = gMonShinyPalette_Snover,
+        .iconSprite = gMonIcon_Snover,
+        .iconPalIndex = 1,
+#if P_GENDER_DIFFERENCES
+        .frontPicFemale = gMonFrontPic_SnoverF,
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 48),
+        .backPicFemale = gMonBackPic_SnoverF,
+        .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
+#endif //P_GENDER_DIFFERENCES
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 4, SHADOW_SIZE_M)
+        FOOTPRINT(Snover)
+        OVERWORLD(
+            sPicTable_Snover,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Snover,
+            gShinyOverworldPalette_Snover
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_SnoverF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following
+        )
+        .levelUpLearnset = sSnoverLevelUpLearnset,
+        .teachableLearnset = sSnoverTeachableLearnset,
+        .eggMoveLearnset = sSnoverEggMoveLearnset,
+        .formSpeciesIdTable = sSnoverFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW_GEN8}),
+    },
+
 
     [SPECIES_ABOMASNOW] =
     {
@@ -5984,6 +6070,88 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formChangeTable = sAbomasnowFormChangeTable,
     },
 
+    [SPECIES_ABOMASNOW_GEN8] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 92,
+        .baseDefense   = 75,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 92,
+        .baseSpDefense = 85,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),
+        .catchRate = 60,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 173 : 214,
+        .evYield_Attack = 1,
+        .evYield_SpAttack = 1,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_SNOW_WARNING_GEN8, ABILITY_NONE, ABILITY_SOUNDPROOF },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Abomasnow"),
+        .cryId = CRY_ABOMASNOW,
+        .natDexNum = NATIONAL_DEX_ABOMASNOW,
+        .categoryName = _("Frost Tree"),
+        .height = 22,
+        .weight = 1355,
+        .description = COMPOUND_STRING(
+            "It lives a quiet life on mountains that\n"
+            "are perpetually covered in snow. It hides\n"
+            "itself by whipping up blizzards.\n"
+            "It is also known as “The Ice Monster.”"),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 348,
+        .trainerOffset = 6,
+        .frontPic = gMonFrontPic_Abomasnow,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 44),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = ANIM_H_SHAKE,
+        .backPic = gMonBackPic_Abomasnow,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
+        .palette = gMonPalette_Abomasnow,
+        .shinyPalette = gMonShinyPalette_Abomasnow,
+        .iconSprite = gMonIcon_Abomasnow,
+        .iconPalIndex = 1,
+#if P_GENDER_DIFFERENCES
+        .frontPicFemale = gMonFrontPic_AbomasnowF,
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
+#endif //P_GENDER_DIFFERENCES
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 11, SHADOW_SIZE_L)
+        FOOTPRINT(Abomasnow)
+        OVERWORLD(
+            sPicTable_Abomasnow,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Abomasnow,
+            gShinyOverworldPalette_Abomasnow
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_AbomasnowF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following
+        )
+        .levelUpLearnset = sAbomasnowLevelUpLearnset,
+        .teachableLearnset = sAbomasnowTeachableLearnset,
+        .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,
+        .formChangeTable = sAbomasnowGen8FormChangeTable,
+    },
+
 #if P_MEGA_EVOLUTIONS
     [SPECIES_ABOMASNOW_MEGA] =
     {
@@ -6057,6 +6225,80 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sAbomasnowTeachableLearnset,
         .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,
         .formChangeTable = sAbomasnowFormChangeTable,
+    },
+
+    [SPECIES_ABOMASNOW_MEGA_GEN8] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 132,
+        .baseDefense   = 105,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 132,
+        .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),
+        .catchRate = 60,
+        .expYield = 208,
+        .evYield_Attack = 1,
+        .evYield_SpAttack = 1,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_SNOW_WARNING_GEN8, ABILITY_SNOW_WARNING_GEN8, ABILITY_SNOW_WARNING_GEN8 },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Abomasnow"),
+    #if P_MODIFIED_MEGA_CRIES
+        .cryId = CRY_ABOMASNOW_MEGA,
+    #else
+        .cryId = CRY_ABOMASNOW,
+    #endif // P_MODIFIED_MEGA_CRIES
+        .natDexNum = NATIONAL_DEX_ABOMASNOW,
+        .categoryName = _("Frost Tree"),
+        .height = 27,
+        .weight = 1850,
+        .description = COMPOUND_STRING(
+            "The sprouts on Abomasnow's back grow into\n"
+            "great shafts of ice when it Mega Evolves.\n"
+            "Dislikes associating with others and\n"
+            "chooses to live quietly deep in mountains."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 348,
+        .trainerOffset = 6,
+        .frontPic = gMonFrontPic_AbomasnowMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_AbomasnowMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
+        .palette = gMonPalette_AbomasnowMega,
+        .shinyPalette = gMonShinyPalette_AbomasnowMega,
+        .iconSprite = gMonIcon_AbomasnowMega,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Abomasnow)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_AbomasnowMega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_AbomasnowMega,
+            gShinyOverworldPalette_AbomasnowMega
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sAbomasnowLevelUpLearnset,
+        .teachableLearnset = sAbomasnowTeachableLearnset,
+        .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,
+        .formChangeTable = sAbomasnowGen8FormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SNOVER
