@@ -191,7 +191,6 @@
     F(B_ABILITY_TRIGGER_CHANCE,    abilityTriggerChance,    (u32, GEN_COUNT - 1)) \
     F(B_PICKUP_WILD,               pickupWild,              (u32, GEN_COUNT - 1)) \
     F(B_MAGIC_GUARD,               magicGuard,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_BATTLE_BOND,               battleBond,              (u32, GEN_COUNT - 1)) \
     F(B_ATE_MULTIPLIER,            ateMultiplier,           (u32, GEN_COUNT - 1)) \
     F(B_DEFIANT_STICKY_WEB,        defiantStickyWeb,        (u32, GEN_COUNT - 1)) \
     F(B_MIRROR_ARMOR_STICKY_WEB,   mirrorArmorStickyWeb,    (u32, GEN_COUNT - 1)) \

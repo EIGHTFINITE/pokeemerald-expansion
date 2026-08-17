@@ -345,6 +345,7 @@ enum __attribute__((packed)) Ability
     ABILITIES_CUSTOM_START = ABILITIES_COUNT_GEN9 - 1,
     // Add any custom abilities between here and ABILITIES_CUSTOM_END
     ABILITY_SNOW_WARNING_GEN8,
+	ABILITY_BATTLE_BOND_GEN9,
     ABILITIES_CUSTOM_END,
     ABILITIES_COUNT = ABILITIES_CUSTOM_END,
 };
