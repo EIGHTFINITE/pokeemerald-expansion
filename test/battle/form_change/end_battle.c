@@ -125,7 +125,6 @@ SINGLE_BATTLE_TEST("Meloetta returns to Aria form upon battle end after using Re
 SINGLE_BATTLE_TEST("Battle Bond Greninja returns to base form upon battle end after knocking out an opponent")
 {
     GIVEN {
-        WITH_CONFIG(B_BATTLE_BOND, GEN_8);
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
