@@ -4722,7 +4722,85 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sAmauraLevelUpLearnset,
         .teachableLearnset = sAmauraTeachableLearnset,
         .eggMoveLearnset = sAmauraEggMoveLearnset,
+        .formSpeciesIdTable = sAmauraFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AURORUS, CONDITIONS({IF_TIME, TIME_NIGHT})}),
+    },
+
+    [SPECIES_AMAURA_GEN8] =
+    {
+        .baseHP        = 77,
+        .baseAttack    = 59,
+        .baseDefense   = 50,
+        .baseSpeed     = 46,
+        .baseSpAttack  = 67,
+        .baseSpDefense = 63,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ICE),
+        .catchRate = 45,
+        .expYield = 72,
+        .evYield_HP = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING_GEN8 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Amaura"),
+        .cryId = CRY_AMAURA,
+        .natDexNum = NATIONAL_DEX_AMAURA,
+        .categoryName = _("Tundra"),
+        .height = 13,
+        .weight = 252,
+        .description = COMPOUND_STRING(
+            "This ancient Pokémon was restored from\n"
+            "part of its body that had been frozen in\n"
+            "ice for over 100 million years. It lived in a\n"
+            "cold land where there were no predators."),
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Amaura,
+        .frontPicSize = MON_COORDS_SIZE(32, 56),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 4),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 11),
+            ANIMCMD_FRAME(0, 6),
+            ANIMCMD_FRAME(1, 8),
+            ANIMCMD_FRAME(0, 8),
+            ANIMCMD_FRAME(1, 5),
+            ANIMCMD_FRAME(0, 5),
+        ),
+        .frontAnimId = ANIM_CONCAVE_ARC_SMALL_TWICE,
+        .backPic = gMonBackPic_Amaura,
+        .backPicSize = MON_COORDS_SIZE(40, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_Amaura,
+        .shinyPalette = gMonShinyPalette_Amaura,
+        .iconSprite = gMonIcon_Amaura,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 8, SHADOW_SIZE_S)
+        FOOTPRINT(Amaura)
+        OVERWORLD(
+            sPicTable_Amaura,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Amaura,
+            gShinyOverworldPalette_Amaura
+        )
+        .levelUpLearnset = sAmauraLevelUpLearnset,
+        .teachableLearnset = sAmauraTeachableLearnset,
+        .eggMoveLearnset = sAmauraEggMoveLearnset,
+        .formSpeciesIdTable = sAmauraFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AURORUS_GEN8, CONDITIONS({IF_TIME, TIME_NIGHT})}),
     },
 
     [SPECIES_AURORUS] =
@@ -4789,6 +4867,74 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         )
         .levelUpLearnset = sAurorusLevelUpLearnset,
         .teachableLearnset = sAurorusTeachableLearnset,
+        .formSpeciesIdTable = sAurorusFormSpeciesIdTable,
+    },
+
+    [SPECIES_AURORUS_GEN8] =
+    {
+        .baseHP        = 123,
+        .baseAttack    = 77,
+        .baseDefense   = 72,
+        .baseSpeed     = 58,
+        .baseSpAttack  = 99,
+        .baseSpDefense = 92,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_ICE),
+        .catchRate = 45,
+        .expYield = 104,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING_GEN8 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Aurorus"),
+        .cryId = CRY_AURORUS,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        .categoryName = _("Tundra"),
+        .height = 27,
+        .weight = 2250,
+        .description = COMPOUND_STRING(
+            "Using the diamond-shaped crystals on its\n"
+            "body it can instantly create a wall of ice\n"
+            "to block an opponent's attack, or encase\n"
+            "them in ice."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Aurorus,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Aurorus,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Aurorus,
+        .shinyPalette = gMonShinyPalette_Aurorus,
+        .iconSprite = gMonIcon_Aurorus,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-6, 14, SHADOW_SIZE_L)
+        FOOTPRINT(Aurorus)
+        OVERWORLD(
+            sPicTable_Aurorus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Aurorus,
+            gShinyOverworldPalette_Aurorus
+        )
+        .levelUpLearnset = sAurorusLevelUpLearnset,
+        .teachableLearnset = sAurorusTeachableLearnset,
+        .formSpeciesIdTable = sAurorusFormSpeciesIdTable,
     },
 #endif //P_FAMILY_AMAURA
 
