@@ -4,9 +4,8 @@
 SINGLE_BATTLE_TEST("Snow Warning sets up hail for 5 turns (Gen6-8)")
 {
     GIVEN {
-        WITH_CONFIG(B_SNOW_WARNING, GEN_8);
         WITH_CONFIG(B_ABILITY_WEATHER, GEN_6);
-        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); }
+        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING_GEN8); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -15,7 +14,7 @@ SINGLE_BATTLE_TEST("Snow Warning sets up hail for 5 turns (Gen6-8)")
         TURN {}
         TURN {}
     } SCENE {
-        ABILITY_POPUP(player, ABILITY_SNOW_WARNING);
+        ABILITY_POPUP(player, ABILITY_SNOW_WARNING_GEN8);
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
@@ -27,10 +26,9 @@ SINGLE_BATTLE_TEST("Snow Warning sets up hail for 5 turns (Gen6-8)")
 SINGLE_BATTLE_TEST("Snow Warning sets up hail for 8 turns with Icy Rock (Gen6-8)")
 {
     GIVEN {
-        WITH_CONFIG(B_SNOW_WARNING, GEN_8);
         WITH_CONFIG(B_ABILITY_WEATHER, GEN_6);
         ASSUME(gItemsInfo[ITEM_ICY_ROCK].holdEffect == HOLD_EFFECT_ICY_ROCK);
-        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); Item(ITEM_ICY_ROCK); }
+        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING_GEN8); Item(ITEM_ICY_ROCK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -42,7 +40,7 @@ SINGLE_BATTLE_TEST("Snow Warning sets up hail for 8 turns with Icy Rock (Gen6-8)
         TURN {}
         TURN {}
     } SCENE {
-        ABILITY_POPUP(player, ABILITY_SNOW_WARNING);
+        ABILITY_POPUP(player, ABILITY_SNOW_WARNING_GEN8);
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
@@ -57,9 +55,8 @@ SINGLE_BATTLE_TEST("Snow Warning sets up hail for 8 turns with Icy Rock (Gen6-8)
 SINGLE_BATTLE_TEST("Snow Warning sets up permanent hail (Gen4-5)")
 {
     GIVEN {
-        WITH_CONFIG(B_SNOW_WARNING, GEN_8);
         WITH_CONFIG(B_ABILITY_WEATHER, GEN_5);
-        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); }
+        PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING_GEN8); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -72,7 +69,7 @@ SINGLE_BATTLE_TEST("Snow Warning sets up permanent hail (Gen4-5)")
         TURN {}
         TURN {}
     } SCENE {
-        ABILITY_POPUP(player, ABILITY_SNOW_WARNING);
+        ABILITY_POPUP(player, ABILITY_SNOW_WARNING_GEN8);
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
         MESSAGE("The hail is crashing down.");
@@ -89,7 +86,6 @@ SINGLE_BATTLE_TEST("Snow Warning sets up permanent hail (Gen4-5)")
 SINGLE_BATTLE_TEST("Snow Warning sets up snow for 5 turns (Gen9+)")
 {
     GIVEN {
-        WITH_CONFIG(B_SNOW_WARNING, GEN_9);
         WITH_CONFIG(B_ABILITY_WEATHER, GEN_9);
         PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -112,7 +108,6 @@ SINGLE_BATTLE_TEST("Snow Warning sets up snow for 5 turns (Gen9+)")
 SINGLE_BATTLE_TEST("Snow Warning sets up snow for 8 turns with Icy Rock (Gen9+)")
 {
     GIVEN {
-        WITH_CONFIG(B_SNOW_WARNING, GEN_9);
         WITH_CONFIG(B_ABILITY_WEATHER, GEN_9);
         ASSUME(gItemsInfo[ITEM_ICY_ROCK].holdEffect == HOLD_EFFECT_ICY_ROCK);
         PLAYER(SPECIES_ABOMASNOW) { Ability(ABILITY_SNOW_WARNING); Item(ITEM_ICY_ROCK); }
