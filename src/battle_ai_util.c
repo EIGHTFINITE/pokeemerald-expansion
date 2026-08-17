@@ -1896,7 +1896,9 @@ u32 AI_GetSwitchinWeather(enum BattlerId battler)
     case ABILITY_SAND_STREAM:
         return B_WEATHER_SANDSTORM;
     case ABILITY_SNOW_WARNING:
-        return GetConfig(B_SNOW_WARNING) >= GEN_9 ? B_WEATHER_SNOW : B_WEATHER_HAIL;
+        return B_WEATHER_SNOW;
+    case ABILITY_SNOW_WARNING_GEN8:
+        return B_WEATHER_HAIL;
     default:
         return gBattleWeather;
     }
