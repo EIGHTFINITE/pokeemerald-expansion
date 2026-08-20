@@ -8866,7 +8866,7 @@ void SetIllusionMon(struct Pokemon *mon, enum BattlerId battler)
     party = GetBattlerParty(battler);
 
     if (IsBattlerAlive(GetPartnerBattler(battler)))
-        partnerMon = &party[gBattlerPartyIndexes[GetPartnerBattler(battler)]];
+        partnerMon = GetBattlerMon(GetPartnerBattler(battler));
     else
         partnerMon = mon;
 
