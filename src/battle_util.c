@@ -2956,7 +2956,7 @@ bool32 TryFieldEffects(enum FieldEffectCases caseId)
                 break;
             case WEATHER_FOG_DIAGONAL:
             case WEATHER_FOG_HORIZONTAL:
-                if (B_OVERWORLD_FOG == GEN_4 && !(gBattleWeather & B_WEATHER_FOG))
+                if ((B_OVERWORLD_FOG == GEN_4 || B_OVERWORLD_FOG == B_FOG_BOTH) && !(gBattleWeather & B_WEATHER_FOG))
                 {
                     gBattleWeather = B_WEATHER_FOG;
                     gBattleScripting.animArg1 = B_ANIM_FOG_CONTINUES;
