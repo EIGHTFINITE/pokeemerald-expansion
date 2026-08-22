@@ -3697,6 +3697,8 @@ static enum MoveEndResult MoveEndAbilityEffectFoesFainted(struct BattleCalcValue
 
 static enum MoveEndResult MoveEndShellTrap(struct BattleCalcValues *cv)
 {
+    u32 shellTrapBattlerMask = 0;
+
     for (enum BattlerId battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
     {
         if (battlerDef == cv->battlerAtk || IsBattlerAlly(battlerDef, cv->battlerAtk))
@@ -3709,9 +3711,26 @@ static enum MoveEndResult MoveEndShellTrap(struct BattleCalcValues *cv)
          && gProtectStructs[battlerDef].physicalBattlerId == cv->battlerAtk)
         {
             gProtectStructs[battlerDef].shellTrap = TRUE;
-            if (IsDoubleBattle()) // Change move order in double battles, so the hit mon with shell trap moves immediately after being hit.
-                ChangeOrderTargetAfterAttacker(); // In what order should 2 targets move that will activate a trap?
+            shellTrapBattlerMask |= 1u << battlerDef;
         }
+    }
+
+    if (IsDoubleBattle() && shellTrapBattlerMask != 0)
+    {
+        enum BattlerId shellTrapBattlers[MAX_BATTLERS_COUNT];
+        u32 numShellTrapBattlers = 0;
+
+        for (u32 i = 0; i < gBattlersCount; i++)
+        {
+            enum BattlerId battler = gBattlersBySpeed[i];
+
+            if (shellTrapBattlerMask & (1u << battler))
+                shellTrapBattlers[numShellTrapBattlers++] = battler;
+        }
+
+        // Each reorder inserts the battler immediately after the attacker, so use reverse turn order to keep faster battlers first.
+        while (numShellTrapBattlers != 0)
+            ChangeOrderTargetAfterAttacker(shellTrapBattlers[--numShellTrapBattlers]);
     }
 
     gBattleScripting.moveendState++;
@@ -4381,7 +4400,7 @@ static enum MoveEndResult MoveEndPursuitNextAction(struct BattleCalcValues *cv)
         u32 storedTarget = gBattlerTarget;
         if (SetTargetToNextPursuiter(gBattlerTarget))
         {
-            ChangeOrderTargetAfterAttacker();
+            ChangeOrderTargetAfterAttacker(gBattlerTarget);
             gBattleStruct->moveTarget[gBattlerTarget] = storedTarget;
             gBattlerTarget = storedTarget;
         }
