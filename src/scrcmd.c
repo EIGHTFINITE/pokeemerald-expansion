@@ -2314,7 +2314,30 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
         {
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;
-            break;
+            return FALSE;
+        }
+    }
+
+    struct BagPocket *pocket = &gBagPockets[POCKET_TM_HM];
+    for (u32 j = 0; j < pocket->capacity; j++)
+    {
+        struct ItemSlot tempItem = BagPocket_GetSlotData(pocket, j);
+        enum Move moveId = ItemIdToBattleMoveId(tempItem.itemId);
+        if (moveId != MOVE_NONE && move == moveId)
+        {
+            for (u32 i = 0; i < PARTY_SIZE; i++)
+            {
+                enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
+                if (!species)
+                    break;
+                if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG) && CanLearnTeachableMove(species, move))
+                {
+                    gSpecialVar_Result = i;
+                    gSpecialVar_0x8004 = species;
+                    return FALSE;
+                }
+            }
+            return FALSE;
         }
     }
 
