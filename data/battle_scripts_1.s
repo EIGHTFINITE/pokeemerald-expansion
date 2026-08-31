@@ -930,7 +930,7 @@ BattleScript_EffectPsychoShiftCanWork:
 	statusanimation BS_TARGET
 	updatestatusicon BS_TARGET
 	waitstate
-	trysynchronize
+	tryabilityonstatuschange
 	curestatus BS_ATTACKER
 	printfromtable gCureStatusStringIds
 	waitmessage B_WAIT_TIME_LONG
@@ -4336,7 +4336,7 @@ BattleScript_UpdateEffectStatusIconRet::
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
 	trytriggerstatusform
-	trysynchronize
+	tryabilityonstatuschange
 	tryactivateitem BS_EFFECT_BATTLER, ACTIVATION_ON_STATUS_CHANGE
 	flushtextbox
 	return
@@ -4437,6 +4437,7 @@ BattleScript_MoveEffectConfusion::
 	volatileanimation BS_EFFECT_BATTLER, VOLATILE_CONFUSION
 	printstring STRINGID_PKMNWASCONFUSED
 	waitmessage B_WAIT_TIME_LONG
+	tryactivateitem BS_EFFECT_BATTLER, ACTIVATION_ON_STATUS_CHANGE
 	return
 
 BattleScript_MoveEffectRecoilHP25::
