@@ -9,7 +9,7 @@
 #define B_MULTI_HIT_CHANCE          GEN_LATEST // In Gen5+, multistrike moves have different chances for the number of times they hit. See SetRandomMultiHitCounter for values.
 #define B_WHITEOUT_MONEY            GEN_LATEST // In Gen4+, the amount of money dropped after losing a battle is determined by the number of Badges obtained. Previously, half of the player's money would be dropped. (While this change was also in FRLG, for the sake of simplicity, setting this to GEN_3 will result in RSE behavior.)
 #define B_LIGHT_BALL_ATTACK_BOOST   GEN_LATEST // In Gen4+, Light Ball doubles Attack in addition to Sp. Atk.
-#define B_PARALYSIS_CHANCE          GEN_LATEST // In Champions, paralysis has a 12.5% chance of not moving, instead of 25%.
+#define B_PARALYSIS_CHANCE          GEN_CHAMPIONS // In Champions, paralysis has a 12.5% chance of not moving, instead of 25%.
 
 // Experience settings
 #define B_EXP_CATCH                 GEN_LATEST // In Gen6+, the party gains experience when the player catches another Pokémon.
@@ -55,21 +55,21 @@
 #define B_UPROAR_IGNORE_SOUNDPROOF  GEN_LATEST // In Gen5+, Uproar's effects ignore Soundproof.
 #define B_DISABLE_TURNS             GEN_LATEST // Disable's turns. See Cmd_disablelastusedattack.
 #define B_TAILWIND_TURNS            GEN_LATEST // In Gen5+, Tailwind lasts 4 turns instead of 3.
-#define B_SLEEP_TURNS               GEN_LATEST // In Gen5+, sleep prevents movement for 1-3 turns. In Gens3-4, it was 1-4 turns. In Gen2, it was 1-7 turns.
+#define B_SLEEP_TURNS               GEN_CHAMPIONS // In Gen5+, sleep prevents movement for 1-3 turns. In Gens3-4, it was 1-4 turns. In Gen2, it was 1-7 turns.
 #define B_TAUNT_TURNS               GEN_LATEST // In Gen5+, Taunt lasts 3 turns if the user acts before the target, or 4 turns if the target acted before the user. In Gen4, it lasted 2-4/3-5 turns. In Gen3, it lasted 2/3 turns.
 #define B_ENCORE_TURNS              GEN_LATEST // In Gen5+, Encore lasts 3 turns if the target hasn't yet moved this turn, or 4 turns if it has. In Gen4, it lasts 3-7 turns. In Gen2-3, 2-6 turns.
 #define B_SPORT_TURNS               GEN_LATEST // In Gen6+, Water/Mud Sport last 5 turns, even if the user switches out. In Gen5 and earlier, they lasted until the user switched out.
 #define B_MEGA_EVO_TURN_ORDER       GEN_LATEST // In Gen7, a Pokémon's Speed after Mega Evolution is used to determine turn order, rather than its previous Speed.
 #define B_RECALC_TURN_AFTER_ACTIONS GEN_LATEST // In Gen8+, switching or using a move affects the current turn's order of actions, better known as dynamic Speed.
 #define B_FAINT_SWITCH_IN           GEN_LATEST // In Gen4+, sending out a new Pokémon after the previous one fainted happens at the end of the turn. Previously, it would happen after each action.
-#define B_MEGA_EVO_SPEED_SWAP       GEN_LATEST // In Champions, Mega Evolution does not overwrite the speed stat swapped via Speed Swap.
-#define B_FREEZE_TURNS              GEN_LATEST // Prior to Champions, freeze has a 20% chance of being thawed out.
-                                               // As of Champions, freeze has a 25% chance of being thawed out with a hard cap of 3 turns.
+#define B_MEGA_EVO_SPEED_SWAP       GEN_CHAMPIONS // In Champions, Mega Evolution does not overwrite the speed stat swapped via Speed Swap.
+#define B_FREEZE_TURNS              GEN_CHAMPIONS // Prior to Champions, freeze has a 20% chance of being thawed out.
+                                                  // As of Champions, freeze has a 25% chance of being thawed out with a hard cap of 3 turns.
 
 // Move data settings
-#define B_UPDATED_MOVE_DATA         GEN_LATEST // Updates move data in gMovesInfo, including Power, Accuracy, PP, category, range, and additional effects.
-#define B_UPDATED_MOVE_TYPES        GEN_LATEST // Updates move types in gMovesInfo.
-#define B_UPDATED_MOVE_FLAGS        GEN_LATEST // Updates move flags in gMovesInfo.
+#define B_UPDATED_MOVE_DATA         GEN_CHAMPIONS // Updates move data in gMovesInfo, including Power, Accuracy, PP, category, range, and additional effects.
+#define B_UPDATED_MOVE_TYPES        GEN_CHAMPIONS // Updates move types in gMovesInfo.
+#define B_UPDATED_MOVE_FLAGS        GEN_CHAMPIONS // Updates move flags in gMovesInfo.
 #define B_PHYSICAL_SPECIAL_SPLIT    GEN_LATEST // In Gens1-3, a move's type determines if it will do physical or special damage. The category icon in the summary will reflect this.
 #define B_RECOIL_IF_MISS_DMG        GEN_LATEST // Crash damage's formula. See EFFECT_RECOIL_IF_MISS.
 #define B_KLUTZ_FLING_INTERACTION   GEN_LATEST // In Gen5+, Pokémon with the Klutz Ability can no longer use Fling.
@@ -137,8 +137,8 @@
 #define B_TAUNT_ME_FIRST                GEN_LATEST // In Gen5+, Taunt does not block Me First.
 #define B_ALLY_SWITCH_FAIL_CHANCE       GEN_LATEST // In Gen9+, Ally Switch has a chance to fail if used consecutively.
 #define B_SKETCH_BANS                   GEN_LATEST // In Gen9+, Sketch is able to copy less moves than in previous generations.
-#define B_KNOCK_OFF_REMOVAL             GEN_LATEST // In Gen5+, Knock Off removes the foe's item instead of rendering it unusable.
-                                                   // In Champions, Knock Off no longer checks if the target's item is able to change the user's form (i.e. Mega Evolution / Primal Reversion).
+#define B_KNOCK_OFF_REMOVAL             GEN_CHAMPIONS // In Gen5+, Knock Off removes the foe's item instead of rendering it unusable.
+                                                      // In Champions, Knock Off no longer checks if the target's item is able to change the user's form (i.e. Mega Evolution / Primal Reversion).
 #define B_HEAL_BELL_SOUNDPROOF          GEN_LATEST // In Gen6+, Heal Bell affects inactive party members with Soundproof. In Gen5 only, it affects all party members, including active ones. In Gen4 and earlier, it does not affect any Pokémon with Soundproof.
 #define B_CHARGE                        GEN_LATEST // In Gen7 and earlier, Charge status is lost regardless of the typing of the next move.
 #define B_POWDER_STATUS_HEAVY_RAIN      GEN_LATEST // In Gen7+, Powder no longer damages the user of a Fire-type move in heavy rain.
@@ -163,26 +163,26 @@
 #define B_CHECK_USER_FAILURE            GEN_LATEST // In Gen5+, The user of a move no longer checks for its own failure, e.g. Soundproof will not block its own Perish Song.
 #define B_ABSORB_MESSAGE                GEN_LATEST // In Gen5+, no absorb message is shown if user is already at full HP.
 #define B_UPROAR                        GEN_LATEST // In Gen5+, Uproar awakens all battlers on the first turn if successful. In Gen3-4, Uproar allows every battler to awaken before their action or at the end of a turn.
-#define B_FIRST_TURN_MOVE               GEN_LATEST // In Champions, Fake Out and First Impression cannot be selected past the user's first turn.
-#define B_SALT_CURE_DAMAGE              GEN_LATEST // In Gen9, Salt Cure deals 1/8 max HP (1/4 max HP to Steel and Water)
-                                                   // In Champions, Salt Cure deals 1/16 max HP (1/8 max HP to Steel and Water)
-#define B_BELCH_SELECTABLE              GEN_LATEST // In Gen6-9, Belch cannot be selected unless the user has eaten a Berry
-                                                   // In Champions, Belch can be selected regardless of the user eating the Berry
-#define B_STUFF_CHEEKS_SELECTABLE       GEN_LATEST // In Gen8-9, Stuff Cheeks cannot be selected unless the user is holding a Berry
-                                                   // In Champions, Stuff Cheeks can be selected regardless of the user holding the Berry
-#define B_SPIT_UP_SELECTABLE            GEN_LATEST // In Champions, Spit Up cannot be selected unless the user has Stockpile stacks
-#define B_MOVES_THAT_REMOVE_TYPE        GEN_LATEST // In Champions, Burn Up cannot be selected if the user is not Fire-type
-#define B_LAST_RESORT_SELECTABLE        GEN_LATEST // In Champions, Last Resort cannot be selected if the user hasn't used all its other moves
-#define B_FAINT_MOVE_EFFECT_TIMING      GEN_LATEST // In Champions, some move effects now apply even if the user faints from Rough Skin, Iron Barbs, etc.
-                                                   // Effects include: Knock Off, Thief, Rapid Spin, Mortal Spin, Ice Spinner
-                                                   // This does not include: Ceaseless Edge, Stone Axe
-#define B_SHEER_FORCE_AGAINST_ABILITIES GEN_LATEST // As of Champions, Sheer Force no longer prevents the activation of Berserk and Pickpocket
-                                                   // Currently does nothing, as there is not enough info to confirm event orders for cases like Eject Pack and Eject Button
-#define B_ENCORE_PRIORITY               GEN_LATEST // In Champions, Encore uses the priority of the Encored move instead of the selected move
-                                                   // In Gen9-, Encore allows the target to use the Encored move using the priority of the selected move
-#define B_RAGE_FIST                     GEN_LATEST // In Champions, Rage Fist stacks reset upon switching out or fainting
-#define B_MOVE_EFFECTS_BEFORE_MOVES     GEN_LATEST // In Champions, Beak Blast will work when Encored into from a different move
-                                                   // Additionally, the charging animation will occur 
+#define B_FIRST_TURN_MOVE               GEN_CHAMPIONS // In Champions, Fake Out and First Impression cannot be selected past the user's first turn.
+#define B_SALT_CURE_DAMAGE              GEN_CHAMPIONS // In Gen9, Salt Cure deals 1/8 max HP (1/4 max HP to Steel and Water)
+                                                      // In Champions, Salt Cure deals 1/16 max HP (1/8 max HP to Steel and Water)
+#define B_BELCH_SELECTABLE              GEN_CHAMPIONS // In Gen6-9, Belch cannot be selected unless the user has eaten a Berry
+                                                      // In Champions, Belch can be selected regardless of the user eating the Berry
+#define B_STUFF_CHEEKS_SELECTABLE       GEN_CHAMPIONS // In Gen8-9, Stuff Cheeks cannot be selected unless the user is holding a Berry
+                                                      // In Champions, Stuff Cheeks can be selected regardless of the user holding the Berry
+#define B_SPIT_UP_SELECTABLE            GEN_CHAMPIONS // In Champions, Spit Up cannot be selected unless the user has Stockpile stacks
+#define B_MOVES_THAT_REMOVE_TYPE        GEN_CHAMPIONS // In Champions, Burn Up cannot be selected if the user is not Fire-type
+#define B_LAST_RESORT_SELECTABLE        GEN_CHAMPIONS // In Champions, Last Resort cannot be selected if the user hasn't used all its other moves
+#define B_FAINT_MOVE_EFFECT_TIMING      GEN_CHAMPIONS // In Champions, some move effects now apply even if the user faints from Rough Skin, Iron Barbs, etc.
+                                                      // Effects include: Knock Off, Thief, Rapid Spin, Mortal Spin, Ice Spinner
+                                                      // This does not include: Ceaseless Edge, Stone Axe
+#define B_SHEER_FORCE_AGAINST_ABILITIES GEN_CHAMPIONS // As of Champions, Sheer Force no longer prevents the activation of Berserk and Pickpocket
+                                                      // Currently does nothing, as there is not enough info to confirm event orders for cases like Eject Pack and Eject Button
+#define B_ENCORE_PRIORITY               GEN_CHAMPIONS // In Champions, Encore uses the priority of the Encored move instead of the selected move
+                                                      // In Gen9-, Encore allows the target to use the Encored move using the priority of the selected move
+#define B_RAGE_FIST                     GEN_CHAMPIONS // In Champions, Rage Fist stacks reset upon switching out or fainting
+#define B_MOVE_EFFECTS_BEFORE_MOVES     GEN_CHAMPIONS // In Champions, Beak Blast will work when Encored into from a different move
+                                                      // Additionally, the charging animation will occur 
 
 // Ability settings
 #define B_GALE_WINGS                    GEN_LATEST // In Gen7+, Gale Wings requires full HP to trigger.
@@ -217,8 +217,8 @@
 #define B_POWDER_OVERCOAT               GEN_LATEST // In Gen6+, Overcoat blocks powder and spore moves.
 #define B_INFILTRATOR_SUBSTITUTE        GEN_LATEST // In Gen6+, Infiltrator bypasses Substitute when using a move, excluding Transform and Sky Drop.
 #define B_DANCER_ORDER                  GEN_LATEST // In Gen8+, Dancer activations are based on Speed order including modifiers. In Gen7, Dancer activates from the slowest to fastest battler based on the battler's unmodified Speed stat.
-#define B_UNSEEN_FIST_PIERCING_DRILL    GEN_LATEST // In Gen8-9, Unseen Fist/Piercing Drill deals 100% of the damage dealt to protected targets while also bypassing the contact effects of protect moves.
-                                                   // In Champions, Unseen Fist/Piercing Drill nerfs damage dealt against protected targets to 25%. It also no longer bypasses the contact effects of protect moves.
+#define B_UNSEEN_FIST_PIERCING_DRILL    GEN_CHAMPIONS // In Gen8-9, Unseen Fist/Piercing Drill deals 100% of the damage dealt to protected targets while also bypassing the contact effects of protect moves.
+                                                      // In Champions, Unseen Fist/Piercing Drill nerfs damage dealt against protected targets to 25%. It also no longer bypasses the contact effects of protect moves.
 
 // Various volatile timers
 #define B_CONFUSION_TURNS    5
