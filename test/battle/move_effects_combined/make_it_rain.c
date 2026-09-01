@@ -4,11 +4,12 @@
 ASSUMPTIONS
 {
     ASSUME(MoveHasAdditionalEffectWithChance(MOVE_MAKE_IT_RAIN, MOVE_EFFECT_PAYDAY, 0) == TRUE);
-    ASSUME_MOVE_EFFECT_STAT_CHANGE(MOVE_MAKE_IT_RAIN, self: TRUE, spAtk: -1);
+    ASSUME_MOVE_EFFECT_STAT_CHANGE(MOVE_MAKE_IT_RAIN, self: TRUE, spAtk: B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS ? -2 : -1);
 }
 
 SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
 {
+    bool32 isChampionsOnwards = B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS;
     s16 damage[2];
 
     GIVEN {
@@ -23,20 +24,31 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
         HP_BAR(opponent, captureDamage: &damage[0]);
         MESSAGE("Coins were scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        if(isChampionsOnwards)
+            MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+        else
+            MESSAGE("Wobbuffet's Sp. Atk fell!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAKE_IT_RAIN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         MESSAGE("Coins were scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        if(isChampionsOnwards)
+            MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+        else
+            MESSAGE("Wobbuffet's Sp. Atk fell!");
     } THEN {
-        EXPECT_MUL_EQ(damage[0], Q_4_12(0.66), damage[1]);
+        if(isChampionsOnwards)
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.5), damage[1]);
+        else
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.66), damage[1]);
     }
 }
 
 DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits both targets")
 {
+    bool32 isChampionsOnwards = B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS;
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
         PLAYER(SPECIES_WOBBUFFET);
@@ -50,17 +62,25 @@ DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits b
         NONE_OF {
             MESSAGE("Coins were scattered everywhere!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's Sp. Atk fell!");
+            if(isChampionsOnwards)
+                MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+            else
+                MESSAGE("Wobbuffet's Sp. Atk fell!");
         }
         HP_BAR(opponentRight);
         MESSAGE("Coins were scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        if(isChampionsOnwards)
+            MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+        else
+            MESSAGE("Wobbuffet's Sp. Atk fell!");
     }
 }
 
 DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits both targets")
 {
+    bool32 isChampionsOnwards = B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS;
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
         PLAYER(SPECIES_WOBBUFFET);
@@ -74,17 +94,25 @@ DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits b
         NONE_OF {
             MESSAGE("Coins were scattered everywhere!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's Sp. Atk fell!");
+            if(isChampionsOnwards)
+                MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+            else
+                MESSAGE("Wobbuffet's Sp. Atk fell!");
         }
         HP_BAR(opponentRight);
         MESSAGE("Coins were scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        if(isChampionsOnwards)
+            MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+        else
+            MESSAGE("Wobbuffet's Sp. Atk fell!");
     }
 }
 
 DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if second target Protects")
 {
+    bool32 isChampionsOnwards = B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS;
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
         PLAYER(SPECIES_WOBBUFFET);
@@ -99,6 +127,9 @@ DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if second ta
         HP_BAR(opponentLeft);
         MESSAGE("Coins were scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        if(isChampionsOnwards)
+            MESSAGE("Wobbuffet's Sp. Atk harshly fell!");
+        else
+            MESSAGE("Wobbuffet's Sp. Atk fell!");
     }
 }
