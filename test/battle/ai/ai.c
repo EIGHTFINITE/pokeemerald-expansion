@@ -414,7 +414,7 @@ AI_SINGLE_BATTLE_TEST("First Impression is preferred on the first turn of the sp
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FIRST_IMPRESSION) == EFFECT_FIRST_TURN_ONLY);
-        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == 90);
+        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == (B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS ? 100 : 90));
         ASSUME(GetMovePower(MOVE_LUNGE) == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_KANGASKHAN);
@@ -436,7 +436,7 @@ AI_SINGLE_BATTLE_TEST("First Impression is not chosen if it's blocked by certain
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FIRST_IMPRESSION) == EFFECT_FIRST_TURN_ONLY);
-        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == 90);
+        ASSUME(GetMovePower(MOVE_FIRST_IMPRESSION) == (B_UPDATED_MOVE_DATA >= GEN_CHAMPIONS ? 100 : 90));
         ASSUME(GetMovePower(MOVE_LUNGE) == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
         PLAYER(species) { Ability(ability); }
