@@ -5876,7 +5876,7 @@ static void Cmd_trysetencore(void)
     else
     {
         gBattleMons[gBattlerTarget].volatiles.encoredMove = gBattleMons[gBattlerTarget].moves[i];
-        gBattleMons[gBattlerTarget].volatiles.encoredMovePos = i;
+        gBattleMons[gBattlerTarget].volatiles.encoredMovePos = (enum MoveSlot)i;
 
         // If the target's selected move is not the same as the move being Encored into,
         // the target will select a random opposing target
@@ -10931,7 +10931,7 @@ void BS_TryInstruct(void)
         }
         else
         {
-            gCurrMovePos = moveIndex;
+            gCurrMovePos = (enum MoveSlot)moveIndex;
             gEffectBattler = gBattleStruct->battlerState[gBattlerTarget].lastMoveTarget;
             PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);
             gBattlescriptCurrInstr = cmd->nextInstr;
