@@ -1150,11 +1150,6 @@
 	callnative BS_AllySwitchSwapBattler
 	.endm
 
-	.macro tryallyswitch jumpInstr:req
-	callnative BS_TryAllySwitch
-	.4byte \jumpInstr
-	.endm
-
 	.macro jumpifmorethanhalfHP battler:req, jumpInstr:req
 	callnative BS_JumpIfMoreThanHalfHP
 	.byte \battler
@@ -1657,10 +1652,6 @@
 
 	.macro cancelmultiturnmoves
 	callnative BS_CancelMultiTurnMoves
-	.endm
-
-	.macro isrunningimpossible
-	callnative BS_IsRunningImpossible
 	.endm
 
 	.macro getmovetarget
