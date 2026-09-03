@@ -336,9 +336,14 @@ static enum CancelerResult CancelerFlinch(struct BattleCalcValues *cv)
 
 static enum CancelerResult CancelerDisabled(struct BattleCalcValues *cv)
 {
+    if (gBattleMons[cv->battlerAtk].volatiles.disabledMove == MOVE_NONE)
+        return CANCELER_RESULT_SUCCESS;
+
+    if (GetConfig(B_DISABLE_TURNS) <= GEN_2 && gBattleMons[cv->battlerAtk].volatiles.disableTimer != 0)
+        gBattleMons[cv->battlerAtk].volatiles.disableTimer--;
+
     if (GetActiveGimmick(cv->battlerAtk) != GIMMICK_Z_MOVE
-     && gBattleMons[cv->battlerAtk].volatiles.disabledMove == cv->move
-     && gBattleMons[cv->battlerAtk].volatiles.disabledMove != MOVE_NONE)
+     && gBattleMons[cv->battlerAtk].volatiles.disabledMove == cv->move)
     {
         gBattleScripting.battler = cv->battlerAtk;
         CancelMultiTurnMoves(cv->battlerAtk);
@@ -6832,7 +6837,7 @@ static enum Move GetSleepTalkMove(void)
             unusableMovesBits |= (1 << (i));
     }
 
-    unusableMovesBits = CheckMoveLimitations(gBattlerAttacker, unusableMovesBits, ~(MOVE_LIMITATION_PP | MOVE_LIMITATION_CHOICE_ITEM | MOVE_LIMITATION_UNUSABLE));
+    unusableMovesBits = CheckMoveLimitations(gBattlerAttacker, unusableMovesBits, ~(MOVE_LIMITATION_PP | MOVE_LIMITATION_CHOICE_ITEM | MOVE_LIMITATION_DISABLED | MOVE_LIMITATION_UNUSABLE));
     if (unusableMovesBits == ALL_MOVES_MASK) // all 4 moves cannot be chosen
         return move;
 
