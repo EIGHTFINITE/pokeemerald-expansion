@@ -3260,8 +3260,11 @@ static enum MoveEndResult MoveEndSetValues(struct BattleCalcValues *cv)
     {
         gBattleStruct->accumulatedDamage += gBattleStruct->moveDamage[battlerDef];
     }
+
     gBattleStruct->eventState.moveEndBattler = 0;
     gBattleStruct->eventState.moveEndBlock = 0;
+    gBattleStruct->eventState.resolution = 0;
+    gBattleStruct->statChangeBattler = 0;
     gBattleScripting.moveendState++;
     return MOVEEND_RESULT_CONTINUE;
 }
