@@ -3256,13 +3256,14 @@ static void Cmd_openpartyscreen(void)
 
         hitmarkerFaintBits = gHitMarker >> 28;
 
-        gBattlerFainted = 0;
-        while (!((1u << gBattlerFainted) & hitmarkerFaintBits)
-               && gBattlerFainted < gBattlersCount)
-            gBattlerFainted++;
+        u32 fainted = 0;
+        while (fainted < gBattlersCount && !((1u << fainted) & hitmarkerFaintBits))
+            fainted++;
 
-        if (gBattlerFainted == gBattlersCount)
+        if (fainted == gBattlersCount)
             gBattlescriptCurrInstr = failInstr;
+        else
+            gBattlerFainted = fainted;
     }
     else
     {
@@ -3450,6 +3451,9 @@ static void Cmd_switchineffects(void)
 static void Cmd_switchinevents(void)
 {
     CMD_ARGS();
+
+    assertf(gBattlerFainted < MAX_BATTLERS_COUNT, "invalid gBattlerFainted: %d", gBattlerFainted);
+
     while (gBattleStruct->eventState.switchIn < SWITCH_IN_EVENTS_COUNT)
     {
         if (DoSwitchInEvents())
@@ -11276,12 +11280,8 @@ void BS_TryTrainerSlideMsgFirstOff(void)
 void BS_TryTrainerSlideMsgLastOn(void)
 {
     NATIVE_ARGS(u8 battler);
-    enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
 
-    if (battler >= MAX_BATTLERS_COUNT) // Edge case for double KO cases where gBattlerFainted == MAX_BATTLERS_COUNT so GetBattlerForBattleScript returns 6
-    {
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+    enum BattlerId battler = GetBattlerForBattleScript(cmd->battler);
     enum BattlerId tempBattler = gBattleScripting.battler;
 
     switch (gBattleScripting.battler)
