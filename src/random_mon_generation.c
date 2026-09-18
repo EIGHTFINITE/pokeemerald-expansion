@@ -75,12 +75,12 @@ static s32 RandomElementFromFilteredArray(rng_value_t *rng, s32 *array, u32 leng
 
 static bool32 IsSpeciesBannedByRandomSpeciesOptions(enum Species species, const struct RandomSpeciesGeneratorOptions *options, const struct FilterFuncArgs *filterFuncArgs)
 {
-    enum Species baseSpecies = GET_BASE_SPECIES_ID(species);
+    enum Species baseSpecies = GetBaseSpecies(species);
     const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[species];
 
     for (u32 i = 0; i < options->bannedSpeciesCount; i++)
     {
-        if (baseSpecies == GET_BASE_SPECIES_ID(options->bannedSpecies[i]))
+        if (baseSpecies == GetBaseSpecies(options->bannedSpecies[i]))
             return TRUE;
     }
 
@@ -110,7 +110,7 @@ static bool32 UNUSED IsInBstRangeFilterFunc(enum Species species, const struct F
 {
     u16 bstStandard = filterFuncArgs->arg1;
     u16 bstLeniency = filterFuncArgs->arg2;
-    u16 bst = GetSpeciesBaseStatTotal(GET_BASE_SPECIES_ID(species));
+    u16 bst = GetSpeciesBaseStatTotal(GetBaseSpecies(species));
     u16 minBst;
     u16 maxBst;
 
@@ -127,7 +127,7 @@ static bool32 UNUSED IsInBstRangeFilterFunc(enum Species species, const struct F
 
 static bool32 IsRandomSpeciesFormTableException(enum Species species)
 {
-    switch (GET_BASE_SPECIES_ID(species))
+    switch (GetBaseSpecies(species))
     {
     case SPECIES_ROTOM:
     case SPECIES_ORICORIO:
@@ -184,7 +184,7 @@ static bool32 IsRandomSpeciesInFormOrFusionTables(enum Species species, const u1
 static bool32 IsRandomSpeciesFormAllowed(enum Species species, const u16 *formTable)
 {
     const struct SpeciesInfo *speciesInfo;
-    enum Species baseSpecies = GET_BASE_SPECIES_ID(species);
+    enum Species baseSpecies = GetBaseSpecies(species);
 
     switch (species) // Special case because darm has galarian forms (desired) and zen mode forms (not desired)
     {
