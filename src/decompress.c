@@ -1406,20 +1406,22 @@ void FastLZ77UnCompWram(const u32 *src, void *dest)
 
 void RlFastUncomp(const u8 *src, u8 *dst, u32 frame, u16 size)
 {
+    void RlFastUncompUnsafe(const u8 *src, u32 frame, u8 *dst);
+
     u16 uncompSize = GetRlFastUncompSize(src);
     assertf(size == uncompSize, "RlFast uncomp size does not match. exp:%d, act: %d", size, uncompSize)
     {
         return;
     }
-    RlFastUncompUnsafe(src, dst, frame);
+    RlFastUncompUnsafe(src, frame, dst);
 }
 
 u16 GetRlFastUncompSize(const u8 *src)
 {
-    return (src[1] + 1) * TILE_SIZE_4BPP;
+    return (src[0] + 1) * TILE_SIZE_4BPP;
 }
 
 u8 GetRlFastUncompFrames(const u8 *src)
 {
-    return src[0];
+    return src[1];
 }

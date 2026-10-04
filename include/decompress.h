@@ -68,7 +68,6 @@ void FastLZ77UnCompWram(const u32 *src, void *dest);
 
 // SBird's fast rl decompression function
 void RlFastUncomp(const u8 *src, u8 *dst, u32 frame, u16 size);
-void RlFastUncompUnsafe(const u8 *src, u8 *dst, u32 frame);
 u16 GetRlFastUncompSize(const u8 *src);
 u8 GetRlFastUncompFrames(const u8 *src);
 
