@@ -6,7 +6,7 @@ This fork tries to maintain vanilla compatibility whenever possible. It doesn't 
 
 There are several branches, each with one main feature (and sometimes some extra stuff):
 
-**followers** branch:
+**followers-expanded-id** branch:
 * [HGSS-style pokémon followers](https://bulbapedia.bulbagarden.net/wiki/Walking_Pok%C3%A9mon#Pok.C3.A9mon_HeartGold_and_SoulSilver) for all 386 pokémon (including forms & shinies)
 * Includes follower emotes and a majority of the HGSS messages
 * Custom pokeball sprites for Gen 1-7 pokéballs
@@ -14,8 +14,8 @@ There are several branches, each with one main feature (and sometimes some extra
 * Overworld form changes for Ditto, Mew, Castform, etc.
 * Asymmetrical & 64x64 OW support
 * Dynamic Overworld Palette System (DOWP) & reflections compatible with berry trees, etc.
-
-> Note: Unless you have a specific need for it, you should probably use `followers-expanded-id` over this.
+* Expands OW graphicsIds to 16 bits in a backwards compatible way
+* Includes support for compressed OW graphics
 
 ![Pokeball](https://i.imgur.com/OMbS67Q.gif)
 ![Messages](https://i.imgur.com/sTbGVEY.gif)
@@ -42,10 +42,10 @@ There are several branches, each with one main feature (and sometimes some extra
 * `lighting-expanded-id` but with following pokémon code & assets completely removed. (This allows for more than 255 OW graphics)
 * Saves with following pokémon can still safely be loaded.
 
-**followers-expanded-id** branch:
-* Like `followers`, but includes expands OW graphicsIds to 16-bits
-in a backwards compatible way
-* Includes support for compressed OW graphics
+**followers-legacy** branch:
+* Like `followers-expanded-id`, but without expanding OW graphicsIds to 16 bits
+
+> Note: Unless you have a specific need for it, you should probably use `followers-expanded-id` over this.
 
 Additional branches to mention:
 
