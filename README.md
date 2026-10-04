@@ -2,7 +2,7 @@
 
 This is a fork of the [matching decompilation](https://github.com/pret/pokeemerald) at [PRET](https://github.com/pret).
 
-This fork tries to maintain vanilla compatibility whenever possible. It doesn't increase the size of any save data structure or the object event structure.
+It attempts to maintain vanilla compatibility whenever possible. It doesn't increase the size of any save data structure or the object event structure.
 
 There are several branches, each with one main feature (and sometimes some extra stuff):
 
@@ -23,13 +23,18 @@ There are several branches, each with one main feature (and sometimes some extra
 ![HM](https://i.imgur.com/lnXJGHd.gif)
 
 **icons** branch:
-* Everything from the **followers** branch.
+* Now standalone, without following pokémon.
+* Dynamic Overworld Palette System (DOWP) & reflections compatible with berry trees, etc.
+* Expands OW graphicsIds to 16 bits in a backwards compatible way
 * All pokemon icons updated to Gen 6, based on [this repo](https://github.com/msikma/pokesprite/tree/master/icons/pokemon/regular)
 * This includes compatibility with the PC, trade, contests, mail, Battle Dome. Examples:
 ![PC](https://i.imgur.com/wzwJfd1.png)
 ![Party](https://i.imgur.com/8hbE88t.png)
 ![Contest](https://i.imgur.com/S9mCEFL.png)
 * Icons share palettes with front sprites, meaning that shiny pokemon will also have shiny icons!
+
+**icons-followers** branch:
+* Has both **icons** and **followers-expanded-id**
 
 **lighting** branch:
 * Everything from the **followers** branch.
