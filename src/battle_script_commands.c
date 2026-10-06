@@ -1427,7 +1427,7 @@ static void Cmd_setadditionaleffects(void)
              && gProtectStructs[gBattlerAttacker].chargingTurn
              && additionalEffect->onChargeTurnOnly)
             {
-                percentChance = CalcSecondaryEffectChance(gBattlerAttacker, cv.abilities[cv.battlerAtk], additionalEffect);
+                percentChance = CalcSecondaryEffectChance(gBattlerAttacker, cv.abilities[cv.battlerAtk], additionalEffect, gCurrentMove);
 
                 // Activate effect if it's primary (chance == 0) or if RNGesus says so
                 if ((percentChance == 0) || RandomPercentage(RNG_SECONDARY_EFFECT + gBattleStruct->additionalEffectsCounter, percentChance))
@@ -1438,7 +1438,6 @@ static void Cmd_setadditionaleffects(void)
                     se.effectBattler = effectBattler;
                     se.primary = percentChance == 0;
                     se.certain = percentChance >= 100;
-                    se.onSide = additionalEffect->onSide; // TODO
                     SetMoveEffect(&cv, &se);
                 }
             }

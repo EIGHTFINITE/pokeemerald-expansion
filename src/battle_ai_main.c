@@ -5824,7 +5824,7 @@ static s32 AI_CalcAdditionalEffectScore(enum BattlerId battlerAtk, enum BattlerI
         const struct AdditionalEffect *additionalEffect = GetMoveAdditionalEffectById(move, effectId);
 
         // Only consider effects with a guaranteed chance to happen
-        if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], additionalEffect))
+        if (!MoveEffectIsGuaranteed(battlerAtk, aiData->abilities[battlerAtk], additionalEffect, move))
             continue;
 
         // Consider move effects that target self
@@ -5853,7 +5853,7 @@ static s32 AI_CalcAdditionalEffectScore(enum BattlerId battlerAtk, enum BattlerI
                     ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, stat, stage));
                 }
                 break;
-            case MOVE_EFFECT_CRIT_PLUS_SIDE:
+            case MOVE_EFFECT_CRIT_PLUS:
             {
                 if (ShouldBoostCritRate(battlerAtk, battlerDef) && gBattleMons[battlerAtk].volatiles.bonusCritStages < 3)
                     score +=10;
