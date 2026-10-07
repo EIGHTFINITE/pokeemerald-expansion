@@ -26,15 +26,16 @@ BattleScript_MoveResolution::
 	attackcanceler
 	goto BattleScript_MoveEnd
 
-BattleScript_TryRevertWeatherform:
+BattleScript_TryRevertWeatherForms::
 	savebattlerorderindex
 	setbyte gBattlerOrderIndex, 0
 	sortbattlers
-BattleScript_TryRevertWeatherformLoop:
+BattleScript_TryRevertWeatherFormsLoop:
 	tryrevertweatherform
 	addbyte gBattlerOrderIndex, 1
-	jumpifbytenotequal gBattlerOrderIndex, gBattlersCount, BattleScript_TryRevertWeatherformLoop
+	jumpifbytenotequal gBattlerOrderIndex, gBattlersCount, BattleScript_TryRevertWeatherFormsLoop
 	restorebattlerorderindex
+	flushtextbox
 	return
 
 BattleScript_FickleBeamMessage::
@@ -545,7 +546,7 @@ BattleScript_ButHoopaCantUseIt::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_MoveEffectSetStatus::
+BattleScript_WaitMessage::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
@@ -765,8 +766,7 @@ BattleScript_EffectHealingWishGen4:
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	call BattleScript_TryRevertWeatherform
-	flushtextbox
+	call BattleScript_TryRevertWeatherForms
 	tryendneutralizinggas
 	flushtextbox
 	printstring STRINGID_SWITCHINMON
@@ -801,8 +801,7 @@ BattleScript_MoveEffectOverwriteAbility::
 	tryillusionoff BS_EFFECT_BATTLER
 	tryendneutralizinggas BS_EFFECT_BATTLER
 	trytoclearprimalweather
-	call BattleScript_TryRevertWeatherform
-	flushtextbox
+	call BattleScript_TryRevertWeatherForms
 	switchinabilities BS_EFFECT_BATTLER
 	return
 
@@ -1084,8 +1083,7 @@ BattleScript_RecoilEnd:
 
 BattleScript_MoveEffectTransform::
 	trytoclearprimalweather
-	call BattleScript_TryRevertWeatherform
-	flushtextbox
+	call BattleScript_TryRevertWeatherForms
 	tryendneutralizinggas
 	flushtextbox
 	printfromtable gTransformUsedStringIds
@@ -1456,25 +1454,7 @@ BattleScript_MoveEffectRefresh::
 	return
 
 BattleScript_FaintBattler::
-	tryillusionoff BS_FAINTED
-	undodynamax BS_FAINTED
-	playfaintcry BS_FAINTED
-	pause B_WAIT_TIME_LONG
-	dofaintanimation BS_FAINTED
-	copybyte sBATTLER, gBattlerFainted @ for message
-	printstring STRINGID_BATTLERFAINTED
-	tryconfusionafterskydrop BS_FAINTED
-	cleareffectsonfaint BS_FAINTED
-	trytoclearprimalweather
-	call BattleScript_TryRevertWeatherform
-	flushtextbox
-	waitanimation
-	tryactivatereceiver BS_FAINTED
-	savebattlerorderindex
-	setbyte gBattlerOrderIndex, 0
-	tryactivatesoulheart
-	restorebattlerorderindex
-	trytrainerslidemsgfirstoff BS_FAINTED
+	dofainteffectsblock
 	return
 
 BattleScript_GiveExp::
@@ -1834,8 +1814,12 @@ BattleScript_DoSwitchOut::
 	moveendcase MOVEEND_STATUS_IMMUNITY_ABILITIES_OPPOSING_SIDE
 	end
 
-BattleScript_Pausex20::
+BattleScript_PauseShort::
 	pause B_WAIT_TIME_SHORT
+	return
+
+BattleScript_PauseLong::
+	pause B_WAIT_TIME_LONG
 	return
 
 BattleScript_LevelUp::
@@ -3769,8 +3753,7 @@ BattleScript_MummyActivates::
 	printstring STRINGID_ATTACKERACQUIREDABILITY
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
-	call BattleScript_TryRevertWeatherform
-	flushtextbox
+	call BattleScript_TryRevertWeatherForms
 	tryillusionoff BS_ATTACKER
 	tryendneutralizinggas BS_ATTACKER
 	return
