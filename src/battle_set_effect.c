@@ -3139,18 +3139,53 @@ static void HandleSetEffectStatSwap(struct BattleCalcValues *cv, struct SetEffec
 
 static void HandleSetEffectOverwriteAbility(struct BattleCalcValues *cv, struct SetEffect *se)
 {
-    enum Ability abilityEff = cv->abilities[se->effectBattler];
+    enum BattlerId battlerAbility = se->effectBattler;
+    // Get from BattleMons because of potential negations
+    enum Ability abilityAtk = gBattleMons[cv->battlerAtk].ability;
+    enum Ability abilityDef = gBattleMons[cv->battlerDef].ability;
+    enum Ability abilityEff = gBattleMons[se->effectBattler].ability;
+
     enum Ability overwriteAbility = se->additionalEffect->argument.overwriteAbility;
+    enum StringID stringAbility = STRINGID_PKMNACQUIREDABILITY;
+
+    if (overwriteAbility == ABILITY_NONE) // Role Play / Doodle / Entrainment
+    {
+        if (se->additionalEffect->self) // Copy target's ability - Role Play / Doodle
+        {
+            overwriteAbility = abilityDef;
+            battlerAbility = cv->battlerDef;
+            stringAbility = STRINGID_PKMNCOPIEDFOE;
+        }
+        else // Target copies user's ability - Entrainment
+        {
+            overwriteAbility = abilityAtk;
+            battlerAbility = cv->battlerAtk;
+        }
+
+        if (gAbilitiesInfo[overwriteAbility].cantBeCopied)
+        {
+            SetEffectFailAndCheckReturn;
+            RecordAbilityBattle(battlerAbility, overwriteAbility);
+            BattleScriptPushAndSet(se->script, BattleScript_ButItFailedRet);
+            return;
+        }
+    }
 
     if (gAbilitiesInfo[abilityEff].cantBeOverwritten || abilityEff == overwriteAbility)
     {
         SetEffectFailAndCheckReturn;
         RecordAbilityBattle(se->effectBattler, abilityEff);
+        if (battlerAbility != se->effectBattler && abilityEff == overwriteAbility)
+            RecordAbilityBattle(battlerAbility, overwriteAbility);
         BattleScriptPushAndSet(se->script, BattleScript_ButItFailedRet);
     }
     else if (CanAbilityShieldActivateForBattler(se->effectBattler))
     {
         SetEffectFail(BattleScript_AbilityShieldProtects);
+    }
+    else if (GetActiveGimmick(se->effectBattler) == GIMMICK_DYNAMAX && battlerAbility == cv->battlerAtk) // Entrainment
+    {
+        SetEffectFail(BattleScript_ButItFailedRet);
     }
     else if (!cv->onlyChecking)
     {
@@ -3159,10 +3194,8 @@ static void HandleSetEffectOverwriteAbility(struct BattleCalcValues *cv, struct 
         OverwriteBattlerAbility(se->effectBattler, overwriteAbility);
         gBattlerAbility = se->effectBattler;
         RecordAbilityBattle(se->effectBattler, gBattleMons[se->effectBattler].ability);
-        PrepareStringBattleWithWait(STRINGID_PKMNACQUIREDABILITY, se->effectBattler);
-        BattleScriptPush(se->script);
-        BattleScriptPush(BattleScript_MoveEffectOverwriteAbility);
-        gBattlescriptCurrInstr = BattleScript_AbilityPopUpOverwriteThenNormal;
+        gBattleScripting.savedStringId = stringAbility;
+        BattleScriptPushAndSet(se->script, BattleScript_MoveEffectOverwriteAbility);
     }
 }
 
@@ -3211,51 +3244,6 @@ static void HandleSetEffectSkillSwap(struct BattleCalcValues *cv, struct SetEffe
             BattleScriptPushAndSet(se->script, BattleScript_MoveEffectSkillSwapAfterAbilityPopUp);
         else
             BattleScriptPushAndSet(se->script, BattleScript_MoveEffectSkillSwap);
-    }
-}
-
-static void HandleSetEffectRolePlay(struct BattleCalcValues *cv, struct SetEffect *se)
-{
-    enum Ability sourceAbility = gBattleMons[cv->battlerDef].ability;
-    enum Ability destAbility = gBattleMons[se->effectBattler].ability;
-
-    if (destAbility == sourceAbility
-     || sourceAbility == ABILITY_NONE
-     || gAbilitiesInfo[destAbility].cantBeSuppressed
-     || gAbilitiesInfo[sourceAbility].cantBeCopied)
-    {
-        SetEffectFail(BattleScript_ButItFailedRet, cv->isStatusMove);
-        if (!cv->onlyChecking)
-        {
-            if (gAbilitiesInfo[destAbility].cantBeSuppressed)
-            {
-                RecordAbilityBattle(se->effectBattler, destAbility);
-            }
-            if (gAbilitiesInfo[sourceAbility].cantBeCopied)
-            {
-                RecordAbilityBattle(cv->battlerDef, sourceAbility);
-            }
-            if (destAbility == sourceAbility)
-            {
-                RecordAbilityBattle(se->effectBattler, destAbility);
-                RecordAbilityBattle(cv->battlerDef, sourceAbility);
-            }
-        }
-    }
-    else if (CanAbilityShieldActivateForBattler(se->effectBattler))
-    {
-        SetEffectFail(BattleScript_AbilityShieldProtects);
-    }
-    else if (!cv->onlyChecking)
-    {
-        gBattlerAbility = se->effectBattler;
-        RemoveAbilityFlags(se->effectBattler);
-        gBattleScripting.abilityPopupOverwrite = destAbility;
-        OverwriteBattlerAbility(se->effectBattler, sourceAbility);
-        gLastUsedAbility = sourceAbility;
-        RecordAbilityBattle(se->effectBattler, gLastUsedAbility);
-        RecordAbilityBattle(cv->battlerDef, gLastUsedAbility);
-        BattleScriptPushAndSet(se->script, BattleScript_MoveEffectRolePlay);
     }
 }
 
@@ -3508,48 +3496,6 @@ static void HandleSetEffectOverwriteType(struct BattleCalcValues *cv, struct Set
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, typeToSet);
         PrepareStringBattleWithWait(STRINGID_TARGETCHANGEDTYPE, se->effectBattler);
         BattleScriptPushAndSet(se->script, BattleScript_WaitMessage);
-    }
-}
-
-static void HandleSetEffectEntrainment(struct BattleCalcValues *cv, struct SetEffect *se)
-{
-    const enum Ability *srcAbility = &gBattleMons[cv->battlerAtk].ability;
-    enum Ability *destAbility = &gBattleMons[se->effectBattler].ability;
-
-    if (gAbilitiesInfo[*srcAbility].cantBeCopied)
-    {
-        se->effectFailed = TRUE;
-        if (!cv->onlyChecking)
-        {
-            RecordAbilityBattle(cv->battlerAtk, *srcAbility);
-            if (cv->isStatusMove)
-                BattleScriptPushAndSet(se->script, BattleScript_ButItFailedRet);
-        }
-    }
-    else if (gAbilitiesInfo[*destAbility].cantBeOverwritten)
-    {
-        se->effectFailed = TRUE;
-        if (!cv->onlyChecking)
-        {
-            RecordAbilityBattle(se->effectBattler, *destAbility);
-            if (cv->isStatusMove)
-                BattleScriptPushAndSet(se->script, BattleScript_ButItFailedRet);
-        }
-    }
-    else if (CanAbilityShieldActivateForBattler(se->effectBattler))
-    {
-        SetEffectFail(BattleScript_AbilityShieldProtects);
-    }
-    else if (*destAbility == *srcAbility || GetActiveGimmick(se->effectBattler) == GIMMICK_DYNAMAX)
-    {
-        SetEffectFail(BattleScript_ButItFailedRet, cv->isStatusMove);
-    }
-    else if (!cv->onlyChecking)
-    {
-        RemoveAbilityFlags(se->effectBattler);
-        OverwriteBattlerAbility(se->effectBattler, *srcAbility);
-        PrepareStringBattleWithWait(STRINGID_PKMNACQUIREDABILITY, se->effectBattler);
-        BattleScriptPushAndSet(se->script, BattleScript_MoveEffectOverwriteAbility);
     }
 }
 
@@ -4303,13 +4249,11 @@ static void (*const sSetEffectHandlers[])(struct BattleCalcValues *cv, struct Se
     [MOVE_EFFECT_STAT_SWAP] = HandleSetEffectStatSwap,
     [MOVE_EFFECT_OVERWRITE_ABILITY] = HandleSetEffectOverwriteAbility,
     [MOVE_EFFECT_SKILL_SWAP] = HandleSetEffectSkillSwap,
-    [MOVE_EFFECT_ROLE_PLAY] = HandleSetEffectRolePlay,
     [MOVE_EFFECT_TRICK] = HandleSetEffectTrick,
     [MOVE_EFFECT_SET_ROOM] = HandleSetEffectSetRoom,
     [MOVE_EFFECT_AVERAGE_STATS] = HandleSetEffectAverageStats,
     [MOVE_EFFECT_TELEKINESIS] = HandleSetEffectTelekinesis,
     [MOVE_EFFECT_OVERWRITE_TYPE] = HandleSetEffectOverwriteType,
-    [MOVE_EFFECT_ENTRAINMENT] = HandleSetEffectEntrainment,
     [MOVE_EFFECT_AFTER_YOU] = HandleSetEffectAfterYou,
     [MOVE_EFFECT_REFLECT_TYPE] = HandleSetEffectReflectType,
     [MOVE_EFFECT_STICKY_WEB] = HandleSetEffectStickyWeb,
