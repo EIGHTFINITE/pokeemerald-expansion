@@ -145,8 +145,12 @@ This includes: `"TM01", "PC", "EV"`, any two uppercase characters surrounded by 
 ## AI Disclosure
 
 No AI was used in the making of my branches; all of my work is entirely organic and made by me.
-Please do not open Issues or PRs unless all text and code within them has a human origin.
+Please do not open Issues or PRs unless you can say the same of all text and code within them.
 
 ## See also
 
 For contacts and other pret projects, see [pret.github.io](https://pret.github.io/).
+
+Feel free to open an [Issue](https://github.com/aarant/pokeemerald/issues/new) on this repo.
+
+To contact me on Discord: **merrp**.
