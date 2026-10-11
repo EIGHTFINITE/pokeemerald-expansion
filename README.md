@@ -53,8 +53,8 @@ There are several branches, each with one main feature (and sometimes some extra
 > Note: Unless you have a specific need for it, you should probably use `followers-expanded-id` over this.
 
 **guillotine** branch:
-* ~~Decapitates~~ Decapitalizes **all** text at runtime, with some exceptions (see the [FAQ](#guillotine-q-how-can-i-keep-my-strings-from-being-decapped))
-* Future-proof, does not require mass-replacing strings
+* ~~Decapitates~~ Decapitalizes text at compile-time, with some exceptions (see the [FAQ](#guillotine-q-how-can-i-keep-my-strings-from-being-decapped))
+* Future-proof, doesn't require mass-replacing strings
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
@@ -126,23 +126,20 @@ const u8 gText_IDNumber[] = _C("IDNo.");
 ASM strings: Replace `.string` with `.fixstr`:
 ```arm
 gText_SavingDontTurnOff::
-    @ Lasts until the string terminator '$'
+    @ Lasts until the end of the line
 	.fixstr "SAVING…\n"
-	.string "DON'T TURN OFF THE POWER.$"
+	.fixstr "DON'T TURN OFF THE POWER.$"
 ```
 You can fix-case/unfix parts of a string like so:
 ```arm
 	.string "{FIXED_CASE}WARNING!{UNFIX_CASE}\p"
 ```
-For a placeholder (only the placeholder will be fixed-case):
-```arm
-	.string "{STR_VAR_2_FIXED} was transferred to\n"
-	.string "BOX “{STR_VAR_1}.”$"
-```
-See also the configuration in [text.h](gflib/text.h).
+See also the configuration in [decap_config.h](include/constants/decap_config.h).
 
 There's also special handling for "separated bigrams"; basically, two letter words.
-This includes: `"TM01", "PC", "EV"`, any two uppercase characters surrounded by digits, whitespace, or the start/end of a string. These will not be decapped.
+This includes: `"TM01", "PC", "ID"`, any two uppercase characters surrounded by (generally) non-alphabetic characters. These will have their case preserved.
+
+Character attributes are defined in tables in [charmap.cpp](tools/preproc/charmap.cpp) and [charmap.h](tools/preproc/charmap.h).
 
 ### Q: AI policy?
 
