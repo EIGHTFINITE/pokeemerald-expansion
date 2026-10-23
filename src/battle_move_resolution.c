@@ -3950,13 +3950,12 @@ static void TryTriggerAdditionalEffect(struct BattleCalcValues *cv, const struct
     struct SetEffect se = {0};
 
     bool32 percentChance = CalcSecondaryEffectChance(cv->battlerAtk, cv->abilities[cv->battlerAtk], additionalEffect, cv->move);
+    bool32 isAppliedRandomly = RandomPercentage(RNG_SECONDARY_EFFECT + gBattleStruct->additionalEffectsCounter, percentChance);
     bool32 isPrimary = percentChance == 0;
     bool32 failedToTrigger = TRUE;
 
     // By default, onSide effects apply if they applied on the original target/user
-    if (isPrimary
-     || gBattleStruct->setEffectOnAlly
-     || RandomPercentage(RNG_SECONDARY_EFFECT + gBattleStruct->additionalEffectsCounter, percentChance))
+    if (isPrimary || isAppliedRandomly || gBattleStruct->setEffectOnAlly)
     {
         if (!additionalEffect->self && !cv->isStatusMove)
             cv->battlerDef = effectBattler; // For SetMoveEffect, will be restored to previous value when run again
@@ -3990,7 +3989,10 @@ static bool32 IsDamageMoveSelfStatChange(bool32 isSelf, enum MoveEffect moveEffe
 {
     if (!isSelf)
         return FALSE;
-    return moveEffect == MOVE_EFFECT_STAT_MINUS || moveEffect == MOVE_EFFECT_STAT_PLUS;
+    return moveEffect == MOVE_EFFECT_STAT_MINUS 
+        || moveEffect == MOVE_EFFECT_STAT_PLUS
+        || moveEffect == MOVE_EFFECT_TERA_BLAST
+        || moveEffect == MOVE_EFFECT_ORDER_UP;
 }
 
 static enum MoveEndResult MoveEndAdditionalEffects(struct BattleCalcValues *cv)
